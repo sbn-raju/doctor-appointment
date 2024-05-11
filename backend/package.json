@@ -1,0 +1,18 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Creating a website for a Naturopathy organization and services they provide",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodeman src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sbn-raju/Dr.RamachandraPadma"
+  },
+  "author": "SBN RAJU",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
