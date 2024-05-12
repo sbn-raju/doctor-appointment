@@ -1,7 +1,8 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import Footer from './components/Footer/Footer'
+
+
+//EVERY ONE USE APP FOR TESTING YOUR COMPONENT
 
 function App() {
   const [count, setCount] = useState(0)
@@ -9,6 +10,7 @@ function App() {
   return (
     <>
       <h1 className='bg-orange-400'>JAI SHRI RAM</h1>
+      <Footer/>
     </>
   )
 }
