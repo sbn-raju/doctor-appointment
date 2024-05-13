@@ -1,6 +1,6 @@
-// import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
+import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       <h1 className='bg-orange-400'>JAI SHRI RAM</h1>
-      <h1 className='bg-blue-400'>Hello World!</h1>
+      <Footer/>
     </>
   )
 }
