@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from "../../assets/image 21.png";
+import logo from "../../assets/Logo/image 2.png";
 import { IoMenu } from "react-icons/io5";
 import { RxCross2 } from "react-icons/rx";
 import { navItems } from "../../constants";

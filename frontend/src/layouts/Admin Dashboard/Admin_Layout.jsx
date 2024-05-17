@@ -1,8 +1,15 @@
 import React from 'react'
+import HeaderHome from '../../components/Header/HeaderHome'
+import { Outlet } from 'react-router-dom'
+import Footer from '../../components/Footer/Footer'
 
 const Admin_Layout = () => {
   return (
-    <div>Admin_Layout</div>
+   <>
+   <HeaderHome/>
+   <Outlet/>
+   <Footer/>   
+   </>
   )
 }
 
