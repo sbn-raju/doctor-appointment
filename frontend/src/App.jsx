@@ -9,6 +9,7 @@ import Admin_Layout from './layouts/Admin Dashboard/Admin_Layout.jsx'
 import User_layout from './layouts/User Dashboard/User_Layout.jsx'
 import Doctor_Layout from './layouts/Doctor Dashboard/Doctor_Layout.jsx'
 import {MyAppointmentsPage} from './pages/Easy Imports/User Dashboard Imports/user.js'
+import {TermsAndConditionPage} from './pages/Easy Imports/Main Imports/main.js'
 
 
 
@@ -21,7 +22,8 @@ function App() {
     <Routes>
 
       <Route path='/' element={<MainLayout/>}>
-        <Route path="about"element={<AboutPage/>}/>
+        <Route path="about" element={<AboutPage/>}/>
+        <Route path="terms" element={<TermsAndConditionPage />}/>
       </Route>
       <Route path='/user' element={<User_layout/>}>
         <Route path="appointment" element={<MyAppointmentsPage/>}/>
@@ -31,7 +33,7 @@ function App() {
       </Route>
       <Route path='/doctor' element={<Doctor_Layout/>}>
         <Route path="login" element={<ClassBookingPage/>}/>
-        <Route path='dashboard' element={<ClassBookingPage/>}/>
+        <Route path="dashboard" element={<ClassBookingPage/>}/>
       </Route>
 
     </Routes>
