@@ -24,6 +24,7 @@ function App() {
       <Route path='/' element={<MainLayout/>}>
         <Route path="about" element={<AboutPage/>}/>
         <Route path="terms" element={<TermsAndConditionPage />}/>
+        <Route path="services" element={<ServicesPage />} />
       </Route>
       <Route path='/user' element={<User_layout/>}>
         <Route path="appointment" element={<MyAppointmentsPage/>}/>
