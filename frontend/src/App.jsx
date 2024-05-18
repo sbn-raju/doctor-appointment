@@ -10,7 +10,7 @@ import User_layout from './layouts/User Dashboard/User_Layout.jsx'
 import Doctor_Layout from './layouts/Doctor Dashboard/Doctor_Layout.jsx'
 import {MyAppointmentsPage} from './pages/Easy Imports/User Dashboard Imports/user.js'
 import {TermsAndConditionPage} from './pages/Easy Imports/Main Imports/main.js'
-
+import {ServicesPage} from './pages/Easy Imports/Main Imports/main.js'
 
 
 
@@ -24,6 +24,7 @@ function App() {
       <Route path='/' element={<MainLayout/>}>
         <Route path="about" element={<AboutPage/>}/>
         <Route path="terms" element={<TermsAndConditionPage />}/>
+        <Route path="services" element={<ServicesPage />} />
       </Route>
       <Route path='/user' element={<User_layout/>}>
         <Route path="appointment" element={<MyAppointmentsPage/>}/>
