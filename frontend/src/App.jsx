@@ -8,7 +8,7 @@ import MainLayout from './layouts/Main Layout/MainLayout.jsx'
 import Admin_Layout from './layouts/Admin Dashboard/Admin_Layout.jsx'
 import User_layout from './layouts/User Dashboard/User_Layout.jsx'
 import Doctor_Layout from './layouts/Doctor Dashboard/Doctor_Layout.jsx'
-import {MyAppointmentsPage} from './pages/Easy Imports/User Dashboard Imports/user.js'
+import {MyAppointmentsPage, MyProfilePage, MyPaymentsPage, MyClassesPage} from './pages/Easy Imports/User Dashboard Imports/user.js'
 import {TermsAndConditionPage} from './pages/Easy Imports/Main Imports/main.js'
 import {ServicesPage} from './pages/Easy Imports/Main Imports/main.js'
 
@@ -23,11 +23,14 @@ function App() {
 
       <Route path='/' element={<MainLayout/>}>
         <Route path="about" element={<AboutPage/>}/>
-        <Route path="terms" element={<TermsAndConditionPage />}/>
-        <Route path="services" element={<ServicesPage />} />
+        <Route path="term" element={<TermsAndConditionPage />}/>
+        <Route path="service" element={<ServicesPage />} />
       </Route>
       <Route path='/user' element={<User_layout/>}>
         <Route path="appointment" element={<MyAppointmentsPage/>}/>
+        <Route path="profile" element={<MyProfilePage/>}/>
+        <Route path="payment" element={<MyPaymentsPage />} />
+        <Route path="class" element={<MyClassesPage />} />
       </Route>
       <Route path='/admin' element={<Admin_Layout/>}>
         <Route path="addDoctor" element={<AddDoctorPage/>}/>

@@ -3,7 +3,7 @@ import React from 'react';
 const TermsAndConditionPage = () => {
   return (
     <div>
-      <div className="p-8 h-full w-full bg-green-50">
+      <div className="p-8 h-full w-full bg-custom-green">
         <div className="mb-10">
           <div className="mb-5">
             <h1 className="text-2xl font-bold mb-2">Terms and Conditions (“Terms”)</h1>

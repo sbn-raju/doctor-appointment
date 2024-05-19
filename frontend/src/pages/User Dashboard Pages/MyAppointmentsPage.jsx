@@ -2,7 +2,9 @@ import React from 'react'
 
 const MyAppointmentsPage = () => {
   return (
-    <div>MyAppointmentsPage</div>
+    <div class="h-screen max-h-max ">
+
+    </div>
   )
 }
 
