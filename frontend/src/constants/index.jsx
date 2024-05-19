@@ -1,5 +1,4 @@
 export const navItems = [
-<<<<<<< HEAD
     {label:"About Us",href:"#"},
     {label:"Services",href:"/services"},
     {label:"Activities",href:"#"},
@@ -55,11 +54,9 @@ export const paymentDetails = [
         Purpose: "Appointment"
     },
 ]
-=======
-  { label: "About Us", href: "#" },
-  { label: "Services", href: "/services" },
-  { label: "Activities", href: "#" },
-  { label: "Diet", href: "#" },
-];
+//   { label: "About Us", href: "#" },
+//   { label: "Services", href: "/services" },
+//   { label: "Activities", href: "#" },
+//   { label: "Diet", href: "#" },
+// ];
 
->>>>>>> c88a6dd138f84679ac2285d803130b90031afb59

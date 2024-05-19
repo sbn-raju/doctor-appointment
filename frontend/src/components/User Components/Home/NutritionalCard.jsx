@@ -5,7 +5,7 @@ const NutritionalCard = () => {
   return (
     <>
       <div className="min-w-full h-auto flex justify-center items-center mt-10">
-        <div className="w-4/5 lg:w-3/5 h-auto py-5 px-5 flex flex-col lg:flex-row bg-yellow-700 rounded-xl justify-center items-center">
+        <div className="w-4/5 lg:w-4/5 h-auto py-5 px-5 flex flex-col lg:flex-row bg-yellow-700 rounded-xl justify-center items-center">
           <div className="text-center">
             <h2 className="font-bold text-xl lg:hidden">డా.రామచంద్ర’s </h2>
           </div>

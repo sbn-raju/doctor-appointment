@@ -2,6 +2,7 @@ import React from "react";
 import posterImage from "../../assets/Page Assets/Services/Group 65.png";
 import ClassCard from "../../components/User Components/Home/ClassCard";
 import AppointmentCards from "../../components/User Components/Home/AppointmentCards";
+import { CardsHolder } from "../../components/User Components/Services/CardsHolder";
 
 const ServicesPage = () => {
   return (
@@ -31,6 +32,9 @@ const ServicesPage = () => {
         </div>
         </div>
       </div>
+
+      {/* Card Holders */}
+      <CardsHolder/>
 
       {/* Card of Appointment */}
       <ClassCard />

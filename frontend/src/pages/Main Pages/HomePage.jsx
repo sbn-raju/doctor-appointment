@@ -144,15 +144,15 @@ const HomePage = () => {
               key={video.id}
               className="h-60 w-full px-5 md:w-3/5 lg:w-4/5 lg:h-64 m-auto"
             >
-              <iFrame
+              <iframe
                 src={video.tag}
                 title="YouTube video player"
-                frameborder="0"
+                frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allowfullscreen
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
                 className="rounded-2xl w-full h-full"
-              ></iFrame>
+              ></iframe>
             </div>
           ))}
         </div>
