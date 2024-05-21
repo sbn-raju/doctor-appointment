@@ -5,7 +5,7 @@ const ClassCard = () => {
   return (
     <>
       <div className="min-w-full h-auto flex justify-center mt-10">
-        <div className="w-4/5  lg:w-3/5 h-auto p-5 flex justify-center items-center flex-col lg:flex-row xl:flex-row bg-yellow-700 rounded-xl">
+        <div className="w-4/5  lg:w-3/5 h-auto p-5 flex justify-center items-center flex-col lg:flex-row xl:flex-row bg-white rounded-xl border-[1px] border-red-300">
           <div className="lg:hidden">
             <h2 className="text-xl font-semibold">ప్రకృతే వైద్యుడు</h2>
           </div>

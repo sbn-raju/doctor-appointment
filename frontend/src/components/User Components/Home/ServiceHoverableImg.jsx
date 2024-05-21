@@ -45,7 +45,7 @@ const ServiceHoverableImg = () => {
       </div>
       <div className='w-full lg:w-4/5 h-auto flex flex-col items-center justify-between lg:flex-row'>
         {mainImages.map((image, index) => (
-          <div key={image.id} className='m-4'>
+          <div key={image.id} className='m-4 cursor-pointer'>
             <img
               src={hoverStates[index] ? image.image_two : image.image_one}
               alt=""

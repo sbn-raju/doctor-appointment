@@ -8,15 +8,9 @@ import MainLayout from './layouts/Main Layout/MainLayout.jsx'
 import Admin_Layout from './layouts/Admin Dashboard/Admin_Layout.jsx'
 import User_layout from './layouts/User Dashboard/User_Layout.jsx'
 import Doctor_Layout from './layouts/Doctor Dashboard/Doctor_Layout.jsx'
-// <<<<<<< HEAD
 import {MyAppointmentsPage, MyProfilePage, MyPaymentsPage, MyClassesPage} from './pages/Easy Imports/User Dashboard Imports/user.js'
-// import {TermsAndConditionPage} from './pages/Easy Imports/Main Imports/main.js'
-// import {ServicesPage} from './pages/Easy Imports/Main Imports/main.js'
-// =======
-// import {MyAppointmentsPage} from './pages/Easy Imports/User Dashboard Imports/user.js'
 
 
-// >>>>>>> c88a6dd138f84679ac2285d803130b90031afb59
 
 
 

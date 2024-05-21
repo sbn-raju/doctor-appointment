@@ -28,7 +28,7 @@ const MyPaymentsPage = () => {
         </div>
         <div className="w-2/3 h-2/3 overflow-auto scrollbar px-5">
           {paymentDetails.map((payment, index) => (
-            <div key={index} className={`mb-5 p-3 px-4 rounded-2xl border-[1px] border-custom-red bg-custom-yellow
+            <div key={index} className={`mb-5 p-4 px-5 rounded-2xl border-[1px] border-custom-red bg-custom-yellow
                 transition-all duration-500 ease-in-out ${detailsVisible[index] ? 'min-h-52' : 'h-22'}`}>
               <div className='w-full flex'>
                 <div className='w-3/5'>

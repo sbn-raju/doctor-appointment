@@ -28,12 +28,12 @@ const youtube = [
 
 const HomePage = () => {
   return (
-    <>
+    <div className="bg-custom-green">
       {/* Coursel */}
       <Carousel />
 
       {/* Mega Menu */}
-      <div className="grid grid-cols-3 grid-rows-2 md:m-auto lg:flex lg:flex-row justify-center items-center mt-10">
+      <div className="grid grid-cols-3 grid-rows-2 md:m-auto lg:flex lg:flex-row justify-evenly items-center mt-10">
         <Link>
           <div className="flex flex-col justify-center item-center m-2">
             <div className="w-20 h-20 m-auto bg-blue-600 rounded-full border-2 border-custom-red lg:w-30 lg:h-30 xl:w-40 xl:h-40">
@@ -103,7 +103,7 @@ const HomePage = () => {
 
       {/* Intro */}
       <div className="w-full h-auto grid grid-rows-1 place-items-center mt-10 ">
-        <div className="w-4/5 lg:w-3/5 h-auto flex flex-col justify-center items-center rounded-2xl bg-custom-yellow py-5 px-5 xl:py-10 xl:px-10 xl:flex-row hover:shadow-lg hover:shadow-amber-300 hover:duration-500">
+        <div className="w-4/5 lg:w-3/5 h-auto flex flex-col justify-center items-center rounded-2xl bg-white py-5 px-5 xl:py-10 xl:px-10 xl:flex-row hover:shadow-lg hover:shadow-amber-300 hover:duration-500 border-[1px] border-yellow-500">
           <div className="w-full lg:w-3/5">
             <h2 className="text-green-700 font-bold xl:text-2xl">
               Nathuropathy&nbsp;<span>అనగా</span>
@@ -144,15 +144,15 @@ const HomePage = () => {
               key={video.id}
               className="h-60 w-full px-5 md:w-3/5 lg:w-4/5 lg:h-64 m-auto"
             >
-              <iFrame
+              <iframe
                 src={video.tag}
                 title="YouTube video player"
-                frameborder="0"
+                frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allowfullscreen
+                referrerPolicy="strict-origin-when-cross-origin"
+                allowFullScreen
                 className="rounded-2xl w-full h-full"
-              ></iFrame>
+              ></iframe>
             </div>
           ))}
         </div>
@@ -166,7 +166,7 @@ const HomePage = () => {
 
       {/* Card of Diet  */}
       <NutritionalCard />
-    </>
+    </div>
   );
 };
 

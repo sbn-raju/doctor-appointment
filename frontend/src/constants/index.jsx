@@ -1,5 +1,6 @@
+import { MdDescription } from "react-icons/md"
+
 export const navItems = [
-// <<<<<<< HEAD
     {label:"About Us",href:"#"},
     {label:"Services",href:"/services"},
     {label:"Activities",href:"#"},
@@ -55,11 +56,191 @@ export const paymentDetails = [
         Purpose: "Appointment"
     },
 ]
-// =======
-//   { label: "About Us", href: "#" },
-//   { label: "Services", href: "/services" },
-//   { label: "Activities", href: "#" },
-//   { label: "Diet", href: "#" },
-// ];
 
-// >>>>>>> c88a6dd138f84679ac2285d803130b90031afb59
+export const appointmentDetails = [
+    {
+        Date: "12,May 2024",
+        Time: "7:30-8:00",
+        Name: "Vishwaksena",
+        Status: "Confirmed",
+    },
+    {
+        Date: "12,May 2024",
+        Time: "7:30-8:00",
+        Name: "Vishwaksena",
+        Status: "Confirmed",
+    },
+    {
+        Date: "12,May 2024",
+        Time: "7:30-8:00",
+        Name: "Vishwaksena",
+        Status: "Confirmed",
+    },
+    {
+        Date: "12,May 2024",
+        Time: "7:30-8:00",
+        Name: "Vishwaksena",
+        Status: "Confirmed",
+    },
+    {
+        Date: "12,May 2024",
+        Time: "7:30-8:00",
+        Name: "Vishwaksena",
+        Status: "Confirmed",
+    },
+    {
+        Date: "12,May 2024",
+        Time: "7:30-8:00",
+        Name: "Vishwaksena",
+        Status: "Confirmed",
+    },
+    {
+        Date: "12,May 2024",
+        Time: "7:30-8:00",
+        Name: "Vishwaksena",
+        Status: "Confirmed",
+    },
+    {
+        Date: "12,May 2024",
+        Time: "7:30-8:00",
+        Name: "Vishwaksena",
+        Status: "Confirmed",
+    },
+    {
+        Date: "12,May 2024",
+        Time: "7:30-8:00",
+        Name: "Vishwaksena",
+        Status: "Confirmed",
+    },
+    {
+        Date: "12,May 2024",
+        Time: "7:30-8:00",
+        Name: "Vishwaksena",
+        Status: "Confirmed",
+    },
+]
+
+export const classDetails = [
+    {
+        Date: "12,May 2024",
+        Time: "7:30-8:00",
+        Batch: "1",
+        Status: "Confirmed",
+        Link: "JOIN",
+    },
+    {
+        Date: "12,May 2024",
+        Time: "7:30-8:00",
+        Batch: "1",
+        Status: "Confirmed",
+        Link: "JOIN",
+    },
+    {
+        Date: "12,May 2024",
+        Time: "7:30-8:00",
+        Batch: "1",
+        Status: "Confirmed",
+        Link: "JOIN",
+    },
+    {
+        Date: "12,May 2024",
+        Time: "7:30-8:00",
+        Batch: "1",
+        Status: "Confirmed",
+        Link: "JOIN",
+    },
+    {
+        Date: "12,May 2024",
+        Time: "7:30-8:00",
+        Batch: "1",
+        Status: "Confirmed",
+        Link: "JOIN",
+    },
+    {
+        Date: "12,May 2024",
+        Time: "7:30-8:00",
+        Batch: "1",
+        Status: "Confirmed",
+        Link: "JOIN",
+    },
+    {
+        Date: "12,May 2024",
+        Time: "7:30-8:00",
+        Batch: "1",
+        Status: "Confirmed",
+        Link: "JOIN",
+    },
+    {
+        Date: "12,May 2024",
+        Time: "7:30-8:00",
+        Batch: "1",
+        Status: "Confirmed",
+        Link: "JOIN",
+    },
+    {
+        Date: "12,May 2024",
+        Time: "7:30-8:00",
+        Batch: "1",
+        Status: "Confirmed",
+        Link: "JOIN",
+    },
+    {
+        Date: "12,May 2024",
+        Time: "7:30-8:00",
+        Batch: "1",
+        Status: "Confirmed",
+        Link: "JOIN",
+    },
+    {
+        Date: "12,May 2024",
+        Time: "7:30-8:00",
+        Batch: "1",
+        Status: "Confirmed",
+        Link: "JOIN",
+    },
+    {
+        Date: "12,May 2024",
+        Time: "7:30-8:00",
+        Batch: "1",
+        Status: "Confirmed",
+        Link: "JOIN",
+    },
+]
+
+export const aboutDetails = [
+    {
+        Date: "12 May 1995",
+        Title: "ఆరోగ్య సలహా",
+        Description: "ఆయుర్వేద, అలోపతి, హోమియోపతి, యునాని, సిద్ధ వైద్య విధానం మొదలగు వైద్య విధానాలవలే ఇది ఒక వైద్య విధానం. పంచభూతాలతో చికిత్స చేసే ఒక ప్రక్రియ. ఇందులో మందులు కానీ, పసర్లు కానీ, పూతలు "
+    },
+    {
+        Date: "12 May 1995",
+        Title: "ఆరోగ్య సలహా",
+        Description: "ఆయుర్వేద, అలోపతి, హోమియోపతి, యునాని, సిద్ధ వైద్య విధానం మొదలగు వైద్య విధానాలవలే ఇది ఒక వైద్య విధానం. పంచభూతాలతో చికిత్స చేసే ఒక ప్రక్రియ. ఇందులో మందులు కానీ, పసర్లు కానీ, పూతలు "
+    },
+    {
+        Date: "12 May 1995",
+        Title: "ఆరోగ్య సలహా",
+        Description: "ఆయుర్వేద, అలోపతి, హోమియోపతి, యునాని, సిద్ధ వైద్య విధానం మొదలగు వైద్య విధానాలవలే ఇది ఒక వైద్య విధానం. పంచభూతాలతో చికిత్స చేసే ఒక ప్రక్రియ. ఇందులో మందులు కానీ, పసర్లు కానీ, పూతలు "
+    },
+    {
+        Date: "12 May 1995",
+        Title: "ఆరోగ్య సలహా",
+        Description: "ఆయుర్వేద, అలోపతి, హోమియోపతి, యునాని, సిద్ధ వైద్య విధానం మొదలగు వైద్య విధానాలవలే ఇది ఒక వైద్య విధానం. పంచభూతాలతో చికిత్స చేసే ఒక ప్రక్రియ. ఇందులో మందులు కానీ, పసర్లు కానీ, పూతలు "
+    },
+    {
+        Date: "12 May 1995",
+        Title: "ఆరోగ్య సలహా",
+        Description: "ఆయుర్వేద, అలోపతి, హోమియోపతి, యునాని, సిద్ధ వైద్య విధానం మొదలగు వైద్య విధానాలవలే ఇది ఒక వైద్య విధానం. పంచభూతాలతో చికిత్స చేసే ఒక ప్రక్రియ. ఇందులో మందులు కానీ, పసర్లు కానీ, పూతలు "
+    },
+    {
+        Date: "12 May 1995",
+        Title: "ఆరోగ్య సలహా",
+        Description: "ఆయుర్వేద, అలోపతి, హోమియోపతి, యునాని, సిద్ధ వైద్య విధానం మొదలగు వైద్య విధానాలవలే ఇది ఒక వైద్య విధానం. పంచభూతాలతో చికిత్స చేసే ఒక ప్రక్రియ. ఇందులో మందులు కానీ, పసర్లు కానీ, పూతలు "
+    },
+    {
+        Date: "12 May 1995",
+        Title: "ఆరోగ్య సలహా",
+        Description: "ఆయుర్వేద, అలోపతి, హోమియోపతి, యునాని, సిద్ధ వైద్య విధానం మొదలగు వైద్య విధానాలవలే ఇది ఒక వైద్య విధానం. పంచభూతాలతో చికిత్స చేసే ఒక ప్రక్రియ. ఇందులో మందులు కానీ, పసర్లు కానీ, పూతలు "
+    },
+]
