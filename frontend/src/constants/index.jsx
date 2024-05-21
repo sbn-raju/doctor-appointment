@@ -56,7 +56,6 @@ export const paymentDetails = [
         Purpose: "Appointment"
     },
 ]
-<<<<<<< HEAD
 
 export const appointmentDetails = [
     {
@@ -245,11 +244,3 @@ export const aboutDetails = [
         Description: "ఆయుర్వేద, అలోపతి, హోమియోపతి, యునాని, సిద్ధ వైద్య విధానం మొదలగు వైద్య విధానాలవలే ఇది ఒక వైద్య విధానం. పంచభూతాలతో చికిత్స చేసే ఒక ప్రక్రియ. ఇందులో మందులు కానీ, పసర్లు కానీ, పూతలు "
     },
 ]
-=======
-//   { label: "About Us", href: "#" },
-//   { label: "Services", href: "/services" },
-//   { label: "Activities", href: "#" },
-//   { label: "Diet", href: "#" },
-// ];
-
->>>>>>> 32dde8b81a5696737c9e576f5cbcea102f78c514
