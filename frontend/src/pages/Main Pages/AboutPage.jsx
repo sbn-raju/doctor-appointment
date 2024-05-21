@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import AboutImage from'../../assets/Page Assets/Services/Group 65.png'
-import { aboutDetails } from '../../constants'
+import { aboutDetails } from '../../constants/index'
 
 const AboutPage = () => {
   const [Lang, setLang] = useState('telugu')
