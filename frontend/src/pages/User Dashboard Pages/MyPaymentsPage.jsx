@@ -14,7 +14,7 @@ const MyPaymentsPage = () => {
 
   return (
     <div className="h-screen w-full p-4 flex flex-col items-center">
-      <div className="w-full md:w-3/5 my-8 flex flex-col md:flex-row items-center">
+      <div className="w-full lg:w-3/5 my-8 flex flex-col md:flex-row items-center">
         <div className="flex flex-row items-center">
           <h1 className='text-md md:text-xl lg:text-2xl'>Hello <span className="font-semibold">{userProfile.Name}!!</span></h1>
           <span className="ml-4 border-[1px] border-l-gray-500 h-12"></span> {/* Vertical Line */}
@@ -24,7 +24,7 @@ const MyPaymentsPage = () => {
           </div>
         </div>
       </div>
-      <div className="w-full md:w-2/3 h-3/6 overflow-auto scrollbar px-2 md:px-5">
+      <div className="w-full lg:w-2/3 h-3/6 overflow-auto scrollbar px-2 md:px-5">
         {paymentDetails.map((payment, index) => (
           <div key={index} className={`mb-5 p-4 px-5 rounded-2xl border-[1px] border-custom-red bg-custom-yellow
               transition-all duration-500 ease-in-out ${detailsVisible[index] ? 'min-h-52' : 'h-22'}`}>
@@ -51,7 +51,7 @@ const MyPaymentsPage = () => {
           </div>
         ))}
       </div>
-      <div className="w-full md:w-2/3 bg-custom-yellow rounded-2xl border-[1px] border-custom-red p-4 px-5 md:px-8 my-10">
+      <div className="w-full lg:w-2/3 bg-custom-yellow rounded-2xl border-[1px] border-custom-red p-4 px-5 lg:px-8 my-10">
         <p className="font-medium mb-4">Note:</p>
         <p className='text-sm'>
           Your privacy is important to us. We guarantee that your payment transaction information will be kept 
