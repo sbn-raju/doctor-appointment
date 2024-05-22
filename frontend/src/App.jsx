@@ -35,8 +35,8 @@ function App() {
       </Route>
       <Route path='/admin' element={<Admin_Layout/>}>
         <Route path="addDoctor" element={<AddDoctorPage/>}/>
-        <Route path="appointments" element={<AppointmentsPage/>}/>
-        <Route path="payments" element={<PaymentPage/>}/>
+        <Route path="appointment" element={<AppointmentsPage/>}/>
+        <Route path="payment" element={<PaymentPage/>}/>
         <Route path="classbooked" element={<ClassBookingPage/>}/>
         <Route path="slots" element={<SetSlotsPage/>}/>
         <Route path="class" element={<ClassUpdatesPage/>}/>

@@ -3,4 +3,6 @@
     scrollbar-color:#d4d1a6 #FEFDED;    
 }
 
-  
+.admin-scrollbar{
+    scrollbar-width: none;
+}

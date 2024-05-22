@@ -3,7 +3,7 @@ import { userProfile, paymentDetails } from '../../constants';
 import { MdPayment } from "react-icons/md";
 import { FaRectangleList } from "react-icons/fa6";
 import { IoIosArrowDown } from "react-icons/io";
-import '../../styles/myPayments.styles.css';
+import '../../styles/scrollbar.styles.css';
 
 const MyPaymentsPage = () => {
   const [detailsVisible, setDetailsVisible] = useState(Array(paymentDetails.length).fill(false));

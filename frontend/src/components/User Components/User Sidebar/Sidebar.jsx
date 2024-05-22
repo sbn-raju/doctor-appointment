@@ -18,28 +18,28 @@ const Sidebar = () => {
           </div>
           <div className="w-full flex flex-col py-4">
             <Link to="/user/profile" className="hover:bg-yellow-100 rounded-2xl p-4 cursor-pointer flex">
-                    <span className="px-2 flex justify-center items-center">
+                    <span className="px-2 flex justify-center items-center  text-lg">
                         <IoMdPerson />
                     </span>
-                    <p className="font-medium">Profile</p>
+                    <p className="font-medium text-lg">Profile</p>
             </Link>
             <Link to="/user/appointment" className="hover:bg-yellow-100 rounded-2xl p-4 cursor-pointer flex">
-                    <span className="px-2 flex justify-center items-center">
+                    <span className="px-2 flex justify-center items-center  text-lg">
                         <BsCalendar2Event />
                     </span>
-                    <p className="font-medium">My Appointments</p>
+                    <p className="font-medium text-lg">My Appointments</p>
             </Link>
             <Link to="/user/payment" className="hover:bg-yellow-100 rounded-2xl p-4 cursor-pointer flex">
-                    <span className="px-2 flex justify-center items-center">
+                    <span className="px-2 flex justify-center items-center text-xl">
                         <MdPayment />
                     </span>
-                    <p className="font-medium">My Payments</p>
+                    <p className="font-medium text-lg">My Payments</p>
             </Link>
             <Link to="/user/class" className="hover:bg-yellow-100 rounded-2xl p-4 cursor-pointer flex">
-                    <span className="px-2 flex justify-center items-center">
+                    <span className="px-2 flex justify-center items-center text-lg">
                         <BsCalendar2Event />
                     </span>
-                    <p className="font-medium">My Classes</p>
+                    <p className="font-medium text-lg">My Classes</p>
             </Link>
           </div>
           <div className="w-full flex flex-col justify-end flex-grow pb-20">
