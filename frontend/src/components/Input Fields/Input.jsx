@@ -15,6 +15,7 @@ const Input = ({ childen, label, type = "text", className = "", ...props },ref) 
         type={type}
         id={id}
         {...props}
+        ref={ref}
       />
     </div>
   );
