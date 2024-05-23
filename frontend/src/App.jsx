@@ -1,6 +1,6 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
-import Footer from './components/Footer/Footer'
-import HeaderHome from './components/Header/HeaderHome'
+import Footer from './components/Footer/Footer.jsx'
+import HeaderHome from './components/Header/HeaderHome.jsx'
 import {AddDoctorPage, AppointmentsPage, ClassUpdatesPage, ClassBookingPage, SetSlotsPage, YoutubeVideosPage, UserDataPage, PaymentPage} from "./pages/Easy Imports/Admin Dashboard Imports/admin.js"
 import {UserLogin} from "./pages/Easy Imports/Auth Imports/auth.js"
 import {AboutPage, AppointmentPage, HomePage,TermsAndConditionPage, ServicesPage, DietPage} from "./pages/Easy Imports/Main Imports/main.js"
@@ -26,6 +26,7 @@ function App() {
         <Route path="about" element={<AboutPage/>}/>
         <Route path="term" element={<TermsAndConditionPage />}/>
         <Route path="services" element={<ServicesPage />} />
+        <Route path="login" element={<UserLogin />} />        
         <Route path="diet" element={<DietPage />} />
       </Route>
       <Route path='/user' element={<User_layout/>}>

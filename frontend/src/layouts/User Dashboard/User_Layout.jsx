@@ -13,7 +13,7 @@ const User_layout = () => {
       <Outlet/>
     </div>
     <Footer/>
-    </>
+    </> 
   )
 }
 
