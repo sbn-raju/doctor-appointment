@@ -1,5 +1,6 @@
 import React from 'react'
 import { BsCalendar2Event } from "react-icons/bs";
+import CommonButton from '../../components/Buttons/CommonButton';
 
 const YoutubeVideosPage = () => {
   return (
@@ -24,7 +25,7 @@ const YoutubeVideosPage = () => {
 
         </textarea>
         <div className='w-full flex justify-end'>
-          <button className='bg-green-300 px-4 py-2 font-medium rounded-xl'>Submit</button>
+          <CommonButton className='bg-green-300 px-4 py-2 font-medium rounded-xl'>Submit</CommonButton>
         </div>
       </div>
     </div>

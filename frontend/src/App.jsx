@@ -3,7 +3,7 @@ import Footer from './components/Footer/Footer.jsx'
 import HeaderHome from './components/Header/HeaderHome.jsx'
 import {AddDoctorPage, AppointmentsPage, ClassUpdatesPage, ClassBookingPage, SetSlotsPage, YoutubeVideosPage, UserDataPage, PaymentPage} from "./pages/Easy Imports/Admin Dashboard Imports/admin.js"
 import {UserLogin} from "./pages/Easy Imports/Auth Imports/auth.js"
-import {AboutPage, AppointmentPage, HomePage,TermsAndConditionPage, ServicesPage, DietPage} from "./pages/Easy Imports/Main Imports/main.js"
+import {AboutPage, AppointmentPage, HomePage,TermsAndConditionPage, ServicesPage, DietPage, ClassPage} from "./pages/Easy Imports/Main Imports/main.js"
 import MainLayout from './layouts/Main Layout/MainLayout.jsx'
 import Admin_Layout from './layouts/Admin Dashboard/Admin_Layout.jsx'
 import User_layout from './layouts/User Dashboard/User_Layout.jsx'
@@ -28,6 +28,7 @@ function App() {
         <Route path="services" element={<ServicesPage />} />
         <Route path="login" element={<UserLogin />} />        
         <Route path="diet" element={<DietPage />} />
+        <Route path="class" element={<ClassPage />} />
       </Route>
       <Route path='/user' element={<User_layout/>}>
         <Route path="appointment" element={<MyAppointmentsPage/>}/>

@@ -4,12 +4,13 @@ import { useId } from "react";
 const Input = ({ childen, label, type = "text", className = "", ...props },ref) => {
   const id = useId();
   return (
-    <div className="w-full">
+    <div className="">
       {label && (
-        <label className="text-xl font-medium text-slate-600" htmlFor={id}>
+        <label className="text-sm text-slate-600" htmlFor={id}>
           {label}
         </label>
       )}
+      <br/>
       <input
         className={`py-3 px-3 rounded-xl border-custom-red ${className}`}
         type={type}
