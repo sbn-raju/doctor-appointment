@@ -501,3 +501,102 @@ export const adminUserData = [
         city: "Hyderabad",
     },
 ]
+
+export const slotDetails = [
+    {
+        time: "7:30 AM",
+    },
+    {
+        time: "7:30 AM",
+    },
+    {
+        time: "7:30 AM",
+    },
+    {
+        time: "7:30 AM",
+    },
+    {
+        time: "7:30 AM",
+    },
+    {
+        time: "7:30 AM",
+    },
+    {
+        time: "7:30 AM",
+    },
+    {
+        time: "7:30 AM",
+    },
+    {
+        time: "7:30 AM",
+    },
+    {
+        time: "7:30 AM",
+    },
+    {
+        time: "7:30 AM",
+    },
+    {
+        time: "7:30 AM",
+    },
+    {
+        time: "7:30 AM",
+    },
+    {
+        time: "7:30 AM",
+    },
+    {
+        time: "7:30 AM",
+    },
+    {
+        time: "7:30 AM",
+    },
+    {
+        time: "7:30 AM",
+    },
+    {
+        time: "7:30 AM",
+    },
+    {
+        time: "7:30 AM",
+    },
+    {
+        time: "7:30 AM",
+    },
+    {
+        time: "7:30 AM",
+    },
+    {
+        time: "7:30 AM",
+    },
+    {
+        time: "7:30 AM",
+    },
+    {
+        time: "7:30 AM",
+    },
+    {
+        time: "7:30 AM",
+    },
+    {
+        time: "7:30 AM",
+    },
+    {
+        time: "7:30 AM",
+    },
+    {
+        time: "7:30 AM",
+    },
+    {
+        time: "7:30 AM",
+    },
+    {
+        time: "7:30 AM",
+    },
+    {
+        time: "7:30 AM",
+    },
+    {
+        time: "7:30 AM",
+    },
+]

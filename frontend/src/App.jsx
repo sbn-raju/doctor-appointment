@@ -29,6 +29,7 @@ function App() {
         <Route path="login" element={<UserLogin />} />        
         <Route path="diet" element={<DietPage />} />
         <Route path="class" element={<ClassPage />} />
+        <Route path="appointment" element={<AppointmentPage />} />
       </Route>
       <Route path='/user' element={<User_layout/>}>
         <Route path="appointment" element={<MyAppointmentsPage/>}/>

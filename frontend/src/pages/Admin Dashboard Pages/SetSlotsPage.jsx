@@ -32,7 +32,7 @@ const SetSlotsPage = () => {
               type="date"
               placeholder="Select Date"
               className="border-[1px] border-green-800 w-full"
-              {...register("setData", { required: true })}
+              {...register("setDate", { required: true })}
             />
 
             <Input
