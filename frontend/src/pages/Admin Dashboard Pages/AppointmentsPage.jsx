@@ -64,7 +64,7 @@ const appointments = [
 
 const AppointmentsPage = () => {
   return (
-    <div className='h-screen w-full flex flex-col justify-center items-center p-8'>
+    <div className='h-screen w-full flex flex-col justify-center items-center p-8 pt-24'>
       <div className='w-full'>
         <div className='flex flex-row items-center mb-10'>
           <h1 className="text-md md:text-xl lg:text-2xl">Hello <span className="font-medium">Admin!!</span></h1>

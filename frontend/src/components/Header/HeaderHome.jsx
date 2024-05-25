@@ -15,7 +15,7 @@ const HeaderHome = () => {
 
   return(
     <>
-      <div className="w-full h-auto flex flex-row justify-between">
+      <div className="w-full h-auto flex flex-row justify-between sticky top-0 bg-white z-10">
         <div className="pl-2 flex flex-row justify-center items-center">
           <div>
             <img src={logo} alt="LogoImage" className="w-16 h-16"/>
@@ -55,7 +55,7 @@ const HeaderHome = () => {
           {drawerisOpen ? <RxCross2/> : <IoMenu/>}
           </button>
         </div>
-        </div>
+      </div>
        {drawerisOpen && (
           <div className="py-12 px-2 transform transition-transform ease-in-out duration-300 bg-green-800 xl:hidden"> 
            <ul className="flex flex-col text-lg">
