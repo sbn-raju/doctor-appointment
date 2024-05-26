@@ -57,7 +57,7 @@ const HeaderHome = () => {
         </div>
       </div>
        {drawerisOpen && (
-          <div className="py-12 px-2 transform transition-transform ease-in-out duration-300 bg-green-800 xl:hidden"> 
+          <div className="fixed z-10 w-full py-12 px-2 transform transition-transform ease-in-out duration-300 bg-green-800 xl:hidden"> 
            <ul className="flex flex-col text-lg">
            {navItems.map((item, index)=>(
              <li key={index} className=" mb-4 border-b-yellow-500 border-b-2">
