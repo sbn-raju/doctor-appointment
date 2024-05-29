@@ -37,7 +37,7 @@ const AppointmentPage = () => {
           <form onSubmit={handleSubmit(appointmentData)} className='w-full'>
             <div className='w-full flex flex-col md:flex-row'>
 
-              <div className='w-full md:w-1/2 order-3 md:order-1 m-5'>
+              <div className='w-full md:w-1/2 order-3 md:order-1 m-5 pr-5'>
                 <div className='p-8 border-[1px] border-custom-red rounded-xl' style={{ boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' }}>
                   <div>
                     <div className='flex justify-center items-center'>
@@ -61,7 +61,7 @@ const AppointmentPage = () => {
                   label="Name *"
                   type="text"
                   placeholder="Enter Your Name"
-                  className="border-[1px] border-green-800 w-full h-10 rounded-[5px] mb-[4px]"
+                  className="border-[1px] border-green-800 w-11/12 h-10 rounded-[5px] mb-[4px]"
                   {...register("setName", { required: true })}
                 />
 
@@ -69,7 +69,7 @@ const AppointmentPage = () => {
                   label="Phone Number *"
                   type="text"
                   placeholder="Enter Your Phone Number"
-                  className="border-[1px] border-green-800 w-full h-10 rounded-[5px] mb-[4px]"
+                  className="border-[1px] border-green-800 w-11/12 h-10 rounded-[5px] mb-[4px]"
                   {...register("setPhoneNumber", { required: true })}
                 />
 
@@ -77,7 +77,7 @@ const AppointmentPage = () => {
                   label="Choose the Purpose *"
                   type="text"
                   placeholder="Enter Purpose for the Appointment"
-                  className="border-[1px] border-green-800 w-full h-10 rounded-[5px] mb-[4px]"
+                  className="border-[1px] border-green-800 w-11/12 h-10 rounded-[5px] mb-[4px]"
                   {...register("setPurpose", { required: true })}
                 />
 
@@ -85,7 +85,7 @@ const AppointmentPage = () => {
                   label="Choose your Doctor *"
                   type="text"
                   placeholder="Select Doctor"
-                  className="border-[1px] border-green-800 w-full h-10 rounded-[5px] mb-[4px]"
+                  className="border-[1px] border-green-800 w-11/12 h-10 rounded-[5px] mb-[4px]"
                   {...register("setDoctor", { required: true })}
                 />
 
@@ -93,7 +93,7 @@ const AppointmentPage = () => {
                   label="Date *"
                   type="date"
                   placeholder="Select the date for appointment"
-                  className="border-[1px] border-green-800 w-full h-10 rounded-[5px] mb-[2px]"
+                  className="border-[1px] border-green-800 w-11/12 h-10 rounded-[5px] mb-[2px]"
                   {...register("setDate", { required: true })}
                 />
               </div>

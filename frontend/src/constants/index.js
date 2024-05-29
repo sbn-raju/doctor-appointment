@@ -1,10 +1,10 @@
 import { MdDescription } from "react-icons/md"
 
 export const navItems = [
-    {label:"About Us",href:"#"},
+    {label:"Home", href:"/"},
+    {label:"About Us",href:"/about"},
     {label:"Services",href:"/services"},
-    {label:"Activities",href:"#"},
-    {label:"Diet",href:"#"},
+    {label:"Diet",href:"/diet"},
 ]
 
 export const userProfile = {

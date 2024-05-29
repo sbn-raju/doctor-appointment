@@ -34,9 +34,9 @@ const HomePage = () => {
 
       {/* Mega Menu */}
       <div className="grid grid-cols-3 grid-rows-2 md:m-auto lg:flex lg:flex-row justify-evenly items-center mt-10">
-        <Link>
+        <Link to="/about">
           <div className="flex flex-col justify-center item-center m-2">
-            <div className="w-20 h-20 m-auto bg-blue-600 rounded-full border-2 border-custom-red lg:w-30 lg:h-30 xl:w-40 xl:h-40">
+            <div className="w-20 h-20 m-auto bg-blue-200 rounded-full border-2 border-custom-red lg:w-30 lg:h-30 xl:w-40 xl:h-40">
               <img src="" alt="" />
             </div>
             <p className="text-sm font-semibold text-center lg:text-lg">
@@ -45,9 +45,9 @@ const HomePage = () => {
           </div>
         </Link>
 
-        <Link>
+        <Link to="/appointment">
           <div className="flex flex-col justify-center item-center m-2">
-            <div className="w-20 h-20 m-auto bg-blue-600 rounded-full border-2 border-custom-red lg:w-30 lg:h-30 xl:w-40 xl:h-40">
+            <div className="w-20 h-20 m-auto bg-blue-200 rounded-full border-2 border-custom-red lg:w-30 lg:h-30 xl:w-40 xl:h-40">
               <img src="" alt="" />
             </div>
             <p className="text-sm font-semibold text-center lg:text-lg xl:text-xl">
@@ -56,9 +56,9 @@ const HomePage = () => {
           </div>
         </Link>
 
-        <Link>
+        <Link to="/class">
           <div className="flex flex-col justify-center item-center m-2">
-            <div className="w-20 h-20 m-auto bg-blue-600 rounded-full border-2 border-custom-red lg:w-30 lg:h-30 xl:w-40 xl:h-40">
+            <div className="w-20 h-20 m-auto bg-blue-200 rounded-full border-2 border-custom-red lg:w-30 lg:h-30 xl:w-40 xl:h-40">
               <img src="" alt="" />
             </div>
             <p className="text-sm font-semibold text-center lg:text-lg xl:text-xl">
@@ -67,9 +67,9 @@ const HomePage = () => {
           </div>
         </Link>
 
-        <Link>
+        <Link to="/diet">
           <div className="flex flex-col justify-center item-center m-2">
-            <div className="w-20 h-20 m-auto bg-blue-600 rounded-full border-2 border-custom-red lg:w-30 lg:h-30 xl:w-40 xl:h-40">
+            <div className="w-20 h-20 m-auto bg-blue-200 rounded-full border-2 border-custom-red lg:w-30 lg:h-30 xl:w-40 xl:h-40">
               <img src="" alt="" />
             </div>
             <p className="text-sm font-semibold text-center lg:text-lg xl:text-xl">
@@ -78,9 +78,9 @@ const HomePage = () => {
           </div>
         </Link>
 
-        <Link>
+        <Link to="/services">
           <div className="flex flex-col justify-center item-center m-2">
-            <div className="w-20 h-20 m-auto bg-blue-600 rounded-full border-2 border-custom-red lg:w-30 lg:h-30 xl:w-40 xl:h-40">
+            <div className="w-20 h-20 m-auto bg-blue-200 rounded-full border-2 border-custom-red lg:w-30 lg:h-30 xl:w-40 xl:h-40">
               <img src="" alt="" />
             </div>
             <p className="text-sm font-semibold text-center lg:text-lg xl:text-xl">
@@ -91,7 +91,7 @@ const HomePage = () => {
 
         <Link>
           <div className="flex flex-col justify-center item-center m-2">
-            <div className="w-20 h-20 m-auto bg-blue-600 rounded-full border-2 border-custom-red lg:w-30 lg:h-30 xl:w-40 xl:h-40">
+            <div className="w-20 h-20 m-auto bg-blue-200 rounded-full border-2 border-custom-red lg:w-30 lg:h-30 xl:w-40 xl:h-40">
               <img src="" alt="" />
             </div>
             <p className="text-sm font-semibold text-center lg:text-lg xl:text-xl">

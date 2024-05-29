@@ -7,3 +7,4 @@ OM JAI SRI RAM || JAI SAI RAM ||JAI HANUMAN
     (Access to XMLHttpRequest at 'https://googleads.g.doubleclick.net/pagead/viewthroughconversion/962985656/?backend=innertube&cname=56&cver=20240515&foc_id=gGZFO6ueoD1rSeuUlNgpuA&label=followon_view&ptype=no_rmkt&random=546636316&cv_attributed=0' (redirected from 'https://www.youtube.com/pagead/viewthroughconversion/962985656/?backend=innertube&cname=56&cver=20240515&foc_id=gGZFO6ueoD1rSeuUlNgpuA&label=followon_view&ptype=no_rmkt&random=546636316') from origin 'https://www.youtube.com' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource.
     base.js:1976 
     GET https://googleads.g.doubleclick.net/pagead/viewthroughconversion/962985656/?backend=innertube&cname=56&cver=20240515&foc_id=gGZFO6ueoD1rSeuUlNgpuA&label=followon_view&ptype=no_rmkt&random=546636316&cv_attributed=0 net::ERR_FAILED 302 (Found))
+4. Coverting react icons to svg's
