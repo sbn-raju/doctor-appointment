@@ -4,7 +4,8 @@ export const navItems = [
     {label:"Home", href:"/"},
     {label:"About Us",href:"/about"},
     {label:"Services",href:"/services"},
-    {label:"Diet",href:"/diet"},
+    {label:"Book Appoitnment",href:"/appointment"},
+    {label:"Book Workshop", href:"/class"}
 ]
 
 export const userProfile = {
