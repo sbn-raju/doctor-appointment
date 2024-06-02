@@ -26,7 +26,7 @@ const HeaderHome = () => {
 
   return(
     <>
-      <div className={`px-6 py-3 w-full h-auto flex flex-row justify-between sticky top-0 ${isScrolled ? 'bg-green-2 text-white': 'bg-white text-green-1'} z-10`}>
+      <div className={`px-6 py-3 w-full h-auto flex flex-row justify-between sticky top-0 ${isScrolled ? 'bg-green-2 text-white': 'bg-white text-green-1'} z-10 shadow-lg`}>
         <div className="pl-2 flex flex-row justify-center items-center">
           <div>
             <img src={logo} alt="LogoImage" className="w-16 h-16 mx-6"/>

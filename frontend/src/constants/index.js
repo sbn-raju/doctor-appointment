@@ -363,78 +363,95 @@ export const ClassBookings = [
 
 export const adminPaymentDetails = [
     {
-        Name: "Vishwak",
-        PhoneNumber: "9876543210",
-        DateOfPayment: "May 21, 2024",
-        TimeOfPayment: "7:00 pm",
-        Amount: "1000",
-        TransactionId: "0007",
-        Purpose: "Online Class"
+        "Name": "Vishwak",
+        "PhoneNumber": "9876543210",
+        "DateOfPayment": "May 21, 2024",
+        "TimeOfPayment": "7:00 pm",
+        "TransactionId": "22100304402003",
+        "Purpose": "Online Class"
     },
     {
-        Name: "Vishwak",
-        PhoneNumber: "9876543210",
-        DateOfPayment: "May 21, 2024",
-        TimeOfPayment: "7:00 pm",
-        Amount: "1000",
-        TransactionId: "0007",
-        Purpose: "Online Class"
+        "Name": "Vishwak",
+        "PhoneNumber": "9876543210",
+        "DateOfPayment": "May 22, 2024",
+        "TimeOfPayment": "8:00 pm",
+        "TransactionId": "22100304402004",
+        "Purpose": "Course Materials"
     },
     {
-        Name: "Vishwak",
-        PhoneNumber: "9876543210",
-        DateOfPayment: "May 21, 2024",
-        TimeOfPayment: "7:00 pm",
-        Amount: "1000",
-        TransactionId: "0007",
-        Purpose: "Online Class"
+        "Name": "Vishwak",
+        "PhoneNumber": "9876543210",
+        "DateOfPayment": "May 23, 2024",
+        "TimeOfPayment": "9:00 am",
+        "TransactionId": "22100304402005",
+        "Purpose": "Webinar"
     },
     {
-        Name: "Vishwak",
-        PhoneNumber: "9876543210",
-        DateOfPayment: "May 21, 2024",
-        TimeOfPayment: "7:00 pm",
-        Amount: "1000",
-        TransactionId: "0007",
-        Purpose: "Online Class"
+        "Name": "Vishwak",
+        "PhoneNumber": "9876543211",
+        "DateOfPayment": "May 24, 2024",
+        "TimeOfPayment": "10:00 am",
+        "TransactionId": "22100304402006",
+        "Purpose": "Subscription"
     },
     {
-        Name: "Vishwak",
-        PhoneNumber: "9876543210",
-        DateOfPayment: "May 21, 2024",
-        TimeOfPayment: "7:00 pm",
-        Amount: "1000",
-        TransactionId: "0007",
-        Purpose: "Online Class"
+        "Name": "Vishwak",
+        "PhoneNumber": "9876543212",
+        "DateOfPayment": "May 25, 2024",
+        "TimeOfPayment": "11:00 am",
+        "TransactionId": "22100304402007",
+        "Purpose": "Consultation"
     },
     {
-        Name: "Vishwak",
-        PhoneNumber: "9876543210",
-        DateOfPayment: "May 21, 2024",
-        TimeOfPayment: "7:00 pm",
-        Amount: "1000",
-        TransactionId: "0007",
-        Purpose: "Online Class"
+        "Name": "Vishwak",
+        "PhoneNumber": "9876543213",
+        "DateOfPayment": "May 26, 2024",
+        "TimeOfPayment": "12:00 pm",
+        "TransactionId": "22100304402008",
+        "Purpose": "Online Class"
     },
     {
-        Name: "Vishwak",
-        PhoneNumber: "9876543210",
-        DateOfPayment: "May 21, 2024",
-        TimeOfPayment: "7:00 pm",
-        Amount: "1000",
-        TransactionId: "0007",
-        Purpose: "Online Class"
+        "Name": "Vishwak",
+        "PhoneNumber": "9876543214",
+        "DateOfPayment": "May 27, 2024",
+        "TimeOfPayment": "1:00 pm",
+        "TransactionId": "22100304402009",
+        "Purpose": "E-book Purchase"
     },
     {
-        Name: "Vishwak",
-        PhoneNumber: "9876543210",
-        DateOfPayment: "May 21, 2024",
-        TimeOfPayment: "7:00 pm",
-        Amount: "1000",
-        TransactionId: "0007",
-        Purpose: "Online Class"
+        "Name": "Vishwak",
+        "PhoneNumber": "9876543215",
+        "DateOfPayment": "May 28, 2024",
+        "TimeOfPayment": "2:00 pm",
+        "TransactionId": "22100304402010",
+        "Purpose": "Online Class"
     },
+    {
+        "Name": "Vishwak",
+        "PhoneNumber": "9876543216",
+        "DateOfPayment": "May 29, 2024",
+        "TimeOfPayment": "3:00 pm",
+        "TransactionId": "22100304402011",
+        "Purpose": "Workshop"
+    },
+    {
+        "Name": "Vishwak",
+        "PhoneNumber": "9876543217",
+        "DateOfPayment": "May 30, 2024",
+        "TimeOfPayment": "4:00 pm",
+        "TransactionId": "22100304402012",
+        "Purpose": "Online Class"
+    },
+    {
+        "Name": "Vishwak",
+        "PhoneNumber": "9876543218",
+        "DateOfPayment": "May 31, 2024",
+        "TimeOfPayment": "5:00 pm",
+        "TransactionId": "22100304402013",
+        "Purpose": "Tutoring Session"
+    }
 ]
+    
 
 export const adminUserData = [
     {

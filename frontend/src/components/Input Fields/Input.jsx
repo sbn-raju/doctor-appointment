@@ -12,7 +12,7 @@ const Input = ({ childen, label, type = "text", className = "", ...props },ref) 
       )}
       <br/>
       <input
-        className={`py-3 px-3 rounded-xl border-custom-red ${className}`}
+        className={`${className}`}
         type={type}
         id={id}
         {...props}
