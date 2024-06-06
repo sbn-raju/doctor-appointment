@@ -1,32 +1,41 @@
 import React from "react";
 import HomeClassCard from "../../../assets/Page Assets/Home/Home Class Card.png";
+import Classcardbg from "../../../assets/Page Assets/Home/Classcardbg.png";
+
+import ClassCardbg from "../../../assets/Page Assets/Home/Appointmentbackground.svg";
 
 const ClassCard = () => {
   return (
     <>
-      <div className="min-w-full h-auto flex justify-center mt-10">
-        <div className="w-4/5  lg:w-3/5 h-auto p-5 flex justify-center items-center flex-col lg:flex-row xl:flex-row bg-white rounded-xl border-[1px] border-red-300">
-          <div className="lg:hidden">
-            <h2 className="text-xl font-semibold">ప్రకృతే వైద్యుడు</h2>
+      <div className="min-w-full h-auto flex justify-center mt-10 mb-6">
+        <div
+          className="w-full lg:w-3/4  h-auto flex justify-center items-center flex-col lg:flex-row bg-cover    bg-no-repeat"
+          style={{ backgroundImage: `url(${ClassCardbg})` }}
+        >
+          <div className="lg:hidden mb-4 mt-4">
+            <h2 className="text-xl font-semibold text-white text-center ">ప్రకృతే వైద్యుడు</h2>
           </div>
-          <div className="h-2/5 lg:w-2/5 lg:h-full">
-            <img src={HomeClassCard} alt=""
-            className="w-full h-full" />
+          <div className="w-full lg:w-2/5 h-auto">
+            <img src={HomeClassCard} alt="Class" className="w-full h-auto" />
           </div>
-          <div>
+          <div className="w-full lg:w-3/5 lg:px-10 px-4 py-6">
             <div className="hidden lg:block">
-              <h2 className="text-xl font-semibold ml-4">ప్రకృతే వైద్యుడు</h2>
+              <h2 className="text-xl font-semibold mb-4 text-center text-white mr-10">
+                ప్రకృతే వైద్యుడు
+              </h2>
             </div>
             <div>
-              <h3 className="text-center font-medium lg:ml-4 lg:text-xl">21 days-Naturopathy online classes</h3>
+              <h3 className="text font-medium lg:text-xl text-white text-center lg:text-left ml-8">
+                21 days-Naturopathy online classes
+              </h3>
             </div>
-            <div className="w-full grid grid-cols-2 grid-rows-2">
-              <div className="flex m-2">
+            <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+              <div className="flex items-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
-                  fill="currentColor"
-                  className="w-6 h-6"
+                  fill="white"
+                  className="w-6 h-6 mr-2"
                 >
                   <path d="M12.75 12.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM7.5 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM8.25 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM9.75 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM10.5 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM12.75 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM14.25 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM15 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM16.5 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM15 12.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM16.5 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" />
                   <path
@@ -35,15 +44,15 @@ const ClassCard = () => {
                     clipRule="evenodd"
                   />
                 </svg>
-                <p>Duration : 21 Days</p>
+                <p className="text-white">Duration: 21 Days</p>
               </div>
-              <div className="flex m-2">
+              <div className="flex items-center">
                 <span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
-                    fill="currentColor"
-                    className="w-6 h-6"
+                    fill="white"
+                    className="w-6 h-6 mr-2"
                   >
                     <path
                       fillRule="evenodd"
@@ -52,15 +61,15 @@ const ClassCard = () => {
                     />
                   </svg>
                 </span>
-                <p>Time:7:00pm to 8:00pm</p>
+                <p className="text-white">Time: 7:00pm to 8:00pm</p>
               </div>
-              <div className="flex m-2">
+              <div className="flex items-center">
                 <span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
-                    fill="currentColor"
-                    className="w-6 h-6"
+                    fill="white"
+                    className="w-6 h-6 mr-2"
                   >
                     <path
                       fillRule="evenodd"
@@ -69,14 +78,14 @@ const ClassCard = () => {
                     />
                   </svg>
                 </span>
-                <p>Telugu తెలుగు</p>
+                <p className="text-white">Telugu తెలుగు</p>
               </div>
-              <div className="flex m-2">
+              <div className="flex items-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
-                  fill="currentColor"
-                  className="w-6 h-6"
+                  fill="white"
+                  className="w-6 h-6 mr-2"
                 >
                   <path
                     fillRule="evenodd"
@@ -84,14 +93,15 @@ const ClassCard = () => {
                     clipRule="evenodd"
                   />
                 </svg>
-
-                <p>Fees:1000</p>
+                <p className="text-white">Fees: 1000</p>
               </div>
             </div>
-            <div className="mt-4 flex justify-center">
-                <button className="px-4 py-4 bg-green-600 text-green-950 rounded-xl font-semibold transition ease-in-out hover:scale-110 duration-300 hover:delay-75">
+            <div className="mt-4 flex justify-center lg:justify-start">
+              <button
+                className="px-4 py-4 bg-green-600 text-black rounded-xl font-semibold transition ease-in-out hover:scale-110 duration-300 hover:delay-75 mt-4"
+              >
                 సంప్రదించండి
-                </button>
+              </button>
             </div>
           </div>
         </div>
