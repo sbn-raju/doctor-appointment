@@ -38,7 +38,7 @@ const ClassBookingPage = () => {
   }
 
   return (
-    <div className='h-screen w-full bg-gray-1 flex flex-col justify-center items-center px-8'>
+    <div className='h-auto w-full bg-gray-1 flex flex-col justify-center items-center px-8'>
       <div className='w-full'>
         <div className='flex flex-row items-center'>
           <h1 className="text-md md:text-xl lg:text-2xl">Hello <span className="font-medium">Admin!!</span></h1>
