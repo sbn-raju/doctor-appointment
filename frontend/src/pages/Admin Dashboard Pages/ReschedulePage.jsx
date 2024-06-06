@@ -4,7 +4,7 @@ import Input from "../../components/Input Fields/Input";
 import CommonButton from '../../components/Buttons/CommonButton';
 import { useForm } from 'react-hook-form';
 
-const SetSlotsPage = () => {
+const ReschedulePage = () => {
   const { register, handleSubmit } = useForm();
   const slotData = (formData) => console.log(formData);
 
@@ -19,7 +19,9 @@ const SetSlotsPage = () => {
           
           <div className="flex justify-center items-center ml-3">
             <span className="text-sm ml-0 md:ml-4"><BsCalendar2Event /></span>
-            <p className="text-sm ml-1">Set Slots</p>
+            <p className="text-sm ml-1">
+                Appointments &gt; Reschedule appointments
+            </p>
           </div>
         </div>        
       </div>
@@ -82,4 +84,4 @@ const SetSlotsPage = () => {
   )
 }
 
-export default SetSlotsPage;
+export default ReschedulePage;

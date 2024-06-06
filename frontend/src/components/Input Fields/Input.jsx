@@ -12,7 +12,7 @@ const Input = ({ childen, label, type = "text", className = "", ...props },ref) 
       )}
       <br/>
       <input
-        className={`${className}`}
+        className={`rounded-lg p-2 ${className}`}
         type={type}
         id={id}
         {...props}

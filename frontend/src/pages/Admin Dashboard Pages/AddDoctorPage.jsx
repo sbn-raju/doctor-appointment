@@ -9,9 +9,9 @@ const AddDoctorPage = () => {
   const docterData = (formData) => console.log(formData);
 
   return (
-    <div className='h-screen w-full flex flex-col justify-center items-center p-8'>
+    <div className='h-screen w-full bg-gray-1 flex flex-col justify-center items-center p-8'>
       <div className='w-full'>
-        <div className='flex flex-row items-center mb-10'>
+        <div className='flex flex-row items-center'>
           <h1 className="text-md md:text-xl lg:text-2xl">Hello <span className="font-medium">Admin!!</span></h1>
           
           {/* Vertical Line */}
@@ -24,7 +24,7 @@ const AddDoctorPage = () => {
         </div>        
       </div>
 
-      <div className='w-full mb-8 bg-custom-yellow border-[1px] border-custom-red px-4 py-6 rounded-2xl'>
+      <div className='w-full shadow-md mt-6 bg-white px-4 py-6 rounded-2xl'>
         <form onSubmit={handleSubmit(docterData)}>
           <div className='grid grid-cols-1 px-10 items-center gap-4'>
             <Input
@@ -51,8 +51,8 @@ const AddDoctorPage = () => {
               {...register("setPassword", { required: true })}
             />
 
-            <div className='flex justify-center md:justify-end self-center'>
-              <CommonButton type='submit' className='bg-green-300 font-medium rounded-xl h-12 w-24'>Submit</CommonButton>
+            <div className='w-full flex justify-end mt-2'>
+              <button className='bg-green-3 text-white px-4 py-2 font-medium rounded-xl'>Submit</button>
             </div>
           </div>
         </form>
