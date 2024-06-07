@@ -5,7 +5,8 @@ import envConfig from "./config/dotenv.js"
 import { errorMiddleware } from "./middlewares/error.js";
 import { pool } from "./database/connect.db.js";
 import connection from "./database/connect.db.js";
-
+import {helmet, xssFilter} from "helmet"
+import {rateLimit} from "express-rate-limit"
 
 
 
@@ -13,14 +14,24 @@ import connection from "./database/connect.db.js";
 app.use(express.json());
 app.use(urlencoded({extended:true}));
 
+app.use(helmet());
+
+app.use(xssFilter());
+
+app.use(rateLimit({
+    windowMs:15*60*1000,
+    max:100,
+    message:"There are too many requests from the IP"
+}))
+
 
 
 
 
 // import authRoute from "./routes/index.routes.js";
-import classRoute from "./routes/Admin Routes/Classes/class.routes.js";
-import classUserRoute from "./routes/User Routes/Classes/classes.users.routes.js";
-import classPaymentRoute from "./routes/Payment Routes/Class Payments/payment.class.routes.js";
+import classRoute from "./routes/admin/classes.routes.js";
+import classUserRoute from "./routes/user/classes.routes.js";
+import classPaymentRoute from "./routes/payment.routes.js";
 
 
 
@@ -41,7 +52,7 @@ connection();
 
 
 //Testing wheather the app is running or not
-const port = process.env.PORT
+const port = process.env.PORT || 3000
 app.listen(port,()=>{
     console.log(`App is listening at the ${port}`);
 });
