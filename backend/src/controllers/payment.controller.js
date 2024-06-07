@@ -1,5 +1,5 @@
-import {instance} from "../../../config/paymentConfig.js"
-import ErrorHandler from "../../../helpers/errorHelpers.js";
+import {instance} from "../config/paymentConfig.js"
+import ErrorHandler from "../helpers/errorHelpers.js";
 
 
 const classPaymentOrderInit = async (req,res)=>{
@@ -31,6 +31,3 @@ const classPaymentOrderInit = async (req,res)=>{
 export {
     classPaymentOrderInit
 }
-
-
-

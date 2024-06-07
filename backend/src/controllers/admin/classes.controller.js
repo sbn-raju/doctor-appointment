@@ -1,6 +1,10 @@
-import { pool } from "../../../database/connect.db.js"
-import ErrorHandler from "../../../helpers/errorHelpers.js"
+import { pool } from "../../database/connect.db.js"
+import ErrorHandler from "../../helpers/errorHelpers.js"
 import { body, param, validationResult } from "express-validator"
+import dotenv from "dotenv"
+dotenv.config()
+
+
 
 
 
@@ -50,9 +54,7 @@ const setClass = async (req, res, next) => {
   }
 }
 
-
-
-//Getting all the Previous Classes 
+//Getting all the Previous Classes
 const getClass = async (req, res) => {
   const getClassQuery = "SELECT * FROM active_class_master"
   try {
@@ -67,9 +69,7 @@ const getClass = async (req, res) => {
   }
 }
 
-
-
-//getting class by Id 
+//getting class by Id
 const getClassWithId = async (req, res) => {
   const { id } = req.params
   const getClassWithIdQuery = "SELECT * FROM active_class_master WHERE id = $1"
@@ -95,9 +95,6 @@ const getClassWithId = async (req, res) => {
     return next(new ErrorHandler(error, 400))
   }
 }
-
-
-
 
 //Updating the class based on the details given by the admin
 const putClass = async (req, res, next) => {
@@ -147,8 +144,6 @@ const putClass = async (req, res, next) => {
   }
 }
 
-
-
 //Deleteing the class by the Id
 const deleteClass = async (req, res, next) => {
   const { id } = req.params
@@ -173,4 +168,14 @@ const deleteClass = async (req, res, next) => {
   }
 }
 
-export { getClass, getClassWithId, setClass, putClass, deleteClass }
+
+
+
+
+export {
+  getClass,
+  getClassWithId,
+  setClass,
+  putClass,
+  deleteClass,
+}
