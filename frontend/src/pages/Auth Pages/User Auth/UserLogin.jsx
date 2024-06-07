@@ -5,8 +5,8 @@ import CommonButton from "../../../components/Buttons/CommonButton";
 
 const UserLogin = () => {
   const { register, handleSubmit } = useForm();
-  const loginData = (formData) => console.log(formData); 
-    
+  const loginData = (formData) => console.log(formData);
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-white">
       <div className="bg-white shadow-2xl rounded-2xl p-12 w-full max-w-lg">

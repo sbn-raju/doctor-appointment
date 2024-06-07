@@ -1,6 +1,6 @@
 import {Router} from "express"
 
-import { classPaymentOrderInit } from "../../../controllers/Payments Controllers/Class Payment Controller/payment.class.controllers.js"
+import { classPaymentOrderInit } from "../controllers/payment.controller.js"
 
 
 const classPaymentRoute = Router()
