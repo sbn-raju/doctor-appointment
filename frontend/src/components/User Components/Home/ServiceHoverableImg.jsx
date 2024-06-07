@@ -39,7 +39,7 @@ const ServiceHoverableImg = () => {
   };
 
   return (
-    <div className='w-full mt-10 flex justify-center items-center flex-col'>
+    <div className='w-full mt-16 flex justify-center items-center flex-col'>
       <div>
         <h2 className='font-semibold text-2xl lg:font-bold lg:text-3xl text-green-700'>మా సేవలు</h2>
       </div>

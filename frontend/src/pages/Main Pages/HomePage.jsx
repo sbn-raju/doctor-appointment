@@ -9,6 +9,9 @@ import NutritionalCard from "../../components/User Components/Home/NutritionalCa
 import Introbg from "../../assets/Page Assets/Home/Introbg.png";
 import Introbg1 from "../../assets/Page Assets/Home/Introbg1.png";
 import ItemsCard from "../../components/User Components/Home/ItemsCard";
+import Introbg2 from "../../assets/Page Assets/Home/Introbg2.png";
+import IntroBg from "../../assets/Page Assets/Home/IntroBg.svg";
+import EndingBg from "../../assets/Page Assets/Home/Endingbg.png";
 
 const youtube = [
   {
@@ -61,16 +64,30 @@ const HomePage = () => {
       {/* intro2 */}
 
       <div
-      className="w-full h-64 flex items-center justify-center bg-cover bg-center "
-      style={{ backgroundImage: `url(${Introbg1})` }}
-    >
-      <h1 className="text-white text-2xl font-bold">ఇల్లే వైద్యశాల - వంటగధే మందుల షాపు - అమ్మే డాక్టర్</h1>
-    </div>
+        className="w-full h-64 flex items-center justify-center bg-cover bg-center"
+        style={{ backgroundImage: `url(${Introbg1})` }}
+      >
+        <h1 className="text-white text-2xl font-bold">
+          ఇల్లే వైద్యశాల - వంటగధే మందుల షాపు - అమ్మే డాక్టర్
+        </h1>
+      </div>
+
+      {/* intro3 */}
+      <div
+        className="relative w-full h-64 flex items-center justify-center bg-cover bg-center"
+        style={{
+          backgroundImage: `url(${IntroBg})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+        }}
+      >
+        <h1 className="text-white text-2xl font-bold">24 years of experience</h1>
+      </div>
 
       {/* Services */}
       <ServiceHoverableImg />
 
-    
       {/* Card of Appointment */}
       <ClassCard />
 
@@ -80,14 +97,13 @@ const HomePage = () => {
       {/* Card of Diet */}
       <NutritionalCard />
 
-      {/* Card of products and their prices  */}
-      <ItemsCard
-      ></ItemsCard>
+      {/* Card of products and their prices */}
+      <ItemsCard />
 
       {/* Youtube Videos */}
-      <div className="w-full mt-10 flex flex-col justify-center items-center">
+      <div className="w-full mt-10 flex flex-col justify-center items-center mb-6">
         <div>
-          <h2 className=" font-semibold text-2xl lg:font-bold lg:text-3xl text-green-700">
+          <h2 className=" font-semibold text-2xl lg:font-bold lg:text-3xl text-[#34442C] mb-10">
             మా కార్యకలాపాలు
           </h2>
         </div>
@@ -110,6 +126,14 @@ const HomePage = () => {
           ))}
         </div>
       </div>
+
+      {/* Ending */}
+      <div
+      className="w-full h-[500px] flex items-center justify-center bg-cover bg-center bg-no-repeat"
+      style={{ backgroundImage: `url(${EndingBg})` }}
+    >
+      <h1 className="text-white text-3xl font-bold">స్వస్థత గాధలు</h1>
+    </div>
     </div>
   );
 };
