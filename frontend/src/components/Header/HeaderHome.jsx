@@ -33,17 +33,17 @@ const HeaderHome = () => {
           </div>
           <div className="block pl-1">
             <span>
-            <h2 className="tracking-tight">
+            <h2 className="font-regular text-sm md:text-lg">
               Dr.Padma &amp; Dr.Ramachandra<br/>
             </h2>
             </span>
-            <p>
+            <p className="font-regular text-sm md:text-lg">
               Naturopathy
             </p>
           </div>
         </div>
         <div className="hidden xl:flex flex-row justify-between items-center">
-          <ul className="flex flex-row text-lg font-medium">
+          <ul className="flex flex-row text-sm md:text-lg font-medium">
               {navItems.map((item, index)=>(
                 <li key={index} className="ml-10">
                     <a href={item.href}>{item.label}</a>

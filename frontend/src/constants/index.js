@@ -58,65 +58,85 @@ export const paymentDetails = [
 
 export const appointmentDetails = [
     {
-        Date: "12,May 2024",
-        Time: "7:30-8:00",
-        Name: "Vishwaksena",
-        Status: "Confirmed",
+        "Date": "12,May 2024",
+        "Time": "7:30-8:00",
+        "Name": "Vishwaksena",
+        "Status": "Confirmed",
+        "Purpose": "Vaccination",
+        "Doctor": "Dr. Martinez"
     },
     {
-        Date: "12,May 2024",
-        Time: "7:30-8:00",
-        Name: "Vishwaksena",
-        Status: "Confirmed",
+        "Date": "12,May 2024",
+        "Time": "7:30-8:00",
+        "Name": "Vishwaksena",
+        "Status": "Confirmed",
+        "Purpose": "Consultation",
+        "Doctor": "Dr. Johnson"
     },
     {
-        Date: "12,May 2024",
-        Time: "7:30-8:00",
-        Name: "Vishwaksena",
-        Status: "Confirmed",
+        "Date": "12,May 2024",
+        "Time": "7:30-8:00",
+        "Name": "Vishwaksena",
+        "Status": "Confirmed",
+        "Purpose": "Follow-up",
+        "Doctor": "Dr. Patel"
     },
     {
-        Date: "12,May 2024",
-        Time: "7:30-8:00",
-        Name: "Vishwaksena",
-        Status: "Confirmed",
+        "Date": "12,May 2024",
+        "Time": "7:30-8:00",
+        "Name": "Vishwaksena",
+        "Status": "Confirmed",
+        "Purpose": "Routine Check-up",
+        "Doctor": "Dr. Lee"
     },
     {
-        Date: "12,May 2024",
-        Time: "7:30-8:00",
-        Name: "Vishwaksena",
-        Status: "Confirmed",
+        "Date": "12,May 2024",
+        "Time": "7:30-8:00",
+        "Name": "Vishwaksena",
+        "Status": "Confirmed",
+        "Purpose": "Emergency",
+        "Doctor": "Dr. Smith"
     },
     {
-        Date: "12,May 2024",
-        Time: "7:30-8:00",
-        Name: "Vishwaksena",
-        Status: "Confirmed",
+        "Date": "12,May 2024",
+        "Time": "7:30-8:00",
+        "Name": "Vishwaksena",
+        "Status": "Confirmed",
+        "Purpose": "Consultation",
+        "Doctor": "Dr. Martinez"
     },
     {
-        Date: "12,May 2024",
-        Time: "7:30-8:00",
-        Name: "Vishwaksena",
-        Status: "Confirmed",
+        "Date": "12,May 2024",
+        "Time": "7:30-8:00",
+        "Name": "Vishwaksena",
+        "Status": "Confirmed",
+        "Purpose": "Follow-up",
+        "Doctor": "Dr. Johnson"
     },
     {
-        Date: "12,May 2024",
-        Time: "7:30-8:00",
-        Name: "Vishwaksena",
-        Status: "Confirmed",
+        "Date": "12,May 2024",
+        "Time": "7:30-8:00",
+        "Name": "Vishwaksena",
+        "Status": "Confirmed",
+        "Purpose": "Routine Check-up",
+        "Doctor": "Dr. Patel"
     },
     {
-        Date: "12,May 2024",
-        Time: "7:30-8:00",
-        Name: "Vishwaksena",
-        Status: "Confirmed",
+        "Date": "12,May 2024",
+        "Time": "7:30-8:00",
+        "Name": "Vishwaksena",
+        "Status": "Confirmed",
+        "Purpose": "Emergency",
+        "Doctor": "Dr. Lee"
     },
     {
-        Date: "12,May 2024",
-        Time: "7:30-8:00",
-        Name: "Vishwaksena",
-        Status: "Confirmed",
-    },
+        "Date": "12,May 2024",
+        "Time": "7:30-8:00",
+        "Name": "Vishwaksena",
+        "Status": "Confirmed",
+        "Purpose": "Vaccination",
+        "Doctor": "Dr. Smith"
+    }
 ]
 
 export const classDetails = [
@@ -1223,3 +1243,49 @@ export const appointments = [
     },
 ];
 
+export const whatsappTemplates = [
+    // {
+    //     Title: "Template title",
+    //     Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
+    // },
+    {
+        Title: "Template title",
+        Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
+    },
+    {
+        Title: "Template title",
+        Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
+    },
+    {
+        Title: "Template title",
+        Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
+    },
+    {
+        Title: "Template title",
+        Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
+    },
+    {
+        Title: "Template title",
+        Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
+    },
+    {
+        Title: "Template title",
+        Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
+    },
+    {
+        Title: "Template title",
+        Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
+    },
+    {
+        Title: "Template title",
+        Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
+    },
+    {
+        Title: "Template title",
+        Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
+    },
+    {
+        Title: "Template title",
+        Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
+    },
+]
