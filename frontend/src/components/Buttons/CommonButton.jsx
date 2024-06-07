@@ -3,8 +3,8 @@ import React from 'react'
 const CommonButton = ({children,
     type="button",
     className="",
-    bgColor = "bg-green-500",
-    textColor = "text-white",
+    bgColor = "",
+    textColor = "",
     ...props
 }) => {
   return <button className={`${className} ${bgColor} ${textColor}`}

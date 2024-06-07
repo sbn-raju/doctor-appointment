@@ -9,8 +9,7 @@ import Admin_Layout from './layouts/Admin Dashboard/Admin_Layout.jsx'
 import User_layout from './layouts/User Dashboard/User_Layout.jsx'
 import Doctor_Layout from './layouts/Doctor Dashboard/Doctor_Layout.jsx'
 import {MyAppointmentsPage, MyProfilePage, MyPaymentsPage, MyClassesPage} from './pages/Easy Imports/User Dashboard Imports/user.js'
-
-
+import ReschedulePage from './pages/Admin Dashboard Pages/ReschedulePage.jsx'
 
 
 
@@ -40,6 +39,7 @@ function App() {
       <Route path='/admin' element={<Admin_Layout/>}>
         <Route path="addDoctor" element={<AddDoctorPage/>}/>
         <Route path="appointment" element={<AppointmentsPage/>}/>
+        <Route path="appointment/reschedule" element={<ReschedulePage />} />
         <Route path="payment" element={<PaymentPage/>}/>
         <Route path="classbooked" element={<ClassBookingPage/>}/>
         <Route path="slots" element={<SetSlotsPage/>}/>

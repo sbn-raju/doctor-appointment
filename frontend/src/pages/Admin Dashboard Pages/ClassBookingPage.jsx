@@ -1,14 +1,46 @@
-import React from 'react'
-import { ClassBookings } from '../../constants'
+import React, { useState } from 'react'
+import { classBookings } from '../../constants'
 import { BsCalendar2Event } from "react-icons/bs";
 import '../../styles/scrollbar.styles.css'
 import { IoMdPerson } from 'react-icons/io';
 
 const ClassBookingPage = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+
+  const totalPages = Math.ceil(classBookings.length / rowsPerPage);
+  const startIndex = (currentPage - 1) * rowsPerPage;
+  const endIndex = startIndex + rowsPerPage;
+  const currentClasses = classBookings.slice(startIndex, endIndex);
+
+  const handleRowsPerPage = (e) => {
+    setRowsPerPage(parseInt(e.target.value, 10));
+    setCurrentPage(1);
+  }
+
+  const handlePreviousPage = () => {
+    setCurrentPage(currentPage - 1);
+  }
+
+  const handleNextPage = () => {
+    setCurrentPage(currentPage + 1);
+  }
+
+  const handlePageClick = (pageNo) => {
+    setCurrentPage(pageNo);
+  }
+
+  const renderRowsPerPage = () => {
+    const opts = [5, 10, 20, 50, 100, 200, 300];
+    return opts.filter((option) => option < classBookings.length).map((opt) => (
+      <option key={opt} value={opt}>{opt}</option>
+    ))
+  }
+
   return (
-    <div className='h-screen w-full flex flex-col justify-center items-center p-8'>
+    <div className='h-auto w-full bg-gray-1 flex flex-col justify-center items-center px-8'>
       <div className='w-full'>
-        <div className='flex flex-row items-center mb-10'>
+        <div className='flex flex-row items-center'>
           <h1 className="text-md md:text-xl lg:text-2xl">Hello <span className="font-medium">Admin!!</span></h1>
           
           {/* Vertical Line */}
@@ -21,35 +53,127 @@ const ClassBookingPage = () => {
         </div>
       </div>
 
-      <div className='mb-8 lg:mb-16 w-full overflow-x-auto admin-scrollbar'>
-        <div className='min-w-[800px] bg-custom-yellow border-[1px] border-custom-red rounded-tl-2xl rounded-tr-2xl p-4 px-6 md:px-8'>
-          <ul className='grid grid-cols-6 text-red-400 font-regular text-sm'>              
-            <li>Name</li>
-            <li>Phone Number</li>
-            <li>Batch</li>
-            <li>Gender</li>
-            <li>Age</li>
-            <li>City</li>
-          </ul>
+      <div className='flex justify-between mt-6 w-full'>
+        <div className='flex justify-center items-center'>
+          <input
+            type="search"
+            className="h-8 shadow-md rounded-tl-2xl rounded-bl-2xl w-[200px] md:w-[500px]"
+          />
+          <button className='bg-green-4 rounded-tr-2xl rounded-br-2xl w-12 h-8 flex justify-center items-center'>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffffff" className="bi bi-search" viewBox="0 0 16 16">
+              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+            </svg>
+          </button>
         </div>
-        <div className='min-w-[800px] h-72 overflow-auto admin-scrollbar'>
-          {ClassBookings.map((user, index) => (
-            <div key={index} className={`w-full bg-custom-yellow border-[1px] border-custom-red p-4 px-6 md:px-8 ${ClassBookings.length === index+1 ? 'rounded-br-2xl rounded-bl-2xl' : ''}`}>
-              <ul className='grid grid-cols-6 text-sm'>                  
-                <li className='flex items-center'>
-                  <span className='mr-2'><IoMdPerson /></span>
-                  {user.Name}
-                </li>
-                <li>{user.PhoneNumber}</li>
-                <li>{user.Batch}</li>
-                <li>{user.Gender}</li>
-                <li>{user.Age}</li>
-                <li>{user.City}</li>
-              </ul>
-            </div>
-          ))}
+        <div className='flex justify-end w-full'>
+          <select defaultValue="Sort" className='shadow rounded-2xl p-[6px] mx-2 md:mx-4'>
+            <option value="Sort">Sort</option>
+            <option value="Date">Date</option>
+            <option value="Time">Time</option>
+            <option value="Purpose">Purpose</option>
+          </select>
+
+          <select defaultValue="Filter" className='shadow rounded-2xl p-[6px] mx-2 md:mx-4'>
+            <option value="Filter">Filter</option>
+            <option value="Date">Date</option>
+            <option value="Time">Time</option>
+            <option value="Purpose">Purpose</option>
+          </select>
         </div>
       </div>
+
+      <div className='mt-6 p-3 px-8 bg-white w-full rounded-2xl shadow-md flex '>
+        <input
+          type="checkbox"
+          id="selectAll"
+          className='mx-2'
+        />
+        <label htmlFor="selectAll">Select All</label>
+      </div>
+
+      {classBookings.length !== 0 ? (
+        <div className='bg-white shadow-md mt-6 w-full overflow-x-auto admin-scrollbar rounded-2xl'>
+          <div className='min-w-[800px] bg-white p-4 px-6 md:px-10 border-b-[1px] border-gray-2'>
+            <ul className='ml-8 grid grid-cols-6 text-black font-regular text-sm'>
+              <li>Name</li>
+              <li>Contact</li>
+              <li>Batch</li>
+              <li>Gender</li>
+              <li>Age</li>
+              <li>City</li>
+            </ul>
+          </div>
+          <div className='min-w-[800px] h-[270px] overflow-auto scrollbar'>
+            {currentClasses.map((classD, index) => (
+              <div key={index} className='flex w-full bg-white p-4 px-6 md:px-8'>
+                <input type="checkbox" id={index} className="mr-8"/>
+                <ul className='w-full grid grid-cols-6 text-sm'>        
+                  <li>{classD.Name}</li>
+                  <li>{classD.PhoneNumber}</li>
+                  <li>{classD.Batch}</li>
+                  <li>{classD.Gender}</li>
+                  <li>{classD.Age}</li>
+                  <li>{classD.City}</li>
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      ) : (
+        <div>
+          No Data Recorded Yet
+        </div>
+      )}
+
+      <>
+        <div className="hidden md:block w-full">
+          <div className='w-full my-6 shadow-md bg-white p-3 px-6 rounded-2xl flex justify-between'>
+            <div className="flex w-1/3">
+              <p className="text-sm">Row Per Page: </p>
+              <select value={rowsPerPage} onChange={handleRowsPerPage} className='bg-gray-200 mx-2 rounded-md'>
+                {renderRowsPerPage()}
+                <option value={currentClasses.length}>{currentClasses.length}</option>
+              </select>
+            </div>
+            <div className='flex justify-end items-center w-2/3'>
+              <button className='mx-2' onClick={handlePreviousPage} disabled={currentPage === 1}>
+                Previous
+              </button>
+              <div className=''>
+                {Array.from({length: totalPages}, (_, index) => (
+                  <button
+                    key={index + 1}
+                    className={`w-6 mx-1 rounded-full ${currentPage === index + 1 ? 'bg-green-4 text-white' : 'bg-white text-black'}`}
+                    onClick={() => handlePageClick(index + 1)}
+                  >
+                  {index + 1}
+                </button>
+                ))}
+              </div>
+              <button className='mx-2' onClick={handleNextPage} disabled={endIndex >= currentClasses.length}>
+                Next
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div className="md:hidden w-full">
+          <div className='my-6 shadow-md bg-white p-3 px-6 rounded-2xl flex justify-between'>
+            <button className='mx-2' onClick={handlePreviousPage} disabled={currentPage === 1}>
+              Previous
+            </button>
+
+            <select value={rowsPerPage} onChange={handleRowsPerPage} className='bg-gray-200 mx-2 rounded-md'>
+              {renderRowsPerPage()}
+              <option value={currentClasses.length}>{currentClasses.length}</option>
+            </select>
+
+            <button className='mx-2' onClick={handleNextPage} disabled={endIndex >= currentClasses.length}>
+              Next
+            </button>
+          </div>
+        </div>
+      </>
     </div>
   )
 }

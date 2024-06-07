@@ -1,28 +1,39 @@
-import React, { useState } from "react";
-import logo from "../../assets/Logo/image 2.png";
+import React, { useEffect, useState } from "react";
 import { IoMenu } from "react-icons/io5";
 import { RxCross2 } from "react-icons/rx";
 import { navItems } from "../../constants";
 import LoginButton from "../Buttons/LoginButton";
 import CommonButton from "../Buttons/CommonButton";
+import logo from '../../assets/Page Assets/Home/New Logo.png'
 
 const HeaderHome = () => {
-  let [drawerisOpen, setDrawerIsOpen] = useState(false);
+  const [drawerisOpen, setDrawerIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const handleDrawer = (event) => {
     setDrawerIsOpen(!drawerisOpen);
   };
 
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      if(window.scrollY > 0){
+        setIsScrolled(true)
+      }else{
+        setIsScrolled(false)
+      }
+    });
+  })
+
   return(
     <>
-      <div className="w-full h-auto flex flex-row justify-between sticky top-0 bg-white z-10">
+      <div className={`px-6 py-3 w-full h-auto flex flex-row justify-between sticky top-0 ${isScrolled ? 'bg-green-2 text-white': 'bg-white text-green-1'} z-50 shadow-lg`}>
         <div className="pl-2 flex flex-row justify-center items-center">
           <div>
-            <img src={logo} alt="LogoImage" className="w-16 h-16"/>
+            <img src={logo} alt="LogoImage" className="w-16 h-16 mx-6"/>
           </div>
           <div className="block pl-1">
             <span>
-            <h2 className="font-bold tracking-tight">
+            <h2 className="tracking-tight">
               Dr.Padma &amp; Dr.Ramachandra<br/>
             </h2>
             </span>
@@ -32,7 +43,7 @@ const HeaderHome = () => {
           </div>
         </div>
         <div className="hidden xl:flex flex-row justify-between items-center">
-          <ul className="flex flex-row text-lg">
+          <ul className="flex flex-row text-lg font-medium">
               {navItems.map((item, index)=>(
                 <li key={index} className="ml-10">
                     <a href={item.href}>{item.label}</a>
@@ -45,12 +56,12 @@ const HeaderHome = () => {
                   <LoginButton/>
             </div>
             <div>
-                  <CommonButton className="px-6 py-2 m-2 rounded-md text-white bg-gradient-to-tr from-green-600 to-green-950">
+                  <CommonButton className="px-6 py-2 m-2 rounded-md text-white bg-green-3">
                     Sign In
                   </CommonButton>
             </div>
         </div>
-        <div className=" w-1/4 flex justify-center items-center xl:hidden">
+        <div className="w-1/4 flex justify-center items-center xl:hidden">
           <button onClick={handleDrawer} className="text-4xl">
           {drawerisOpen ? <RxCross2/> : <IoMenu/>}
           </button>
