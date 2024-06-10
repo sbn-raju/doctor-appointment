@@ -8,7 +8,7 @@ const AdminLogin = () => {
   const loginData = (formData) => console.log(formData); 
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-white">
+    <div className="flex items-center justify-center min-h-screen bg-[#F2F2F2]">
       <div className="bg-white shadow-lg rounded-lg p-10 w-full max-w-xl h-auto">
         <h2 className="text-3xl font-bold text-center mb-8 text-green-600">Admin Login</h2>
         <form onSubmit={handleSubmit(loginData)} className="space-y-8">

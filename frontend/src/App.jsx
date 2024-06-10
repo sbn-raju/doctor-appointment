@@ -2,7 +2,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import Footer from './components/Footer/Footer.jsx'
 import HeaderHome from './components/Header/HeaderHome.jsx'
 import {AddDoctorPage, AppointmentsPage, ClassUpdatesPage, ClassBookingPage, SetSlotsPage, YoutubeVideosPage, UserDataPage, PaymentPage} from "./pages/Easy Imports/Admin Dashboard Imports/admin.js"
-import {UserLogin} from "./pages/Easy Imports/Auth Imports/auth.js"
+import {UserLogin, UserRegister} from "./pages/Easy Imports/Auth Imports/auth.js"
 import {AboutPage, AppointmentPage, HomePage,TermsAndConditionPage, ServicesPage, DietPage, ClassPage} from "./pages/Easy Imports/Main Imports/main.js"
 import MainLayout from './layouts/Main Layout/MainLayout.jsx'
 import Admin_Layout from './layouts/Admin Dashboard/Admin_Layout.jsx'
