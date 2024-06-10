@@ -13,10 +13,10 @@ const Carousel = () => {
           fontFamily: 'Roboto, sans-serif'
         }}
       >
-        <div className="absolute top-4 right-4 mt-4 mr-6 p-2">
-          <p className='text-[#71FF77]'>ఇల్లే వైద్యశాల - వంటగధే మందుల షాపు - అమ్మే డాక్టర్</p>
-          <h1 className='text-white text-center text-3xl font-bold mt-4'>దా.రామచంద్ర</h1>
-          <button className="px-6 py-3 bg-[#497246] text-white rounded-xl font-semibold transition transform ease-in-out hover:scale-110 duration-300 hover:delay-75 mt-10 ml-36">
+        <div className="absolute top-1/3 right-4 p-2 mr-8">
+          <p className='text-[#71FF77] text-sm mr-12'>ఇల్లే వైద్యశాల - వంటగధే మందుల షాపు - అమ్మే డాక్టర్</p>
+          <h1 className='text-white text-center text-6xl font-bold mt-8 ml-[-10px]'>దా.రామచంద్ర</h1>
+          <button className="px-6 py-4 bg-[#497246] text-white rounded-md font-semibold transition transform ease-in-out hover:scale-110 duration-300 hover:delay-75 mt-10 ml-52 shadow-lg hover:bg-[#355a34] ">
             సంప్రదించండి
           </button>
         </div>
