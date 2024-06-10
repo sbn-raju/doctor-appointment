@@ -20,13 +20,13 @@ const AboutPage = () => {
           <div className='w-full text-center md:w-3/5 md:text-start'>
             <p className="text-amber-900 font-bold text-4xl">మా   ప్రస్తావన</p>
             <div>
-              <h1 className='text-red-400 font-bold text-6xl'>About us!!</h1>
+              <h1 className='text-green-4 font-bold text-6xl'>About us!!</h1>
               <p className='text-red-400 text-lg'>More than 3 lakhs patients consulted personally at Prakruti Ashram. The consultation and food is served for 
                 FREE since the inception of this Ashram. </p>
             </div>
           </div>
-          <div className='w-3/5 my-auto md:w-2/5 flex justify-center md:justify-end'>
-            <img src={AboutImage} className='w-full md:w-96'/>
+          <div className='w-3/5 mt-8 md:my-0 md:w-2/5 flex justify-center md:justify-end'>
+            <img src={AboutImage} className='w-48'/>
           </div>
         </div>
 

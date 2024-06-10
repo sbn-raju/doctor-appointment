@@ -3,7 +3,14 @@ import nutriImg from '../../assets/Page Assets/Home/NutritionalProgram.png'
 import banana from '../../assets/Page Assets/Home/banana.png'
 import orange from '../../assets/Page Assets/Home/orange.png'
 import watermelon from '../../assets/Page Assets/Home/watermelon.png'
+import juice from '../../assets/Page Assets/Home/juice.png'
 import CommonButton from '../../components/Buttons/CommonButton'
+import { eveningJuice } from '../../constants'
+import { Link } from 'react-router-dom'
+import { FaFacebookF } from "react-icons/fa";
+import { PiYoutubeLogoFill } from "react-icons/pi";
+import { FaInstagramSquare } from "react-icons/fa";
+import { FaTelegram } from "react-icons/fa";
 
 const DietPage = () => {
   const [dietType, setDietType] = useState('liquid');
@@ -18,12 +25,12 @@ const DietPage = () => {
 
   return (
     <>
-      <div className='h-auto p-6 my-10 bg-white'>
+      <div className='h-auto w-full p-6 my-10 bg-white'>
         <div className='p-10 w-full flex flex-col md:flex-row justify-around items-center'>
           <div className='w-full text-center md:w-3/5 md:text-start'>
             <p className='text-amber-900 font-bold text-4xl'>డా.రామచంద్ర’s</p>
             <div>
-              <h1 className='text-red-400 font-bold text-6xl mb-2'>Nutritional program</h1>
+              <h1 className='text-green-4 font-semibold text-6xl mb-2'>Nutritional program</h1>
               <p className='text-red-400 text-lg'>
                 By emphasizing nutrient-dense fruits, vegetables, whole grains, and lean proteins, 
                 a naturopathic diet supports the body's innate ability to heal and 
@@ -36,34 +43,62 @@ const DietPage = () => {
           </div>
         </div>
 
-        <div className='flex flex-col justify-center items-center'>
+        <div className='flex flex-col justify-center items-center w-full'>
           <div>
             <p className='text-green-800 font-semibold text-lg'>ఆహార ప్రణాళిక</p>
           </div>
-          <div className='grid grid-cols-2 md:grid-cols-4'>
-            <div className='bg-green-200 p-4 rounded-2xl m-4'>
+
+          <div className='hidden md:block w-full'>
+            <div className='grid grid-cols-2 md:grid-cols-3'>
+              <div className='bg-green-200 p-4 rounded-2xl m-4 flex justify-center'>
+                <img src={nutriImg} className='w-56'/>
+              </div>
+              <div className='bg-green-200 p-4 rounded-2xl m-4 flex justify-center'>
+                <img src={nutriImg} className='w-56'/>
+              </div>
+              <div className='bg-green-200 p-4 rounded-2xl m-4 flex justify-center'>
+                <img src={nutriImg} className='w-56'/>
+              </div>
+            </div>
+            <div className='grid grid-cols-4'>
+              <div className='bg-green-200 p-4 rounded-2xl m-4 flex justify-center'>
+                <img src={nutriImg} className='w-56'/>
+              </div>
+              <div className='bg-green-200 p-4 rounded-2xl m-4 flex justify-center'>
+                <img src={nutriImg} className='w-56'/>
+              </div>
+              <div className='bg-green-200 p-4 rounded-2xl m-4 flex justify-center'>
+                <img src={nutriImg} className='w-56'/>
+              </div>
+              <div className='bg-green-200 p-4 rounded-2xl m-4 flex justify-center'>
+                <img src={nutriImg} className='w-56'/>
+              </div>
+            </div>
+          </div>
+
+          <div className='md:hidden w-full'>
+            <div className='bg-green-200 p-4 rounded-2xl m-4 flex justify-center'>
               <img src={nutriImg} className='w-56'/>
             </div>
-            <div className='bg-green-200 p-4 rounded-2xl m-4'>
-              <img src={nutriImg} className='w-56'/>
-            </div>
-            <div className='bg-green-200 p-4 rounded-2xl m-4'>
-              <img src={nutriImg} className='w-56'/>
-            </div>
-            <div className='bg-green-200 p-4 rounded-2xl m-4'>
-              <img src={nutriImg} className='w-56'/>
-            </div>
-            <div className='bg-green-200 p-4 rounded-2xl m-4'>
-              <img src={nutriImg} className='w-56'/>
-            </div>
-            <div className='bg-green-200 p-4 rounded-2xl m-4'>
-              <img src={nutriImg} className='w-56'/>
-            </div>
-            <div className='bg-green-200 p-4 rounded-2xl m-4'>
-              <img src={nutriImg} className='w-56'/>
-            </div>
-            <div className='bg-green-200 p-4 rounded-2xl m-4'>
-              <img src={nutriImg} className='w-56'/>
+            <div className='grid grid-cols-2'>
+              <div className='bg-green-200 p-4 rounded-2xl m-4 flex justify-center'>
+                <img src={nutriImg} className='w-56'/>
+              </div>
+              <div className='bg-green-200 p-4 rounded-2xl m-4 flex justify-center'>
+                <img src={nutriImg} className='w-56'/>
+              </div>
+              <div className='bg-green-200 p-4 rounded-2xl m-4 flex justify-center'>
+                <img src={nutriImg} className='w-56'/>
+              </div>
+              <div className='bg-green-200 p-4 rounded-2xl m-4 flex justify-center'>
+                <img src={nutriImg} className='w-56'/>
+              </div>
+              <div className='bg-green-200 p-4 rounded-2xl m-4 flex justify-center'>
+                <img src={nutriImg} className='w-56'/>
+              </div>
+              <div className='bg-green-200 p-4 rounded-2xl m-4 flex justify-center'>
+                <img src={nutriImg} className='w-56'/>
+              </div>
             </div>
           </div>
           <p className='text-red-400 font-semibold mt-4'>
@@ -75,13 +110,13 @@ const DietPage = () => {
       </div>
       
       <div className='relative flex flex-col justify-center items-center my-10 overflow-hidden p-8 px-0'>
-        <h1 className='text-lg text-green-600 font-semibold my-5'>డైట్ ముఖ్య సూత్రాలు</h1>
+        <h1 className='text-2xl text-green-600 font-semibold my-5'>21 days Diet plan</h1>
         <div className='p-6'>
-          <div className='bg-green-100 rounded-2xl p-8' style={{ boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' }}>
+          <div className='bg-green-4 rounded-2xl p-8 text-white' style={{ boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' }}>
             <img src={banana} className='w-32 absolute -z-10 top-[70px] -left-12 -rotate-45'/>
             <img src={orange} className='w-32 absolute -z-10 top-10 -right-10'/>
             <img src={watermelon} className='w-32 absolute -z-10 -bottom-0 '/>
-            <p>
+            <p className='text-sm md:text-base'>
               1. సూర్యోదయానికి ముందే నిద్ర లేవండి (సుమారుగా 5am). లేచిన వెంటనే రెండు గ్లాసుల మంచినీళ్లు తాగండి. 
               ఒక గంట విడిచి మళ్లీ రెండు గ్లాసుల మంచినీళ్లు తాగండి. 5-8am లోపు కాలకృత్యాలు ముగించి, వ్యాయామం, 
               యోగ, ధ్యానం, సైక్లింగ్, రన్నింగ్ వంటివి చేయండి.<br/>
@@ -100,16 +135,16 @@ const DietPage = () => {
         </div>
       </div>
 
-      <div className='relative my-10 overflow-hidden p-8 px-0'>
-        <div className='p-6 flex flex-col'>
+      <div className='relative my-10 overflow-hidden py-8 px-0'>
+        <div className='p-2 md:p-6 flex flex-col'>
           <h1 className='text-lg text-green-600 font-semibold my-5 text-center'>Recipes</h1>
-          <div className='w-full flex justify-evenly'>
-            <button className={`p-4 rounded-lg w-1/2 m-2 ${dietType === 'liquid' ? 'bg-green-400 font-medium text-white' : 'text-black bg-white border-[1px] border-yellow-500'}`} onClick={handleDiet1}>Liquids</button>
-            <button className={`p-4 rounded-lg w-1/2 m-2 ${dietType === 'solid' ? 'bg-green-400 font-medium text-white' : 'text-black bg-white border-[1px] border-yellow-500'}`} onClick={handleDiet2}>Solids</button>
+          <div className='w-full flex justify-evenly my-2'>
+            <button className={`p-4 rounded-lg w-1/2 m-2 border-[1px] border-white ${dietType === 'liquid' ? 'bg-green-4 font-medium text-white border-none' : 'text-red-500 font-medium hover:border-yellow-500'}`} onClick={handleDiet1}>Liquids</button>
+            <button className={`p-4 rounded-lg w-1/2 m-2 border-[1px] border-white ${dietType === 'solid' ? 'bg-green-4 font-medium text-white border-none' : 'text-red-500 font-medium hover:border-yellow-500'}`} onClick={handleDiet2}>Solids</button>
           </div>
           { dietType === 'liquid' ? (
             <div className='p-6'>
-              <p>
+              <p className='text-sm'>
                 <span className='font-medium text-lg'>గమనిక:</span><br/>
                 1.ఒక గ్లాస్ జ్యూస్ కి అన్నీ రకాల ఆకులు కలిపి గుప్పెడు పరిమాణంలో సరిపోతాయి.<br/>
                 2.అన్ని రకాల జ్యూస్ లు తగినన్ని నీళ్లు కలిపి పల్చగా చేసుకుని త్రాగవచ్చు. జ్యూస్ లు వడకట్టుకొని త్రాగాలి.<br/>
@@ -117,11 +152,44 @@ const DietPage = () => {
                 4.సైనస్, ఆస్తమా వంటి శ్వాసకోశ సమస్యలు ఉన్న వారు, గోరువెచ్చని నీటితో జ్యూస్ ని పల్చగా చేసుకుని త్రాగాలి.<br/>
               </p>
               <br/>
-              <p>
+              <p className='text-sm'>
                 <span className='font-medium text-lg'>ఉదయం జ్యూస్:</span><br/>
                 బ్రేక్ ఫాస్ట్ (టిఫిన్) తినటానికి 30 నిమిషాలకు ముందు క్రింది జ్యూస్ త్రాగాలి. ప్రతిరోజు ఇదే జ్యూస్. 
                 డాక్టర్ గారు ఈ జ్యూసుకి అదనంగా మీ సమస్య పరిష్కారం కోసం ప్రత్యేకంగా ఏదైనా కలుపుకుని జూస్ చేసుకోమంటే అలాగే చేయండి.
               </p>
+
+              <div className='relative mt-16 w-36'>
+                <div className='bg-green-4 p-4 rounded-xl text-white text-sm pt-20 shadow-lg'>
+                  <p>కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు (మొత్తం కలిపి గుప్పెడు)</p>
+                </div>
+                <img src={juice}  className='absolute left-6 -top-16 w-24'/>
+              </div>
+
+              <div className='relative mt-10'>
+                <span className='font-medium text-lg'>సాయంత్రం జ్యూస్:</span><br/>
+                <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6'>
+                  {eveningJuice.map((food, index) => (
+                    <div key={index} className='relative mt-16 w-36'>
+                      <div className='bg-green-4 p-4 rounded-xl text-white text-sm pt-20 shadow-lg'>
+                        <p>{food.ingirdients}</p>
+                      </div>
+                      <img src={juice}  className='absolute left-6 -top-16 w-24'/>
+                    </div>
+                  ))}
+                </div>
+                {eveningJuice.length > 0 && (
+                  <>
+                    <img src={orange} className='w-32 absolute -z-10 top-28 right-60'/>
+                    <img src={watermelon} className='w-32 absolute top-80 left-44 -z-10'/>
+                    <img src={watermelon} className='w-32 absolute bottom-20 left-[570px] -z-10 rotate-45'/>
+                    <img src={banana} className='w-32 absolute bottom-48 right-44 -z-10'/>
+                  </>
+                )}
+              </div>
+
+              <img src={banana} className='hidden md:block w-32 absolute top-[200px] -right-10 -rotate-45 -z-10'/>
+              <img src={orange} className='md:hidden w-32 absolute top-[200px] -right-10 -rotate-45 -z-10'/>
+              <img src={orange} className='w-32 absolute -z-10 bottom-0 -left-10'/>
             </div>
           ) : (
             <div className='p-6'>
@@ -141,9 +209,50 @@ const DietPage = () => {
                 Nutritional Benefits: High in vitamin C, manganese, and antioxidants such as anthocyanins and ellagic acid. Strawberries promote heart health and help regulate blood sugar.<br/>
                 Usage: Can be eaten fresh, added to salads, smoothies, or used in desserts.<br/>
               </p>
+              
+              <img src={banana} className='hidden md:block w-32 absolute top-[200px] -right-10 -rotate-45 -z-10'/>
+              <img src={orange} className='md:hidden w-32 absolute top-[200px] -right-10 -rotate-45 -z-10'/>
             </div>
           )}
         </div>
+      </div>
+
+      <div className='my-6 w-full flex flex-col justify-center items-center'>
+        <h1 className='text-green-4 text-2xl font-semibold'>Quick links</h1>
+        <div className='my-4'>
+          <p className='text-center my-2'>
+            <span className='text-green-4 font-medium mx-2'>Diet - General:</span>
+            <Link className='mx-2 cursor-pointer hover:underline text-blue-400'>Telugu1</Link>
+            <Link className='mx-2 cursor-pointer hover:underline text-blue-400'>Telugu2</Link>
+            <Link className='mx-2 cursor-pointer hover:underline text-blue-400'>English</Link>
+          </p>
+
+          <p className='text-center my-2'>
+            <span className='text-green-4 font-medium mx-2'>Diet - Basics:</span>
+            <Link className='mx-2 cursor-pointer hover:underline text-blue-400'>Telugu</Link>
+            <Link className='mx-2 cursor-pointer hover:underline text-blue-400'>English</Link>
+          </p>
+
+          <p className='text-center my-2'>
+            <span className='text-green-4 font-medium mx-2'>Diet - Juices:</span>
+            <Link className='mx-2 cursor-pointer hover:underline text-blue-400'>Telugu</Link>
+            <Link className='mx-2 cursor-pointer hover:underline text-blue-400'>English</Link>
+          </p>
+
+          <p className='text-center my-2'>
+            <span className='text-green-4 font-medium mx-2'>Diet - Food:</span>
+            <Link className='mx-2 cursor-pointer hover:underline text-blue-400'>Telugu</Link>
+            <Link className='mx-2 cursor-pointer hover:underline text-blue-400'>English</Link>
+          </p>
+        </div>
+        <p className='w-2/4 text-center font-medium text-sm'>For any health related queries, we have a volunteer team who may guide you appropriately.Please join our Telegram group using below icon.</p>
+      </div>
+
+      <div className="w-full h-12 flex justify-center items-center flex-row mt-8 text-3xl " >
+        <span className="mr-3"><FaTelegram/></span>
+        <span className="mr-3"><FaInstagramSquare/></span>
+        <span className="mr-3"><PiYoutubeLogoFill/></span>
+        <span className="mr-3"><FaFacebookF/></span>
       </div>
     </>
   )
