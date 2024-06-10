@@ -92,7 +92,6 @@
           </div>
           <div className="mb-5 mt-5 pt-3 flex justify-center items-center border-t-2 border-white w-full">
              <p className="w-3/4 h-auto text-center"><span className="font-bold">Dr. PadmaRamachandra Naturopathy</span> &copy; 2024. All rights reserved. Made with Love by Collasyn.com</p>
-             {/* <p className="text-green-900 text-end font-thin text-xs">&#82;&#97;&#107;&#101;&#115;&#104;</p> */}
           </div>
         </div>
       </>
