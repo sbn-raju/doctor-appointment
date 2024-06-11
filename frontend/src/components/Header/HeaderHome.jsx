@@ -10,7 +10,7 @@ const HeaderHome = () => {
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  const handleDrawer = (event) => {
+  const handleDrawer = () => {
     setDrawerIsOpen(!drawerIsOpen);
   };
 
@@ -39,7 +39,7 @@ const HeaderHome = () => {
             </p>
           </div>
         </div>
-        <div className="hidden md:flex flex-grow justify-center items-center">
+        <div className="hidden md:flex flex-grow justify-center items-center space-x-4 md:space-x-6 lg:space-x-10">
           <ul className="flex flex-row text-sm md:text-base lg:text-lg font-medium space-x-4 md:space-x-6 lg:space-x-10">
             {navItems.map((item, index) => (
               <li key={index}>
