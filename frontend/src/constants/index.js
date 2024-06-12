@@ -1,9 +1,9 @@
 export const navItems = [
     {label:"Home", href:"/"},
-    {label:"About Us",href:"/about"},
     {label:"Services",href:"/services"},
-    {label:"Book Appoitnment",href:"/appointment"},
-    {label:"Book Workshop", href:"/class"}
+    {label:"Appoitnment",href:"/appointment"},
+    {label:"Workshop", href:"/class"},
+    {label:"About\u00A0Us",href:"/about"},
 ]
 
 export const userProfile = {
@@ -1344,5 +1344,50 @@ export const eveningJuice = [
     },
     {
         ingirdients: "కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు (మొత్తం కలిపి గుప్పెడు)",
+    },
+]
+
+import teamImg from '../assets/Page Assets/Home/docter image.png';
+
+export const team = [
+    {
+        img: teamImg,
+        name: "RamaChandra",
+        position: "Founder",
+    },
+    {
+        img: teamImg,
+        name: "RamaChandra",
+        position: "Founder",
+    },
+    {
+        img: teamImg,
+        name: "RamaChandra",
+        position: "Founder",
+    },
+    {
+        img: teamImg,
+        name: "RamaChandra",
+        position: "Founder",
+    },
+    {
+        img: teamImg,
+        name: "RamaChandra",
+        position: "Founder",
+    },
+    {
+        img: teamImg,
+        name: "RamaChandra",
+        position: "Founder",
+    },
+    {
+        img: teamImg,
+        name: "RamaChandra",
+        position: "Founder",
+    },
+    {
+        img: teamImg,
+        name: "RamaChandra",
+        position: "Founder",
     },
 ]

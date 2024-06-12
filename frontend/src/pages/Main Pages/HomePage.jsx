@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Carousel from "../../components/User Components/Home/Carousel";
+import Carousal from "../../components/User Components/Home/Carousel";
 import RandomImage from "../../assets/Page Assets/Home/Rectangle 85.png";
 import ServiceHoverableImg from "../../components/User Components/Home/ServiceHoverableImg";
 import ClassCard from "../../components/User Components/Home/ClassCard";
@@ -12,7 +12,9 @@ import ItemsCard from "../../components/User Components/Home/ItemsCard";
 import Introbg2 from "../../assets/Page Assets/Home/Introbg2.png";
 import IntroBg from "../../assets/Page Assets/Home/IntroBg.svg";
 import EndingBg from "../../assets/Page Assets/Home/Endingbg.png";
-import Servicesbg from "../../assets/Page Assets/Home/Servicesbg.png";
+import Services from "../../assets/Page Assets/Home/services.png";
+import ServicesMb from '../../assets/Page Assets/Home/services_mb.svg';
+import docImg from '../../assets/Page Assets/Home/docImg2.svg';
 
 const youtube = [
   {
@@ -35,123 +37,133 @@ const youtube = [
 
 const HomePage = () => {
   return (
-    <div className="bg-custom-green">
-      {/* Carousel */}
-      <Carousel />
-
-      {/* Intro */}
-      <div className="w-full h-auto flex justify-center mt-10 mb-8 mr-20">
-  <div className="w-full lg:w-4/5 h-auto flex flex-col xl:flex-row py-10 px-10 xl:py-16 xl:px-16">
-    <div className="w-full xl:w-3/5 text-left mb-10 xl:mb-0 xl:mr-20">
-      <h2 className="text-[#1E2F1D] font-bold text-2xl xl:text-4xl mb-8">
-        Naturopathy&nbsp;<span>అనగా</span>
-      </h2>
-      <p className="font-medium text-sm leading-relaxed text-[#333333]">
-        ఆయుర్వేద, అలోపతి, హోమియోపతి, యునాని, సిద్ధ వైద్య విధానం మొదలగు
-        వైద్య విధానాలవలే ఇది ఒక వైద్య విధానం. పంచభూతాలతో చికిత్స చేసే ఒక
-        ప్రక్రియ. ఇందులో మందులు కానీ, పసర్లు కానీ, పూతలు కానీ, లేపనాలు కానీ
-        ఏమీ వుండవు. ఈ ట్రీట్మెంట్స్ మందుల్లేకుండా జబ్బులు తగ్గించడానికి
-        ఉపయోగపడతాయి. ఈ వైద్య విధానంలో ట్రీట్మెంట్స్ – వాటర్ థెరపీ, ఫాస్టింగ్
-        థెరపీ, డైట్ థెరపీ, యోగా థెరపీ, మసాజ్ థెరపీ, మడ్ థెరపీ, సన్ లైట్
-        థెరపీ మొదలగు థెరపీలు వుంటాయి.ఈ ట్రీట్మెంట్స్ మందుల్లేకుండా జబ్బులు తగ్గించడానికి
-        ఉపయోగపడతాయి. ఈ వైద్య విధానంలో ట్రీట్మెంట్స్ – వాటర్ థెరపీ, ఫాస్టింగ్
-        థెరపీ, డైట్ థెరపీ, యోగా థెరపీ, మసాజ్ థెరపీ, మడ్ థెరపీ, సన్ లైట్
-        థెరపీ మొదలగు థెరపీలు వుంటాయి.
-      </p>
-    </div>
-    <div className="w-full xl:w-2/5 flex justify-end">
-      <img src={Introbg} alt="Naturopathy" className="rounded-lg w-full" />
-    </div>
-  </div>
-</div>
-
-
+    <>
+      <div className="w-full px-8 py-2">
+        <Carousal />    {/* Carousel */}
+        
+        <div className="w-full flex flex-col md:flex-row justify-center p-10 mt-4 md:my-6 lg:-mt-20">   {/* intro1 */}
+          <div className="w-full md:w-3/5 flex flex-col justify-center items-start text-left">
+            <h2 className="text-green-1 font-bold text-2xl md:text-4xl mb-4">
+              Naturopathy <span>అనగా</span>
+            </h2>
+            <p className="font-medium text-sm leading-relaxed text-[#333333]">
+              ఆయుర్వేద, అలోపతి, హోమియోపతి, యునాని, సిద్ధ వైద్య విధానం మొదలగు
+              వైద్య విధానాలవలే ఇది ఒక వైద్య విధానం. పంచభూతాలతో చికిత్స చేసే ఒక
+              ప్రక్రియ. ఇందులో మందులు కానీ, పసర్లు కానీ, పూతలు కానీ, లేపనాలు కానీ
+              ఏమీ వుండవు. ఈ ట్రీట్మెంట్స్ మందుల్లేకుండా జబ్బులు తగ్గించడానికి
+              ఉపయోగపడతాయి. ఈ వైద్య విధానంలో ట్రీట్మెంట్స్ – వాటర్ థెరపీ, ఫాస్టింగ్
+              థెరపీ, డైట్ థెరపీ, యోగా థెరపీ, మసాజ్ థెరపీ, మడ్ థెరపీ, సన్ లైట్
+              థెరపీ మొదలగు థెరపీలు వుంటాయి.ఈ ట్రీట్మెంట్స్ మందుల్లేకుండా జబ్బులు
+              తగ్గించడానికి ఉపయోగపడతాయి. ఈ వైద్య విధానంలో ట్రీట్మెంట్స్ – వాటర్
+              థెరపీ, ఫాస్టింగ్ థెరపీ, డైట్ థెరపీ, యోగా థెరపీ, మసాజ్ థెరపీ, మడ్
+              థెరపీ, సన్ లైట్ థెరపీ మొదలగు థెరపీలు వుంటాయి.
+            </p>
+          </div>
+          <div className="w-full md:w-2/5 md:flex justify-end">
+            <img src={Introbg} alt="Naturopathy" className="rounded-lg w-full mb-10 md:mb-0" />
+          </div>
+        </div>
+      </div>
+      
       {/* intro2 */}
-
       <div
-        className="w-full h-64 flex items-center justify-center bg-cover bg-center"
+        className="w-full h-[180px] sm:h-[200px] md:h-[450px] flex items-center justify-center bg-cover bg-center -mt-36"
         style={{ backgroundImage: `url(${Introbg1})` }}
       >
-        <h1 className="text-white text-2xl font-bold">
+        <h1 className="text-white text-sm md:text-2xl font-medium md:font-semibold md:mt-20">
           ఇల్లే వైద్యశాల - వంటగధే మందుల షాపు - అమ్మే డాక్టర్
         </h1>
       </div>
 
       {/* intro3 */}
-      <div
-  className="relative w-full h-96 flex items-center justify-center bg-cover bg-center px-10 py-16 mb-10"
-  style={{
-    backgroundImage: `url(${IntroBg})`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-  }}
->
-  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-white text-center">
-    <div>
-      <h1 className="text-xl font-bold mb-2">24</h1>
-      <p className="text-sm">Years of experience. Naturopathic way. Estd. 1999</p>
-    </div>
-    <div>
-      <h1 className="text-xl font-bold mb-2">3 Lakhs+</h1>
-      <p className="text-sm">Patients consulted personally at Prakruti Ashram. Still counting…</p>
-    </div>
-    <div>
-      <h1 className="text-xl font-bold mb-2">20</h1>
-      <p className="text-sm">Yoga Studios across the states of Andhra Pradesh and Telangana.</p>
-    </div>
-    <div>
-      <h1 className="text-xl font-bold mb-2">1000+</h1>
-      <p className="text-sm">Health awareness camps.</p>
-    </div>
-    <div>
-      <h1 className="text-xl font-bold mb-2">Millions</h1>
-      <p className="text-sm">Of health seekers transformed from revolutionary speeches.</p>
-    </div>
-    <div>
-      <h1 className="text-xl font-bold mb-2">Many</h1>
-      <p className="text-sm">Popular TV shows, YouTube videos, Food festivals, Yoga competitions, Student seminars and so on.</p>
-    </div>
-  </div>
-</div>
+      <>
+        <div className="hidden md:block">
+          <div
+            className="relative w-cw-1 h-[650px] flex items-center justify-center bg-cover bg-center mr-20 bg-green-3 rounded-br-[400px] shadow-2xl">
+            <div className="flex justify-start p-8 pl-20">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-white w-cw-2 text-start">
+                <div className="w-2/3 my-4">
+                  <h1 className="text-2xl lg:text-5xl font-semibold mb-2">24</h1>
+                  <p className="text-sm lg:text-base">Years of experience.Naturopathic way.Estd. 1999</p>
+                </div>
+                <div className="w-2/3 my-4">
+                  <h1 className="text-2xl lg:text-5xl font-semibold mb-2">3 Lakhs+</h1>
+                  <p className="text-sm lg:text-base">Patients consulted personally at Prakruti Ashram. Still counting…</p>
+                </div>
+                <div className="w-2/3 my-4">
+                  <h1 className="text-2xl lg:text-5xl font-semibold mb-2">20</h1>
+                  <p className="text-sm lg:text-base">Yoga Studios across the states of Andhra Pradesh and Telangana.</p>
+                </div>
+                <div className="w-2/3 my-4">
+                  <h1 className="text-2xl lg:text-5xl font-semibold mb-2">1000+</h1>
+                  <p className="text-sm lg:text-base">Health awareness camps.</p>
+                </div>
+                <div className="w-2/3 my-4">
+                  <h1 className="text-2xl lg:text-5xl font-semibold mb-2">Millions</h1>
+                  <p className="text-sm lg:text-base">Of health seekers transformed from revolutionary speeches.</p>
+                </div>
+                <div className="w-2/3 my-4">
+                  <h1 className="text-2xl lg:text-5xl font-semibold mb-2">Many</h1>
+                  <p className="text-sm lg:text-base">Popular TV shows, YouTube videos, Food festivals, Yoga competitions, Student seminars and so on.</p>
+                </div>
+              </div>
+            </div>
+            <img src={docImg} className="absolute w-52 lg:w-72 -top-32 right-0"/>
+          </div>
+        </div>
 
-
+        <div className="md:hidden">
+          <div className="bg-green-3 p-10">
+            <div className="flex justify-center">
+              <img src={docImg} className="w-48 rounded-3xl"/>
+            </div>
+            <div className="w-full text-white mt-10">
+              <div className="grid grid-cols-2">
+                <div className="w-3/4 m-4">
+                  <h1 className="text-lg font-medium mb-2">24</h1>
+                  <p className="text-base">Years of experience.<br/>Naturopathic way.Estd. 1999</p>
+                </div>
+                <div className="w-3/4 m-4">
+                  <h1 className="text-lg font-medium mb-2">3 Lakhs+</h1>
+                  <p className="text-base">Patients consulted personally at Prakruti Ashram. Still counting…</p>
+                </div>
+                <div className="w-3/4 m-4">
+                  <h1 className="text-lg font-medium mb-2">20</h1>
+                  <p className="text-base">Yoga Studios across the states of Andhra Pradesh and Telangana.</p>
+                </div>
+                <div className="w-3/4 m-4">
+                  <h1 className="text-lg font-medium mb-2">1000+</h1>
+                  <p className="text-base">Health awareness camps.</p>
+                </div>
+                <div className="w-3/4 m-4">
+                  <h1 className="text-lg font-medium mb-2">Millions</h1>
+                  <p className="text-base">Of health seekers transformed from revolutionary speeches.</p>
+                </div>
+                <div className="w-3/4 m-4">
+                  <h1 className="text-lg font-medium mb-2">Many</h1>
+                  <p className="text-base">Popular TV shows, YouTube videos, Food festivals, Yoga competitions, Student seminars and so on.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </>
 
       {/* Services */}
-      <ServiceHoverableImg />
-     {/* three dots background */}
-      <div
-      className="relative w-full max-w-4xl mx-auto h-96 bg-cover bg-center"
-      style={{
-        backgroundImage: `url(${Servicesbg})`,
-        backgroundSize: 'contain',
-        backgroundRepeat: 'no-repeat',
-      }}
-    >
-      
-      <div className="absolute left-4 top-1/2 transform -translate-y-1/2">
-        <div className="w-4 h-4 bg-black rounded-full"></div>
+      <div className="flex flex-col justify-center items-center my-10 mt-20">
+        <p className="text-green-3 text-lg font-semibold">మా సేవలు</p>
+        <img src={Services} className="w-4/6 hidden md:block"/>
+        <img src={ServicesMb} className="w-4/6 md:hidden"/>
       </div>
 
-      
-      <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
-        <div className="w-4 h-4 bg-black rounded-full"></div>
-      </div>
-
-      
-      <div className="absolute right-4 top-1/2 transform -translate-y-1/2">
-        <div className="w-4 h-4 bg-black rounded-full"></div>
-      </div>
-    </div>
-
-      {/* Card of Appointment */}
-      <ClassCard />
+      {/* Card of Diet */}
+      <NutritionalCard />
 
       {/* Card of Appointment Booking */}
       <AppointmentCards />
 
-      {/* Card of Diet */}
-      <NutritionalCard />
+      {/* Card of Appointment */}
+      <ClassCard />
 
       {/* Card of products and their prices */}
       <ItemsCard />
@@ -184,32 +196,30 @@ const HomePage = () => {
       </div>
 
       {/* Ending */}
-      {/* Ending */}
-<div
-  className="w-full h-[600px] flex flex-col items-center justify-start bg-cover bg-center bg-no-repeat pt-10"
-  style={{ backgroundImage: `url(${EndingBg})` }}
->
-  <h1 className="text-white text-3xl font-bold mt-40">స్వస్థత గాధలు</h1>
-  <div className="flex-grow flex flex-col justify-center items-center">
-    <div className="w-full flex justify-center items-center gap-14 mb-8">
-      {youtube.slice(0, 3).map((video, index) => (
-        <div key={index} className="w-1/3 h-60">
-          <iframe
-            src={video.tag}
-            title={`YouTube video ${index + 1}`}
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            className="w-full h-full rounded-2xl"
-          ></iframe>
+      <div
+        className="w-full min-h-[900px] flex flex-col items-center justify-start bg-cover bg-center bg-no-repeat pt-10"
+        style={{ backgroundImage: `url(${EndingBg})` }}
+      >
+        <h1 className="text-white text-3xl font-bold mt-52">స్వస్థత గాధలు</h1>
+        <div className="flex-grow flex flex-col justify-center items-center">
+          <div className="w-full flex flex-col md:flex-row justify-center items-center">
+            {youtube.slice(0, 3).map((video, index) => (
+              <div key={index} className="my-6">
+                <iframe
+                  src={video.tag}
+                  title={`YouTube video ${index + 1}`}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="w-full h-full rounded-2xl"
+                ></iframe>
+              </div>
+            ))}
+          </div>
         </div>
-      ))}
-    </div>
-  </div>
-</div>
-
-    </div>
+      </div>
+    </>
   );
-};
+}
 
-export default HomePage;
+export default HomePage

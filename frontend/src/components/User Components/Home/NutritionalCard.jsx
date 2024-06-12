@@ -4,28 +4,43 @@ import NutritionalCardImage from "../../../assets/Page Assets/Home/NutritionalPr
 const NutritionalCard = () => {
   return (
     <>
-      <div className="min-w-full h-auto flex justify-center items-center mt-10">
-        <div className="w-4/5 lg:w-4/5 h-auto py-5 px-5 flex flex-col lg:flex-row bg-yellow-700 rounded-xl justify-center items-center">
-          <div className="text-center">
-            <h2 className="font-bold text-xl lg:hidden">డా.రామచంద్ర’s </h2>
-          </div>
-          <div className="h-2/5 flex justify-center m-4 lg:w-2/5">
-            <img src={NutritionalCardImage} alt="" />
-          </div>
-          <div className="h-3/5 lg:w-3/5">
-            <div className="text-center">
-              <h2 className="hidden lg:block text-2xl font-bold">డా.రామచంద్ర’s </h2>
-              <p className="text-xl font-medium">Nutritional Program</p>
+      <div className="hidden md:block">
+        <div className="h-[300px] my-10 w-full flex justify-center">
+          <div className="shadow-lg relative w-4/5 lg:w-3/5 mt-20 bg-green-3 p-10 rounded-tl-[400px] rounded-[100px]">
+            <div className="flex justify-end">
+              <div className="w-3/5 text-right">
+                <p className="text-white text-2xl font-medium mb-4">
+                  డా.రామచంద్ర’s    Nutritional Program 
+                </p>
+                <p className="text-white text-sm leading-6">
+                  "మా డైట్ పేజీకి ఒక్క క్లిక్తో మీ ఆరోగ్య లక్ష్యాలను సాధించడానికి మీకు శక్తినిచ్చే డాక్టర్ రామచంద్ర యొక్క పరివర్తన ఆహార ప్రణాళికను కనుగొనండి."
+                </p>
+              </div>
             </div>
-            <div className="text-center">
-              <p>
-              "మా డైట్ పేజీకి ఒక్క క్లిక్తో మీ ఆరోగ్య లక్ష్యాలను సాధించడానికి మీకు శక్తినిచ్చే డాక్టర్ రామచంద్ర యొక్క పరివర్తన ఆహార ప్రణాళికను కనుగొనండి."
-              </p>
+            <img src={NutritionalCardImage} className="absolute -top-16 left-20 w-48"/>
+            <button className="absolute left-24 bottom-10 bg-green-2 px-4 py-1 rounded-tl-full rounded-br-full shadow-md font-medium">సంప్రదించండి</button>
+          </div>
+        </div>
+      </div>
+
+      <div className="md:hidden">
+        <div className="h-auto my-10 w-full flex justify-center">
+          <div className="shadow-lg relative w-4/5 mt-20 bg-green-3 p-10 rounded-2xl">
+            <div className="flex justify-end mt-10">
+              <div className="text-center">
+                <p className="text-white text-base font-medium mb-4">
+                  డా.రామచంద్ర’s    Nutritional Program 
+                </p>
+                <p className="text-white text-sm leading-6">
+                  "మా డైట్ పేజీకి ఒక్క క్లిక్తో మీ ఆరోగ్య లక్ష్యాలను సాధించడానికి మీకు శక్తినిచ్చే డాక్టర్ రామచంద్ర యొక్క పరివర్తన ఆహార ప్రణాళికను కనుగొనండి."
+                </p>
+                <button className="bg-green-2 px-4 py-1 rounded-tl-full rounded-br-full shadow-md mt-6">
+                  సంప్రదించండి
+                </button>
+              </div>
             </div>
-            <div className="mt-4 flex justify-center">
-              <button className="px-4 py-4 bg-green-600 text-green-950 rounded-xl font-semibold transition ease-in-out hover:scale-110 duration-300 hover:delay-75">
-                సంప్రదించండి
-               </button>
+            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+              <img src={NutritionalCardImage} className="w-36" />
             </div>
           </div>
         </div>
@@ -35,3 +50,4 @@ const NutritionalCard = () => {
 };
 
 export default NutritionalCard;
+

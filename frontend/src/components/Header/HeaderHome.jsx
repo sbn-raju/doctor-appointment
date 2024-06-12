@@ -5,6 +5,7 @@ import { navItems } from "../../constants";
 import LoginButton from "../Buttons/LoginButton";
 import CommonButton from "../Buttons/CommonButton";
 import logo from '../../assets/Page Assets/Home/New Logo.png';
+import { Link } from "react-router-dom";
 
 const HeaderHome = () => {
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
@@ -29,7 +30,9 @@ const HeaderHome = () => {
     <>
       <div className={`px-4 md:px-6 py-3 w-full flex flex-row justify-between items-center sticky top-0 ${isScrolled ? 'bg-green-2 text-white' : 'bg-white text-green-1'} z-50 shadow-lg`}>
         <div className="flex items-center">
-          <img src={logo} alt="LogoImage" className="w-12 h-12 md:w-16 md:h-16 mx-2 md:mx-4" />
+          <Link to="/">
+            <img src={logo} alt="LogoImage" className="w-12 h-12 md:w-16 md:h-16 mx-2 md:mx-4" />
+          </Link>
           <div className="pl-1 md:mr-4">
             <h2 className="font-regular text-sm md:text-base lg:text-lg leading-tight">
               Dr.Padma &amp; Dr.Ramachandra
@@ -50,8 +53,8 @@ const HeaderHome = () => {
         </div>
         <div className="hidden md:flex items-center ml-2 md:ml-4 lg:ml-6">
           <LoginButton />
-          <CommonButton className="ml-2 px-4 py-2 rounded-md text-white bg-green-3">
-            Sign In
+          <CommonButton className="px-6 py-2 m-2 rounded-md text-white bg-green-3">
+            Sign&nbsp;In
           </CommonButton>
         </div>
         <div className="md:hidden">

@@ -38,7 +38,7 @@ const DietPage = () => {
               </p>
             </div>
           </div>
-          <div className='w-3/5 my-auto md:2/5 flex justify-center md:justify-end'>
+          <div className='w-full mt-8 md:my-0 md:w-2/5 flex justify-center md:justify-end'>
             <img src={nutriImg} className='w-full md:w-96'/>
           </div>
         </div>

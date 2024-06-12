@@ -18,6 +18,10 @@ export default {
       backgroundImage: {
         'green-gradient': 'linear-gradient(to bottom left, #d1fae5, #10b981)',
       },
+      width: {
+        'cw-1': '96%',
+        'cw-2': '80%',
+      }
     },
   },
   plugins: [],
