@@ -6,13 +6,11 @@ dotenv.config()
 
 
 
-
-
 //Creating the class using the details given by the admin
 const setClass = async (req, res, next) => {
   const validationRules = [
     body("class_date", "Date should be Provided").isDate().notEmpty(),
-    body("class_time", "Time should be provided").notEmpty(),
+    body("class_timing", "Time should be provided").notEmpty(),
     body("class_fees", "Pleas give money").isFloat().notEmpty(),
     body("updated_by").isInt().notEmpty().withMessage("Admin please"),
     body("created_by").isInt().notEmpty().withMessage("Nothing"),
@@ -25,21 +23,21 @@ const setClass = async (req, res, next) => {
     return next(new ErrorHandler(errors.array(), 400))
   }
 
-  const { class_date, class_time, class_fees, updated_by, created_by } =
+  const { class_date, class_timing, class_fees, updated_by, created_by } =
     req.body
 
-  if (!(class_date, class_time, class_fees)) {
+  if (!(class_date, class_timing, class_fees)) {
     return next(new ErrorHandler("Provide all the Field", 402))
   }
 
   const setClassQuery =
-    "INSERT INTO active_class_master (class_date, class_time, class_fees, updated_by, created_by) VALUES ($1,$2,$3,$4,$5) RETURNING *"
+    "INSERT INTO active_class_master (class_date, class_timing, class_fees, created_by, updated_by) VALUES ($1,$2,$3,$4,$5) RETURNING *"
   const setClassValues = [
     class_date,
-    class_time,
+    class_timing,
     class_fees,
-    updated_by,
     created_by,
+    updated_by,
   ]
   try {
     const newClass = await pool.query(setClassQuery, setClassValues)
@@ -53,6 +51,8 @@ const setClass = async (req, res, next) => {
     return next(new ErrorHandler(error, 400))
   }
 }
+
+
 
 //Getting all the Previous Classes
 const getClass = async (req, res) => {
@@ -68,6 +68,8 @@ const getClass = async (req, res) => {
     return next(new ErrorHandler(error, 400))
   }
 }
+
+
 
 //getting class by Id
 const getClassWithId = async (req, res) => {
@@ -95,6 +97,8 @@ const getClassWithId = async (req, res) => {
     return next(new ErrorHandler(error, 400))
   }
 }
+
+
 
 //Updating the class based on the details given by the admin
 const putClass = async (req, res, next) => {
@@ -143,6 +147,9 @@ const putClass = async (req, res, next) => {
     return next(new ErrorHandler(error, 400))
   }
 }
+
+
+
 
 //Deleteing the class by the Id
 const deleteClass = async (req, res, next) => {
