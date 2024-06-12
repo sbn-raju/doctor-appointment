@@ -1,33 +1,46 @@
 import React from "react";
 import AppointmentCardImage from "../../../assets/Page Assets/Home/AppointmentCard.png";
-import Appointmentcardbg from "../../../assets/Page Assets/Home/Appointmentbackground.svg";
 
 const AppointmentCards = () => {
   return (
     <>
-      <div className="min-w-full h-auto flex justify-center items-center mt-10 pb-6">
-        <div
-          className="w-full md:w-4/5 lg:w-4/5 h-auto py-10 px-4 md:px-8 flex flex-col lg:flex-row-reverse bg-[#507E4D] rounded-2xl shadow-lg hover:shadow-xl transition-shadow duration-500 justify-center items-center"
-          style={{ backgroundImage: `url(${Appointmentcardbg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
-        >
-          <div className="text-center lg:text-right lg:w-2/5 mb-6 lg:mb-0">
-            <h2 className="font-bold text-2xl lg:text-3xl mb-4 lg:hidden text-white">అపాయింట్‌మెంట్</h2>
-            <div className="flex justify-center lg:justify-end">
-              <img src={AppointmentCardImage} alt="Appointment Image" className="rounded-lg shadow-md" />
+      <div className="hidden md:block">
+        <div className="h-[300px] my-10 w-full flex justify-center">
+          <div className="shadow-lg relative w-4/5 lg:w-3/5 mt-20 bg-green-3 rounded-[100px] rounded-br-[400px]">
+            <div className="flex justify-start p-10">
+              <div className="w-3/5 text-left">
+                <p className="text-white text-2xl font-medium mb-4">
+                  అపాయింట్‌మెంట్
+                </p>
+                <p className="text-white text-sm leading-6">
+                  ప్రకృతి వైద్యం మిమ్మల్ని నయం చేయడంలో సహాయపడనివ్వండి! ఇది అన్నింటికీ నివారణ కానప్పటికీ, ప్రకృతి వైద్యం మీకు ఆరోగ్యంగా మరియు సంతోషంగా ఉండేందుకు సహాయపడుతుంది.
+                </p>
+              </div>
             </div>
+            <img src={AppointmentCardImage} className="w-48 absolute -top-16 right-20"/>
+            <button className="absolute right-24 bottom-10 bg-green-2 px-4 py-1 rounded-tl-full rounded-br-full shadow-md font-medium">సంప్రదించండి</button>
           </div>
-          <div className="lg:w-3/5 text-center lg:text-left">
-            <h2 className="hidden lg:block text-3xl font-bold mb-4 text-white">అపాయింట్‌మెంట్</h2>
-            <p className="text-xl font-medium mb-4 text-white">Your Time, Your Care: Schedule Today!</p>
-            <p className="mb-6 text-white">
-              ప్రకృతి వైద్యం మిమ్మల్ని నయం చేయడంలో సహాయపడనివ్వండి! ఇది
-              అన్నింటికీ నివారణ కానప్పటికీ, ప్రకృతి వైద్యం మీకు ఆరోగ్యంగా
-              మరియు సంతోషంగా ఉండేందుకు సహాయపడుతుంది.
-            </p>
-            <div className="mt-4 flex justify-center lg:justify-start">
-              <button className="px-6 py-3 bg-green-600 text-black rounded-xl font-semibold transition transform ease-in-out hover:scale-110 duration-300 hover:delay-75 ml-4 lg:ml-0">
-                సంప్రదించండి
-              </button>
+        </div>
+      </div>
+
+      <div className="md:hidden">
+        <div className="h-auto my-10 w-full flex justify-center">
+          <div className="shadow-lg relative w-4/5 mt-20 bg-green-3 p-10 rounded-2xl">
+            <div className="flex justify-end mt-10">
+              <div className="text-center">
+                <p className="text-white text-base font-medium mb-4">
+                  డా.రామచంద్ర’s    Nutritional Program 
+                </p>
+                <p className="text-white text-sm leading-6">
+                  "మా డైట్ పేజీకి ఒక్క క్లిక్తో మీ ఆరోగ్య లక్ష్యాలను సాధించడానికి మీకు శక్తినిచ్చే డాక్టర్ రామచంద్ర యొక్క పరివర్తన ఆహార ప్రణాళికను కనుగొనండి."
+                </p>
+                <button className="bg-green-2 px-4 py-1 rounded-tl-full rounded-br-full shadow-md mt-6">
+                  సంప్రదించండి
+                </button>
+              </div>
+            </div>
+            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+              <img src={AppointmentCardImage} className="w-36" />
             </div>
           </div>
         </div>

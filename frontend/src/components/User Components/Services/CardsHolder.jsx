@@ -31,7 +31,7 @@ export const CardsHolder = () => {
               </p>
             </div>
             <div className="h-2/5 md:m-auto lg:w-2/5 flex justify-center items-center">
-              <img src={CardHolder_one} alt="Card Holder One" className="rounded-lg shadow-md" />
+              <img src={CardHolder_one} alt="Card Holder One" className="rounded-lg" />
             </div>
           </div>
         </div>
@@ -54,7 +54,7 @@ export const CardsHolder = () => {
               </p>
             </div>
             <div className="h-2/5 lg:w-2/5 flex justify-center items-center">
-              <img src={CardHolder_two} alt="Card Holder Two" className="rounded-lg shadow-md" />
+              <img src={CardHolder_two} alt="Card Holder Two" className="rounded-lg" />
             </div>
           </div>
         </div>
@@ -77,7 +77,7 @@ export const CardsHolder = () => {
               </p>
             </div>
             <div className="h-2/5 mx-auto lg:w-2/5 flex justify-center items-center">
-              <img src={CardHolder_three} alt="Card Holder Three" className="rounded-lg shadow-md" />
+              <img src={CardHolder_three} alt="Card Holder Three" className="rounded-lg" />
             </div>
           </div>
         </div>

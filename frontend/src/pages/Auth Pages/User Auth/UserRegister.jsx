@@ -42,7 +42,7 @@ const UserRegister = () => {
 
   return (
     <div>
-    <div className="flex space-x-10 p-6 max-w-4xl mx-auto bg-white rounded-lg shadow-md mt-4 mb-4">
+    <div className="flex space-x-10 p-6 max-w-4xl mx-auto bg-[#F2F2F2] rounded-lg shadow-md mt-4 mb-4">
         {!isSignUpVisible && !isAccountDetailsVisible && (
           <form onSubmit={handleSubmit(loginData)} className="w-3/4 space-y-6">
           <h2 className="text-2xl font-bold mb-4">Sign Up</h2>

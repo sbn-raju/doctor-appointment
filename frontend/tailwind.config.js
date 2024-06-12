@@ -7,9 +7,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        'custom-yellow': '#FEFDED',
-        'custom-green': '#F6FFF5',
-        'custom-red': '#FBA5A5',
+        'red-1': '#FDD3C7',
         'green-1': '#1E2F1D',
         'green-2': '#78A974',
         'green-3': '#507E4D',
@@ -20,6 +18,10 @@ export default {
       backgroundImage: {
         'green-gradient': 'linear-gradient(to bottom left, #d1fae5, #10b981)',
       },
+      width: {
+        'cw-1': '96%',
+        'cw-2': '80%',
+      }
     },
   },
   plugins: [],

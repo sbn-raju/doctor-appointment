@@ -37,7 +37,7 @@ const PaymentsPage = () => {
 
   return (
     <div className='h-auto w-full bg-gray-1 flex flex-col justify-center items-center px-8'>
-      <div className='w-full'>
+      <div className='w-full flex justify-between mt-6'>
         <div className='flex flex-row items-center'>
           <h1 className="text-md md:text-xl lg:text-2xl">Hello <span className="font-medium">Admin!!</span></h1>
           
@@ -49,21 +49,8 @@ const PaymentsPage = () => {
             <p className="text-sm ml-1">Payments</p>
           </div>
         </div>
-      </div>
 
-      <div className='flex justify-between mt-6 w-full'>
-        <div className='flex justify-center items-center'>
-          <input
-            type="search"
-            className="h-8 shadow-md rounded-tl-2xl rounded-bl-2xl w-[200px] md:w-[500px]"
-          />
-          <button className='bg-green-4 rounded-tr-2xl rounded-br-2xl w-12 h-8 flex justify-center items-center'>
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffffff" className="bi bi-search" viewBox="0 0 16 16">
-              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-            </svg>
-          </button>
-        </div>
-        <div className='flex justify-end w-full'>
+        <div className='flex justify-end'>
           <select defaultValue="Sort" className='shadow rounded-2xl p-[6px] mx-2 md:mx-4'>
             <option value="Sort">Sort</option>
             <option value="Date">Date</option>

@@ -4,82 +4,91 @@ import { RxCross2 } from "react-icons/rx";
 import { navItems } from "../../constants";
 import LoginButton from "../Buttons/LoginButton";
 import CommonButton from "../Buttons/CommonButton";
-import logo from '../../assets/Page Assets/Home/New Logo.png'
+import logo from '../../assets/Page Assets/Home/New Logo.png';
+import { Link } from "react-router-dom";
 
 const HeaderHome = () => {
-  const [drawerisOpen, setDrawerIsOpen] = useState(false);
+  const [drawerIsOpen, setDrawerIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  const handleDrawer = (event) => {
-    setDrawerIsOpen(!drawerisOpen);
+  const handleDrawer = () => {
+    setDrawerIsOpen(!drawerIsOpen);
   };
 
   useEffect(() => {
-    window.addEventListener("scroll", () => {
-      if(window.scrollY > 0){
-        setIsScrolled(true)
-      }else{
-        setIsScrolled(false)
-      }
-    });
-  })
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
 
-  return(
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  return (
     <>
-      <div className={`px-6 py-3 w-full h-auto flex flex-row justify-between sticky top-0 ${isScrolled ? 'bg-green-2 text-white': 'bg-white text-green-1'} z-50 shadow-lg`}>
-        <div className="pl-2 flex flex-row justify-center items-center">
-          <div>
-            <img src={logo} alt="LogoImage" className="w-16 h-16 mx-6"/>
-          </div>
-          <div className="block pl-1">
-            <span>
-            <h2 className="tracking-tight">
-              Dr.Padma &amp; Dr.Ramachandra<br/>
+      <div className={`px-4 md:px-6 py-3 w-full flex flex-row justify-between items-center sticky top-0 ${isScrolled ? 'bg-green-2 text-white' : 'bg-white text-green-1'} z-50 shadow-lg`}>
+        <div className="flex items-center">
+          <Link to="/">
+            <img src={logo} alt="LogoImage" className="w-12 h-12 md:w-16 md:h-16 mx-2 md:mx-4" />
+          </Link>
+          <div className="pl-1 md:mr-4">
+            <h2 className="font-regular text-sm md:text-base lg:text-lg leading-tight">
+              Dr.Padma &amp; Dr.Ramachandra
             </h2>
-            </span>
-            <p>
+            <p className="font-regular text-sm md:text-base lg:text-lg">
               Naturopathy
             </p>
           </div>
         </div>
-        <div className="hidden xl:flex flex-row justify-between items-center">
-          <ul className="flex flex-row text-lg font-medium">
-              {navItems.map((item, index)=>(
-                <li key={index} className="ml-10">
-                    <a href={item.href}>{item.label}</a>
-                </li>
-              ))}
+        <div className="hidden md:flex flex-grow justify-center items-center space-x-4 md:space-x-6 lg:space-x-10">
+          <ul className="flex flex-row text-sm md:text-base lg:text-lg font-medium space-x-4 md:space-x-6 lg:space-x-10">
+            {navItems.map((item, index) => (
+              <li key={index}>
+                <a href={item.href}>{item.label}</a>
+              </li>
+            ))}
           </ul>
         </div>
-        <div className="hidden xl:flex flex-row justify-center items-center mr-10"> 
-            <div>
-                  <LoginButton/>
-            </div>
-            <div>
-                  <CommonButton className="px-6 py-2 m-2 rounded-md text-white bg-green-3">
-                    Sign In
-                  </CommonButton>
-            </div>
+        <div className="hidden md:flex items-center ml-2 md:ml-4 lg:ml-6">
+          <LoginButton />
+          <CommonButton className="px-6 py-2 m-2 rounded-md text-white bg-green-3">
+            Sign&nbsp;In
+          </CommonButton>
         </div>
-        <div className="w-1/4 flex justify-center items-center xl:hidden">
-          <button onClick={handleDrawer} className="text-4xl">
-          {drawerisOpen ? <RxCross2/> : <IoMenu/>}
+        <div className="md:hidden">
+          <button onClick={handleDrawer} className="text-3xl md:text-4xl">
+            {drawerIsOpen ? <RxCross2 /> : <IoMenu />}
           </button>
         </div>
       </div>
-       {drawerisOpen && (
-          <div className="fixed z-10 w-full py-12 px-2 transform transition-transform ease-in-out duration-300 bg-green-800 xl:hidden"> 
-           <ul className="flex flex-col text-lg">
-           {navItems.map((item, index)=>(
-             <li key={index} className=" mb-4 border-b-yellow-500 border-b-2">
-                 <a href={item.href}>{item.label}</a>
-             </li>
-           ))}
-           </ul>
-         </div>
-       )}
+      {drawerIsOpen && (
+        <div className="fixed z-10 w-full h-full top-0 left-0 bg-green-800 transform transition-transform ease-in-out duration-300 md:hidden">
+          <div className="flex justify-end p-4">
+            <button onClick={handleDrawer} className="text-3xl md:text-4xl text-white">
+              <RxCross2 />
+            </button>
+          </div>
+          <ul className="flex flex-col items-center text-lg text-white">
+            {navItems.map((item, index) => (
+              <li key={index} className="mb-4 border-b-2 border-yellow-500 w-full text-center">
+                <a href={item.href} className="block w-full py-2">{item.label}</a>
+              </li>
+            ))}
+            <li className="my-4">
+              <LoginButton />
+            </li>
+            <li>
+              <CommonButton className="px-6 py-2 m-2 rounded-md text-white bg-green-3">
+                Sign In
+              </CommonButton>
+            </li>
+          </ul>
+        </div>
+      )}
     </>
-  )
+  );
 };
 
 export default HeaderHome;

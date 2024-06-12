@@ -9,7 +9,7 @@ const ServicesPage = () => {
     <>
       {/* Poster */}
       <div className="bg-white">
-        <div className="min-w-full h-auto flex flex-col lg:flex-row justify-center items-center mt-10 ml-6 ">
+        <div className="min-w-full h-auto flex flex-col lg:flex-row justify-center items-center mt-10">
           <div className="w-full lg:w-11/12 px-4 py-4 flex flex-col-reverse lg:flex-row-reverse xl:w-11/12 rounded-2xl mt-6 ">
             <div className="text-2xl font-bold text-center lg:hidden">
               <h2 className="text-[#34442C]">మా సేవలు</h2>

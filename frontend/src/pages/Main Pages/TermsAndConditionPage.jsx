@@ -3,7 +3,7 @@ import React from 'react';
 const TermsAndConditionPage = () => {
   return (
     <div>
-      <div className="p-8 h-full w-full bg-custom-green">
+      <div className="p-8 h-full w-full bg-custom-green bg-gray-1">
         <div className="mb-10">
           <div className="mb-5">
             <h1 className="text-2xl font-bold mb-2">Terms and Conditions (“Terms”)</h1>
@@ -309,6 +309,7 @@ const TermsAndConditionPage = () => {
             Please join our Telegram group using below icon.
           </p>
         </div>
+        <p className="text-gray-1 text-end font-thin text-xs">&#82;&#97;&#107;&#101;&#115;&#104;</p>
       </div>
     </div>
   )
