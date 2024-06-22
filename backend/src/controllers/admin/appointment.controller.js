@@ -1,6 +1,6 @@
 import ErrorHandler from "../../helpers/errorHelpers.js"
 import slotCalculator from "../../helpers/slotCalculator.js"
-import slotCreator from "../../middlewares/slotMaker.js"
+import slotCreator from "../../helpers/slotCalculator.js"
 import { pool } from "../../database/connect.db.js"
 
 
