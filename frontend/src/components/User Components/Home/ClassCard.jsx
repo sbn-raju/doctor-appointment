@@ -1,23 +1,24 @@
 import React from "react";
 import HomeClassCard from "../../../assets/Page Assets/Home/Home Class Card.png";
-import Classcardbg from "../../../assets/Page Assets/Home/Classcardbg.png";
-
-import ClassCardbg from "../../../assets/Page Assets/Home/Appointmentbackground.svg";
 
 const ClassCard = () => {
+  const openInNewTab = () => {
+    window.open('/class');
+  };
+
   return (
     <>
       <div className="hidden md:block">
         <div className="h-[300px] my-10 w-full flex justify-center">
-          <div className="shadow-lg relative w-4/5 lg:w-3/5 mt-20 bg-green-3 p-10 rounded-tl-[400px] rounded-[100px]">
+          <div className="shadow-lg relative w-4/5 mt-20 bg-green-3 p-6 lg:p-10 rounded-tl-[400px] rounded-[100px]">
             <div className="flex justify-end">
               <div className="w-3/5 text-right">
-                <p className="text-white text-2xl font-medium mb-4">
+                <p className="text-white text-lg lg:text-2xl font-medium mb-4">
                   ప్రకృతే వైద్యుడు<br/>
                   21 days - Naturopathy Workshop
                 </p>
-                <div className="flex justify-end">
-                  <div className="grid grid-cols-2">
+                <div className="flex flex-col justify-center">
+                  <div className="grid grid-cols-2 gap-3">
                     <div className="flex items-center">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -32,7 +33,7 @@ const ClassCard = () => {
                           clipRule="evenodd"
                         />
                       </svg>
-                      <p className="text-white">Duration: 21 Days</p>
+                      <p className="text-white text-xs lg:text-base">Duration: 21 Days</p>
                     </div>
                     <div className="flex items-center">
                       <span>
@@ -40,7 +41,7 @@ const ClassCard = () => {
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 24 24"
                           fill="white"
-                          className="w-6 h-6 mr-2"
+                          className="w-6 h-6 mr-1"
                         >
                           <path
                             fillRule="evenodd"
@@ -49,7 +50,7 @@ const ClassCard = () => {
                           />
                         </svg>
                       </span>
-                      <p className="text-white">Time: 7:00pm to 8:00pm</p>
+                      <p className="text-white text-xs lg:text-base">Time: 7:00pm to 8:00pm</p>
                     </div>
                     <div className="flex items-center">
                       <span>
@@ -66,7 +67,7 @@ const ClassCard = () => {
                           />
                         </svg>
                       </span>
-                      <p className="text-white">Telugu తెలుగు</p>
+                      <p className="text-white text-xs lg:text-base">Telugu తెలుగు</p>
                     </div>
                     <div className="flex items-center">
                       <svg
@@ -81,29 +82,33 @@ const ClassCard = () => {
                           clipRule="evenodd"
                         />
                       </svg>
-                      <p className="text-white">Fees: 1000</p>
+                      <p className="text-white text-xs lg:text-base">Fees: 1000</p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
             <img src={HomeClassCard} className="absolute -top-16 left-20 w-48"/>
-            <button className="absolute left-24 bottom-10 bg-green-2 px-4 py-1 rounded-tl-full rounded-br-full shadow-md font-medium">సంప్రదించండి</button>
+            <button 
+              className="absolute left-24 bottom-10 bg-green-2 px-4 py-1 rounded-tl-full rounded-br-full shadow-md font-medium"
+              onClick={() => window.open('/class')}>
+                సంప్రదించండి
+            </button>
           </div>
         </div>
       </div>
 
       <div className="md:hidden">
         <div className="h-auto my-10 w-full flex justify-center">
-          <div className="shadow-lg relative w-4/5 mt-20 bg-green-3 p-10 rounded-2xl">
-            <div className="flex justify-end mt-10">
+          <div className="shadow-lg relative w-4/5 mt-20 bg-green-3 p-6 rounded-2xl">
+            <div className="flex justify-center mt-10">
               <div className="text-center">
-                <p className="text-white text-2xl font-medium mb-4">
+                <p className="text-white text-lg font-medium mb-4">
                   ప్రకృతే వైద్యుడు<br/>
                   21 days - Naturopathy Workshop
                 </p>
                 <div className="flex justify-end">
-                  <div className="grid grid-cols-2">
+                  <div className="grid grid-cols-2 gap-4">
                     <div className="flex items-center">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -118,7 +123,7 @@ const ClassCard = () => {
                           clipRule="evenodd"
                         />
                       </svg>
-                      <p className="text-white">Duration: 21 Days</p>
+                      <p className="text-white text-xs sm:text-base">Duration: 21 Days</p>
                     </div>
                     <div className="flex items-center">
                       <span>
@@ -135,7 +140,7 @@ const ClassCard = () => {
                           />
                         </svg>
                       </span>
-                      <p className="text-white">Time: 7:00pm to 8:00pm</p>
+                      <p className="text-white text-xs sm:text-base">Time: 7:00pm to 8:00pm</p>
                     </div>
                     <div className="flex items-center">
                       <span>
@@ -152,7 +157,7 @@ const ClassCard = () => {
                           />
                         </svg>
                       </span>
-                      <p className="text-white">Telugu తెలుగు</p>
+                      <p className="text-white text-xs sm:text-base">Telugu తెలుగు</p>
                     </div>
                     <div className="flex items-center">
                       <svg
@@ -167,12 +172,14 @@ const ClassCard = () => {
                           clipRule="evenodd"
                         />
                       </svg>
-                      <p className="text-white">Fees: 1000</p>
+                      <p className="text-white text-xs sm:text-base">Fees: 1000</p>
                     </div>
                   </div>
                 </div>
-                <button className="bg-green-2 px-4 py-1 rounded-tl-full rounded-br-full shadow-md mt-6">
-                  సంప్రదించండి
+                <button 
+                  className="mt-2 bg-green-2 px-4 py-1 rounded-tl-full rounded-br-full shadow-md font-medium"
+                  onClick={() => window.open('/class')}>
+                    సంప్రదించండి
                 </button>
               </div>
             </div>

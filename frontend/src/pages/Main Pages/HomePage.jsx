@@ -15,6 +15,7 @@ import EndingBg from "../../assets/Page Assets/Home/Endingbg.png";
 import Services from "../../assets/Page Assets/Home/services.png";
 import ServicesMb from '../../assets/Page Assets/Home/services_mb.svg';
 import docImg from '../../assets/Page Assets/Home/docImg2.svg';
+import AboutUsCard from "../../components/User Components/Home/AboutUsCard";
 
 const youtube = [
   {
@@ -43,10 +44,10 @@ const HomePage = () => {
         
         <div className="w-full flex flex-col md:flex-row justify-center p-10 mt-4 md:my-6 lg:-mt-20">   {/* intro1 */}
           <div className="w-full md:w-3/5 flex flex-col justify-center items-start text-left">
-            <h2 className="text-green-1 font-bold text-2xl md:text-4xl mb-4">
+            <h2 className="text-green-4 font-bold text-2xl md:text-4xl mb-4">
               Naturopathy <span>అనగా</span>
             </h2>
-            <p className="font-medium text-sm leading-relaxed text-[#333333]">
+            <p className="text-sm md:text-[17px] leading-8 text-[#333333]">
               ఆయుర్వేద, అలోపతి, హోమియోపతి, యునాని, సిద్ధ వైద్య విధానం మొదలగు
               వైద్య విధానాలవలే ఇది ఒక వైద్య విధానం. పంచభూతాలతో చికిత్స చేసే ఒక
               ప్రక్రియ. ఇందులో మందులు కానీ, పసర్లు కానీ, పూతలు కానీ, లేపనాలు కానీ
@@ -118,12 +119,12 @@ const HomePage = () => {
               <img src={docImg} className="w-48 rounded-3xl"/>
             </div>
             <div className="w-full text-white mt-10">
-              <div className="grid grid-cols-2">
+              <div className="grid grid-cols-1">
                 <div className="w-3/4 m-4">
                   <h1 className="text-lg font-medium mb-2">24</h1>
                   <p className="text-base">Years of experience.<br/>Naturopathic way.Estd. 1999</p>
                 </div>
-                <div className="w-3/4 m-4">
+                <div className="w-3/4 m-4 text-right">
                   <h1 className="text-lg font-medium mb-2">3 Lakhs+</h1>
                   <p className="text-base">Patients consulted personally at Prakruti Ashram. Still counting…</p>
                 </div>
@@ -131,7 +132,7 @@ const HomePage = () => {
                   <h1 className="text-lg font-medium mb-2">20</h1>
                   <p className="text-base">Yoga Studios across the states of Andhra Pradesh and Telangana.</p>
                 </div>
-                <div className="w-3/4 m-4">
+                <div className="w-3/4 m-4 text-right">
                   <h1 className="text-lg font-medium mb-2">1000+</h1>
                   <p className="text-base">Health awareness camps.</p>
                 </div>
@@ -139,7 +140,7 @@ const HomePage = () => {
                   <h1 className="text-lg font-medium mb-2">Millions</h1>
                   <p className="text-base">Of health seekers transformed from revolutionary speeches.</p>
                 </div>
-                <div className="w-3/4 m-4">
+                <div className="w-3/4 m-4 text-right">
                   <h1 className="text-lg font-medium mb-2">Many</h1>
                   <p className="text-base">Popular TV shows, YouTube videos, Food festivals, Yoga competitions, Student seminars and so on.</p>
                 </div>
@@ -151,19 +152,22 @@ const HomePage = () => {
 
       {/* Services */}
       <div className="flex flex-col justify-center items-center my-10 mt-20">
-        <p className="text-green-3 text-lg font-semibold">మా సేవలు</p>
-        <img src={Services} className="w-4/6 hidden md:block"/>
-        <img src={ServicesMb} className="w-4/6 md:hidden"/>
+        <p className="text-green-3 text-2xl font-semibold">మా సేవలు</p>
+        <img src={Services} className="w-4/6 hidden md:block" style={{WebkitUserDrag: "none", MozUserDrag: "none", msUserDrag: "none", userDrag: "none"}}/>
+        <img src={ServicesMb} className="w-4/6 md:hidden" onDragStart={(e) => e.preventDefault()} style={{WebkitUserDrag: "none", MozUserDrag: "none", msUserDrag: "none", userDrag: "none"}}/>
       </div>
 
-      {/* Card of Diet */}
+      {/* Card for Diet */}
       <NutritionalCard />
 
-      {/* Card of Appointment Booking */}
+      {/* Card for Appointment Booking */}
       <AppointmentCards />
 
-      {/* Card of Appointment */}
+      {/* Card for Class Booking */}
       <ClassCard />
+
+      {/* Card for About Us */}
+      <AboutUsCard />
 
       {/* Card of products and their prices */}
       <ItemsCard />
@@ -204,7 +208,7 @@ const HomePage = () => {
         <div className="flex-grow flex flex-col justify-center items-center">
           <div className="w-full flex flex-col md:flex-row justify-center items-center">
             {youtube.slice(0, 3).map((video, index) => (
-              <div key={index} className="my-6">
+              <div key={index} className="h-52 m-6">
                 <iframe
                   src={video.tag}
                   title={`YouTube video ${index + 1}`}

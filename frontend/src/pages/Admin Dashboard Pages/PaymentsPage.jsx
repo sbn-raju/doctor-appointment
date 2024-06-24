@@ -50,19 +50,12 @@ const PaymentsPage = () => {
           </div>
         </div>
 
-        <div className='flex justify-end'>
-          <select defaultValue="Sort" className='shadow rounded-2xl p-[6px] mx-2 md:mx-4'>
+        <div className='flex justify-end items-center'>
+          <select defaultValue="Sort" className='shadow rounded-2xl p-[6px] h-10 mx-2 md:mx-4'>
             <option value="Sort">Sort</option>
             <option value="Date">Date</option>
             <option value="Time">Time</option>
-            <option value="Purpose">Purpose</option>
-          </select>
-
-          <select defaultValue="Filter" className='shadow rounded-2xl p-[6px] mx-2 md:mx-4'>
-            <option value="Filter">Filter</option>
-            <option value="Date">Date</option>
-            <option value="Time">Time</option>
-            <option value="Purpose">Purpose</option>
+            <option value="Doctor">Doctor</option>
           </select>
         </div>
       </div>

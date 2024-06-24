@@ -11,7 +11,8 @@ import Doctor_Layout from './layouts/Doctor Dashboard/Doctor_Layout.jsx'
 import {MyAppointmentsPage, MyProfilePage, MyPaymentsPage, MyClassesPage} from './pages/Easy Imports/User Dashboard Imports/user.js'
 import ReschedulePage from './pages/Admin Dashboard Pages/ReschedulePage.jsx'
 import WhatsappTemplatePage from './pages/Admin Dashboard Pages/whatsappTemplatePage.jsx'
-import MyMembershipPage from './pages/User Dashboard Pages/MyMembershipPage.jsx'
+import DoctorLogin from './pages/Auth Pages/Doctor Auth/DoctorLogin.jsx';
+import DoctorAppointments from './pages/Doctor Dashboard Pages/DoctorAppointments.jsx'
 
 //EVERY ONE USE APP FOR TESTING YOUR COMPONENT
 
@@ -35,7 +36,6 @@ function App() {
         <Route path="profile" element={<MyProfilePage/>}/>
         <Route path="payment" element={<MyPaymentsPage />} />
         <Route path="class" element={<MyClassesPage />} />
-        <Route path="membership" element={<MyMembershipPage />} />
       </Route>
       <Route path='/admin' element={<Admin_Layout/>}>
         <Route path="addDoctor" element={<AddDoctorPage/>}/>
@@ -50,8 +50,9 @@ function App() {
         <Route path="users" element={<UserDataPage/>}/>
       </Route>
       <Route path='/doctor' element={<Doctor_Layout/>}>
-        <Route path="login" element={<ClassBookingPage/>}/>
-        <Route path="dashboard" element={<ClassBookingPage/>}/>
+        <Route path="login" element={<DoctorLogin/>}/>
+        <Route path="dashboard" element={<DoctorAppointments/>}/>
+        <Route path="whatsapp" element={<WhatsappTemplatePage />} />
       </Route>
     </Routes>
     </BrowserRouter>

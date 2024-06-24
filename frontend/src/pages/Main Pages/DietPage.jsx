@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import nutriImg from '../../assets/Page Assets/Home/NutritionalProgram.png'
+import nutriImgBg from '../../assets/Page Assets/Home/nutriImgBg.png';
 import banana from '../../assets/Page Assets/Home/banana.png'
 import orange from '../../assets/Page Assets/Home/orange.png'
 import watermelon from '../../assets/Page Assets/Home/watermelon.png'
@@ -11,9 +12,15 @@ import { FaFacebookF } from "react-icons/fa";
 import { PiYoutubeLogoFill } from "react-icons/pi";
 import { FaInstagramSquare } from "react-icons/fa";
 import { FaTelegram } from "react-icons/fa";
+import dietCard1 from '../../assets/Page Assets/Home/diet-day-1.png';
 
 const DietPage = () => {
   const [dietType, setDietType] = useState('liquid');
+  const [isDietCardOpen, setIsDietCardOpen] = useState(false);
+
+  const handleDietCard = () => {
+    setIsDietCardOpen(!isDietCardOpen);
+  }
 
   const handleDiet1 = () => {
     setDietType('liquid')
@@ -25,21 +32,19 @@ const DietPage = () => {
 
   return (
     <>
-      <div className='h-auto w-full p-6 my-10 bg-white'>
-        <div className='p-10 w-full flex flex-col md:flex-row justify-around items-center'>
-          <div className='w-full text-center md:w-3/5 md:text-start'>
-            <p className='text-amber-900 font-bold text-4xl'>డా.రామచంద్ర’s</p>
-            <div>
-              <h1 className='text-green-4 font-semibold text-6xl mb-2'>Nutritional program</h1>
-              <p className='text-red-400 text-lg'>
-                By emphasizing nutrient-dense fruits, vegetables, whole grains, and lean proteins, 
-                a naturopathic diet supports the body's innate ability to heal and 
-                maintain balance.
-              </p>
-            </div>
+      <div className='h-auto w-full p-6 md:my-10 bg-white'>
+        <div className='p-4 md:p-10 w-full flex flex-col md:flex-row justify-around items-center md:my-6'>
+          <div className='w-full text-center md:w-1/2 md:text-start mb-10 md:my-0 pl-4'>
+            <p className='text-amber-900 font-bold text-[20px] md:text-[25px] lg:text-4xl'>డా.రామచంద్ర’s</p>
+            <h1 className='text-green-4 font-bold text-[30px] md:text-[40px] lg:text-[80px] mb-2 leading-tight'>Nutritional program</h1>
+            <p className='text-red-400 text-base md:text-lg w-full md:w-4/5'>
+              By emphasizing nutrient-dense fruits, vegetables, whole grains, and lean proteins, 
+              a naturopathic diet supports the body's innate ability to heal and 
+              maintain balance.
+            </p>
           </div>
-          <div className='w-full mt-8 md:my-0 md:w-2/5 flex justify-center md:justify-end'>
-            <img src={nutriImg} className='w-full md:w-96'/>
+          <div className='w-full md:w-1/2 flex justify-center md:justify-end'>
+            <img src={nutriImgBg} className='w-full md:w-[250px] lg:w-[450px]' />
           </div>
         </div>
 
@@ -51,27 +56,27 @@ const DietPage = () => {
           <div className='hidden md:block w-full'>
             <div className='grid grid-cols-2 md:grid-cols-3'>
               <div className='bg-green-200 p-4 rounded-2xl m-4 flex justify-center'>
-                <img src={nutriImg} className='w-56'/>
+                <img src={dietCard1} className='w-56'/>
               </div>
               <div className='bg-green-200 p-4 rounded-2xl m-4 flex justify-center'>
-                <img src={nutriImg} className='w-56'/>
+                <img src={dietCard1} className='w-56'/>
               </div>
               <div className='bg-green-200 p-4 rounded-2xl m-4 flex justify-center'>
-                <img src={nutriImg} className='w-56'/>
+                <img src={dietCard1} className='w-56'/>
               </div>
             </div>
             <div className='grid grid-cols-4'>
               <div className='bg-green-200 p-4 rounded-2xl m-4 flex justify-center'>
-                <img src={nutriImg} className='w-56'/>
+                <img src={dietCard1} className='w-56'/>
               </div>
               <div className='bg-green-200 p-4 rounded-2xl m-4 flex justify-center'>
-                <img src={nutriImg} className='w-56'/>
+                <img src={dietCard1} className='w-56'/>
               </div>
               <div className='bg-green-200 p-4 rounded-2xl m-4 flex justify-center'>
-                <img src={nutriImg} className='w-56'/>
+                <img src={dietCard1} className='w-56'/>
               </div>
               <div className='bg-green-200 p-4 rounded-2xl m-4 flex justify-center'>
-                <img src={nutriImg} className='w-56'/>
+                <img src={dietCard1} className='w-56'/>
               </div>
             </div>
           </div>
@@ -110,12 +115,12 @@ const DietPage = () => {
       </div>
       
       <div className='relative flex flex-col justify-center items-center my-10 overflow-hidden p-8 px-0'>
-        <h1 className='text-2xl text-green-600 font-semibold my-5'>21 days Diet plan</h1>
+        <h1 className='text-2xl text-green-3 font-semibold my-5'>21 days Diet plan</h1>
         <div className='p-6'>
-          <div className='bg-green-4 rounded-2xl p-8 text-white' style={{ boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)' }}>
-            <img src={banana} className='w-32 absolute -z-10 top-[70px] -left-12 -rotate-45'/>
-            <img src={orange} className='w-32 absolute -z-10 top-10 -right-10'/>
-            <img src={watermelon} className='w-32 absolute -z-10 -bottom-0 '/>
+          <div className='bg-green-4 rounded-2xl p-8 text-white shadow-lg'>
+            <img src={banana} className='w-48 absolute -z-10 top-[70px] -left-20 -rotate-45'/>
+            <img src={orange} className='w-48 absolute -z-10 top-5 -right-20'/>
+            <img src={watermelon} className='w-44 absolute -z-10 bottom-0 left-32'/>
             <p className='text-sm md:text-base'>
               1. సూర్యోదయానికి ముందే నిద్ర లేవండి (సుమారుగా 5am). లేచిన వెంటనే రెండు గ్లాసుల మంచినీళ్లు తాగండి. 
               ఒక గంట విడిచి మళ్లీ రెండు గ్లాసుల మంచినీళ్లు తాగండి. 5-8am లోపు కాలకృత్యాలు ముగించి, వ్యాయామం, 
@@ -158,38 +163,47 @@ const DietPage = () => {
                 డాక్టర్ గారు ఈ జ్యూసుకి అదనంగా మీ సమస్య పరిష్కారం కోసం ప్రత్యేకంగా ఏదైనా కలుపుకుని జూస్ చేసుకోమంటే అలాగే చేయండి.
               </p>
 
-              <div className='relative mt-16 w-36'>
+              <div className='relative mt-16 w-40'>
                 <div className='bg-green-4 p-4 rounded-xl text-white text-sm pt-20 shadow-lg'>
                   <p>కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు (మొత్తం కలిపి గుప్పెడు)</p>
                 </div>
-                <img src={juice}  className='absolute left-6 -top-16 w-24'/>
+                <img src={juice}  className='absolute left-10 -top-16 w-24'/>
               </div>
 
               <div className='relative mt-10'>
                 <span className='font-medium text-lg'>సాయంత్రం జ్యూస్:</span><br/>
                 <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6'>
                   {eveningJuice.map((food, index) => (
-                    <div key={index} className='relative mt-16 w-36'>
-                      <div className='bg-green-4 p-4 rounded-xl text-white text-sm pt-20 shadow-lg'>
-                        <p>{food.ingirdients}</p>
+                    <>
+                      <div 
+                        key={index} 
+                        className={`relative mt-16 w-40 ${isDietCardOpen ? "hidden" : "block"}`} 
+                        onClick={handleDietCard}>
+                          <div className='bg-green-4 p-4 rounded-xl text-white text-sm pt-20 shadow-lg'>
+                            <p>{food.title}</p>
+                          </div>
+                          <img src={juice}  className='absolute left-10 -top-16 w-24'/>
                       </div>
-                      <img src={juice}  className='absolute left-6 -top-16 w-24'/>
-                    </div>
+                      <div
+                        className={`${isDietCardOpen ? "block" : "hidden" } min-h-screen inset-0 fixed bg-gray-1 bg-opacity-75 flex flex-col justify-center items-center`}>
+                          
+                      </div>
+                    </>
                   ))}
                 </div>
                 {eveningJuice.length > 0 && (
                   <>
-                    <img src={orange} className='w-32 absolute -z-10 top-28 right-60'/>
-                    <img src={watermelon} className='w-32 absolute top-80 left-44 -z-10'/>
-                    <img src={watermelon} className='w-32 absolute bottom-20 left-[570px] -z-10 rotate-45'/>
-                    <img src={banana} className='w-32 absolute bottom-48 right-44 -z-10'/>
+                    <img src={orange} className='w-36 absolute -z-10 top-28 right-60'/>
+                    <img src={watermelon} className='w-48 absolute top-80 left-40 -z-10'/>
+                    <img src={watermelon} className='w-48 absolute bottom-20 left-[570px] -z-10 rotate-45'/>
+                    <img src={banana} className='w-44 absolute bottom-48 right-44 -z-10'/>
                   </>
                 )}
               </div>
 
-              <img src={banana} className='hidden md:block w-32 absolute top-[200px] -right-10 -rotate-45 -z-10'/>
-              <img src={orange} className='md:hidden w-32 absolute top-[200px] -right-10 -rotate-45 -z-10'/>
-              <img src={orange} className='w-32 absolute -z-10 bottom-0 -left-10'/>
+              <img src={banana} className='hidden md:block w-48 absolute top-[200px] -right-10 -rotate-45 -z-10'/>
+              <img src={orange} className='md:hidden w-48 absolute top-[200px] -right-10 -rotate-45 -z-10'/>
+              <img src={orange} className='w-52 absolute -z-10 bottom-0 -left-10'/>
             </div>
           ) : (
             <div className='p-6'>
@@ -210,8 +224,8 @@ const DietPage = () => {
                 Usage: Can be eaten fresh, added to salads, smoothies, or used in desserts.<br/>
               </p>
               
-              <img src={banana} className='hidden md:block w-32 absolute top-[200px] -right-10 -rotate-45 -z-10'/>
-              <img src={orange} className='md:hidden w-32 absolute top-[200px] -right-10 -rotate-45 -z-10'/>
+              <img src={banana} className='hidden md:block w-48 absolute top-[200px] -right-10 -rotate-45 -z-10'/>
+              <img src={orange} className='md:hidden w-48 absolute top-[200px] -right-10 -rotate-45 -z-10'/>
             </div>
           )}
         </div>

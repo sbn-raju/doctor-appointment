@@ -9,8 +9,8 @@ const DoctorLogin = () => {
     
   return (
     <div className="flex items-center justify-center min-h-screen bg-[#F2F2F2]">
-      <div className="bg-white shadow-lg rounded-2xl p-10 w-full max-w-lg h-auto ">
-        <h2 className="text-3xl font-bold text-center mb-8 text-green-600">Doctor Login</h2>
+      <div className="bg-white shadow-lg rounded-2xl p-10 w-full max-w-[400px] h-auto ">
+        <h2 className="text-3xl font-bold text-center mb-8 text-green-4">Doctor Login</h2>
         <form onSubmit={handleSubmit(loginData)} className="space-y-8">
           <Input
             label="Username *"
@@ -35,7 +35,7 @@ const DoctorLogin = () => {
             <a href="#" className="text-blue-500 hover:underline"></a>
             <a href="#" className="text-blue-500 hover:underline">Forgot Password?</a>
           </div>
-          <CommonButton className="w-full bg-green-500 text-white font-bold py-3 px-4 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-opacity-50 transition duration-300 ease-in-out">
+          <CommonButton className="w-full bg-green-4 text-white font-bold py-3 px-4 rounded-2xl hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-700 focus:ring-opacity-50 transition duration-300 ease-in-out">
             Login
           </CommonButton>
         </form>

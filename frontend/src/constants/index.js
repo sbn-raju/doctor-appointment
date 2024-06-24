@@ -10,7 +10,8 @@ export const userProfile = {
     Name: "Vishwaksena reddy",
     Contact: "6304752003",
     Email: "vishwaksena@collasyn.com",
-    Gender: "Male"
+    Gender: "Male",
+    Age: 22,
 }
 
 export const paymentDetails = [
@@ -721,6 +722,69 @@ export const adminUserData = [
     },
 ]
 
+export const purpose = [
+    {
+      purpose: "Digestive Issues",
+    },
+    {
+      purpose: "Stress Management",
+    },
+    {
+      purpose: "Immune Support",
+    },
+    {
+      purpose: "Weight Management",
+    },
+    {
+      purpose: "Allergy Relief",
+    },
+    {
+      purpose: "Detoxification",
+    },
+    {
+      purpose: "Hormonal Balance",
+    },
+    {
+      purpose: "Chronic Pain",
+    },
+    {
+      purpose: "Skin Conditions",
+    },
+    {
+      purpose: "Insomnia",
+    },
+    {
+      purpose: "Joint Health",
+    },
+    {
+      purpose: "Cardiovascular Health",
+    },
+    {
+      purpose: "Diabetes Management",
+    },
+    {
+      purpose: "Respiratory Health",
+    },
+    {
+      purpose: "Mental Clarity",
+    },
+    {
+      purpose: "Anti-Aging",
+    },
+    {
+      purpose: "Energy Boost",
+    },
+    {
+      purpose: "Menopause Support",
+    },
+    {
+      purpose: "Sports Nutrition",
+    },
+    {
+      purpose: "Cognitive Function",
+    },
+  ];
+
 export const slotDetails = [
     {
         time: "7:30 AM",
@@ -880,7 +944,1292 @@ export const testimonialVideos = [
     },    
 ]
 
+export const doctorNames = [
+    {
+        name: "Dr. Ramachandra"
+    },
+    {
+        name: "Dr. Padma",
+    },
+    {
+        name: "Dr. Varun"
+    }
+]
+
 export const appointments = [
+    {
+        "id": 1,
+        "name": "Dr. Vishwak sena reddy",
+        "phone": 9030934206,
+        "date_of_appointment": "2024-06-24",
+        "time": "10:00:00",
+        "purpose": "Sinus",
+        "doctor": "Dr. Ramachandra",
+        "isChecked": true
+    },
+    {
+        "id": 2,
+        "name": "Sita",
+        "phone": 9081234567,
+        "date_of_appointment": "2024-06-24",
+        "time": "11:00:00",
+        "purpose": "Fever",
+        "doctor": "Dr. Padma",
+        "isChecked": true
+    },
+    {
+        "id": 3,
+        "name": "Ram",
+        "phone": 9123456789,
+        "date_of_appointment": "2024-06-21",
+        "time": "12:00:00",
+        "purpose": "Cough",
+        "doctor": "Dr. Ramachandra",
+        "isChecked": false
+    },
+    {
+        "id": 4,
+        "name": "Lakshmi",
+        "phone": 9176543210,
+        "date_of_appointment": "2024-06-24",
+        "time": "13:00:00",
+        "purpose": "Headache",
+        "doctor": "Dr. Ramachandra",
+        "isChecked": false
+    },
+    {
+        "id": 5,
+        "name": "Krishna",
+        "phone": 9198765432,
+        "date_of_appointment": "2024-06-24",
+        "time": "14:00:00",
+        "purpose": "Back Pain",
+        "doctor": "Dr. Varun",
+        "isChecked": false
+    },
+    {
+        "id": 6,
+        "name": "Lakshmi",
+        "phone": 9176543210,
+        "date_of_appointment": "2024-06-25",
+        "time": "13:00:00",
+        "purpose": "Headache",
+        "doctor": "Dr. Ramachandra",
+        "isChecked": false
+    },
+    {
+        "id": 7,
+        "name": "Krishna",
+        "phone": 9198765432,
+        "date_of_appointment": "2024-06-22",
+        "time": "14:00:00",
+        "purpose": "Back Pain",
+        "doctor": "Dr. Varun",
+        "isChecked": false
+    },
+    {
+        "id": 8,
+        "name": "Arjun",
+        "phone": 9012345678,
+        "date_of_appointment": "2024-06-22",
+        "time": "09:00:00",
+        "purpose": "Cold",
+        "doctor": "Dr. Padma",
+        "isChecked": false
+    },
+    {
+        "id": 9,
+        "name": "Radha",
+        "phone": 9023456789,
+        "date_of_appointment": "2024-06-22",
+        "time": "10:30:00",
+        "purpose": "Allergy",
+        "doctor": "Dr. Ramachandra",
+        "isChecked": false
+    },
+    {
+        "id": 10,
+        "name": "Mohan",
+        "phone": 9034567890,
+        "date_of_appointment": "2024-06-22",
+        "time": "11:15:00",
+        "purpose": "Flu",
+        "doctor": "Dr. Varun",
+        "isChecked": false
+    },
+    {
+        "id": 11,
+        "name": "Geeta",
+        "phone": 9045678901,
+        "date_of_appointment": "2024-06-22",
+        "time": "12:45:00",
+        "purpose": "Sore Throat",
+        "doctor": "Dr. Ramachandra",
+        "isChecked": false
+    },
+    {
+        "id": 12,
+        "name": "Vishnu",
+        "phone": 9056789012,
+        "date_of_appointment": "2024-06-22",
+        "time": "13:30:00",
+        "purpose": "Sprain",
+        "doctor": "Dr. Ramachandra",
+        "isChecked": false
+    },
+    {
+        "id": 13,
+        "name": "Durga",
+        "phone": 9067890123,
+        "date_of_appointment": "2024-06-22",
+        "time": "14:15:00",
+        "purpose": "Migraine",
+        "doctor": "Dr. Ramachandra",
+        "isChecked": false
+    },
+    {
+        "id": 14,
+        "name": "Ganesh",
+        "phone": 9078901234,
+        "date_of_appointment": "2024-06-22",
+        "time": "15:00:00",
+        "purpose": "Stomach Ache",
+        "doctor": "Dr. Ramachandra",
+        "isChecked": false
+    },
+    {
+        "id": 15,
+        "name": "Parvati",
+        "phone": 9089012345,
+        "date_of_appointment": "2024-06-22",
+        "time": "15:45:00",
+        "purpose": "Dizziness",
+        "doctor": "Dr. Ramachandra",
+        "isChecked": false
+    },
+    {
+        "id": 16,
+        "name": "Kartik",
+        "phone": 9090123456,
+        "date_of_appointment": "2024-06-22",
+        "time": "16:30:00",
+        "purpose": "Fatigue",
+        "doctor": "Dr. Ramachandra",
+        "isChecked": false
+    },
+    {
+        "id": 17,
+        "name": "Indra",
+        "phone": 9101234567,
+        "date_of_appointment": "2024-06-22",
+        "time": "17:15:00",
+        "purpose": "Anxiety",
+        "doctor": "Dr. Ramachandra",
+        "isChecked": false
+    },
+    {
+        "id": 18,
+        "name": "Saraswati",
+        "phone": 9112345678,
+        "date_of_appointment": "2024-06-22",
+        "time": "08:00:00",
+        "purpose": "Ear Infection",
+        "doctor": "Dr. Ramachandra",
+        "isChecked": false
+    },
+    {
+        "id": 19,
+        "name": "Lakshman",
+        "phone": 9123456789,
+        "date_of_appointment": "2024-06-22",
+        "time": "09:30:00",
+        "purpose": "Eye Check-up",
+        "doctor": "Dr. Ramachandra",
+        "isChecked": false
+    },
+    {
+        "id": 20,
+        "name": "Rama",
+        "phone": 9134567890,
+        "date_of_appointment": "2024-06-22",
+        "time": "10:45:00",
+        "purpose": "Physical",
+        "doctor": "Dr. Ramachandra",
+        "isChecked": false
+    },
+    {
+        "id": 21,
+        "name": "Radhe",
+        "phone": 9145678901,
+        "date_of_appointment": "2024-06-22",
+        "time": "11:30:00",
+        "purpose": "Vaccination",
+        "doctor": "Dr. Ramachandra",
+        "isChecked": false
+    },
+    {
+        "id": 22,
+        "name": "Shyam",
+        "phone": 9156789012,
+        "date_of_appointment": "2024-06-22",
+        "time": "12:00:00",
+        "purpose": "Chest Pain",
+        "doctor": "Dr. Ramachandra",
+        "isChecked": false
+    },
+    {
+        "id": 23,
+        "name": "Meera",
+        "phone": 9167890123,
+        "date_of_appointment": "2024-06-21",
+        "time": "13:00:00",
+        "purpose": "Foot Pain",
+        "doctor": "Dr. Ramachandra",
+        "isChecked": false
+    },
+    {
+        "id": 24,
+        "name": "Narayana",
+        "phone": 9178901234,
+        "date_of_appointment": "2024-06-22",
+        "time": "14:00:00",
+        "purpose": "Rash",
+        "doctor": "Dr. Ramachandra",
+        "isChecked": false
+    },
+    {
+        "id": 25,
+        "name": "Rukmini",
+        "phone": 9189012345,
+        "date_of_appointment": "2024-06-22",
+        "time": "15:00:00",
+        "purpose": "Joint Pain",
+        "doctor": "Dr. Ramachandra",
+        "isChecked": false
+    },
+    {
+        "id": 26,
+        "name": "Hanuman",
+        "phone": 9190123456,
+        "date_of_appointment": "2024-06-22",
+        "time": "16:00:00",
+        "purpose": "Swelling",
+        "doctor": "Dr. Ramachandra",
+        "isChecked": false
+    },
+    {
+        "id": 27,
+        "name": "Bharata",
+        "phone": 9201234567,
+        "date_of_appointment": "2024-06-22",
+        "time": "17:00:00",
+        "purpose": "Skin Infection",
+        "doctor": "Dr. Ramachandra",
+        "isChecked": false
+    },
+    {
+        "id": 28,
+        "name": "Arjun",
+        "phone": 9012345678,
+        "date_of_appointment": "2024-06-22",
+        "time": "09:00:00",
+        "purpose": "Cold",
+        "doctor": "Dr. Padma",
+        "isChecked": false
+    },
+    {
+        "id": 29,
+        "name": "Radha",
+        "phone": 9023456789,
+        "date_of_appointment": "2024-06-22",
+        "time": "10:30:00",
+        "purpose": "Allergy",
+        "doctor": "Dr. Ramachandra",
+        "isChecked": false
+    },
+    {
+        "id": 30,
+        "name": "Mohan",
+        "phone": 9034567890,
+        "date_of_appointment": "2024-06-22",
+        "time": "11:15:00",
+        "purpose": "Flu",
+        "doctor": "Dr. Varun",
+        "isChecked": false
+    },
+    {
+        "id": 31,
+        "name": "Radhe",
+        "phone": 9145678901,
+        "date_of_appointment": "2024-06-22",
+        "time": "11:30:00",
+        "purpose": "Vaccination",
+        "doctor": "Dr. Ramachandra",
+        "isChecked": false
+    },
+    {
+        "id": 32,
+        "name": "Shyam",
+        "phone": 9156789012,
+        "date_of_appointment": "2024-06-22",
+        "time": "12:00:00",
+        "purpose": "Chest Pain",
+        "doctor": "Dr. Ramachandra",
+        "isChecked": false
+    },
+    {
+        "id": 33,
+        "name": "Meera",
+        "phone": 9167890123,
+        "date_of_appointment": "2024-06-22",
+        "time": "13:00:00",
+        "purpose": "Foot Pain",
+        "doctor": "Dr. Ramachandra",
+        "isChecked": false
+    },
+    {
+        "id": 34,
+        "name": "Narayana",
+        "phone": 9178901234,
+        "date_of_appointment": "2024-06-22",
+        "time": "14:00:00",
+        "purpose": "Rash",
+        "doctor": "Dr. Ramachandra",
+        "isChecked": false
+    },
+    {
+        "id": 35,
+        "name": "Rukmini",
+        "phone": 9189012345,
+        "date_of_appointment": "2024-06-22",
+        "time": "15:00:00",
+        "purpose": "Joint Pain",
+        "doctor": "Dr. Ramachandra",
+        "isChecked": false
+    },
+    {
+        "id": 36,
+        "name": "Hanuman",
+        "phone": 9190123456,
+        "date_of_appointment": "2024-06-22",
+        "time": "16:00:00",
+        "purpose": "Swelling",
+        "doctor": "Dr. Ramachandra",
+        "isChecked": false
+    },
+    {
+        "id": 37,
+        "name": "Bharata",
+        "phone": 9201234567,
+        "date_of_appointment": "2024-06-22",
+        "time": "17:00:00",
+        "purpose": "Skin Infection",
+        "doctor": "Dr. Ramachandra",
+        "isChecked": false
+    },
+    {
+        "id": 38,
+        "name": "Arjun",
+        "phone": 9012345678,
+        "date_of_appointment": "2024-06-22",
+        "time": "09:00:00",
+        "purpose": "Cold",
+        "doctor": "Dr. Padma",
+        "isChecked": false
+    },
+    {
+        "id": 39,
+        "name": "Radha",
+        "phone": 9023456789,
+        "date_of_appointment": "2024-06-22",
+        "time": "10:30:00",
+        "purpose": "Allergy",
+        "doctor": "Dr. Ramachandra",
+        "isChecked": false
+    },
+    {
+        "id": 40,
+        "name": "Mohan",
+        "phone": 9034567890,
+        "date_of_appointment": "2024-06-22",
+        "time": "11:15:00",
+        "purpose": "Flu",
+        "doctor": "Dr. Varun",
+        "isChecked": false
+    }
+];
+
+export const whatsappTemplates = [
+    // {
+    //     Title: "Template title",
+    //     Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
+    // },
+    {
+        Title: "Template title",
+        Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
+    },
+    {
+        Title: "Template title",
+        Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
+    },
+    {
+        Title: "Template title",
+        Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
+    },
+    {
+        Title: "Template title",
+        Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
+    },
+    {
+        Title: "Template title",
+        Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
+    },
+    {
+        Title: "Template title",
+        Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
+    },
+    {
+        Title: "Template title",
+        Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
+    },
+    {
+        Title: "Template title",
+        Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
+    },
+    {
+        Title: "Template title",
+        Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
+    },
+    {
+        Title: "Template title",
+        Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
+    },
+]
+
+export const eveningJuice = [
+    {
+        "title": "కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు",
+        "ingredients": [
+            {
+                "name": "కందిపప్పు",
+                "quantity": "ఒక కప్పు"
+            },
+            {
+                "name": "టమాటాలు",
+                "quantity": "4"
+            },
+            {
+                "name": "ఉల్లిగడ్డ",
+                "quantity": "1"
+            }
+        ],
+        "steps": [
+            {
+                "step": 1,
+                "instruction": "ఉసిరికాయలను గింజలు తీసి చిన్న ముక్కలుగా కట్ చేసుకోవాలి."
+            },
+            {
+                "step": 2,
+                "instruction": "టమాటాలను పెద్ద ముక్కలుగా, ఉల్లిపాయలను మామూలు సైజ్‌ల్లో కట్ చేయాలి."
+            },
+            {
+                "step": 3,
+                "instruction": "కుక్కర్‌లో కందిపప్పు, ఉసిరికాయ ముక్కలు, టమాటా ముక్కలు, ఉల్లిపాయ ముక్కలు, పసుపు వేసి, నీళ్లు పోసి ఉడికించాలి."
+            },
+            {
+                "step": 4,
+                "instruction": "మెత్తగా అయ్యేవరకు ఉడకనివ్వాలి. ఆ తర్వాత కాస్త ఉప్పు వేసి పప్పు సుద్దతో బాగా మెదపాలి."
+            },
+            {
+                "step": 5,
+                "instruction": "ఇప్పుడు కడాయిలో నూనె పోసి.. ఆవాలు, జీలకర్ర, శనగపప్పు, మినపప్పు, వెల్లుల్లిపాయలు వేసి వేయించాలి."
+            },
+            {
+                "step": 6,
+                "instruction": "దీంట్లో ఎండుమిరపకాయలు, కరివేపాకు, పసుపు వేసి పోపు చేయాలి. ఈ మిశ్రమాన్ని పప్పులో వేసి కలపాలి. ఉసిరికాయ పప్పును వేడి అన్నంతో కలిపి ఆరగించేయొచ్చు."
+            }
+        ]
+    },
+    {
+        "title": "కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు",
+        "ingredients": [
+            {
+                "name": "కందిపప్పు",
+                "quantity": "ఒక కప్పు"
+            },
+            {
+                "name": "టమాటాలు",
+                "quantity": "4"
+            },
+            {
+                "name": "ఉల్లిగడ్డ",
+                "quantity": "1"
+            }
+        ],
+        "steps": [
+            {
+                "step": 1,
+                "instruction": "ఉసిరికాయలను గింజలు తీసి చిన్న ముక్కలుగా కట్ చేసుకోవాలి."
+            },
+            {
+                "step": 2,
+                "instruction": "టమాటాలను పెద్ద ముక్కలుగా, ఉల్లిపాయలను మామూలు సైజ్‌ల్లో కట్ చేయాలి."
+            },
+            {
+                "step": 3,
+                "instruction": "కుక్కర్‌లో కందిపప్పు, ఉసిరికాయ ముక్కలు, టమాటా ముక్కలు, ఉల్లిపాయ ముక్కలు, పసుపు వేసి, నీళ్లు పోసి ఉడికించాలి."
+            },
+            {
+                "step": 4,
+                "instruction": "మెత్తగా అయ్యేవరకు ఉడకనివ్వాలి. ఆ తర్వాత కాస్త ఉప్పు వేసి పప్పు సుద్దతో బాగా మెదపాలి."
+            },
+            {
+                "step": 5,
+                "instruction": "ఇప్పుడు కడాయిలో నూనె పోసి.. ఆవాలు, జీలకర్ర, శనగపప్పు, మినపప్పు, వెల్లుల్లిపాయలు వేసి వేయించాలి."
+            },
+            {
+                "step": 6,
+                "instruction": "దీంట్లో ఎండుమిరపకాయలు, కరివేపాకు, పసుపు వేసి పోపు చేయాలి. ఈ మిశ్రమాన్ని పప్పులో వేసి కలపాలి. ఉసిరికాయ పప్పును వేడి అన్నంతో కలిపి ఆరగించేయొచ్చు."
+            }
+        ]
+    },
+    {
+        "title": "కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు",
+        "ingredients": [
+            {
+                "name": "కందిపప్పు",
+                "quantity": "ఒక కప్పు"
+            },
+            {
+                "name": "టమాటాలు",
+                "quantity": "4"
+            },
+            {
+                "name": "ఉల్లిగడ్డ",
+                "quantity": "1"
+            }
+        ],
+        "steps": [
+            {
+                "step": 1,
+                "instruction": "ఉసిరికాయలను గింజలు తీసి చిన్న ముక్కలుగా కట్ చేసుకోవాలి."
+            },
+            {
+                "step": 2,
+                "instruction": "టమాటాలను పెద్ద ముక్కలుగా, ఉల్లిపాయలను మామూలు సైజ్‌ల్లో కట్ చేయాలి."
+            },
+            {
+                "step": 3,
+                "instruction": "కుక్కర్‌లో కందిపప్పు, ఉసిరికాయ ముక్కలు, టమాటా ముక్కలు, ఉల్లిపాయ ముక్కలు, పసుపు వేసి, నీళ్లు పోసి ఉడికించాలి."
+            },
+            {
+                "step": 4,
+                "instruction": "మెత్తగా అయ్యేవరకు ఉడకనివ్వాలి. ఆ తర్వాత కాస్త ఉప్పు వేసి పప్పు సుద్దతో బాగా మెదపాలి."
+            },
+            {
+                "step": 5,
+                "instruction": "ఇప్పుడు కడాయిలో నూనె పోసి.. ఆవాలు, జీలకర్ర, శనగపప్పు, మినపప్పు, వెల్లుల్లిపాయలు వేసి వేయించాలి."
+            },
+            {
+                "step": 6,
+                "instruction": "దీంట్లో ఎండుమిరపకాయలు, కరివేపాకు, పసుపు వేసి పోపు చేయాలి. ఈ మిశ్రమాన్ని పప్పులో వేసి కలపాలి. ఉసిరికాయ పప్పును వేడి అన్నంతో కలిపి ఆరగించేయొచ్చు."
+            }
+        ]
+    },
+    {
+        "title": "కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు",
+        "ingredients": [
+            {
+                "name": "కందిపప్పు",
+                "quantity": "ఒక కప్పు"
+            },
+            {
+                "name": "టమాటాలు",
+                "quantity": "4"
+            },
+            {
+                "name": "ఉల్లిగడ్డ",
+                "quantity": "1"
+            }
+        ],
+        "steps": [
+            {
+                "step": 1,
+                "instruction": "ఉసిరికాయలను గింజలు తీసి చిన్న ముక్కలుగా కట్ చేసుకోవాలి."
+            },
+            {
+                "step": 2,
+                "instruction": "టమాటాలను పెద్ద ముక్కలుగా, ఉల్లిపాయలను మామూలు సైజ్‌ల్లో కట్ చేయాలి."
+            },
+            {
+                "step": 3,
+                "instruction": "కుక్కర్‌లో కందిపప్పు, ఉసిరికాయ ముక్కలు, టమాటా ముక్కలు, ఉల్లిపాయ ముక్కలు, పసుపు వేసి, నీళ్లు పోసి ఉడికించాలి."
+            },
+            {
+                "step": 4,
+                "instruction": "మెత్తగా అయ్యేవరకు ఉడకనివ్వాలి. ఆ తర్వాత కాస్త ఉప్పు వేసి పప్పు సుద్దతో బాగా మెదపాలి."
+            },
+            {
+                "step": 5,
+                "instruction": "ఇప్పుడు కడాయిలో నూనె పోసి.. ఆవాలు, జీలకర్ర, శనగపప్పు, మినపప్పు, వెల్లుల్లిపాయలు వేసి వేయించాలి."
+            },
+            {
+                "step": 6,
+                "instruction": "దీంట్లో ఎండుమిరపకాయలు, కరివేపాకు, పసుపు వేసి పోపు చేయాలి. ఈ మిశ్రమాన్ని పప్పులో వేసి కలపాలి. ఉసిరికాయ పప్పును వేడి అన్నంతో కలిపి ఆరగించేయొచ్చు."
+            }
+        ]
+    },
+    {
+        "title": "కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు",
+        "ingredients": [
+            {
+                "name": "కందిపప్పు",
+                "quantity": "ఒక కప్పు"
+            },
+            {
+                "name": "టమాటాలు",
+                "quantity": "4"
+            },
+            {
+                "name": "ఉల్లిగడ్డ",
+                "quantity": "1"
+            }
+        ],
+        "steps": [
+            {
+                "step": 1,
+                "instruction": "ఉసిరికాయలను గింజలు తీసి చిన్న ముక్కలుగా కట్ చేసుకోవాలి."
+            },
+            {
+                "step": 2,
+                "instruction": "టమాటాలను పెద్ద ముక్కలుగా, ఉల్లిపాయలను మామూలు సైజ్‌ల్లో కట్ చేయాలి."
+            },
+            {
+                "step": 3,
+                "instruction": "కుక్కర్‌లో కందిపప్పు, ఉసిరికాయ ముక్కలు, టమాటా ముక్కలు, ఉల్లిపాయ ముక్కలు, పసుపు వేసి, నీళ్లు పోసి ఉడికించాలి."
+            },
+            {
+                "step": 4,
+                "instruction": "మెత్తగా అయ్యేవరకు ఉడకనివ్వాలి. ఆ తర్వాత కాస్త ఉప్పు వేసి పప్పు సుద్దతో బాగా మెదపాలి."
+            },
+            {
+                "step": 5,
+                "instruction": "ఇప్పుడు కడాయిలో నూనె పోసి.. ఆవాలు, జీలకర్ర, శనగపప్పు, మినపప్పు, వెల్లుల్లిపాయలు వేసి వేయించాలి."
+            },
+            {
+                "step": 6,
+                "instruction": "దీంట్లో ఎండుమిరపకాయలు, కరివేపాకు, పసుపు వేసి పోపు చేయాలి. ఈ మిశ్రమాన్ని పప్పులో వేసి కలపాలి. ఉసిరికాయ పప్పును వేడి అన్నంతో కలిపి ఆరగించేయొచ్చు."
+            }
+        ]
+    },
+    {
+        "title": "కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు",
+        "ingredients": [
+            {
+                "name": "కందిపప్పు",
+                "quantity": "ఒక కప్పు"
+            },
+            {
+                "name": "టమాటాలు",
+                "quantity": "4"
+            },
+            {
+                "name": "ఉల్లిగడ్డ",
+                "quantity": "1"
+            }
+        ],
+        "steps": [
+            {
+                "step": 1,
+                "instruction": "ఉసిరికాయలను గింజలు తీసి చిన్న ముక్కలుగా కట్ చేసుకోవాలి."
+            },
+            {
+                "step": 2,
+                "instruction": "టమాటాలను పెద్ద ముక్కలుగా, ఉల్లిపాయలను మామూలు సైజ్‌ల్లో కట్ చేయాలి."
+            },
+            {
+                "step": 3,
+                "instruction": "కుక్కర్‌లో కందిపప్పు, ఉసిరికాయ ముక్కలు, టమాటా ముక్కలు, ఉల్లిపాయ ముక్కలు, పసుపు వేసి, నీళ్లు పోసి ఉడికించాలి."
+            },
+            {
+                "step": 4,
+                "instruction": "మెత్తగా అయ్యేవరకు ఉడకనివ్వాలి. ఆ తర్వాత కాస్త ఉప్పు వేసి పప్పు సుద్దతో బాగా మెదపాలి."
+            },
+            {
+                "step": 5,
+                "instruction": "ఇప్పుడు కడాయిలో నూనె పోసి.. ఆవాలు, జీలకర్ర, శనగపప్పు, మినపప్పు, వెల్లుల్లిపాయలు వేసి వేయించాలి."
+            },
+            {
+                "step": 6,
+                "instruction": "దీంట్లో ఎండుమిరపకాయలు, కరివేపాకు, పసుపు వేసి పోపు చేయాలి. ఈ మిశ్రమాన్ని పప్పులో వేసి కలపాలి. ఉసిరికాయ పప్పును వేడి అన్నంతో కలిపి ఆరగించేయొచ్చు."
+            }
+        ]
+    },
+    {
+        "title": "కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు",
+        "ingredients": [
+            {
+                "name": "కందిపప్పు",
+                "quantity": "ఒక కప్పు"
+            },
+            {
+                "name": "టమాటాలు",
+                "quantity": "4"
+            },
+            {
+                "name": "ఉల్లిగడ్డ",
+                "quantity": "1"
+            }
+        ],
+        "steps": [
+            {
+                "step": 1,
+                "instruction": "ఉసిరికాయలను గింజలు తీసి చిన్న ముక్కలుగా కట్ చేసుకోవాలి."
+            },
+            {
+                "step": 2,
+                "instruction": "టమాటాలను పెద్ద ముక్కలుగా, ఉల్లిపాయలను మామూలు సైజ్‌ల్లో కట్ చేయాలి."
+            },
+            {
+                "step": 3,
+                "instruction": "కుక్కర్‌లో కందిపప్పు, ఉసిరికాయ ముక్కలు, టమాటా ముక్కలు, ఉల్లిపాయ ముక్కలు, పసుపు వేసి, నీళ్లు పోసి ఉడికించాలి."
+            },
+            {
+                "step": 4,
+                "instruction": "మెత్తగా అయ్యేవరకు ఉడకనివ్వాలి. ఆ తర్వాత కాస్త ఉప్పు వేసి పప్పు సుద్దతో బాగా మెదపాలి."
+            },
+            {
+                "step": 5,
+                "instruction": "ఇప్పుడు కడాయిలో నూనె పోసి.. ఆవాలు, జీలకర్ర, శనగపప్పు, మినపప్పు, వెల్లుల్లిపాయలు వేసి వేయించాలి."
+            },
+            {
+                "step": 6,
+                "instruction": "దీంట్లో ఎండుమిరపకాయలు, కరివేపాకు, పసుపు వేసి పోపు చేయాలి. ఈ మిశ్రమాన్ని పప్పులో వేసి కలపాలి. ఉసిరికాయ పప్పును వేడి అన్నంతో కలిపి ఆరగించేయొచ్చు."
+            }
+        ]
+    },
+    {
+        "title": "కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు",
+        "ingredients": [
+            {
+                "name": "కందిపప్పు",
+                "quantity": "ఒక కప్పు"
+            },
+            {
+                "name": "టమాటాలు",
+                "quantity": "4"
+            },
+            {
+                "name": "ఉల్లిగడ్డ",
+                "quantity": "1"
+            }
+        ],
+        "steps": [
+            {
+                "step": 1,
+                "instruction": "ఉసిరికాయలను గింజలు తీసి చిన్న ముక్కలుగా కట్ చేసుకోవాలి."
+            },
+            {
+                "step": 2,
+                "instruction": "టమాటాలను పెద్ద ముక్కలుగా, ఉల్లిపాయలను మామూలు సైజ్‌ల్లో కట్ చేయాలి."
+            },
+            {
+                "step": 3,
+                "instruction": "కుక్కర్‌లో కందిపప్పు, ఉసిరికాయ ముక్కలు, టమాటా ముక్కలు, ఉల్లిపాయ ముక్కలు, పసుపు వేసి, నీళ్లు పోసి ఉడికించాలి."
+            },
+            {
+                "step": 4,
+                "instruction": "మెత్తగా అయ్యేవరకు ఉడకనివ్వాలి. ఆ తర్వాత కాస్త ఉప్పు వేసి పప్పు సుద్దతో బాగా మెదపాలి."
+            },
+            {
+                "step": 5,
+                "instruction": "ఇప్పుడు కడాయిలో నూనె పోసి.. ఆవాలు, జీలకర్ర, శనగపప్పు, మినపప్పు, వెల్లుల్లిపాయలు వేసి వేయించాలి."
+            },
+            {
+                "step": 6,
+                "instruction": "దీంట్లో ఎండుమిరపకాయలు, కరివేపాకు, పసుపు వేసి పోపు చేయాలి. ఈ మిశ్రమాన్ని పప్పులో వేసి కలపాలి. ఉసిరికాయ పప్పును వేడి అన్నంతో కలిపి ఆరగించేయొచ్చు."
+            }
+        ]
+    },
+    {
+        "title": "కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు",
+        "ingredients": [
+            {
+                "name": "కందిపప్పు",
+                "quantity": "ఒక కప్పు"
+            },
+            {
+                "name": "టమాటాలు",
+                "quantity": "4"
+            },
+            {
+                "name": "ఉల్లిగడ్డ",
+                "quantity": "1"
+            }
+        ],
+        "steps": [
+            {
+                "step": 1,
+                "instruction": "ఉసిరికాయలను గింజలు తీసి చిన్న ముక్కలుగా కట్ చేసుకోవాలి."
+            },
+            {
+                "step": 2,
+                "instruction": "టమాటాలను పెద్ద ముక్కలుగా, ఉల్లిపాయలను మామూలు సైజ్‌ల్లో కట్ చేయాలి."
+            },
+            {
+                "step": 3,
+                "instruction": "కుక్కర్‌లో కందిపప్పు, ఉసిరికాయ ముక్కలు, టమాటా ముక్కలు, ఉల్లిపాయ ముక్కలు, పసుపు వేసి, నీళ్లు పోసి ఉడికించాలి."
+            },
+            {
+                "step": 4,
+                "instruction": "మెత్తగా అయ్యేవరకు ఉడకనివ్వాలి. ఆ తర్వాత కాస్త ఉప్పు వేసి పప్పు సుద్దతో బాగా మెదపాలి."
+            },
+            {
+                "step": 5,
+                "instruction": "ఇప్పుడు కడాయిలో నూనె పోసి.. ఆవాలు, జీలకర్ర, శనగపప్పు, మినపప్పు, వెల్లుల్లిపాయలు వేసి వేయించాలి."
+            },
+            {
+                "step": 6,
+                "instruction": "దీంట్లో ఎండుమిరపకాయలు, కరివేపాకు, పసుపు వేసి పోపు చేయాలి. ఈ మిశ్రమాన్ని పప్పులో వేసి కలపాలి. ఉసిరికాయ పప్పును వేడి అన్నంతో కలిపి ఆరగించేయొచ్చు."
+            }
+        ]
+    },
+    {
+        "title": "కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు",
+        "ingredients": [
+            {
+                "name": "కందిపప్పు",
+                "quantity": "ఒక కప్పు"
+            },
+            {
+                "name": "టమాటాలు",
+                "quantity": "4"
+            },
+            {
+                "name": "ఉల్లిగడ్డ",
+                "quantity": "1"
+            }
+        ],
+        "steps": [
+            {
+                "step": 1,
+                "instruction": "ఉసిరికాయలను గింజలు తీసి చిన్న ముక్కలుగా కట్ చేసుకోవాలి."
+            },
+            {
+                "step": 2,
+                "instruction": "టమాటాలను పెద్ద ముక్కలుగా, ఉల్లిపాయలను మామూలు సైజ్‌ల్లో కట్ చేయాలి."
+            },
+            {
+                "step": 3,
+                "instruction": "కుక్కర్‌లో కందిపప్పు, ఉసిరికాయ ముక్కలు, టమాటా ముక్కలు, ఉల్లిపాయ ముక్కలు, పసుపు వేసి, నీళ్లు పోసి ఉడికించాలి."
+            },
+            {
+                "step": 4,
+                "instruction": "మెత్తగా అయ్యేవరకు ఉడకనివ్వాలి. ఆ తర్వాత కాస్త ఉప్పు వేసి పప్పు సుద్దతో బాగా మెదపాలి."
+            },
+            {
+                "step": 5,
+                "instruction": "ఇప్పుడు కడాయిలో నూనె పోసి.. ఆవాలు, జీలకర్ర, శనగపప్పు, మినపప్పు, వెల్లుల్లిపాయలు వేసి వేయించాలి."
+            },
+            {
+                "step": 6,
+                "instruction": "దీంట్లో ఎండుమిరపకాయలు, కరివేపాకు, పసుపు వేసి పోపు చేయాలి. ఈ మిశ్రమాన్ని పప్పులో వేసి కలపాలి. ఉసిరికాయ పప్పును వేడి అన్నంతో కలిపి ఆరగించేయొచ్చు."
+            }
+        ]
+    },
+    {
+        "title": "కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు",
+        "ingredients": [
+            {
+                "name": "కందిపప్పు",
+                "quantity": "ఒక కప్పు"
+            },
+            {
+                "name": "టమాటాలు",
+                "quantity": "4"
+            },
+            {
+                "name": "ఉల్లిగడ్డ",
+                "quantity": "1"
+            }
+        ],
+        "steps": [
+            {
+                "step": 1,
+                "instruction": "ఉసిరికాయలను గింజలు తీసి చిన్న ముక్కలుగా కట్ చేసుకోవాలి."
+            },
+            {
+                "step": 2,
+                "instruction": "టమాటాలను పెద్ద ముక్కలుగా, ఉల్లిపాయలను మామూలు సైజ్‌ల్లో కట్ చేయాలి."
+            },
+            {
+                "step": 3,
+                "instruction": "కుక్కర్‌లో కందిపప్పు, ఉసిరికాయ ముక్కలు, టమాటా ముక్కలు, ఉల్లిపాయ ముక్కలు, పసుపు వేసి, నీళ్లు పోసి ఉడికించాలి."
+            },
+            {
+                "step": 4,
+                "instruction": "మెత్తగా అయ్యేవరకు ఉడకనివ్వాలి. ఆ తర్వాత కాస్త ఉప్పు వేసి పప్పు సుద్దతో బాగా మెదపాలి."
+            },
+            {
+                "step": 5,
+                "instruction": "ఇప్పుడు కడాయిలో నూనె పోసి.. ఆవాలు, జీలకర్ర, శనగపప్పు, మినపప్పు, వెల్లుల్లిపాయలు వేసి వేయించాలి."
+            },
+            {
+                "step": 6,
+                "instruction": "దీంట్లో ఎండుమిరపకాయలు, కరివేపాకు, పసుపు వేసి పోపు చేయాలి. ఈ మిశ్రమాన్ని పప్పులో వేసి కలపాలి. ఉసిరికాయ పప్పును వేడి అన్నంతో కలిపి ఆరగించేయొచ్చు."
+            }
+        ]
+    },
+    {
+        "title": "కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు",
+        "ingredients": [
+            {
+                "name": "కందిపప్పు",
+                "quantity": "ఒక కప్పు"
+            },
+            {
+                "name": "టమాటాలు",
+                "quantity": "4"
+            },
+            {
+                "name": "ఉల్లిగడ్డ",
+                "quantity": "1"
+            }
+        ],
+        "steps": [
+            {
+                "step": 1,
+                "instruction": "ఉసిరికాయలను గింజలు తీసి చిన్న ముక్కలుగా కట్ చేసుకోవాలి."
+            },
+            {
+                "step": 2,
+                "instruction": "టమాటాలను పెద్ద ముక్కలుగా, ఉల్లిపాయలను మామూలు సైజ్‌ల్లో కట్ చేయాలి."
+            },
+            {
+                "step": 3,
+                "instruction": "కుక్కర్‌లో కందిపప్పు, ఉసిరికాయ ముక్కలు, టమాటా ముక్కలు, ఉల్లిపాయ ముక్కలు, పసుపు వేసి, నీళ్లు పోసి ఉడికించాలి."
+            },
+            {
+                "step": 4,
+                "instruction": "మెత్తగా అయ్యేవరకు ఉడకనివ్వాలి. ఆ తర్వాత కాస్త ఉప్పు వేసి పప్పు సుద్దతో బాగా మెదపాలి."
+            },
+            {
+                "step": 5,
+                "instruction": "ఇప్పుడు కడాయిలో నూనె పోసి.. ఆవాలు, జీలకర్ర, శనగపప్పు, మినపప్పు, వెల్లుల్లిపాయలు వేసి వేయించాలి."
+            },
+            {
+                "step": 6,
+                "instruction": "దీంట్లో ఎండుమిరపకాయలు, కరివేపాకు, పసుపు వేసి పోపు చేయాలి. ఈ మిశ్రమాన్ని పప్పులో వేసి కలపాలి. ఉసిరికాయ పప్పును వేడి అన్నంతో కలిపి ఆరగించేయొచ్చు."
+            }
+        ]
+    },
+    {
+        "title": "కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు",
+        "ingredients": [
+            {
+                "name": "కందిపప్పు",
+                "quantity": "ఒక కప్పు"
+            },
+            {
+                "name": "టమాటాలు",
+                "quantity": "4"
+            },
+            {
+                "name": "ఉల్లిగడ్డ",
+                "quantity": "1"
+            }
+        ],
+        "steps": [
+            {
+                "step": 1,
+                "instruction": "ఉసిరికాయలను గింజలు తీసి చిన్న ముక్కలుగా కట్ చేసుకోవాలి."
+            },
+            {
+                "step": 2,
+                "instruction": "టమాటాలను పెద్ద ముక్కలుగా, ఉల్లిపాయలను మామూలు సైజ్‌ల్లో కట్ చేయాలి."
+            },
+            {
+                "step": 3,
+                "instruction": "కుక్కర్‌లో కందిపప్పు, ఉసిరికాయ ముక్కలు, టమాటా ముక్కలు, ఉల్లిపాయ ముక్కలు, పసుపు వేసి, నీళ్లు పోసి ఉడికించాలి."
+            },
+            {
+                "step": 4,
+                "instruction": "మెత్తగా అయ్యేవరకు ఉడకనివ్వాలి. ఆ తర్వాత కాస్త ఉప్పు వేసి పప్పు సుద్దతో బాగా మెదపాలి."
+            },
+            {
+                "step": 5,
+                "instruction": "ఇప్పుడు కడాయిలో నూనె పోసి.. ఆవాలు, జీలకర్ర, శనగపప్పు, మినపప్పు, వెల్లుల్లిపాయలు వేసి వేయించాలి."
+            },
+            {
+                "step": 6,
+                "instruction": "దీంట్లో ఎండుమిరపకాయలు, కరివేపాకు, పసుపు వేసి పోపు చేయాలి. ఈ మిశ్రమాన్ని పప్పులో వేసి కలపాలి. ఉసిరికాయ పప్పును వేడి అన్నంతో కలిపి ఆరగించేయొచ్చు."
+            }
+        ]
+    },
+    {
+        "title": "కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు",
+        "ingredients": [
+            {
+                "name": "కందిపప్పు",
+                "quantity": "ఒక కప్పు"
+            },
+            {
+                "name": "టమాటాలు",
+                "quantity": "4"
+            },
+            {
+                "name": "ఉల్లిగడ్డ",
+                "quantity": "1"
+            }
+        ],
+        "steps": [
+            {
+                "step": 1,
+                "instruction": "ఉసిరికాయలను గింజలు తీసి చిన్న ముక్కలుగా కట్ చేసుకోవాలి."
+            },
+            {
+                "step": 2,
+                "instruction": "టమాటాలను పెద్ద ముక్కలుగా, ఉల్లిపాయలను మామూలు సైజ్‌ల్లో కట్ చేయాలి."
+            },
+            {
+                "step": 3,
+                "instruction": "కుక్కర్‌లో కందిపప్పు, ఉసిరికాయ ముక్కలు, టమాటా ముక్కలు, ఉల్లిపాయ ముక్కలు, పసుపు వేసి, నీళ్లు పోసి ఉడికించాలి."
+            },
+            {
+                "step": 4,
+                "instruction": "మెత్తగా అయ్యేవరకు ఉడకనివ్వాలి. ఆ తర్వాత కాస్త ఉప్పు వేసి పప్పు సుద్దతో బాగా మెదపాలి."
+            },
+            {
+                "step": 5,
+                "instruction": "ఇప్పుడు కడాయిలో నూనె పోసి.. ఆవాలు, జీలకర్ర, శనగపప్పు, మినపప్పు, వెల్లుల్లిపాయలు వేసి వేయించాలి."
+            },
+            {
+                "step": 6,
+                "instruction": "దీంట్లో ఎండుమిరపకాయలు, కరివేపాకు, పసుపు వేసి పోపు చేయాలి. ఈ మిశ్రమాన్ని పప్పులో వేసి కలపాలి. ఉసిరికాయ పప్పును వేడి అన్నంతో కలిపి ఆరగించేయొచ్చు."
+            }
+        ]
+    },
+    {
+        "title": "కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు",
+        "ingredients": [
+            {
+                "name": "కందిపప్పు",
+                "quantity": "ఒక కప్పు"
+            },
+            {
+                "name": "టమాటాలు",
+                "quantity": "4"
+            },
+            {
+                "name": "ఉల్లిగడ్డ",
+                "quantity": "1"
+            }
+        ],
+        "steps": [
+            {
+                "step": 1,
+                "instruction": "ఉసిరికాయలను గింజలు తీసి చిన్న ముక్కలుగా కట్ చేసుకోవాలి."
+            },
+            {
+                "step": 2,
+                "instruction": "టమాటాలను పెద్ద ముక్కలుగా, ఉల్లిపాయలను మామూలు సైజ్‌ల్లో కట్ చేయాలి."
+            },
+            {
+                "step": 3,
+                "instruction": "కుక్కర్‌లో కందిపప్పు, ఉసిరికాయ ముక్కలు, టమాటా ముక్కలు, ఉల్లిపాయ ముక్కలు, పసుపు వేసి, నీళ్లు పోసి ఉడికించాలి."
+            },
+            {
+                "step": 4,
+                "instruction": "మెత్తగా అయ్యేవరకు ఉడకనివ్వాలి. ఆ తర్వాత కాస్త ఉప్పు వేసి పప్పు సుద్దతో బాగా మెదపాలి."
+            },
+            {
+                "step": 5,
+                "instruction": "ఇప్పుడు కడాయిలో నూనె పోసి.. ఆవాలు, జీలకర్ర, శనగపప్పు, మినపప్పు, వెల్లుల్లిపాయలు వేసి వేయించాలి."
+            },
+            {
+                "step": 6,
+                "instruction": "దీంట్లో ఎండుమిరపకాయలు, కరివేపాకు, పసుపు వేసి పోపు చేయాలి. ఈ మిశ్రమాన్ని పప్పులో వేసి కలపాలి. ఉసిరికాయ పప్పును వేడి అన్నంతో కలిపి ఆరగించేయొచ్చు."
+            }
+        ]
+    },
+    {
+        "title": "కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు",
+        "ingredients": [
+            {
+                "name": "కందిపప్పు",
+                "quantity": "ఒక కప్పు"
+            },
+            {
+                "name": "టమాటాలు",
+                "quantity": "4"
+            },
+            {
+                "name": "ఉల్లిగడ్డ",
+                "quantity": "1"
+            }
+        ],
+        "steps": [
+            {
+                "step": 1,
+                "instruction": "ఉసిరికాయలను గింజలు తీసి చిన్న ముక్కలుగా కట్ చేసుకోవాలి."
+            },
+            {
+                "step": 2,
+                "instruction": "టమాటాలను పెద్ద ముక్కలుగా, ఉల్లిపాయలను మామూలు సైజ్‌ల్లో కట్ చేయాలి."
+            },
+            {
+                "step": 3,
+                "instruction": "కుక్కర్‌లో కందిపప్పు, ఉసిరికాయ ముక్కలు, టమాటా ముక్కలు, ఉల్లిపాయ ముక్కలు, పసుపు వేసి, నీళ్లు పోసి ఉడికించాలి."
+            },
+            {
+                "step": 4,
+                "instruction": "మెత్తగా అయ్యేవరకు ఉడకనివ్వాలి. ఆ తర్వాత కాస్త ఉప్పు వేసి పప్పు సుద్దతో బాగా మెదపాలి."
+            },
+            {
+                "step": 5,
+                "instruction": "ఇప్పుడు కడాయిలో నూనె పోసి.. ఆవాలు, జీలకర్ర, శనగపప్పు, మినపప్పు, వెల్లుల్లిపాయలు వేసి వేయించాలి."
+            },
+            {
+                "step": 6,
+                "instruction": "దీంట్లో ఎండుమిరపకాయలు, కరివేపాకు, పసుపు వేసి పోపు చేయాలి. ఈ మిశ్రమాన్ని పప్పులో వేసి కలపాలి. ఉసిరికాయ పప్పును వేడి అన్నంతో కలిపి ఆరగించేయొచ్చు."
+            }
+        ]
+    },
+    {
+        "title": "కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు",
+        "ingredients": [
+            {
+                "name": "కందిపప్పు",
+                "quantity": "ఒక కప్పు"
+            },
+            {
+                "name": "టమాటాలు",
+                "quantity": "4"
+            },
+            {
+                "name": "ఉల్లిగడ్డ",
+                "quantity": "1"
+            }
+        ],
+        "steps": [
+            {
+                "step": 1,
+                "instruction": "ఉసిరికాయలను గింజలు తీసి చిన్న ముక్కలుగా కట్ చేసుకోవాలి."
+            },
+            {
+                "step": 2,
+                "instruction": "టమాటాలను పెద్ద ముక్కలుగా, ఉల్లిపాయలను మామూలు సైజ్‌ల్లో కట్ చేయాలి."
+            },
+            {
+                "step": 3,
+                "instruction": "కుక్కర్‌లో కందిపప్పు, ఉసిరికాయ ముక్కలు, టమాటా ముక్కలు, ఉల్లిపాయ ముక్కలు, పసుపు వేసి, నీళ్లు పోసి ఉడికించాలి."
+            },
+            {
+                "step": 4,
+                "instruction": "మెత్తగా అయ్యేవరకు ఉడకనివ్వాలి. ఆ తర్వాత కాస్త ఉప్పు వేసి పప్పు సుద్దతో బాగా మెదపాలి."
+            },
+            {
+                "step": 5,
+                "instruction": "ఇప్పుడు కడాయిలో నూనె పోసి.. ఆవాలు, జీలకర్ర, శనగపప్పు, మినపప్పు, వెల్లుల్లిపాయలు వేసి వేయించాలి."
+            },
+            {
+                "step": 6,
+                "instruction": "దీంట్లో ఎండుమిరపకాయలు, కరివేపాకు, పసుపు వేసి పోపు చేయాలి. ఈ మిశ్రమాన్ని పప్పులో వేసి కలపాలి. ఉసిరికాయ పప్పును వేడి అన్నంతో కలిపి ఆరగించేయొచ్చు."
+            }
+        ]
+    },
+    {
+        "title": "కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు",
+        "ingredients": [
+            {
+                "name": "కందిపప్పు",
+                "quantity": "ఒక కప్పు"
+            },
+            {
+                "name": "టమాటాలు",
+                "quantity": "4"
+            },
+            {
+                "name": "ఉల్లిగడ్డ",
+                "quantity": "1"
+            }
+        ],
+        "steps": [
+            {
+                "step": 1,
+                "instruction": "ఉసిరికాయలను గింజలు తీసి చిన్న ముక్కలుగా కట్ చేసుకోవాలి."
+            },
+            {
+                "step": 2,
+                "instruction": "టమాటాలను పెద్ద ముక్కలుగా, ఉల్లిపాయలను మామూలు సైజ్‌ల్లో కట్ చేయాలి."
+            },
+            {
+                "step": 3,
+                "instruction": "కుక్కర్‌లో కందిపప్పు, ఉసిరికాయ ముక్కలు, టమాటా ముక్కలు, ఉల్లిపాయ ముక్కలు, పసుపు వేసి, నీళ్లు పోసి ఉడికించాలి."
+            },
+            {
+                "step": 4,
+                "instruction": "మెత్తగా అయ్యేవరకు ఉడకనివ్వాలి. ఆ తర్వాత కాస్త ఉప్పు వేసి పప్పు సుద్దతో బాగా మెదపాలి."
+            },
+            {
+                "step": 5,
+                "instruction": "ఇప్పుడు కడాయిలో నూనె పోసి.. ఆవాలు, జీలకర్ర, శనగపప్పు, మినపప్పు, వెల్లుల్లిపాయలు వేసి వేయించాలి."
+            },
+            {
+                "step": 6,
+                "instruction": "దీంట్లో ఎండుమిరపకాయలు, కరివేపాకు, పసుపు వేసి పోపు చేయాలి. ఈ మిశ్రమాన్ని పప్పులో వేసి కలపాలి. ఉసిరికాయ పప్పును వేడి అన్నంతో కలిపి ఆరగించేయొచ్చు."
+            }
+        ]
+    }
+]
+
+
+import teamImg from '../assets/Page Assets/Home/docter image.png';
+
+export const team = [
+    {
+        img: teamImg,
+        name: "RamaChandra",
+        position: "Founder",
+    },
+    {
+        img: teamImg,
+        name: "RamaChandra",
+        position: "Founder",
+    },
+    {
+        img: teamImg,
+        name: "RamaChandra",
+        position: "Founder",
+    },
+    {
+        img: teamImg,
+        name: "RamaChandra",
+        position: "Founder",
+    },
+    {
+        img: teamImg,
+        name: "RamaChandra",
+        position: "Founder",
+    },
+    {
+        img: teamImg,
+        name: "RamaChandra",
+        position: "Founder",
+    },
+    {
+        img: teamImg,
+        name: "RamaChandra",
+        position: "Founder",
+    },
+    {
+        img: teamImg,
+        name: "RamaChandra",
+        position: "Founder",
+    },
+]
+
+export const DoctorAppointments = [
     {
         id: 1,
         name: "Raju",
@@ -1242,152 +2591,3 @@ export const appointments = [
         doctor: "Dr. Anderson"
     },
 ];
-
-export const whatsappTemplates = [
-    // {
-    //     Title: "Template title",
-    //     Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
-    // },
-    {
-        Title: "Template title",
-        Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
-    },
-    {
-        Title: "Template title",
-        Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
-    },
-    {
-        Title: "Template title",
-        Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
-    },
-    {
-        Title: "Template title",
-        Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
-    },
-    {
-        Title: "Template title",
-        Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
-    },
-    {
-        Title: "Template title",
-        Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
-    },
-    {
-        Title: "Template title",
-        Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
-    },
-    {
-        Title: "Template title",
-        Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
-    },
-    {
-        Title: "Template title",
-        Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
-    },
-    {
-        Title: "Template title",
-        Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
-    },
-]
-
-export const eveningJuice = [
-    {
-        ingirdients: "కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు (మొత్తం కలిపి గుప్పెడు)",
-    },
-    {
-        ingirdients: "కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు (మొత్తం కలిపి గుప్పెడు)",
-    },
-    {
-        ingirdients: "కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు (మొత్తం కలిపి గుప్పెడు)",
-    },
-    {
-        ingirdients: "కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు (మొత్తం కలిపి గుప్పెడు)",
-    },
-    {
-        ingirdients: "కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు (మొత్తం కలిపి గుప్పెడు)",
-    },
-    {
-        ingirdients: "కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు (మొత్తం కలిపి గుప్పెడు)",
-    },
-    {
-        ingirdients: "కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు (మొత్తం కలిపి గుప్పెడు)",
-    },
-    {
-        ingirdients: "కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు (మొత్తం కలిపి గుప్పెడు)",
-    },
-    {
-        ingirdients: "కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు (మొత్తం కలిపి గుప్పెడు)",
-    },
-    {
-        ingirdients: "కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు (మొత్తం కలిపి గుప్పెడు)",
-    },
-    {
-        ingirdients: "కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు (మొత్తం కలిపి గుప్పెడు)",
-    },
-    {
-        ingirdients: "కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు (మొత్తం కలిపి గుప్పెడు)",
-    },
-    {
-        ingirdients: "కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు (మొత్తం కలిపి గుప్పెడు)",
-    },
-    {
-        ingirdients: "కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు (మొత్తం కలిపి గుప్పెడు)",
-    },
-    {
-        ingirdients: "కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు (మొత్తం కలిపి గుప్పెడు)",
-    },
-    {
-        ingirdients: "కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు (మొత్తం కలిపి గుప్పెడు)",
-    },
-    {
-        ingirdients: "కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు (మొత్తం కలిపి గుప్పెడు)",
-    },
-    {
-        ingirdients: "కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు (మొత్తం కలిపి గుప్పెడు)",
-    },
-]
-
-import teamImg from '../assets/Page Assets/Home/docter image.png';
-
-export const team = [
-    {
-        img: teamImg,
-        name: "RamaChandra",
-        position: "Founder",
-    },
-    {
-        img: teamImg,
-        name: "RamaChandra",
-        position: "Founder",
-    },
-    {
-        img: teamImg,
-        name: "RamaChandra",
-        position: "Founder",
-    },
-    {
-        img: teamImg,
-        name: "RamaChandra",
-        position: "Founder",
-    },
-    {
-        img: teamImg,
-        name: "RamaChandra",
-        position: "Founder",
-    },
-    {
-        img: teamImg,
-        name: "RamaChandra",
-        position: "Founder",
-    },
-    {
-        img: teamImg,
-        name: "RamaChandra",
-        position: "Founder",
-    },
-    {
-        img: teamImg,
-        name: "RamaChandra",
-        position: "Founder",
-    },
-]

@@ -1,12 +1,12 @@
 import React from "react";
 import { useId } from "react";
 
-const Input = ({ childen, label, type = "text", className = "", ...props },ref) => {
+const Input = ({ childen, label, type = "text", className = "", style,  ...props },ref) => {
   const id = useId();
   return (
     <div className="">
       {label && (
-        <label className="text-sm text-slate-600" htmlFor={id}>
+        <label className="text-sm" style={style} htmlFor={id}>
           {label}
         </label>
       )}
