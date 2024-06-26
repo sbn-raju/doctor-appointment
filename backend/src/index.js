@@ -7,8 +7,8 @@ import { pool } from "./database/connect.db.js";
 import connection from "./database/connect.db.js";
 import {xssFilter} from "helmet"
 import helmet from "helmet";
-import {rateLimit} from "express-rate-limit"
-
+import {rateLimit} from "express-rate-limit";
+import session from "express-session";
 
 
 //Middlewares 
@@ -25,14 +25,23 @@ app.use(rateLimit({
     message:"There are too many requests from the IP"
 }))
 
+app.use(session({
+    resave:false,
+    saveUninitialized:false,
+    secret:"ThisIsMySecret",
+    cookie:{
+        httpOnly:true,
+        sameSite:'strict',
+        maxAge:60*60*1000,
+    }
+}))
 
 
 
 
-import authRoute from "./routes/auth.routes.js";
+import authRoute from "./routes/user/auth.routes.js";
 import classRoute from "./routes/admin/classes.routes.js";
 import classUserRoute from "./routes/user/classes.routes.js";
-import classPaymentRoute from "./routes/payment.routes.js";
 import youtubeLinkRoute from "./routes/admin/youtube.routes.js";
 import appointmentRoute from "./routes/admin/appointment.routes.js";
 
@@ -40,10 +49,8 @@ import appointmentRoute from "./routes/admin/appointment.routes.js";
 
 //Main routes
 app.use("/api/v1/auth",authRoute);
-
 app.use("/api/v1/class", classRoute);
 app.use("/api/v1/class_booking",classUserRoute);
-app.use("/api/v1/class_booking",classPaymentRoute);
 app.use("/api/v1/youtube",youtubeLinkRoute);
 app.use("/api/v1/appointment",appointmentRoute);
 

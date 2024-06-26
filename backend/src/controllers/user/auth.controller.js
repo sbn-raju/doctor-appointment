@@ -1,7 +1,8 @@
-import { pool } from "../database/connect.db.js"
-import ErrorHandler from "../helpers/errorHelpers.js"
-import {authClientWithNumber, verify_sid} from "../services/twilio.services.js"
-let currentTimeStamp = new Date()
+import { pool } from "../../database/connect.db.js"
+import ErrorHandler from "../../helpers/errorHelpers.js"
+import {authClientWithNumber, verify_sid} from "../../services/twilio.services.js";
+let currentTimeStamp = new Date();
+
 
 
 
@@ -13,6 +14,7 @@ const sendOneTimePasswordRegisterController = async(req,res,next)=>{
         error: "Phone number is required"
       });
     }
+     
      const sendOTPQuery = "INSERT INTO user_registration (mobile_no) VALUES ($1) RETURNING *"
      const sendOTPValues = [phoneNumber];
     try{
@@ -40,6 +42,7 @@ const sendOneTimePasswordRegisterController = async(req,res,next)=>{
 }
 
 
+
 const verifyOneTimePasswordRegisterController = async(req,res,next)=>{
     const {phoneNumber, code} = req.body;
 
@@ -61,6 +64,7 @@ const verifyOneTimePasswordRegisterController = async(req,res,next)=>{
     const verifiedPhoneNumberValues = [1, currentTimeStamp, phoneNumber];
     try {
         const verifiedPhoneNumber = await pool.query(verifiedPhoneNumberQuery, verifiedPhoneNumberValues);
+        req.session.mobile_no = phoneNumber;
         return res.status(200).json({
             success:true,
             message:"Verification Successfull",
@@ -78,6 +82,18 @@ const verifyOneTimePasswordRegisterController = async(req,res,next)=>{
 
 
 
+const userLogoutController = async(req,res,next)=>{
+  req.session.destroy(err => {
+    if (err) {
+      return next(new ErrorHandler(false, `Error is due to ${err.message}`, 403))
+    }
+    res.clearCookie('connect.sid'); 
+    res.send('Logged out');
+  });
+}
+
+
+
 
 
 
@@ -87,4 +103,5 @@ const verifyOneTimePasswordRegisterController = async(req,res,next)=>{
 export {
     verifyOneTimePasswordRegisterController,
     sendOneTimePasswordRegisterController,
+    userLogoutController
 }
