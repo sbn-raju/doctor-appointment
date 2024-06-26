@@ -13,6 +13,7 @@ import { PiYoutubeLogoFill } from "react-icons/pi";
 import { FaInstagramSquare } from "react-icons/fa";
 import { FaTelegram } from "react-icons/fa";
 import dietCard1 from '../../assets/Page Assets/Home/diet-day-1.png';
+import RecipeCard from '../../components/Main Page Components/Diet Page Components/RecipeCard';
 
 const DietPage = () => {
   const [dietType, setDietType] = useState('liquid');
@@ -114,33 +115,21 @@ const DietPage = () => {
         </div>
       </div>
       
-      <div className='relative flex flex-col justify-center items-center my-10 overflow-hidden p-8 px-0'>
-        <h1 className='text-2xl text-green-3 font-semibold my-5'>21 days Diet plan</h1>
-        <div className='p-6'>
-          <div className='bg-green-4 rounded-2xl p-8 text-white shadow-lg'>
-            <img src={banana} className='w-48 absolute -z-10 top-[70px] -left-20 -rotate-45'/>
-            <img src={orange} className='w-48 absolute -z-10 top-5 -right-20'/>
-            <img src={watermelon} className='w-44 absolute -z-10 bottom-0 left-32'/>
-            <p className='text-sm md:text-base'>
-              1. సూర్యోదయానికి ముందే నిద్ర లేవండి (సుమారుగా 5am). లేచిన వెంటనే రెండు గ్లాసుల మంచినీళ్లు తాగండి. 
-              ఒక గంట విడిచి మళ్లీ రెండు గ్లాసుల మంచినీళ్లు తాగండి. 5-8am లోపు కాలకృత్యాలు ముగించి, వ్యాయామం, 
-              యోగ, ధ్యానం, సైక్లింగ్, రన్నింగ్ వంటివి చేయండి.<br/>
-              2. బ్రేక్ ఫాస్ట్ /టిఫిన్ తినటానికి 30 నిమిషాలకు ముందు 
-              “ఉదయం జూస్” జ్యూస్ త్రాగండి.సాయంత్రం 4:30 pm కు రసాల పట్టిక నుంచి డాక్టరు గారు సూచించిన జ్యూస్ 
-              త్రాగండి.<br/>
-              3. రాత్రి భోజనం పండ్లు మాత్రమే తినండి. 6-7pm లోపు ముగించండి.<br/>
-              4. మాంసాహారం, గుడ్లు , పాలు 
-              వద్దు, జన్యుమార్పిడి GMO ఆహారం వద్దు.<br/>
-              5. ఆహారంలో ఉప్పు, కారం, నూనె తగ్గించండి.<br/>
-              6. భోజనానికి భోజనానికి మధ్య ప్రతి గంటకి ఒక గ్లాసు మంచినీళ్ళు త్రాగండి. అలాగే అప్పుడప్పుడు మధ్యలో మజ్జిగ కూడా త్రాగండి.<br/>
-              7. ప్రతిరోజు శరీరానికి శ్రమ కలిగించే పనులు చేయండి (కనీసం వ్యాయామం లేదా యోగా). ఇది మీ శరీర కణాల 
-              జీవన క్రమంలో కీలకమైన అంశం.<br/>
+      <div className='relative flex flex-col justify-center items-center mt-20 overflow-hidden'>
+        <h1 className='text-lg md:text-2xl text-green-3 font-semibold my-5'>ఆహార ప్రణాళిక</h1>
+        <div className='md:p-4'>
+          <div className='rounded-2xl md:p-8 text-black flex justify-center'>
+            <img src={banana} className='hidden md:block w-36 md:w-48 absolute -z-10 top-[70px] -left-20 -rotate-12'/>
+            <img src={orange} className='hidden md:block w-32 md:w-48 absolute -z-10 top-5 -right-20'/>
+            <p className='text-sm md:text-base text-center'>
+              బ్రేక్ ఫాస్ట్ (టిఫిన్) తినటానికి 30 నిమిషాలకు ముందు క్రింది జ్యూస్ త్రాగాలి. 
+              <span className='hidden md:block'>ప్రతిరోజు ఇదే జ్యూస్. డాక్టర్ గారు ఈ జ్యూసుకి అదనంగా మీ సమస్య పరిష్కారం కోసం ప్రత్యేకంగా ఏదైనా కలుపుకుని జూస్ చేసుకోమంటే అలాగే చేయండి.</span>
             </p>
           </div>
         </div>
       </div>
 
-      <div className='relative my-10 overflow-hidden py-8 px-0'>
+      <div className='relative mb-10 overflow-hidden'>
         <div className='p-2 md:p-6 flex flex-col'>
           <h1 className='text-lg text-green-600 font-semibold my-5 text-center'>Recipes</h1>
           <div className='w-full flex justify-evenly my-2'>
@@ -148,63 +137,325 @@ const DietPage = () => {
             <button className={`p-4 rounded-lg w-1/2 m-2 border-[1px] border-white ${dietType === 'solid' ? 'bg-green-4 font-medium text-white border-none' : 'text-red-500 font-medium hover:border-yellow-500'}`} onClick={handleDiet2}>Solids</button>
           </div>
           { dietType === 'liquid' ? (
-            <div className='p-6'>
-              <p className='text-sm'>
-                <span className='font-medium text-lg'>గమనిక:</span><br/>
-                1.ఒక గ్లాస్ జ్యూస్ కి అన్నీ రకాల ఆకులు కలిపి గుప్పెడు పరిమాణంలో సరిపోతాయి.<br/>
-                2.అన్ని రకాల జ్యూస్ లు తగినన్ని నీళ్లు కలిపి పల్చగా చేసుకుని త్రాగవచ్చు. జ్యూస్ లు వడకట్టుకొని త్రాగాలి.<br/>
-                3.అన్నీ జ్యూస్ లకు నిమ్మరసం, తేనె కలుపుకొని త్రాగవచ్చు. డయాబెటిక్ వాళ్ళు జ్యూస్ లో తేనె వాడరాదు.<br/>
-                4.సైనస్, ఆస్తమా వంటి శ్వాసకోశ సమస్యలు ఉన్న వారు, గోరువెచ్చని నీటితో జ్యూస్ ని పల్చగా చేసుకుని త్రాగాలి.<br/>
-              </p>
-              <br/>
-              <p className='text-sm'>
-                <span className='font-medium text-lg'>ఉదయం జ్యూస్:</span><br/>
-                బ్రేక్ ఫాస్ట్ (టిఫిన్) తినటానికి 30 నిమిషాలకు ముందు క్రింది జ్యూస్ త్రాగాలి. ప్రతిరోజు ఇదే జ్యూస్. 
-                డాక్టర్ గారు ఈ జ్యూసుకి అదనంగా మీ సమస్య పరిష్కారం కోసం ప్రత్యేకంగా ఏదైనా కలుపుకుని జూస్ చేసుకోమంటే అలాగే చేయండి.
-              </p>
+            <>
+              <div className='p-2 md:p-6'>
+                <p className='text-sm md:text-base ml-2 md:ml-0'>
+                  <span className='leading-loose'>
+                    1. సూర్యోదయానికి ముందే నిద్ర లేవండి (సుమారుగా 5am). లేచిన వెంటనే రెండు గ్లాసుల మంచినీళ్లు తాగండి. 
+                    ఒక గంట విడిచి మళ్లీ రెండు గ్లాసుల మంచినీళ్లు తాగండి. 5-8am లోపు కాలకృత్యాలు ముగించి, వ్యాయామం, 
+                    యోగ, ధ్యానం, సైక్లింగ్, రన్నింగ్ వంటివి చేయండి.
+                  </span>
+                  <br/>
+                  <span className='leading-loose'>
+                    2. బ్రేక్ ఫాస్ట్ /టిఫిన్ తినటానికి 30 నిమిషాలకు ముందు 
+                    “ఉదయం జూస్” జ్యూస్ త్రాగండి.సాయంత్రం 4:30 pm కు రసాల పట్టిక నుంచి డాక్టరు గారు సూచించిన జ్యూస్ 
+                    త్రాగండి.
+                  </span>
+                  <br/>
+                  <span className='leading-loose'>
+                    3. రాత్రి భోజనం పండ్లు మాత్రమే తినండి. 6-7pm లోపు ముగించండి.
+                  </span>
+                  <br/>
+                  <span className='leading-loose'>
+                    4. మాంసాహారం, గుడ్లు , పాలు 
+                    వద్దు, జన్యుమార్పిడి GMO ఆహారం వద్దు.
+                  </span>
+                  <br/>
+                  <span className='leading-loose'>
+                    5. ఆహారంలో ఉప్పు, కారం, నూనె తగ్గించండి.
+                  </span>
+                  <br/>
+                  <span className='leading-loose'>
+                    6. భోజనానికి భోజనానికి మధ్య ప్రతి గంటకి ఒక గ్లాసు మంచినీళ్ళు త్రాగండి. అలాగే అప్పుడప్పుడు మధ్యలో మజ్జిగ కూడా త్రాగండి.
+                  </span>
+                  <br/>
+                  <span className='leading-loose'>
+                    7. ప్రతిరోజు శరీరానికి శ్రమ కలిగించే పనులు చేయండి (కనీసం వ్యాయామం లేదా యోగా). ఇది మీ శరీర కణాల 
+                    జీవన క్రమంలో కీలకమైన అంశం.
+                  </span>
+                  <br/>
+                </p>
+                <br/>
+                <p className='text-sm mt-6 ml-2 md:ml-0'>
+                  <span className='font-semibold text-lg leading-loose'>ఉదయం జ్యూస్:</span><br/>
+                  బ్రేక్ ఫాస్ట్ (టిఫిన్) తినటానికి 30 నిమిషాలకు ముందు క్రింది జ్యూస్ త్రాగాలి. ప్రతిరోజు ఇదే జ్యూస్. 
+                  డాక్టర్ గారు ఈ జ్యూసుకి అదనంగా మీ సమస్య పరిష్కారం కోసం ప్రత్యేకంగా ఏదైనా కలుపుకుని జూస్ చేసుకోమంటే అలాగే చేయండి.
+                </p>
 
-              <div className='relative mt-16 w-40'>
-                <div className='bg-green-4 p-4 rounded-xl text-white text-sm pt-20 shadow-lg'>
-                  <p>కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు (మొత్తం కలిపి గుప్పెడు)</p>
-                </div>
-                <img src={juice}  className='absolute left-10 -top-16 w-24'/>
-              </div>
+                <RecipeCard 
+                  title={"కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు3"} 
+                  image={juice} 
+                  ingredients={[
+                      {
+                          "name": "కందిపప్పు",
+                          "quantity": "ఒక కప్పు"
+                      },
+                      {
+                          "name": "టమాటాలు",
+                          "quantity": "4"
+                      },
+                      {
+                          "name": "ఉల్లిగడ్డ",
+                          "quantity": "1"
+                      }
+                    ]}
+                  />
 
-              <div className='relative mt-10'>
-                <span className='font-medium text-lg'>సాయంత్రం జ్యూస్:</span><br/>
-                <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6'>
-                  {eveningJuice.map((food, index) => (
+                <div className='relative mt-10'>
+                  <span className='font-semibold text-lg ml-2 md:ml-0'>సాయంత్రం జ్యూస్:</span><br/>
+                  <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6'>
+                    <RecipeCard 
+                      title={"కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు"} 
+                      image={juice} 
+                      ingredients={[
+                          {
+                              "name": "కందిపప్పు",
+                              "quantity": "ఒక కప్పు"
+                          },
+                          {
+                              "name": "టమాటాలు",
+                              "quantity": "4"
+                          },
+                          {
+                              "name": "ఉల్లిగడ్డ",
+                              "quantity": "1"
+                          }
+                        ]}
+                      />
+                    <RecipeCard 
+                      title={"కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు"} 
+                      image={juice} 
+                      ingredients={[
+                          {
+                              "name": "కందిపప్పు",
+                              "quantity": "ఒక కప్పు"
+                          },
+                          {
+                              "name": "టమాటాలు",
+                              "quantity": "4"
+                          },
+                          {
+                              "name": "ఉల్లిగడ్డ",
+                              "quantity": "1"
+                          }
+                        ]}
+                      />
+                      <RecipeCard 
+                      title={"కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు"} 
+                      image={juice} 
+                      ingredients={[
+                          {
+                              "name": "కందిపప్పు",
+                              "quantity": "ఒక కప్పు"
+                          },
+                          {
+                              "name": "టమాటాలు",
+                              "quantity": "4"
+                          },
+                          {
+                              "name": "ఉల్లిగడ్డ",
+                              "quantity": "1"
+                          }
+                        ]}
+                      />
+                      <RecipeCard 
+                      title={"కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు"} 
+                      image={juice} 
+                      ingredients={[
+                          {
+                              "name": "కందిపప్పు",
+                              "quantity": "ఒక కప్పు"
+                          },
+                          {
+                              "name": "టమాటాలు",
+                              "quantity": "4"
+                          },
+                          {
+                              "name": "ఉల్లిగడ్డ",
+                              "quantity": "1"
+                          }
+                        ]}
+                      />
+                      <RecipeCard 
+                      title={"కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు"} 
+                      image={juice} 
+                      ingredients={[
+                          {
+                              "name": "కందిపప్పు",
+                              "quantity": "ఒక కప్పు"
+                          },
+                          {
+                              "name": "టమాటాలు",
+                              "quantity": "4"
+                          },
+                          {
+                              "name": "ఉల్లిగడ్డ",
+                              "quantity": "1"
+                          }
+                        ]}
+                      />
+                      <RecipeCard 
+                      title={"కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు"} 
+                      image={juice} 
+                      ingredients={[
+                          {
+                              "name": "కందిపప్పు",
+                              "quantity": "ఒక కప్పు"
+                          },
+                          {
+                              "name": "టమాటాలు",
+                              "quantity": "4"
+                          },
+                          {
+                              "name": "ఉల్లిగడ్డ",
+                              "quantity": "1"
+                          }
+                        ]}
+                      />
+                      <RecipeCard 
+                      title={"కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు"} 
+                      image={juice} 
+                      ingredients={[
+                          {
+                              "name": "కందిపప్పు",
+                              "quantity": "ఒక కప్పు"
+                          },
+                          {
+                              "name": "టమాటాలు",
+                              "quantity": "4"
+                          },
+                          {
+                              "name": "ఉల్లిగడ్డ",
+                              "quantity": "1"
+                          }
+                        ]}
+                      />
+                    <RecipeCard 
+                      title={"కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు"} 
+                      image={juice} 
+                      ingredients={[
+                          {
+                              "name": "కందిపప్పు",
+                              "quantity": "ఒక కప్పు"
+                          },
+                          {
+                              "name": "టమాటాలు",
+                              "quantity": "4"
+                          },
+                          {
+                              "name": "ఉల్లిగడ్డ",
+                              "quantity": "1"
+                          }
+                        ]}
+                      />
+                      <RecipeCard 
+                      title={"కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు"} 
+                      image={juice} 
+                      ingredients={[
+                          {
+                              "name": "కందిపప్పు",
+                              "quantity": "ఒక కప్పు"
+                          },
+                          {
+                              "name": "టమాటాలు",
+                              "quantity": "4"
+                          },
+                          {
+                              "name": "ఉల్లిగడ్డ",
+                              "quantity": "1"
+                          }
+                        ]}
+                      />
+                      <RecipeCard 
+                      title={"కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు"} 
+                      image={juice} 
+                      ingredients={[
+                          {
+                              "name": "కందిపప్పు",
+                              "quantity": "ఒక కప్పు"
+                          },
+                          {
+                              "name": "టమాటాలు",
+                              "quantity": "4"
+                          },
+                          {
+                              "name": "ఉల్లిగడ్డ",
+                              "quantity": "1"
+                          }
+                        ]}
+                      />
+                      <RecipeCard 
+                      title={"కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు"} 
+                      image={juice} 
+                      ingredients={[
+                          {
+                              "name": "కందిపప్పు",
+                              "quantity": "ఒక కప్పు"
+                          },
+                          {
+                              "name": "టమాటాలు",
+                              "quantity": "4"
+                          },
+                          {
+                              "name": "ఉల్లిగడ్డ",
+                              "quantity": "1"
+                          }
+                        ]}
+                      />
+                      <RecipeCard 
+                      title={"కొత్తిమీర + పుదీనా + 7 తులసి ఆకులు"} 
+                      image={juice} 
+                      ingredients={[
+                          {
+                              "name": "కందిపప్పు",
+                              "quantity": "ఒక కప్పు"
+                          },
+                          {
+                              "name": "టమాటాలు",
+                              "quantity": "4"
+                          },
+                          {
+                              "name": "ఉల్లిగడ్డ",
+                              "quantity": "1"
+                          }
+                        ]}
+                      />
+                      
+                  </div>
+                  <p className='text-sm my-10 ml-2 md:ml-0'>
+                    <span className='font-semibold text-lg'>గమనిక:</span><br/>
+                    <span className='leading-loose'>
+                      1.ఒక గ్లాస్ జ్యూస్ కి అన్నీ రకాల ఆకులు కలిపి గుప్పెడు పరిమాణంలో సరిపోతాయి.
+                    </span>
+                    <br/>
+                    <span className='leading-loose'>
+                      2.అన్ని రకాల జ్యూస్ లు తగినన్ని నీళ్లు కలిపి పల్చగా చేసుకుని త్రాగవచ్చు. జ్యూస్ లు వడకట్టుకొని త్రాగాలి.
+                    </span>
+                    <br/>
+                    <span className='leading-loose'>
+                      3.అన్నీ జ్యూస్ లకు నిమ్మరసం, తేనె కలుపుకొని త్రాగవచ్చు. డయాబెటిక్ వాళ్ళు జ్యూస్ లో తేనె వాడరాదు.
+                    </span>
+                    <br/>
+                    <span className='leading-loose'>
+                      4.సైనస్, ఆస్తమా వంటి శ్వాసకోశ సమస్యలు ఉన్న వారు, గోరువెచ్చని నీటితో జ్యూస్ ని పల్చగా చేసుకుని త్రాగాలి.
+                    </span>
+                    <br/>
+                  </p>
+                  {eveningJuice.length > 0 && (
                     <>
-                      <div 
-                        key={index} 
-                        className={`relative mt-16 w-40 ${isDietCardOpen ? "hidden" : "block"}`} 
-                        onClick={handleDietCard}>
-                          <div className='bg-green-4 p-4 rounded-xl text-white text-sm pt-20 shadow-lg'>
-                            <p>{food.title}</p>
-                          </div>
-                          <img src={juice}  className='absolute left-10 -top-16 w-24'/>
-                      </div>
-                      <div
-                        className={`${isDietCardOpen ? "block" : "hidden" } min-h-screen inset-0 fixed bg-gray-1 bg-opacity-75 flex flex-col justify-center items-center`}>
-                          
-                      </div>
+                      {/* <img src={orange} className='w-36 absolute -z-10 top-28 right-60'/>
+                      <img src={watermelon} className='w-48 absolute top-80 left-40 -z-10'/>
+                      <img src={watermelon} className='w-48 absolute bottom-20 left-[570px] -z-10 rotate-45'/>
+                      <img src={banana} className='w-44 absolute bottom-48 right-44 -z-10'/> */}
                     </>
-                  ))}
+                  )}
                 </div>
-                {eveningJuice.length > 0 && (
-                  <>
-                    <img src={orange} className='w-36 absolute -z-10 top-28 right-60'/>
-                    <img src={watermelon} className='w-48 absolute top-80 left-40 -z-10'/>
-                    <img src={watermelon} className='w-48 absolute bottom-20 left-[570px] -z-10 rotate-45'/>
-                    <img src={banana} className='w-44 absolute bottom-48 right-44 -z-10'/>
-                  </>
-                )}
-              </div>
 
-              <img src={banana} className='hidden md:block w-48 absolute top-[200px] -right-10 -rotate-45 -z-10'/>
-              <img src={orange} className='md:hidden w-48 absolute top-[200px] -right-10 -rotate-45 -z-10'/>
-              <img src={orange} className='w-52 absolute -z-10 bottom-0 -left-10'/>
-            </div>
+                <img src={banana} className='hidden md:block w-48 absolute top-[20%] -right-6 -rotate-12 -z-10'/>
+                {/* <img src={orange} className='md:hidden w-48 absolute top-[200px] -right-10 -rotate-45 -z-10'/> */}
+                <img src={orange} className='hidden md:block w-52 absolute -z-10 bottom-[220px] -left-10'/>
+              </div>
+            </>
           ) : (
             <div className='p-6'>
               <p>

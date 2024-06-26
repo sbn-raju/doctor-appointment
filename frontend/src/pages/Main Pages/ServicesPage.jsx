@@ -1,8 +1,9 @@
 import React from "react";
-import posterImage from "../../assets/Page Assets/Services/Group 65.png";
+import posterImage from "../../assets/Page Assets/Home/serviceImg.png";
 import ClassCard from "../../components/User Components/Home/ClassCard";
 import AppointmentCards from "../../components/User Components/Home/AppointmentCards";
 import { CardsHolder } from "../../components/User Components/Services/CardsHolder";
+
 
 const ServicesPage = () => {
   return (
@@ -10,7 +11,7 @@ const ServicesPage = () => {
       {/* Poster */}
       <div className="bg-white">
         <div className='p-4 md:p-20 w-full flex flex-col md:flex-row justify-around items-center'>
-          <div className='w-full text-center md:w-2/3 md:text-start mb-10 md:my-0 pl-4'>
+          <div className='w-full text-center md:w-1/2 md:text-start mb-10 md:my-0 pl-4'>
             <h2 className="text-2xl font-bold text-green-4 mb-6">
               మా సేవలు
             </h2>
@@ -24,8 +25,8 @@ const ServicesPage = () => {
               థెరపీ, మడ్ థెరపీ, సన్ లైట్ థెరపీ మొదలగు థెరపీలు వుంటాయి.
             </p>
           </div>
-          <div className='w-full md:w-1/3 flex justify-center'>
-            <img src={posterImage} className='w-[200px] md:w-[300px]' />
+          <div className='w-full md:w-1/2 flex justify-center'>
+            <img src={posterImage} className='w-[200px] md:w-[500px]' />
           </div>
         </div>
 
