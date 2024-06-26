@@ -7,13 +7,6 @@ import line from '../../assets/Page Assets/Home/aboutLine.png';
 import LeftCard from '../../components/Main Page Components/About Page Components/LeftCard';
 import RightCard from '../../components/Main Page Components/About Page Components/RightCard';
 
-const cardsData = [
-  { year: "1994", work: "మా డైట్ పేజీకి ఒక్క క్లిక్తో మీ ఆరోగ్య లక్ష్యాలను సాధించడానికి మీకు శక్తినిచ్చే డాక్టర్ రామచంద్ర యొక్క పరివర్తన ఆహార ప్రణాళికను కనుగొనండి." },
-  { year: "1995", work: "మా డైట్ పేజీకి ఒక్క క్లిక్తో మీ ఆరోగ్య లక్ష్యాలను సాధించడానికి మీకు శక్తినిచ్చే డాక్టర్ రామచంద్ర యొక్క పరివర్తన ఆహార ప్రణాళికను కనుగొనండి." },
-  // Add more items as needed
-];
-
-
 const AboutPage = () => {
   return (
     <>
