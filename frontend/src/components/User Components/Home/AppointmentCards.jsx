@@ -17,7 +17,7 @@ const AppointmentCards = () => {
                 </p>
               </div>
             </div>
-            <img src={AppointmentCardImage} className="w-48 absolute -top-16 right-20"/>
+            <img src={AppointmentCardImage} className="w-48 absolute -top-28 right-20"/>
             <button 
               className="absolute right-24 bottom-10 bg-green-2 px-4 py-1 rounded-tl-full rounded-br-full shadow-md font-medium"
               onClick={() => window.open('/appointment')}>

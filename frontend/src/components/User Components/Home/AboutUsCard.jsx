@@ -20,7 +20,7 @@ const AboutUsCard = () => {
                 </p>
               </div>
             </div>
-            <img src={doc} className="w-[250px] absolute -top-16 right-10"/>
+            <img src={doc} className="w-48 absolute -top-16 right-20"/>
             <button 
               className="absolute right-24 bottom-10 bg-green-2 px-4 py-1 rounded-tl-full rounded-br-full shadow-md font-medium"
               onClick={() => window.open('/about')}>
