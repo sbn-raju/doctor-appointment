@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 import logo from '../../assets/Page Assets/Home/New Logo.png';
 import profileLogo from '../../assets/Page Assets/Home/profile.png';
 import Input from "../Input Fields/Input";
+import CommonButton from "../Buttons/CommonButton";
+import PhoneInput from "../Input Fields/InternationalNumbers";
 
 const OTPCard = ({ phoneNumber, closeOTPCard }) => {
   return (
@@ -13,13 +15,13 @@ const OTPCard = ({ phoneNumber, closeOTPCard }) => {
       <div className="bg-white p-10 w-[300px] md:w-[400px] shadow-lg min-h-[200px] flex flex-col text-black">
         <div className="flex justify-between mb-6">
           <h1 className="font-medium text-black">OTP Verification</h1>
-          <button onClick={closeOTPCard}>
+          <CommonButton onClick={closeOTPCard}>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" className="bi bi-x-lg" viewBox="0 0 16 16">
               <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
             </svg>
-          </button>
+          </CommonButton>
         </div>
-        <p>Enter 6-Digit OTP sent to {phoneNumber}</p>
+        <p>Enter 6-Digit OTP sent to your {phoneNumber}</p>
         <div className="flex justify-evenly space-x-2">
           {[...Array(6)].map((_, index) => (
             <Input
@@ -30,9 +32,9 @@ const OTPCard = ({ phoneNumber, closeOTPCard }) => {
             />
           ))}
         </div>
-        <button className="mt-4 bg-green-4 text-white px-4 py-2 rounded-xl">
-          Verify OTP
-        </button>
+        <CommonButton className="mt-4 bg-green-4 text-white px-4 py-2 rounded-xl">
+        Verify
+        </CommonButton> 
       </div>
     </div>
   );
@@ -63,12 +65,13 @@ const AccountBox = ({ closeAccount }) => {
         <div className="bg-white p-10 w-[300px] md:w-[400px] shadow-lg min-h-[200px] flex flex-col">
           <div className="flex justify-between mb-6">
             <h1 className="font-medium text-black">Sign In</h1>
-            <button onClick={closeAccount}>
+            <CommonButton onClick={closeAccount}>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" className="bi bi-x-lg" viewBox="0 0 16 16">
                 <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
               </svg>
-            </button>
+            </CommonButton>
           </div>
+          <PhoneInput/>
           <input
             type="text"
             id="phoneInput"
@@ -80,12 +83,11 @@ const AccountBox = ({ closeAccount }) => {
                 e.preventDefault();
               }
             }}
-            maxLength="10"
           />
           {errorMsg && <p className="text-red-500">Phone number is mandatory</p>}
-          <button className="mt-4 bg-green-4 text-white px-4 py-2 rounded-xl" onClick={handleSendOTP}>
+          <CommonButton className="mt-4 bg-green-4 text-white px-4 py-2 rounded-xl" onClick={handleSendOTP}>
             Send OTP
-          </button>
+          </CommonButton>
         </div>
       </div>
       {isOTPCardOpen && <OTPCard phoneNumber={phoneNumber} closeOTPCard={closeOTPCard} />}

@@ -36,6 +36,7 @@ import ReschedulePage from "./pages/Admin Dashboard Pages/ReschedulePage.jsx";
 import WhatsappTemplatePage from "./pages/Admin Dashboard Pages/whatsappTemplatePage.jsx";
 import DoctorLogin from "./pages/Auth Pages/Doctor Auth/DoctorLogin.jsx";
 import DoctorAppointments from "./pages/Doctor Dashboard Pages/DoctorAppointments.jsx";
+import ProtectedRoute from "./routes/Protected Route/ProtectedRoute.jsx";
 
 //EVERY ONE USE APP FOR TESTING YOUR COMPONENT
 function App() {
@@ -54,15 +55,25 @@ function App() {
           <Route path="appointment" element={<AppointmentPage />} />
         </Route>
 
-        
         {/* Routing for the user dash Boards pages like Profile and payments and etc. */}
         {/* This are the protected Routes */}
-        <Route path="/user" element={<User_layout />}>
+
+        <Route
+          path="/user"
+          element={
+            <ProtectedRoute isAuthenticated={true}>
+              <User_layout />
+            </ProtectedRoute>
+          }
+        >
           <Route path="appointment" element={<MyAppointmentsPage />} />
           <Route path="profile" element={<MyProfilePage />} />
           <Route path="payment" element={<MyPaymentsPage />} />
           <Route path="class" element={<MyClassesPage />} />
         </Route>
+
+
+
 
         {/* This are the Private Routes only the admin can access this routes and the their can be the multiple admin */}
         <Route path="/admin" element={<Admin_Layout />}>
