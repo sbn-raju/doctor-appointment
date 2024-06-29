@@ -7,30 +7,49 @@ import "intl-tel-input/build/js/utils.js";
 const PhoneInput = () => {
   const inputRef = useRef(null);
   const [phoneNumber, setPhoneNumber] = useState("");
+
+  const internationalTelNumbersObject = {
+    initialCountry: "in",
+    validationNumberType:"MOBILE",
+    strictMode:true,
+    showFlags:false,
+    utilsScript:"https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+  }
   
    
   useEffect(() => {
     const input = inputRef.current;
-
-    // Initialize intlTelInput
-    const iti = intlTelInput(input, {
-      initialCountry: "in",
-      validationNumberType:"MOBILE",
-      strictMode:true,
-      showFlags:false,
-      utilsScript:"https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-    });
-
-    // Handle changes
-    // input.addEventListener("countrychange", function () {
-    //   const selectedCountryData = iti.getSelectedCountryData();
-    // });
-
-    // Cleanup
+    let iti 
+    try {
+      iti = intlTelInput(input, {
+        initialCountry: 'auto',
+        // geoIpLookup: function (callback) {
+        //   fetch('https://ipinfo.io/json')
+        //     .then((resp) => resp.json())
+        //     .then((resp) => {
+        //       const countryCode = (resp && resp.country) ? resp.country : 'us';
+        //       callback(countryCode);
+        //     });
+        // },
+        utilsScript: 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js'
+      });
+  
+      input.addEventListener('countrychange', () => {
+        onChange(iti.getNumber());
+      });
+  
+      input.addEventListener('blur', () => {
+        onChange(iti.getNumber());
+      });
+    } catch (error) {
+      console.error('Failed to initialize intlTelInput:', error);
+    }
+  
     return () => {
-      iti.destroy();
+      if (iti) iti.destroy();
     };
   }, []);
+  
 
 
 
