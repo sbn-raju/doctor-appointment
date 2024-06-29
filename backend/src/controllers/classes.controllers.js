@@ -1,5 +1,5 @@
-import { pool } from "../../database/connect.db.js"
-import ErrorHandler from "../../helpers/errorHelpers.js"
+import { pool } from "../database/connect.db.js"
+import ErrorHandler from "../helpers/errorHelpers.js"
 import { body, param, validationResult } from "express-validator"
 import dotenv from "dotenv"
 dotenv.config()

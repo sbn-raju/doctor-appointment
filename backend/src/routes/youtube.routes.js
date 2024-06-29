@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { youtubeLinkCreate, youtubeLinkGet, youtubeLinkDeleteById, youtubeLinkTestimonialsCreate, youtubeLinkTestimonialsDeleteById, youtubeLinkTestimonialsGet, youtubeLinkGetAllVideos, youtubeLinkTestimonialsGetAllVideos } from "../../controllers/admin/youtube.controllers.js";
+import { youtubeLinkCreate, youtubeLinkGet, youtubeLinkDeleteById, youtubeLinkTestimonialsCreate, youtubeLinkTestimonialsDeleteById, youtubeLinkTestimonialsGet, youtubeLinkGetAllVideos, youtubeLinkTestimonialsGetAllVideos } from "../controllers/youtube.controllers.js";
 
 
 const youtubeLinkRoute = Router();

@@ -5,7 +5,7 @@ import {
   getClassWithId,
   putClass,
   deleteClass
-} from "../../controllers/admin/classes.controller.js"
+} from "../controllers/classes.controllers.js"
 
 
 const classRoute = Router()

@@ -5,7 +5,7 @@ import {
   setClassBooking,
   putClassBooking,
   deleteClassBooking,
-} from "../../controllers/user/classes.controller.js"
+} from "../controllers/classes.controller.js"
 
 
 const classUserRoute = Router()

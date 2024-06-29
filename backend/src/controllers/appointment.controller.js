@@ -1,7 +1,7 @@
-import ErrorHandler from "../../helpers/errorHelpers.js"
-import slotCalculator from "../../helpers/slotCalculator.js"
-import slotCreator from "../../helpers/slotCalculator.js"
-import { pool } from "../../database/connect.db.js"
+import ErrorHandler from "../helpers/errorHelpers.js"
+import slotCalculator from "../helpers/slotCalculator.js"
+import slotCreator from "../helpers/slotMaker.js"
+import { pool } from "../database/connect.db.js"
 
 
 const appointmentMasterCreate = async(req,res,next)=>{
@@ -100,7 +100,7 @@ const appointmentSlotPerDate = async(req,res,next)=>{
                     })
                 } catch (error) {
                     return next(new ErrorHandler(false, `Error due to the ${error.message}`, 403))
-                }w
+                }
             }
             return res.status(200).json({
                 success:true,

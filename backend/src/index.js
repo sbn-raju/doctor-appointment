@@ -39,11 +39,11 @@ app.use(session({
 
 
 
-import authRoute from "./routes/user/auth.routes.js";
-import classRoute from "./routes/admin/classes.routes.js";
-import classUserRoute from "./routes/user/classes.routes.js";
-import youtubeLinkRoute from "./routes/admin/youtube.routes.js";
-import appointmentRoute from "./routes/admin/appointment.routes.js";
+import authRoute from "./routes/auth.routes.js";
+import classRoute from "./routes/classes.routes.js";
+import classUserRoute from "./routes/classes.routes.js";
+import youtubeLinkRoute from "./routes/youtube.routes.js";
+import appointmentRoute from "./routes/appointment.routes.js";
 
 
 

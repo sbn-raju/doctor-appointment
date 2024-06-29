@@ -1,5 +1,5 @@
-import { pool } from "../../database/connect.db.js"
-import ErrorHandler from "../../helpers/errorHelpers.js"
+import { pool } from "../database/connect.db.js"
+import ErrorHandler from "../helpers/errorHelpers.js"
 
 const youtubeLinkCreate = async(req,res,next)=>{
     try {

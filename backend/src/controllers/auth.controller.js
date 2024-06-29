@@ -1,6 +1,6 @@
-import { pool } from "../../database/connect.db.js"
-import ErrorHandler from "../../helpers/errorHelpers.js"
-import {authClientWithNumber, verify_sid} from "../../services/twilio.services.js";
+import { pool } from "../database/connect.db.js"
+import ErrorHandler from "../helpers/errorHelpers.js"
+import {authClientWithNumber, verify_sid} from "../services/twilio.services.js";
 let currentTimeStamp = new Date();
 
 

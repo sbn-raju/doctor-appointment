@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { verifyOneTimePasswordRegisterController, sendOneTimePasswordRegisterController, userLogoutController } from "../../controllers/user/auth.controller.js"; 
+import { verifyOneTimePasswordRegisterController, sendOneTimePasswordRegisterController, userLogoutController } from "../controllers/auth.controller.js"; 
 
 
 const authRoute = Router();
