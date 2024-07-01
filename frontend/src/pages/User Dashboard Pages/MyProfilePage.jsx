@@ -73,7 +73,6 @@ const MyProfilePage = () => {
           <div className="w-full border-b-[1px] border-red-1 p-4 px-6 md:px-8">
             <div className="flex">
               <span className="w-2/5 md:w-3/6 text-xs md:text-base">Name</span>
-              {/* <span className="w-3/5 md:w-3/6">{userProfile.Name}</span> */}
               <input type="text" placeholder='Enter your Name' className='text-xs md:text-base px-4 py-1 rounded-md'/>
             </div>
           </div>
