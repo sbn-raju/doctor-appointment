@@ -1,5 +1,5 @@
 import React from "react";
-import Clock from "../../../assets/Page Assets/Home/Clock.png";
+import Clock from "../../../assets/Page Assets/Home/clock.png";
 
 const AppointmentCards = () => {
   return (

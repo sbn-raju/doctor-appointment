@@ -1,7 +1,7 @@
 import React from 'react';
-import AppointmentImg from '../../assets/Page Assets/Home/AppointmentImage.png';
-import AppointmentBg from '../../assets/Page Assets/Home/AppointmentBg.png';
-import Clock from '../../assets/Page Assets/Home/Clock.png';
+import AppointmentImg from '../../assets/Page Assets/Home/appointment-img.png';
+import AppointmentBg from '../../assets/Page Assets/Home/appointment-bg.png';
+import Clock from '../../assets/Page Assets/Home/clock.png';
 import docter from '../../assets/Page Assets/Home/docter image.png';
 import Input from "../../components/Input Fields/Input";
 import CommonButton from '../../components/Buttons/CommonButton';
