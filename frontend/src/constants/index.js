@@ -1,10 +1,60 @@
 export const navItems = [
     {label:"Home", href:"/"},
     {label:"Services",href:"/services"},
-    {label:"Appoitnment",href:"/appointment"},
+    {label:"Appointment",href:"/appointment"},
     {label:"Workshop", href:"/class"},
     {label:"About\u00A0Us",href:"/about"},
 ]
+
+
+export const aboutLeftCardData = [
+    {
+        year:"1994",
+        work:"మా డైట్ పేజీకి ఒక్క క్లిక్తో మీ ఆరోగ్య లక్ష్యాలను సాధించడానికి మీకు శక్తినిచ్చే డాక్టర్ రామచంద్ర యొక్క పరివర్తన ఆహార ప్రణాళికను కనుగొనండి."
+    },
+    {
+        year:"1994",
+        work:"మా డైట్ పేజీకి ఒక్క క్లిక్తో మీ ఆరోగ్య లక్ష్యాలను సాధించడానికి మీకు శక్తినిచ్చే డాక్టర్ రామచంద్ర యొక్క పరివర్తన ఆహార ప్రణాళికను కనుగొనండి."
+    },
+    {
+        year:"1994",
+        work:"మా డైట్ పేజీకి ఒక్క క్లిక్తో మీ ఆరోగ్య లక్ష్యాలను సాధించడానికి మీకు శక్తినిచ్చే డాక్టర్ రామచంద్ర యొక్క పరివర్తన ఆహార ప్రణాళికను కనుగొనండి."
+    },
+    {
+        year:"1994",
+        work:"మా డైట్ పేజీకి ఒక్క క్లిక్తో మీ ఆరోగ్య లక్ష్యాలను సాధించడానికి మీకు శక్తినిచ్చే డాక్టర్ రామచంద్ర యొక్క పరివర్తన ఆహార ప్రణాళికను కనుగొనండి."
+    },
+    {
+        year:"1994",
+        work:"మా డైట్ పేజీకి ఒక్క క్లిక్తో మీ ఆరోగ్య లక్ష్యాలను సాధించడానికి మీకు శక్తినిచ్చే డాక్టర్ రామచంద్ర యొక్క పరివర్తన ఆహార ప్రణాళికను కనుగొనండి."
+    },
+
+]
+
+export const aboutRightCardData = [
+    {
+        year:"1994",
+        work:"మా డైట్ పేజీకి ఒక్క క్లిక్తో మీ ఆరోగ్య లక్ష్యాలను సాధించడానికి మీకు శక్తినిచ్చే డాక్టర్ రామచంద్ర యొక్క పరివర్తన ఆహార ప్రణాళికను కనుగొనండి."
+    },
+    {
+        year:"1994",
+        work:"మా డైట్ పేజీకి ఒక్క క్లిక్తో మీ ఆరోగ్య లక్ష్యాలను సాధించడానికి మీకు శక్తినిచ్చే డాక్టర్ రామచంద్ర యొక్క పరివర్తన ఆహార ప్రణాళికను కనుగొనండి."
+    },
+    {
+        year:"1994",
+        work:"మా డైట్ పేజీకి ఒక్క క్లిక్తో మీ ఆరోగ్య లక్ష్యాలను సాధించడానికి మీకు శక్తినిచ్చే డాక్టర్ రామచంద్ర యొక్క పరివర్తన ఆహార ప్రణాళికను కనుగొనండి."
+    },
+    {
+        year:"1994",
+        work:"మా డైట్ పేజీకి ఒక్క క్లిక్తో మీ ఆరోగ్య లక్ష్యాలను సాధించడానికి మీకు శక్తినిచ్చే డాక్టర్ రామచంద్ర యొక్క పరివర్తన ఆహార ప్రణాళికను కనుగొనండి."
+    },
+    {
+        year:"1994",
+        work:"మా డైట్ పేజీకి ఒక్క క్లిక్తో మీ ఆరోగ్య లక్ష్యాలను సాధించడానికి మీకు శక్తినిచ్చే డాక్టర్ రామచంద్ర యొక్క పరివర్తన ఆహార ప్రణాళికను కనుగొనండి."
+    },
+
+]
+
 
 export const userProfile = {
     Name: "Vishwaksena reddy",
@@ -722,66 +772,66 @@ export const adminUserData = [
     },
 ]
 
-export const purpose = [
+export const diseasePurpose = [
     {
-      purpose: "Digestive Issues",
+      purposeOfVisit: "Digestive Issues",
     },
     {
-      purpose: "Stress Management",
+      purposeOfVisit: "Stress Management",
     },
     {
-      purpose: "Immune Support",
+        purposeOfVisit: "Immune Support",
     },
     {
-      purpose: "Weight Management",
+        purposeOfVisit: "Weight Management",
     },
     {
-      purpose: "Allergy Relief",
+        purposeOfVisit: "Allergy Relief",
     },
     {
-      purpose: "Detoxification",
+        purposeOfVisit: "Detoxification",
     },
     {
-      purpose: "Hormonal Balance",
+        purposeOfVisit: "Hormonal Balance",
     },
     {
-      purpose: "Chronic Pain",
+        purposeOfVisit: "Chronic Pain",
     },
     {
-      purpose: "Skin Conditions",
+        purposeOfVisit: "Skin Conditions",
     },
     {
-      purpose: "Insomnia",
+        purposeOfVisit: "Insomnia",
     },
     {
-      purpose: "Joint Health",
+        purposeOfVisit: "Joint Health",
     },
     {
-      purpose: "Cardiovascular Health",
+        purposeOfVisit: "Cardiovascular Health",
     },
     {
-      purpose: "Diabetes Management",
+        purposeOfVisit: "Diabetes Management",
     },
     {
-      purpose: "Respiratory Health",
+        purposeOfVisit: "Respiratory Health",
     },
     {
-      purpose: "Mental Clarity",
+        purposeOfVisit: "Mental Clarity",
     },
     {
-      purpose: "Anti-Aging",
+        purposeOfVisit: "Anti-Aging",
     },
     {
-      purpose: "Energy Boost",
+        purposeOfVisit: "Energy Boost",
     },
     {
-      purpose: "Menopause Support",
+        purposeOfVisit: "Menopause Support",
     },
     {
-      purpose: "Sports Nutrition",
+        purposeOfVisit: "Sports Nutrition",
     },
     {
-      purpose: "Cognitive Function",
+        purposeOfVisit: "Cognitive Function",
     },
   ];
 

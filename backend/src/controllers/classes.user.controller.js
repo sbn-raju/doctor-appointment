@@ -1,4 +1,4 @@
-import { pool } from "../../database/connect.db.js"
+import { pool } from "../database/connect.db.js"
 import crypto from "crypto"
 import dotenv from "dotenv"
 dotenv.config()

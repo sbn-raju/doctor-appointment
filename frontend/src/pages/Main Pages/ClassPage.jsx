@@ -38,7 +38,7 @@ const ClassPage = () => {
     
 // Creating Options of the RazorPay Instance
     const options = {
-      key: "rzp_test_mgIOiPxqkVU1bf", // Enter the Key ID generated from the Dashboard//Should BE in the Env File
+      key: "rzp_test_mgIOiPxqkV", // Enter the Key ID generated from the Dashboard//Should BE in the Env File
       amount: order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
       currency: "INR",
       name: "Collasyn",

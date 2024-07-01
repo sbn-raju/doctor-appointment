@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 const Sidebar = () => {
-  const [activeBtn, setActiveBtn] = useState('');
 
+  // This is the admin panel sidebar for the simpler navigation
+  // UseState for making the button active when it is clicked to navigate to the particular page
+  const [activeBtn, setActiveBtn] = useState('');
   const handleBtn = (path) => {
     setActiveBtn(path);
   }
-
   const isActive = (path) => activeBtn === path;
-
   return (
     <>
       <aside className="hidden lg:block lg:w-80 bg-gray-1">
@@ -22,6 +22,7 @@ const Sidebar = () => {
             <p className="text-sm text-gray-300">Admin</p>
           </div>
           <div className="w-full flex flex-col py-4">
+            {/* Admin Class Booking Panel */}
             <Link
               to="/admin/classbooked" 
               onClick={() => handleBtn("classbooked")}
@@ -35,6 +36,9 @@ const Sidebar = () => {
                 </span>
                 <p className="text-lg">Class Bookings</p>
             </Link>
+
+            
+            {/* Admin Appointments Panel To see the number of Appointments in Total */}
             <Link 
               to="/admin/appointment" 
               onClick={() => handleBtn("appointment")}
@@ -45,8 +49,11 @@ const Sidebar = () => {
                     <path d="M0 4.5A1.5 1.5 0 0 1 1.5 3h13A1.5 1.5 0 0 1 16 4.5V6a.5.5 0 0 1-.5.5 1.5 1.5 0 0 0 0 3 .5.5 0 0 1 .5.5v1.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 11.5V10a.5.5 0 0 1 .5-.5 1.5 1.5 0 1 0 0-3A.5.5 0 0 1 0 6zM1.5 4a.5.5 0 0 0-.5.5v1.05a2.5 2.5 0 0 1 0 4.9v1.05a.5.5 0 0 0 .5.5h13a.5.5 0 0 0 .5-.5v-1.05a2.5 2.5 0 0 1 0-4.9V4.5a.5.5 0 0 0-.5-.5z"/>
                   </svg>
                 </span>
-                <p className="text-lg">My Appointments</p>
+                <p className="text-lg">Appointments</p>
             </Link>
+
+
+            {/* Admin Youtube And Testimonials panel to upload the iframe of the youtube videos and testimonial youtube videos of the users channels */}
             <Link 
               to="/admin/youtube"
               onClick={() => handleBtn('youtube')} 
@@ -58,6 +65,10 @@ const Sidebar = () => {
                 </span>
                 <p className="text-lg">YT & Testimonials</p>
             </Link>
+
+
+
+            {/* Admin Panel to fetch all the payments done for the Various Purpuses */}
             <Link 
               to="/admin/payment"
               onClick={() => handleBtn('payment')}
@@ -70,6 +81,8 @@ const Sidebar = () => {
                 </span>
                 <p className="text-lg">Payments</p>
             </Link>
+
+            {/* Admin panel to fetch all the user Datas such as Phone number, name and etc */}
             <Link 
               to="/admin/users"
               onClick={() => handleBtn('users')}
@@ -82,6 +95,9 @@ const Sidebar = () => {
                 </span>
                 <p className="text-lg">User Data</p>
             </Link>
+
+
+            {/* Admin Panel to set the slots for the Doctor in his free time */}
             <Link 
               to="/admin/slots" 
               onClick={() => handleBtn('slots')}
@@ -94,6 +110,9 @@ const Sidebar = () => {
                 </span>
                 <p className="text-lg">Set Slots</p>
             </Link>
+
+
+            {/* Admin Panel to set the Class Date and Timings  */}
             <Link 
               to="/admin/class" 
               onClick={() => handleBtn('class')}
@@ -107,6 +126,9 @@ const Sidebar = () => {
                 </span>
                 <p className="text-lg">Class Updates</p>
             </Link>
+
+
+            {/* Admin Panel to add the Doctor If any new Doctor Joins  */}
             <Link 
               to="/admin/addDoctor" 
               onClick={() => handleBtn('docter')}
@@ -121,7 +143,7 @@ const Sidebar = () => {
             </Link>
           </div>
           <div className="w-full flex flex-col justify-end flex-grow pb-16">
-            <p className="text-gray-200 font-thin text-xl ml-[25%]">Version 1.0</p>
+            <p className="text-gray-200 font-medium text-sm ml-[25%]">Version 1.1.0</p>
           </div>
         </div>
       </aside>

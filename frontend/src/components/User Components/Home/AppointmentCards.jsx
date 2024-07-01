@@ -1,5 +1,5 @@
 import React from "react";
-import AppointmentCardImage from "../../../assets/Page Assets/Home/AppointmentCard.png";
+import Clock from "../../../assets/Page Assets/Home/Clock.png";
 
 const AppointmentCards = () => {
   return (
@@ -17,7 +17,7 @@ const AppointmentCards = () => {
                 </p>
               </div>
             </div>
-            <img src={AppointmentCardImage} className="w-48 absolute -top-28 right-20"/>
+            <img src={Clock} className="w-48 absolute -top-28 right-20"/>
             <button 
               className="absolute right-24 bottom-10 bg-green-2 px-4 py-1 rounded-tl-full rounded-br-full shadow-md font-medium"
               onClick={() => window.open('/appointment')}>
@@ -46,7 +46,7 @@ const AppointmentCards = () => {
               </div>
             </div>
             <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-              <img src={AppointmentCardImage} className="w-36" />
+              <img src={Clock} className="w-36" />
             </div>
           </div>
         </div>

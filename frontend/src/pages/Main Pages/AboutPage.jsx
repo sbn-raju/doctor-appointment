@@ -1,11 +1,11 @@
-import React, {useState} from 'react'
-import AboutImage from'../../assets/Page Assets/Home/shaketree.png';
-import ab1 from '../../assets/Page Assets/Home/about-1.png';
-import ab2 from '../../assets/Page Assets/Home/about-2.png';
-import { team } from '../../constants/index';
+import React from 'react'
+import AboutImage from'../../assets/Page Assets/Home/AboutImage.png';
+import { aboutLeftCardData ,aboutRightCardData, team } from '../../constants/index';
 import line from '../../assets/Page Assets/Home/aboutLine.png';
 import LeftCard from '../../components/Main Page Components/About Page Components/LeftCard';
 import RightCard from '../../components/Main Page Components/About Page Components/RightCard';
+
+
 
 const AboutPage = () => {
   return (
@@ -21,28 +21,23 @@ const AboutPage = () => {
             </p>
           </div>
           <div className='w-full md:w-1/2 flex justify-center md:justify-end'>
-            <img src={AboutImage} className='w-full md:w-[500px]'/>
+            <img src={AboutImage} className='w-full md:w-[500px]' alt="AboutUs"/>
           </div>
         </div>
-        
         <div className='hidden md:block '>
           <div className='my-20 w-full flex flex-col justify-center items-center'>
             <p className="text-amber-900 font-bold text-4xl my-2">మా   ప్రస్తావన</p>
             <div className='mt-10 flex'>
               <div className='mt-10'>
-                <LeftCard year={"1994"} work={"మా డైట్ పేజీకి ఒక్క క్లిక్తో మీ ఆరోగ్య లక్ష్యాలను సాధించడానికి మీకు శక్తినిచ్చే డాక్టర్ రామచంద్ర యొక్క పరివర్తన ఆహార ప్రణాళికను కనుగొనండి."}/>
-                <LeftCard year={"1994"} work={"మా డైట్ పేజీకి ఒక్క క్లిక్తో మీ ఆరోగ్య లక్ష్యాలను సాధించడానికి మీకు శక్తినిచ్చే డాక్టర్ రామచంద్ర యొక్క పరివర్తన ఆహార ప్రణాళికను కనుగొనండి."}/>
-                <LeftCard year={"1994"} work={"మా డైట్ పేజీకి ఒక్క క్లిక్తో మీ ఆరోగ్య లక్ష్యాలను సాధించడానికి మీకు శక్తినిచ్చే డాక్టర్ రామచంద్ర యొక్క పరివర్తన ఆహార ప్రణాళికను కనుగొనండి."}/>
-                <LeftCard year={"1994"} work={"మా డైట్ పేజీకి ఒక్క క్లిక్తో మీ ఆరోగ్య లక్ష్యాలను సాధించడానికి మీకు శక్తినిచ్చే డాక్టర్ రామచంద్ర యొక్క పరివర్తన ఆహార ప్రణాళికను కనుగొనండి."}/>
-                <LeftCard year={"1994"} work={"మా డైట్ పేజీకి ఒక్క క్లిక్తో మీ ఆరోగ్య లక్ష్యాలను సాధించడానికి మీకు శక్తినిచ్చే డాక్టర్ రామచంద్ర యొక్క పరివర్తన ఆహార ప్రణాళికను కనుగొనండి."}/>
+                {aboutLeftCardData.map((cardDetails, index)=>(
+                  <LeftCard year={cardDetails.year} work={cardDetails.work}/>
+                ))}
               </div>
               <img src={line} className='w-4'/>
               <div className='mt-10'>
-                <RightCard year={"1994"} work={"మా డైట్ పేజీకి ఒక్క క్లిక్తో మీ ఆరోగ్య లక్ష్యాలను సాధించడానికి మీకు శక్తినిచ్చే డాక్టర్ రామచంద్ర యొక్క పరివర్తన ఆహార ప్రణాళికను కనుగొనండి."}/>
-                <RightCard year={"1994"} work={"మా డైట్ పేజీకి ఒక్క క్లిక్తో మీ ఆరోగ్య లక్ష్యాలను సాధించడానికి మీకు శక్తినిచ్చే డాక్టర్ రామచంద్ర యొక్క పరివర్తన ఆహార ప్రణాళికను కనుగొనండి."}/>
-                <RightCard year={"1994"} work={"మా డైట్ పేజీకి ఒక్క క్లిక్తో మీ ఆరోగ్య లక్ష్యాలను సాధించడానికి మీకు శక్తినిచ్చే డాక్టర్ రామచంద్ర యొక్క పరివర్తన ఆహార ప్రణాళికను కనుగొనండి."}/>
-                <RightCard year={"1994"} work={"మా డైట్ పేజీకి ఒక్క క్లిక్తో మీ ఆరోగ్య లక్ష్యాలను సాధించడానికి మీకు శక్తినిచ్చే డాక్టర్ రామచంద్ర యొక్క పరివర్తన ఆహార ప్రణాళికను కనుగొనండి."}/>
-                <RightCard year={"1994"} work={"మా డైట్ పేజీకి ఒక్క క్లిక్తో మీ ఆరోగ్య లక్ష్యాలను సాధించడానికి మీకు శక్తినిచ్చే డాక్టర్ రామచంద్ర యొక్క పరివర్తన ఆహార ప్రణాళికను కనుగొనండి."}/>
+                {aboutRightCardData.map((cardDetails, index)=>(
+                  <RightCard year={cardDetails.year} work={cardDetails.work}/>
+                ))}
               </div>
             </div>
           </div>
@@ -54,16 +49,13 @@ const AboutPage = () => {
             <div className='mt-10 flex'>
               <img src={line} className='w-4'/>
               <div className='mt-10'>
-                <RightCard year={"1994"} work={"మా డైట్ పేజీకి ఒక్క క్లిక్తో మీ ఆరోగ్య లక్ష్యాలను సాధించడానికి మీకు శక్తినిచ్చే డాక్టర్ రామచంద్ర యొక్క పరివర్తన ఆహార ప్రణాళికను కనుగొనండి."}/>
-                <RightCard year={"1994"} work={"మా డైట్ పేజీకి ఒక్క క్లిక్తో మీ ఆరోగ్య లక్ష్యాలను సాధించడానికి మీకు శక్తినిచ్చే డాక్టర్ రామచంద్ర యొక్క పరివర్తన ఆహార ప్రణాళికను కనుగొనండి."}/>
-                <RightCard year={"1994"} work={"మా డైట్ పేజీకి ఒక్క క్లిక్తో మీ ఆరోగ్య లక్ష్యాలను సాధించడానికి మీకు శక్తినిచ్చే డాక్టర్ రామచంద్ర యొక్క పరివర్తన ఆహార ప్రణాళికను కనుగొనండి."}/>
-                <RightCard year={"1994"} work={"మా డైట్ పేజీకి ఒక్క క్లిక్తో మీ ఆరోగ్య లక్ష్యాలను సాధించడానికి మీకు శక్తినిచ్చే డాక్టర్ రామచంద్ర యొక్క పరివర్తన ఆహార ప్రణాళికను కనుగొనండి."}/>
-                <RightCard year={"1994"} work={"మా డైట్ పేజీకి ఒక్క క్లిక్తో మీ ఆరోగ్య లక్ష్యాలను సాధించడానికి మీకు శక్తినిచ్చే డాక్టర్ రామచంద్ర యొక్క పరివర్తన ఆహార ప్రణాళికను కనుగొనండి."}/>
+              {aboutRightCardData.map((cardDetails, index)=>(
+                  <RightCard year={cardDetails.year} work={cardDetails.work}/>
+                ))}
               </div>
             </div>
           </div>
         </div>
-
         <div className='flex flex-col justify-center items-center my-10'>
           <p className="text-amber-900 font-bold text-4xl my-2">Our Team</p>
           <p className='text-red-400 text-lg leading-6 w-2/3 text-center'>
@@ -73,7 +65,7 @@ const AboutPage = () => {
           <div className='flex flex-wrap justify-center'>
             {team.map((mem, index) => (
               <div className='p-10 flex flex-col justify-center items-center'>
-                <img src={mem.img} className='h-[200px] w-[200px] rounded-full border-[1px] border-green-3'/>
+                <img src={mem.img} className='h-[200px] w-[200px] rounded-full border-[1px] border-green-3' />
                 <p>{mem.name}</p>
                 <p>{mem.position}</p>
               </div>
@@ -84,7 +76,7 @@ const AboutPage = () => {
 
       <div class="bg-green-4 p-10 w-full">
         <div className='flex flex-col justify-center items-center mb-10'>
-          <h1 className='text-white font-medium text-2xl'>Address</h1>
+          <h1 className='text-white font-medium text-4xl'>Address</h1>
         </div>
         <div className='flex flex-col md:flex-row w-full'>
           <div className='w-full md:w-1/2 mr-2'>

@@ -1,12 +1,12 @@
 import React from 'react';
-import appointmentImg from '../../assets/Page Assets/Home/appointment-img.png';
-import appBg from '../../assets/Page Assets/Home/appointment-bg.png';
-import clock from '../../assets/Page Assets/Home/AppointmentCard.png';
+import AppointmentImg from '../../assets/Page Assets/Home/AppointmentImage.png';
+import AppointmentBg from '../../assets/Page Assets/Home/AppointmentBg.png';
+import Clock from '../../assets/Page Assets/Home/Clock.png';
 import docter from '../../assets/Page Assets/Home/docter image.png';
 import Input from "../../components/Input Fields/Input";
 import CommonButton from '../../components/Buttons/CommonButton';
 import { useForm } from 'react-hook-form';
-import { slotDetails, doctorNames, purpose } from '../../constants';
+import { slotDetails, doctorNames, diseasePurpose } from '../../constants';
 import DoctorProfile from '../../components/Main Page Components/AppointmentPage Components/doctorProfile';
 import FAQ from '../../components/Main Page Components/FAQ';
 
@@ -27,13 +27,13 @@ const AppointmentPage = () => {
             </p>
           </div>
           <div className='w-full md:w-1/2 flex justify-center md:justify-end'>
-            <img src={appointmentImg} className='w-full md:w-[650px]' />
+            <img src={AppointmentImg} className='w-full md:w-[650px]' />
           </div>
         </div>
 
         <div 
           className='rounded-2xl p-8 md:p-28 max-w-full'
-          style={{backgroundImage: `url(${appBg})`, backgroundSize: 'cover'}}>
+          style={{backgroundImage: `url(${AppointmentBg})`, backgroundSize: 'cover'}}>
           <h1 className='text-white text-2xl mb-10 mt-5 font-semibold text-center'>Book your Appointment</h1>
           <form onSubmit={handleSubmit(appointmentData)} className='w-full flex flex-col justify-center items-center'>
             <div className='w-full flex flex-col md:flex-row'>
@@ -41,7 +41,7 @@ const AppointmentPage = () => {
               <div className='w-full md:w-1/2 order-3 md:order-1'>
                 <div className='p-8 bg-white rounded-[40px] shadow-lg mt-4 md:mx-5 md:mr-10'>
                   <div className='flex justify-center items-center'>
-                    <img className='w-1/2' src={clock} />
+                    <img className='w-1/2' src={Clock} alt='Clock'/>
                   </div>
                   <div className='mt-4'>
                     <p className='text-xs md:text-lg'>
@@ -80,12 +80,10 @@ const AppointmentPage = () => {
                   defaultValue="selectPurpose"
                   className="border-[1px] border-green-800 w-full md:w-11/12 h-10 rounded-[5px] mb-[4px]">
                     <option value="selectPurpose" disabled hidden>Select a purpose</option>
-                    {purpose.map((p, i) => (
-                      <option key={i} value={p.purpose}>{p.purpose}</option>
+                    {diseasePurpose.map((purpose, i) => (
+                      <option key={i} value={purpose.purposeOfVisit}>{purpose.purposeOfVisit}</option>
                     ))}
                 </select>
-                
-                {/* <br/> */}
                 <label htmlFor='doctor' className='text-white text-sm self-start mt-1'>Choose the Doctor *</label>
                 <select
                   id="doctor"

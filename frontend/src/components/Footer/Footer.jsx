@@ -23,6 +23,8 @@
                     <h2 className="lg:text-2xl">LET'S WORK TOGETHER</h2>
                     <h3 className="lg:text-2xl">For diseases free world</h3>
               </div>
+
+
             {/* Logo Section */}
               <div className="w-full h-1/2 flex flex-col lg:mt-6">
                 <div className="flex justify-center items-center">
@@ -55,6 +57,7 @@
                   </ul>
                 </div>
             </div>
+
             {/* Second Div */}
             <div className="flex justify-center items-center flex-col mt-10 lg:items-start">
                 <h5 className="font-bold lg:text-left">
@@ -65,6 +68,7 @@
                 </p>      
             </div>
           </div>
+
 
           {/* Container 3 */}
           <div className="max-w-full h-auto flex justify-center items-center flex-col lg:w-1/3 lg:flex-col-reverse">
@@ -81,6 +85,7 @@
                 <p className="font-extralight">info@DrRamaChandra.com</p>
               </div>
             </div>
+            
             {/* Second Section With Social media */}
             <div className="w-full h-12 flex justify-center items-center flex-row mt-8 text-3xl " >
                  <span className="mr-3"><FaTelegram/></span>

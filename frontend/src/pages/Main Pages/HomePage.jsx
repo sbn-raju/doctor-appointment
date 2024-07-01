@@ -7,7 +7,7 @@ import ClassCard from "../../components/User Components/Home/ClassCard";
 import AppointmentCards from "../../components/User Components/Home/AppointmentCards";
 import NutritionalCard from "../../components/User Components/Home/NutritionalCard";
 import Introbg from "../../assets/Page Assets/Home/Introbg.png";
-import Introbg1 from "../../assets/Page Assets/Home/Introbg1.png";
+import Introduction_Image_section_two from "../../assets/Page Assets/Home/Introduction_Image_section_two.png";
 import ItemsCard from "../../components/User Components/Home/ItemsCard";
 import Introbg2 from "../../assets/Page Assets/Home/Introbg2.png";
 import IntroBg from "../../assets/Page Assets/Home/IntroBg.svg";
@@ -40,9 +40,12 @@ const HomePage = () => {
   return (
     <>
       <div className="w-full px-8 py-2">
-        <Carousal />    {/* Carousel */}
-        
-        <div className="w-full flex flex-col md:flex-row justify-center p-10 mt-4 md:my-6 lg:-mt-20">   {/* intro1 */}
+        {/* Carousel */}
+        <Carousal />    
+
+
+        {/* Introduction Sections of the Home Page Section-01 */}
+        <div className="w-full flex flex-col md:flex-row justify-center p-10 mt-4 md:my-6 lg:-mt-20">   
           <div className="w-full md:w-3/5 flex flex-col justify-center items-start text-left">
             <h2 className="text-green-4 font-bold text-2xl md:text-4xl mb-4">
               Naturopathy <span>అనగా</span>
@@ -66,17 +69,19 @@ const HomePage = () => {
         </div>
       </div>
       
-      {/* intro2 */}
+
+
+       {/* Introduction Sections of the Home Page Section-02 */}
       <div
         className="w-full h-[180px] sm:h-[200px] md:h-[450px] flex items-center justify-center bg-cover bg-center -mt-36"
-        style={{ backgroundImage: `url(${Introbg1})` }}
+        style={{ backgroundImage: `url(${Introduction_Image_section_two})` }}
       >
-        <h1 className="text-white text-sm md:text-2xl font-medium md:font-semibold md:mt-20">
+        <h2 className="text-white text-sm md:text-2xl font-medium md:font-semibold md:mt-20">
           ఇల్లే వైద్యశాల - వంటగధే మందుల షాపు - అమ్మే డాక్టర్
-        </h1>
+        </h2>
       </div>
 
-      {/* intro3 */}
+      {/* Introduction Sections of the Home Page Section-03 */}
       <>
         <div className="hidden md:block">
           <div
@@ -84,27 +89,27 @@ const HomePage = () => {
             <div className="flex justify-start p-8 pl-20">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-white w-cw-2 text-start">
                 <div className="w-2/3 my-4">
-                  <h1 className="text-2xl lg:text-5xl font-semibold mb-2">24</h1>
+                  <h2 className="text-2xl lg:text-5xl font-semibold mb-2">24</h2>
                   <p className="text-sm lg:text-base">Years of experience.Naturopathic way.Estd. 1999</p>
                 </div>
                 <div className="w-2/3 my-4">
-                  <h1 className="text-2xl lg:text-5xl font-semibold mb-2">3 Lakhs+</h1>
+                  <h2 className="text-2xl lg:text-5xl font-semibold mb-2">3 Lakhs+</h2>
                   <p className="text-sm lg:text-base">Patients consulted personally at Prakruti Ashram. Still counting…</p>
                 </div>
                 <div className="w-2/3 my-4">
-                  <h1 className="text-2xl lg:text-5xl font-semibold mb-2">20</h1>
+                  <h2 className="text-2xl lg:text-5xl font-semibold mb-2">20</h2>
                   <p className="text-sm lg:text-base">Yoga Studios across the states of Andhra Pradesh and Telangana.</p>
                 </div>
                 <div className="w-2/3 my-4">
-                  <h1 className="text-2xl lg:text-5xl font-semibold mb-2">1000+</h1>
+                  <h2 className="text-2xl lg:text-5xl font-semibold mb-2">1000+</h2>
                   <p className="text-sm lg:text-base">Health awareness camps.</p>
                 </div>
                 <div className="w-2/3 my-4">
-                  <h1 className="text-2xl lg:text-5xl font-semibold mb-2">Millions</h1>
+                  <h2 className="text-2xl lg:text-5xl font-semibold mb-2">Millions</h2>
                   <p className="text-sm lg:text-base">Of health seekers transformed from revolutionary speeches.</p>
                 </div>
                 <div className="w-2/3 my-4">
-                  <h1 className="text-2xl lg:text-5xl font-semibold mb-2">Many</h1>
+                  <h2 className="text-2xl lg:text-5xl font-semibold mb-2">Many</h2>
                   <p className="text-sm lg:text-base">Popular TV shows, YouTube videos, Food festivals, Yoga competitions, Student seminars and so on.</p>
                 </div>
               </div>
@@ -121,27 +126,27 @@ const HomePage = () => {
             <div className="w-full text-white mt-10">
               <div className="grid grid-cols-1">
                 <div className="w-3/4 m-4">
-                  <h1 className="text-lg font-medium mb-2">24</h1>
+                  <h2 className="text-lg font-medium mb-2">24</h2>
                   <p className="text-base">Years of experience.<br/>Naturopathic way.Estd. 1999</p>
                 </div>
                 <div className="w-3/4 m-4 text-right">
-                  <h1 className="text-lg font-medium mb-2">3 Lakhs+</h1>
+                  <h2 className="text-lg font-medium mb-2">3 Lakhs+</h2>
                   <p className="text-base">Patients consulted personally at Prakruti Ashram. Still counting…</p>
                 </div>
                 <div className="w-3/4 m-4">
-                  <h1 className="text-lg font-medium mb-2">20</h1>
+                  <h2 className="text-lg font-medium mb-2">20</h2>
                   <p className="text-base">Yoga Studios across the states of Andhra Pradesh and Telangana.</p>
                 </div>
                 <div className="w-3/4 m-4 text-right">
-                  <h1 className="text-lg font-medium mb-2">1000+</h1>
+                  <h2 className="text-lg font-medium mb-2">1000+</h2>
                   <p className="text-base">Health awareness camps.</p>
                 </div>
                 <div className="w-3/4 m-4">
-                  <h1 className="text-lg font-medium mb-2">Millions</h1>
+                  <h2 className="text-lg font-medium mb-2">Millions</h2>
                   <p className="text-base">Of health seekers transformed from revolutionary speeches.</p>
                 </div>
                 <div className="w-3/4 m-4 text-right">
-                  <h1 className="text-lg font-medium mb-2">Many</h1>
+                  <h2 className="text-lg font-medium mb-2">Many</h2>
                   <p className="text-base">Popular TV shows, YouTube videos, Food festivals, Yoga competitions, Student seminars and so on.</p>
                 </div>
               </div>
@@ -204,7 +209,7 @@ const HomePage = () => {
         className="w-full min-h-[900px] flex flex-col items-center justify-start bg-cover bg-center bg-no-repeat pt-10"
         style={{ backgroundImage: `url(${EndingBg})` }}
       >
-        <h1 className="text-white text-3xl font-bold mt-52">స్వస్థత గాధలు</h1>
+        <h2 className="text-white text-3xl font-bold mt-52">స్వస్థత గాధలు</h2>
         <div className="flex-grow flex flex-col justify-center items-center">
           <div className="w-full flex flex-col md:flex-row justify-center items-center">
             {youtube.slice(0, 3).map((video, index) => (
