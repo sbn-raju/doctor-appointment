@@ -13,7 +13,7 @@ const Sidebar = () => {
   return (
     <>
       <aside className="hidden lg:block lg:w-80 bg-gray-1">
-        <div className="hidden lg:h-full lg:flex justify-start items-start flex-col text-white bg-green-4 p-10 lg:w-80 rounded-br-3xl rounded-tr-3xl mb-2">
+        <div className="hidden lg:h-full lg:flex justify-start items-start flex-col text-white bg-green-4 p-10 lg:w-80 mb-2">
           <div className="w-full flex flex-col justify-center items-center">
             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#000000" className="bi bi-person-circle" viewBox="0 0 16 16">
               <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>

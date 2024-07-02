@@ -1044,7 +1044,7 @@ export const appointments = [
         "date_of_appointment": "2024-06-24",
         "time": "13:00:00",
         "purpose": "Headache",
-        "doctor": "Dr. Ramachandra",
+        "doctor": "Dr. Varun",
         "isChecked": false
     },
     {

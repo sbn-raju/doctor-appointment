@@ -140,11 +140,11 @@ const AppointmentsPage = () => {
   const renderRowsPerPage = () => {
     const opts = [5, 10, 20, 50, 100, 200, 300];
     if (selectedAppointmentType === "Appointments") {
-      return opts.filter((option) => option < inCompleteAppointments.length).map((opt) => (
+      return opts.filter((option) => option < inCompletedSort.length).map((opt) => (
         <option key={opt} value={opt}>{opt}</option>
       ))
     } else {
-      return opts.filter((option) => option < completedAppointments.length).map((opt) => (
+      return opts.filter((option) => option < completedSort.length).map((opt) => (
         <option key={opt} value={opt}>{opt}</option>
       ))
     }
@@ -300,7 +300,7 @@ const AppointmentsPage = () => {
                   <p className="text-sm">Row Per Page: </p>
                   <select value={rowsPerPage} onChange={handleRowsPerPage} className='bg-gray-200 mx-2 rounded-md'>
                     {renderRowsPerPage()}
-                    <option value={inCompleteAppointments.length}>{inCompleteAppointments.length}</option>
+                    <option value={inCompletedSort.length}>{inCompletedSort.length}</option>
                   </select>
                 </div>
                 <div className='flex justify-end items-center w-2/3'>
@@ -318,7 +318,7 @@ const AppointmentsPage = () => {
                     </button>
                     ))}
                   </div>
-                  <button className='mx-2' onClick={handleNextPage} disabled={endIndex >= inCompleteAppointments.length}>
+                  <button className='mx-2' onClick={handleNextPage} disabled={endIndex >= inCompletedSort.length}>
                     Next
                   </button>
                 </div>
@@ -329,7 +329,7 @@ const AppointmentsPage = () => {
                     <p className="text-sm">Row Per Page: </p>
                     <select value={rowsPerPage} onChange={handleRowsPerPage} className='bg-gray-200 mx-2 rounded-md'>
                       {renderRowsPerPage()}
-                      <option value={completedAppointments.length}>{completedAppointments.length}</option>
+                      <option value={completedSort.length}>{completedSort.length}</option>
                     </select>
                   </div>
                   <div className='flex justify-end items-center w-2/3'>
@@ -347,7 +347,7 @@ const AppointmentsPage = () => {
                       </button>
                       ))}
                     </div>
-                    <button className='mx-2' onClick={handleNextPage} disabled={endIndex >= completedAppointments.length}>
+                    <button className='mx-2' onClick={handleNextPage} disabled={endIndex >= completedSort.length}>
                       Next
                     </button>
                   </div>
