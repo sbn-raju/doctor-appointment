@@ -2,6 +2,8 @@ import ErrorHandler from "../helpers/errorHelpers.js"
 import slotCalculator from "../helpers/slotCalculator.js"
 import slotCreator from "../helpers/slotMaker.js"
 import { pool } from "../database/connect.db.js"
+import { validationResult } from "express-validator";
+
 
 
 const appointmentMasterCreate = async(req,res,next)=>{
@@ -117,8 +119,41 @@ const appointmentSlotPerDate = async(req,res,next)=>{
     }
 }
 
+const emptySlots = async(req,res,next)=>{
+    const errors = validationResult(req)
+    if(!errors.isEmpty()){
+        return res.status(400).json({
+            success:false,
+            message:errors.array(), 
+        })
+    }
+    const {date, doctor_id} = req.body
+    if(!(date || doctor_id)){
+        return next(new ErrorHandler(false, "Please Provide all the required Fields", 402))
+    }
+    const emptySlotsQuery = "SELECT id, slot_start_time FROM appointment_slot_master WHERE appointment_id = (SELECT id FROM appointment_master WHERE date = $1 AND doctor_id = $2) AND booked_by_user_id IS NULL"
+    const emptySlotsValues = [date, doctor_id]
+    try {
+        const emptySlotsResults = await pool.query(emptySlotsQuery, emptySlotsValues);
+        if(emptySlotsResults.rowCount!=0){
+            return res.status(200).json({
+                success:true,
+                message:"This are the empty Slots",
+                data:emptySlotsResults.rows
+            })
+        }
+        else{
+            return next(new ErrorHandler(false, "No Slots Found For the Selected Doctor or that particular Date", 402))
+        }
+    } catch (error) {
+        return next(new ErrorHandler(false, `${error}`, 402))
+
+    }
+}
+
 export{
     appointmentMasterCreate,
     appointmentSlotMasterGetSlots,
-    appointmentSlotPerDate
+    appointmentSlotPerDate,
+    emptySlots
 }

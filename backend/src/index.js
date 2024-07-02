@@ -44,7 +44,7 @@ import classRoute from "./routes/classes.routes.js";
 import classUserRoute from "./routes/classes.routes.js";
 import youtubeLinkRoute from "./routes/youtube.routes.js";
 import appointmentRoute from "./routes/appointment.routes.js";
-
+import userAppointmentRoute from "./routes/appointmnet.user.routes.js"
 
 
 //Main routes
@@ -53,6 +53,7 @@ app.use("/api/v1/class", classRoute);
 app.use("/api/v1/class_booking",classUserRoute);
 app.use("/api/v1/youtube",youtubeLinkRoute);
 app.use("/api/v1/appointment",appointmentRoute);
+app.use("/api/v1/appointment/user",userAppointmentRoute);
 
 
 
