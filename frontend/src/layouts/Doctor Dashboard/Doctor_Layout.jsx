@@ -8,7 +8,7 @@ const Doctor_Layout = () => {
     <>
    <HeaderHome/>
    <Outlet/>
-   <Footer/>   
+   {/* <Footer/>    */}
    </>
   )
 }
