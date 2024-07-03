@@ -6,7 +6,6 @@ export const navItems = [
     {label:"About\u00A0Us",href:"/about"},
 ]
 
-
 export const aboutLeftCardData = [
     {
         year:"1994",
@@ -54,7 +53,6 @@ export const aboutRightCardData = [
     },
 
 ]
-
 
 export const userProfile = {
     Name: "Vishwaksena reddy",
@@ -444,7 +442,6 @@ export const classBookings = [
     }
 ]
 
-
 export const adminPaymentDetails = [
     {
         "id": "1",
@@ -754,7 +751,6 @@ export const adminPaymentDetails = [
     }    
 ]
 
-
 export const adminUserData = [
     {
         "id": 1,
@@ -830,7 +826,6 @@ export const adminUserData = [
     }
 ]
 
-
 export const diseasePurpose = [
     {
       purposeOfVisit: "Digestive Issues",
@@ -892,7 +887,7 @@ export const diseasePurpose = [
     {
         purposeOfVisit: "Cognitive Function",
     },
-  ];
+];
 
 export const slotDetails = [
     {
@@ -994,7 +989,6 @@ export const slotDetails = [
 ]
 
 import img from '../assets/Page Assets/Home/doc bg.png';
-
 export const youtubeVideos = [
     {
         id: 1,
@@ -1024,7 +1018,6 @@ export const youtubeVideos = [
 ]
 
 import img1 from '../assets/Page Assets/Home/family.jpeg'
-
 export const testimonialVideos = [
     {
         id: 1,
@@ -1567,7 +1560,6 @@ export const appointments = [
         "isChecked": false
     }
 ]
-
 
 export const whatsappTemplates = [
     // {
@@ -2135,9 +2127,7 @@ export const eveningJuice = [
     }
 ]
 
-
 import teamImg from '../assets/Page Assets/Home/docter image.png';
-
 export const team = [
     {
         img: teamImg,
@@ -2582,4 +2572,34 @@ export const DoctorAppointments = [
         "doctor": "Dr. Anderson",
         "isChecked": false
     }
+]
+
+export const ongoingClassDetails = [
+    {
+        id:1,
+        startDate: "2024-06-05",
+        endDate: "2024-06-25",
+        time: "6:30 - 7:30",
+    },
+]
+
+export const upcomingClassDetails = [
+    {
+        id:1,
+        startDate: "2024-07-05",
+        endDate: "2024-07-25",
+        time: "6:30 - 7:30",
+    },
+    {
+        id:2,
+        startDate: "2024-08-05",
+        endDate: "2024-08-25",
+        time: "5:30 - 6:30",
+    },
+    {
+        id:3,
+        startDate: "2024-09-05",
+        endDate: "2024-09-25",
+        time: "4:00 - 6:00",
+    },
 ]
