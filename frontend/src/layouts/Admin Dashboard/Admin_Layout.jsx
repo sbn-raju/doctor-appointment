@@ -12,7 +12,7 @@ const Admin_Layout = () => {
    <Sidebar/>
    <Outlet/>
    </div>
-   <Footer/>   
+   {/* <Footer/>    */}
    </>
   )
 }

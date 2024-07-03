@@ -113,7 +113,7 @@ const AccountBox = ({ closeAccount }) => {
 
   return (
     <>
-      <div className="h-screen bg-gray-1 inset-0 fixed bg-opacity-75 w-full flex flex-col justify-center items-center">
+      <div className="h-screen bg-black inset-0 fixed bg-opacity-75 w-full flex flex-col justify-center items-center">
         <div className="bg-white p-10 w-[300px] md:w-[400px] shadow-lg min-h-[200px] flex flex-col">
           <div className="flex justify-between mb-6">
             <h1 className="font-medium text-black">Sign In</h1>

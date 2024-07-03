@@ -12,7 +12,7 @@ const User_layout = () => {
       <Sidebar />
       <Outlet/>
     </div>
-    <Footer/>
+    {/* <Footer/> */}
     </> 
   )
 }
