@@ -9,3 +9,21 @@
 .admin-scrollbar{
     scrollbar-width: none;
 }
+
+/* Add this CSS to your `scrollbar.styles.css` file */
+.scrollable-pagination {
+    display: flex;
+    overflow-x: scroll; /* Allow horizontal scrolling */
+    -webkit-overflow-scrolling: touch; 
+}
+  
+  /* Hide the scrollbar */
+  .scrollable-pagination::-webkit-scrollbar {
+    display: none; /* Hide the scrollbar in WebKit browsers */
+  }
+  
+  /* Firefox */
+  .scrollable-pagination {
+    scrollbar-width: none; /* Hide scrollbar in Firefox */
+  }
+  
