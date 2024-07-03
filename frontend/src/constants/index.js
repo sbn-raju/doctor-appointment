@@ -1,9 +1,11 @@
 export const navItems = [
     {label:"Home", href:"/"},
-    {label:"Services",href:"/services"},
-    {label:"Appointment",href:"/appointment"},
-    {label:"Workshop", href:"/class"},
-    {label:"About\u00A0Us",href:"/about"},
+    // {label:"About\u00A0Us",href:"/about"},
+    {label:"About",href:"/about"},
+    {label:"Service",href:"/services"},
+    {label: "Diet", href:"/"},
+    {label:"Book Appointment",href:"/appointment"},
+    {label:"Book Workshop", href:"/class"},
 ]
 
 
