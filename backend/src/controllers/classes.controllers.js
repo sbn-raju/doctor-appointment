@@ -3,12 +3,16 @@ import ErrorHandler from "../helpers/errorHelpers.js"
 import { body, param, validationResult } from "express-validator"
 import dotenv from "dotenv"
 dotenv.config()
+const currentTimeStamp = new Date(Date.now());
+
 
 // If Status of the class is 0 then it is open for the booking 
 // Admin must close the booking to updated the class_link in the database and to add new Class
 // We will update the class isactvive to 0 before adding link and creating new class and while updating closing the bookings 
 // If isActive of the class is 1 then the class is terminated
 // If isActive of the class is 0 then the class is ongoing 
+
+
 
 
 //Creating the class using the details given by the admin with isActive to null and status to 0
@@ -67,16 +71,29 @@ const setClass = async (req, res, next) => {
   }
 }
 
+
+
+
 //Closing the bookings of the class and updating the isActive status to Zero
 const closeBookings = async(req,res,next)=>{
-
+  const checkingTerminationQuery = "SELECT status, isactive FROM class_master ORDER BY created_at DESC LIMIT $1"
+  try {
+    const checkingTerminationResults = await pool.query(checkingTerminationQuery,[2]);
+    if(checkingTerminationResults.rowCount == 2){
+       if(checkingTerminationResults.rows[1].isactive != 1){
+        return next(new ErrorHandler(false, "Please Terminate the last class" ,400));
+      }
+    }
+    } catch (error) {
+      return next(new ErrorHandler(false, `error:${error}` ,400));
+    }
   const newStatusOfClass = 1
   const limit = 1
   const newIsActiveStatus = 0
 
 
-  const closeBookingsQuery = "UPDATE class_master SET status = $1, isactive = $2 WHERE id = (SELECT id FROM class_master ORDER BY created_at DESC LIMIT $3)"
-  const closeBookingsValue = [newStatusOfClass, newIsActiveStatus, limit];
+  const closeBookingsQuery = "UPDATE class_master SET status = $1, isactive = $2, updated_at = $3 WHERE id = (SELECT id FROM class_master ORDER BY created_at DESC LIMIT $4)"
+  const closeBookingsValue = [newStatusOfClass, newIsActiveStatus, currentTimeStamp, limit];
   try {
     const closeBookingsResults = await pool.query(closeBookingsQuery, closeBookingsValue);
     if(closeBookingsResults.rowCount!=0){
@@ -90,40 +107,195 @@ const closeBookings = async(req,res,next)=>{
   }
 }
 
+
+
+
 //Terminiting the Class to update the link for the new batch
 const terminateClass = async(req,res,next)=>{
-  const checkingClassStatusQuery = "SELECT status, id FROM class_master ORDER BY created_at DESC LIMIT $1"
-  
-  try {
-    
-    const checkingClassStatusResults = await pool.query(checkingClassStatusQuery, [1]);
-    console.log(checkingClassStatusResults.rows[0].status);
-    if(checkingClassStatusResults.rows[0].status != 1){
-      const idOfTerminatingClass = checkingClassStatusResults.rows[0].id
-      const isActiveTerminating = 1
-      const terminateClassQuery = "UPDATE class_master SET isactive = $1 WHERE id = $2"
-      const terminateClassValues = [isActiveTerminating, idOfTerminatingClass];
+  const checkingClassStatusQuery = `
+  SELECT id, status, isactive 
+  FROM class_master 
+  ORDER BY created_at DESC 
+  LIMIT $1
+`;
+
+try {
+  const checkingClassStatusResults = await pool.query(checkingClassStatusQuery, [2]);
+
+  const handleTermination = async (classRow) => {
+    if (classRow.isactive != 1 && classRow.status == 1) {
+      const terminateClassQuery = `
+        UPDATE class_master 
+        SET isactive = $1 , updated_at = $2
+        WHERE id = $3
+      `;
+      const terminateClassValues = [1, currentTimeStamp, classRow.id];
+
       try {
         const terminateClassResults = await pool.query(terminateClassQuery, terminateClassValues);
-        if(terminateClassResults.rowCount!=0){
+        if (terminateClassResults.rowCount != 0) {
           return res.status(201).json({
-          success:true,
-          message:"The Class is terminated Successfully",
-          })
+            success: true,
+            message: "The Class is terminated Successfully",
+          });
         }
       } catch (error) {
-        return next(new ErrorHandler(false, `Error in Terminating ${error}` ,400));
+        return next(new ErrorHandler(false, `Error in Terminating: ${error}`, 400));
       }
+    } else {
+      return res.status(200).json({
+        success: true,
+        message: "The Class Booking is not closed",
+      });
+    }
+  };
+
+  if (checkingClassStatusResults.rowCount == 2) {
+    await handleTermination(checkingClassStatusResults.rows[1]);
+  } else if (checkingClassStatusResults.rowCount == 1) {
+    await handleTermination(checkingClassStatusResults.rows[0]);
+  }
+} catch (error) {
+  return next(new ErrorHandler(false, `Error in Fetching Latest Class: ${error}`, 400));
+}
+
+  // const checkingClassStatusQuery = "SELECT id, status, isactive FROM class_master ORDER BY created_at DESC LIMIT $1"
+  
+  // try {
+    
+  //   const checkingClassStatusResults = await pool.query(checkingClassStatusQuery, [2]);
+  //   if(checkingClassStatusResults.rowCount == 2){
+  //     if(checkingClassStatusResults.rows[1].isactive != 1){
+  //       const idOfTerminatingClass = checkingClassStatusResults.rows[1].id
+  //       const isActiveTerminating = 1
+  //       const terminateClassQuery = "UPDATE class_master SET isactive = $1 WHERE id = $2"
+  //       const terminateClassValues = [isActiveTerminating, idOfTerminatingClass];
+  //       try {
+  //         const terminateClassResults = await pool.query(terminateClassQuery, terminateClassValues);
+  //         if(terminateClassResults.rowCount!=0){
+  //           return res.status(201).json({
+  //           success:true,
+  //           message:"The Class is terminated Successfully",
+  //           })
+  //         }
+  //       } catch (error) {
+  //         return next(new ErrorHandler(false, `Error in Terminating ${error}` ,400));
+  //       }
+  //     }
+  //     else{
+  //       return res.status(200).json({
+  //         success:true,
+  //         message:"The Class Booking is not closed",
+  //       })
+  //     }
+  //   }
+  //   else{
+  //     if(checkingClassStatusResults.rows[0].isactive != 1){
+  //       const idOfTerminatingClass = checkingClassStatusResults.rows[0].id
+  //       const isActiveTerminating = 1
+  //       const terminateClassQuery = "UPDATE class_master SET isactive = $1 WHERE id = $2"
+  //       const terminateClassValues = [isActiveTerminating, idOfTerminatingClass];
+  //       try {
+  //         const terminateClassResults = await pool.query(terminateClassQuery, terminateClassValues);
+  //         if(terminateClassResults.rowCount!=0){
+  //           return res.status(201).json({
+  //           success:true,
+  //           message:"The Class is terminated Successfully",
+  //           })
+  //         }
+  //       } catch (error) {
+  //         return next(new ErrorHandler(false, `Error in Terminating ${error}` ,400));
+  //       }
+  //     }
+  //     else{
+  //       return res.status(200).json({
+  //         success:true,
+  //         message:"The Class Booking is not closed",
+  //       })
+  //     }
+  //   }
+  // } catch (error) {
+  //   return next(new ErrorHandler(false, `Error in Fetching Latest Class due to${error}` ,400));
+  // }
+}
+
+
+
+
+const classLink = async(req,res,next)=>{
+    const {link} = req.body
+    if(!link){
+      return next(new ErrorHandler(false, "Link is not passed" ,400));
+    }
+    const mustStatus = 1 
+    const mustIsActive = 0
+    const classLinkQuery = "UPDATE class_master SET class_link = $1 WHERE status = $2 AND isactive = $3"
+    const classLinkValues = [link, mustStatus, mustIsActive];
+    try {
+      const classLinkResult = await pool.query(classLinkQuery, classLinkValues);
+      if(classLinkResult.rowCount != 0){
+         return res.status(201).json({
+          success:true,
+          message:"Link Updated Successfully"
+        })
+      }
+    } catch (error) {
+      return next(new ErrorHandler(false, `${error}` ,400));
+
+    }
+}
+
+
+
+
+const getOngoingClass = async(req,res,next)=>{
+  const getOngoingClassQuery = "SELECT * FROM class_master WHERE status = $1 AND isactive = $2 "
+  try {
+    const getOngoingClassResults = await pool.query(getOngoingClassQuery, [1,0]);
+    if(getOngoingClassResults.rowCount != 0){
+      return res.status(200).json({
+        success:true,
+        message:"Data of the Ongoing Class",
+        data:getOngoingClassResults.rows[0]
+      })
+    }
+    else{
+      return res.status(200).json({
+        success:true,
+        message:"No Ongoing Classes Found",
+        data:getUpcomingClassResults.rows
+      })
     }
   } catch (error) {
-    return next(new ErrorHandler(false, `Error in Fetching Latest Class due to${error}` ,400));
+    return next(new ErrorHandler(false, `${error}` ,400));
   }
 }
 
 
-const classLink = async(req,res,next)=>{
-    
-}
+
+
+const getUpcomingClass = async(req,res,next)=>{
+  const getUpcomingClassQuery = "SELECT * FROM class_master WHERE status = $1 AND isactive IS NULL"
+  try {
+    const getUpcomingClassResults = await pool.query(getUpcomingClassQuery, [0]);
+    if(getUpcomingClassResults.rowCount != 0){
+      return res.status(200).json({
+        success:true,
+        message:"Data of the Upcoming Class",
+        data:getUpcomingClassResults.rows[0]
+      })
+    }
+    else{
+      return res.status(200).json({
+        success:true,
+        message:"No Upcoming Classes Found",
+        data:getUpcomingClassResults.rows
+      })
+    }
+  } catch (error) {
+    return next(new ErrorHandler(false, `${error}` ,400));
+  }
+} 
 
 
 
@@ -143,6 +315,7 @@ const getClass = async (req, res) => {
     return next(new ErrorHandler(error, 400))
   }
 }
+
 
 
 
@@ -172,6 +345,7 @@ const getClassWithId = async (req, res) => {
     return next(new ErrorHandler(error, 400))
   }
 }
+
 
 
 
@@ -255,11 +429,14 @@ const deleteClass = async (req, res, next) => {
 
 
 export {
+  setClass,
   closeBookings,
   terminateClass,
+  classLink,
   getClass,
+  getOngoingClass,
+  getUpcomingClass,
   getClassWithId,
-  setClass,
   putClass,
   deleteClass,
 }

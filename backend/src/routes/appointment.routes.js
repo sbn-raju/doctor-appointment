@@ -1,17 +1,19 @@
 import {Router} from "express"
 import { appointmentMasterCreate, appointmentSlotMasterGetSlots, appointmentSlotPerDate, emptySlots } from "../controllers/appointment.controller.js"
 import { emptySlotsValidator } from "../helpers/validator.js";
+import { authentication } from "../middlewares/authentication.js";
+import { adminAutho } from "../middlewares/authorzation.js";
 
 const appointmentRoute = Router()
 
 
-appointmentRoute.route("/create/slot").post(appointmentMasterCreate);
+appointmentRoute.route("/create/slot").post(authentication, adminAutho, appointmentMasterCreate);
 
-appointmentRoute.route("/get/slots").get(appointmentSlotMasterGetSlots);
+appointmentRoute.route("/get/slots").get(authentication, adminAutho, appointmentSlotMasterGetSlots);
 
-appointmentRoute.route("/get/dateSlots").get(appointmentSlotPerDate)
+appointmentRoute.route("/get/dateSlots").get(authentication, adminAutho,appointmentSlotPerDate)
 
-appointmentRoute.route("/empty-slots").post(emptySlotsValidator, emptySlots)
+appointmentRoute.route("/empty-slots").post(authentication, adminAutho,emptySlotsValidator, emptySlots)
 
 
 

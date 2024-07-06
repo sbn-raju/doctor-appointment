@@ -21,8 +21,15 @@ const setClassValidator = [
     check("class_fees", "Fees is not entered").not().isEmpty().isFloat(),
 ]
 
+
+const adminAuth = [
+    check("username","Username is Required").not().isEmpty().isAlphanumeric(),
+    check("password","Password is Required").not().isEmpty().isString()
+]
+
 export {
     appointmentBookingValidator,
     emptySlotsValidator,
-    setClassValidator
+    setClassValidator,
+    adminAuth
 }
