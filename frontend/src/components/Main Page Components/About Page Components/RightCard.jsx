@@ -12,7 +12,7 @@ const RightCard = ({year, work}) => {
 
 
     return (
-        <div className='ml-6 relative bg-green-4 p-4 text-left text-white rounded-tr-lg rounded-br-lg my-[150px]'>
+        <div className='ml-6 relative bg-green-4 p-4 text-left text-white rounded-tr-lg rounded-br-lg my-[100px] md:my-[150px]'>
             <p className='font-medium text-lg'>{year?year:newYear}</p>
             <p>{work?work:newWork}</p>
             <span className='absolute top-[35%] -left-[16px]'>

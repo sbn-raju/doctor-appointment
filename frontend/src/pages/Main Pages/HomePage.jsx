@@ -39,18 +39,15 @@ const youtube = [
 const HomePage = () => {
   return (
     <>
-      <div className="w-full px-8 py-2">
-        {/* Carousel */}
-        <Carousal />    
-
-
+      <Carousal /> 
+      <div className="w-full md:px-8 py-10">
         {/* Introduction Sections of the Home Page Section-01 */}
         <div className="w-full flex flex-col md:flex-row justify-center p-10 mt-4 md:my-6 lg:-mt-20">   
           <div className="w-full md:w-3/5 flex flex-col justify-center items-start text-left">
-            <h2 className="text-green-1 font-leagueSpartanSemiBold text-[48px] md:text-4xl mb-4">
-              Naturopathy <span className="font-gurajadaRegular text-[55px]">అనగా</span>
+            <h2 className="text-green-1 font-leagueSpartanSemiBold text-[30px] md:text-4xl mb-4">
+              Naturopathy <span className="font-gurajadaRegular text-[40px] md:text-[55px]">అనగా</span>
             </h2>
-            <p className="text-[24px] md:text-[17px] leading-8 text-[#333333] font-tenaliRamaKrishnaRegular">
+            <p className="text-[20px] md:text-[17px] leading-8 text-[#333333] font-tenaliRamaKrishnaRegular">
               ఆయుర్వేద, అలోపతి, హోమియోపతి, యునాని, సిద్ధ వైద్య విధానం మొదలగు
               వైద్య విధానాలవలే ఇది ఒక వైద్య విధానం. పంచభూతాలతో చికిత్స చేసే ఒక
               ప్రక్రియ. ఇందులో మందులు కానీ, పసర్లు కానీ, పూతలు కానీ, లేపనాలు కానీ
@@ -69,14 +66,12 @@ const HomePage = () => {
         </div>
       </div>
       
-
-
        {/* Introduction Sections of the Home Page Section-02 */}
       <div
         className="w-full h-[180px] sm:h-[200px] md:h-[450px] flex items-center justify-center bg-cover bg-center -mt-36"
         style={{ backgroundImage: `url(${Introduction_Image_section_two})` }}
       >
-        <h2 className="text-white text-sm md:text-[48px] font-gurajadaRegular md:mt-20">
+        <h2 className="text-white text-[20px] md:text-[28px] font-gurajadaRegular mt-10 md:mt-20">
           ఇల్లే వైద్యశాల - వంటగధే మందుల షాపు - అమ్మే డాక్టర్
         </h2>
       </div>
@@ -157,8 +152,8 @@ const HomePage = () => {
 
       {/* Services */}
       <div className="flex flex-col justify-center items-center my-10 mt-20">
-        <p className="text-green-3 text-[64px] font-gurajadaRegular">మా సేవలు</p>
-        <img src={Services} className="w-4/6 hidden md:block" style={{WebkitUserDrag: "none", MozUserDrag: "none", msUserDrag: "none", userDrag: "none"}}/>
+        <p className="text-green-3 text-[60px] font-gurajadaRegular">మా సేవలు</p>
+        <img src={Services} className="w-5/6 lg:w-4/6 hidden md:block" style={{WebkitUserDrag: "none", MozUserDrag: "none", msUserDrag: "none", userDrag: "none"}}/>
         <img src={ServicesMb} className="w-4/6 md:hidden" onDragStart={(e) => e.preventDefault()} style={{WebkitUserDrag: "none", MozUserDrag: "none", msUserDrag: "none", userDrag: "none"}}/>
       </div>
 
@@ -175,12 +170,12 @@ const HomePage = () => {
       <AboutUsCard />
 
       {/* Card of products and their prices */}
-      {/* <ItemsCard /> */}
+      <ItemsCard />
 
       {/* Youtube Videos */}
-      <div className="w-full mt-72 flex flex-col justify-center items-center mb-6">
+      <div className="w-full mt-10 flex flex-col justify-center items-center mb-6">
         <div>
-          <h2 className=" font-gurajadaRegular text-[64px] text-[#34442C] mb-10">
+          <h2 className="font-gurajadaRegular text-[40px] md:text-[60px] text-green-4 mb-10">
             మా కార్యకలాపాలు
           </h2>
         </div>
@@ -206,9 +201,9 @@ const HomePage = () => {
 
       {/* Ending */}
       <div
-        className="w-full min-h-[900px] flex flex-col justify-evenly bg-cover bg-center bg-no-repeat pt-10"
+        className="w-full min-h-[600px] flex flex-col justify-evenly bg-cover bg-center bg-no-repeat py-10"
       >
-        <h2 className="text-black text-[64px] font-gurajadaRegular mt-52 flex justify-center">స్వస్థత గాధలు</h2>
+        <h2 className="text-green-4 text-[40px] md:text-[60px] font-gurajadaRegular mt-10 flex justify-center">స్వస్థత గాధలు</h2>
         <div className="flex-grow flex flex-col justify-center items-center">
           <div className="w-full flex flex-col md:flex-row justify-evenly items-center">
             {youtube.slice(0, 3).map((video, index) => (

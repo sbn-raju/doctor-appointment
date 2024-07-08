@@ -180,19 +180,19 @@ const HeaderHome = () => {
       <div className={`px-4 md:px-6 py-3 w-full flex flex-row justify-between items-center sticky top-0 bg-white text-green-1 ${isScrolled ? 'shadow-lg' : 'shadow-none'} z-50`}>
         <div className="flex items-center">
           <Link to="/">
-            <img src={logo} alt="LogoImage" className="w-12 h-12 md:w-16 md:h-16 mx-2 md:mx-4" />
+            <img src={logo} alt="LogoImage" className="w-12 h-12 md:w-16 md:h-16 mx-[1px] md:mx-4" />
           </Link>
           <div className="pl-1 ml-4 md:mr-4">
-            <h2 className="font-leagueSpartanRegular text-xl md:text-sm lg:text-lg leading-tight text-green-1">
+            <h2 className="font-leagueSpartanRegular text-sm md:text-base lg:text-lg leading-tight text-green-1">
               Dr.Padma &amp; Dr.Ramachandra
             </h2>
-            <p className="font-leagueSpartanRegular text-xl md:text-base lg:text-lg text-green-1">
+            <p className="font-leagueSpartanRegular text-sm md:text-base lg:text-lg text-green-1">
               Naturopathy
             </p>
           </div>
         </div>
         <div className="hidden md:flex flex-grow justify-center items-center space-x-4 md:space-x-6 lg:space-x-10">
-          <ul className="flex flex-row text-sm md:text-base lg:text-lg font-leagueSpartanSemiBold space-x-4 md:space-x-6 lg:space-x-10 text-green-1">
+          <ul className="flex flex-row text-sm md:text-base lg:text-lg space-x-4 md:space-x-6 lg:space-x-10 text-black">
             {navItems.map((item, index) => (
               <li key={index}>
                 <a href={item.href}>{item.label}</a>

@@ -2,7 +2,7 @@ import React from 'react';
 
 const DoctorProfile = ({image, name, text}) => {
     return (
-        <div className=' my-16 flex justify-center'>
+        <div className='w-full my-16 flex justify-center'>
             <div className='relative w-full md:w-3/4 flex flex-col md:flex-row p-6 rounded-3xl shadow-lg'>
                 <div className='w-full md:w-1/5 flex justify-center md:justify-start'>
                     <img className='hidden md:block w-36 md:absolute md:bottom-0 md:left-0 lg:left-10' src={image} />
