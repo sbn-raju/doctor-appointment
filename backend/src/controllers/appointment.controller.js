@@ -9,7 +9,9 @@ import { validationResult } from "express-validator";
 const appointmentMasterCreate = async(req,res,next)=>{
     try {
         let slots_no = 0
-        const{doctor_id, date, start_time, end_time, time_duration, created_by, updated_by} = req.body
+        const{doctor_id, date, start_time, end_time, time_duration} = req.body
+        const created_by = parseInt(req.user.admin_id)
+        const updated_by = parseInt(req.user.admin_id)
         if(!(doctor_id || date || start_time || end_time || time_duration || created_by || updated_by)){
             return next (new ErrorHandler(false, "Please Provide all the Fields", 302));
         }

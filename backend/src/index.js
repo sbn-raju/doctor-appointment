@@ -9,6 +9,7 @@ import {xssFilter} from "helmet"
 import helmet from "helmet";
 import {rateLimit} from "express-rate-limit";
 import session from "express-session";
+import cookieParser from "cookie-parser"
 
 
 //Middlewares 
@@ -26,15 +27,18 @@ app.use(rateLimit({
 }))
 
 app.use(session({
+    name:"session_Id",
     resave:false,
     saveUninitialized:false,
-    secret:"ThisIsMySecret",
+    secret:process.env.SESSION_SECERET_KEY,
     cookie:{
         httpOnly:true,
         sameSite:'strict',
         maxAge:60*60*1000,
     }
-}))
+}));
+
+app.use(cookieParser());
 
 
 
@@ -45,6 +49,7 @@ import classUserRoute from "./routes/classes.routes.js";
 import youtubeLinkRoute from "./routes/youtube.routes.js";
 import appointmentRoute from "./routes/appointment.routes.js";
 import userAppointmentRoute from "./routes/appointmnet.user.routes.js"
+import authAdminRoute from "./routes/adminAuth.routes.js";
 
 
 //Main routes
@@ -52,6 +57,7 @@ app.use("/api/v1/auth",authRoute);
 app.use("/api/v1/class", classRoute);
 app.use("/api/v1/class_booking",classUserRoute);
 app.use("/api/v1/youtube",youtubeLinkRoute);
+app.use("/api/v1/admin",authAdminRoute);
 app.use("/api/v1/appointment",appointmentRoute);
 app.use("/api/v1/appointment/user",userAppointmentRoute);
 
