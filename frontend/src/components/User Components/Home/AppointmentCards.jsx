@@ -5,21 +5,21 @@ const AppointmentCards = () => {
   return (
     <>
       <div className="hidden md:block">
-        <div className="h-[400px] my-10 w-full flex justify-center">
+        <div className="h-[330px] lg:h-[400px] my-10 w-full flex justify-center">
           <div className="shadow-lg relative w-4/5 mt-20 bg-green-3 rounded-[100px] rounded-br-[400px]">
-            <div className="flex justify-start p-10">
+            <div className="flex justify-start px-4 lg:px-10">
               <div className="w-3/5 text-left">
-                <p className="text-white text-[40px] font-gurajadaRegular mb-4 mt-10">
+                <p className="text-white text-[30px] lg:text-[40px] font-gurajadaRegular mb-4 mt-10">
                   అపాయింట్‌మెంట్
                 </p>
-                <p className="text-white text-[24px] leading-relaxed font-tenaliRamaKrishnaRegular">
+                <p className="text-white text-[18px] lg:text-[24px] leading-relaxed font-tenaliRamaKrishnaRegular">
                   ప్రకృతి వైద్యం మిమ్మల్ని నయం చేయడంలో సహాయపడనివ్వండి! ఇది అన్నింటికీ నివారణ కానప్పటికీ, ప్రకృతి వైద్యం మీకు ఆరోగ్యంగా మరియు సంతోషంగా ఉండేందుకు సహాయపడుతుంది.
                 </p>
               </div>
             </div>
-            <img src={Clock} className="w-48 absolute -top-28 right-20"/>
+            <img src={Clock} className="w-44 lg:w-48 absolute -top-28 right-12 lg:right-20"/>
             <button 
-              className="absolute right-24 bottom-16 bg-green-2 px-16 py-3 rounded-tl-full rounded-br-full shadow-md font-gurajadaRegular"
+              className="absolute right-[55px] bottom-[55px] lg:right-20 lg:bottom-24 bg-green-2 text-[18px] lg:text-[20px] px-10 lg:px-16 py-3 rounded-tl-full rounded-br-full shadow-md font-gurajadaRegular"
               onClick={() => window.open('/appointment')}>
                 సంప్రదించండి
             </button>
@@ -32,7 +32,7 @@ const AppointmentCards = () => {
           <div className="shadow-lg relative w-4/5 mt-20 bg-green-3 p-10 rounded-2xl">
             <div className="flex justify-end mt-10">
               <div className="text-center">
-                <p className="text-white text-base font-medium mb-4">
+                <p className="text-white text-base font-medium my-4">
                   అపాయింట్‌మెంట్
                 </p>
                 <p className="text-white text-sm leading-6">

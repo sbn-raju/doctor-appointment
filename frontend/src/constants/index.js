@@ -1,11 +1,10 @@
 export const navItems = [
     {label:"Home", href:"/"},
-    // {label:"About\u00A0Us",href:"/about"},
-    {label:"About",href:"/about"},
     {label:"Service",href:"/services"},
-    {label: "Diet", href:"/"},
-    {label:"Book Appointment",href:"/appointment"},
-    {label:"Book Workshop", href:"/class"},
+    {label:"Diet", href:"/diet"},
+    {label:"Appointment",href:"/appointment"},
+    {label:"Workshop", href:"/class"},
+    {label:"About\u00A0Us",href:"/about"},
 ]
 
 export const youtube = [
@@ -349,7 +348,7 @@ export const classBookings = [
         "id": 2,
         "Name": "Deepthi",
         "PhoneNumber": "9876543210",
-        "Batch": "1",
+        "Batch": "2",
         "Gender": "Female",
         "Age": "25",
         "City": "Hyderabad"
@@ -412,7 +411,7 @@ export const classBookings = [
         "id": 9,
         "Name": "Deepthi",
         "PhoneNumber": "9876543210",
-        "Batch": "1",
+        "Batch": "3",
         "Gender": "Female",
         "Age": "25",
         "City": "Hyderabad"
@@ -430,7 +429,7 @@ export const classBookings = [
         "id": 11,
         "Name": "Deepthi",
         "PhoneNumber": "9876543210",
-        "Batch": "1",
+        "Batch": "3",
         "Gender": "Female",
         "Age": "25",
         "City": "Hyderabad"
@@ -439,7 +438,7 @@ export const classBookings = [
         "id": 12,
         "Name": "Deepthi",
         "PhoneNumber": "9876543210",
-        "Batch": "1",
+        "Batch": "2",
         "Gender": "Female",
         "Age": "25",
         "City": "Hyderabad"
@@ -457,7 +456,7 @@ export const classBookings = [
         "id": 14,
         "Name": "Varun",
         "PhoneNumber": "9876543210",
-        "Batch": "4",
+        "Batch": "2",
         "Gender": "Male",
         "Age": "25",
         "City": "Hyderabad"

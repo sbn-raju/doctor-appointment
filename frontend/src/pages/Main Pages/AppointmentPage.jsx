@@ -95,25 +95,17 @@ const AppointmentPage = () => {
           </div>
         </div>
 
-        <div
-          className="rounded-2xl p-8 md:p-28 max-w-full"
-          style={{
-            backgroundImage: `url(${AppointmentBg})`,
-            backgroundSize: "cover",
-          }}
-        >
-          <h1 className="text-white text-2xl mb-10 mt-5 font-semibold text-center">
-            Book your Appointment
-          </h1>
-          <form
-            onSubmit={handleSubmit}
-            className="w-full flex flex-col justify-center items-center"
-          >
-            <div className="w-full flex flex-col md:flex-row">
-              <div className="w-full md:w-1/2 order-3 md:order-1">
-                <div className="p-8 bg-white rounded-[40px] shadow-lg mt-4 md:mx-5 md:mr-10">
-                  <div className="flex justify-center items-center">
-                    <img className="w-1/2" src={Clock} alt="Clock" />
+        <div 
+          className='rounded-2xl p-8 md:p-28 max-w-full'
+          style={{backgroundImage: `url(${AppointmentBg})`, backgroundSize: 'cover'}}>
+          <h1 className='text-white text-2xl mb-10 mt-5 font-semibold text-center'>Book your Appointment</h1>
+          <form onSubmit={handleSubmit(appointmentData)} className='w-full flex flex-col justify-center items-center'>
+            <div className='w-full flex flex-col md:flex-row'>
+
+              <div className='w-full md:w-1/2 order-3 md:order-1'>
+                <div className='p-8 bg-white rounded-[40px] shadow-lg mt-4 md:mx-5 md:mr-10'>
+                  <div className='flex justify-center items-center'>
+                    <img className='w-1/2' src={Clock} alt='Clock'/>
                   </div>
                   <div className="mt-4">
                     <p className="text-xs md:text-lg">
@@ -151,50 +143,30 @@ const AppointmentPage = () => {
                   className="border-[1px] border-green-800 w-full md:w-11/12 h-10 rounded-[5px] mb-[4px]"
                   style={{ color: "white" }}
                 />
-
-                <label
-                  htmlFor="purpose"
-                  className="text-white text-sm self-start"
-                >
-                  Choose the Purpose *
-                </label>
+                
+                <label htmlFor='purpose' className='text-white text-sm self-start'>Choose the Purpose *</label>
                 <select
-                  type="text"
-                  name="choose_purpose"
-                  value={appointmentFormData.choose_purpose}
-                  onChange={handleChange}
-                  required
+                  id="purpose"
+                  defaultValue="selectPurpose"
                   className="border-[1px] border-green-800 w-full md:w-11/12 h-10 rounded-[5px] mb-[4px]"
+                  {...register("setPurpose", { required: true })}
                 >
-                  <option value="selectPurpose" disabled hidden>
-                    Select a purpose
-                  </option>
-                  {diseasePurpose.map((purpose, i) => (
-                    <option key={i} value={purpose.purposeOfVisit}>
-                      {purpose.purposeOfVisit}
-                    </option>
-                  ))}
+                    <option value="selectPurpose" disabled hidden>Select a purpose</option>
+                    {diseasePurpose.map((purpose, i) => (
+                      <option key={i} value={purpose.purposeOfVisit}>{purpose.purposeOfVisit}</option>
+                    ))}
                 </select>
-                <label
-                  htmlFor="doctor"
-                  className="text-white text-sm self-start mt-1"
-                >
-                  Choose the Doctor *
-                </label>
+                <label htmlFor='doctor' className='text-white text-sm self-start mt-1'>Choose the Doctor *</label>
                 <select
-                  type="text"
-                  name="doctor_id"
-                  value={appointmentFormData.doctor_id}
-                  onChange={handleChange}
-                  required
+                  id="doctor"
+                  defaultValue="selectDoctor"
                   className="border-[1px] border-green-800 w-full md:w-11/12 h-10 rounded-[5px] mb-[4px]"
+                  {...register("setDoctor", { required: true })}
                 >
-                  <option value="selectDoctor">Select your doctor</option>
-                  {doctor.map((doctor, index) => (
-                    <option key={index} value={doctor.id}>
-                      {doctor.name}
-                    </option>
-                  ))}
+                    <option value="selectDoctor" disabled hidden>Select your doctor</option>
+                    {doctorNames.map((d, i) => (
+                      <option key={i} value={d.name}>{d.name}</option>
+                    ))}
                 </select>
 
                 <Input
@@ -283,31 +255,11 @@ const AppointmentPage = () => {
           </form>
         </div>
 
-        <div className="flex flex-col justify-center items-center my-10 p-6">
-          <p className="text-green-700 text-3xl mb-10 mt-5 font-semibold">
-            Know your Doctor
-          </p>
-          <DoctorProfile
-            image={docter}
-            name={"Dr. Ramachandra"}
-            text={
-              "ఆయుర్వేద, అలోపతి, హోమియోపతి, యునాని, సిద్ధ వైద్య విధానం మొదలగు వైద్య విధానం. పంచభూతాలతో చికిత్స చేసే ఒక ప్రక్రియ. ఇందులో మందులు కానీ, పసర్లు కానీ, పూతలు"
-            }
-          />
-          <DoctorProfile
-            image={docter}
-            name={"Dr. Ramachandra"}
-            text={
-              "ఆయుర్వేద, అలోపతి, హోమియోపతి, యునాని, సిద్ధ వైద్య విధానం మొదలగు వైద్య విధానం. పంచభూతాలతో చికిత్స చేసే ఒక ప్రక్రియ. ఇందులో మందులు కానీ, పసర్లు కానీ, పూతలు"
-            }
-          />
-          <DoctorProfile
-            image={docter}
-            name={"Dr. Ramachandra"}
-            text={
-              "ఆయుర్వేద, అలోపతి, హోమియోపతి, యునాని, సిద్ధ వైద్య విధానం మొదలగు వైద్య విధానం. పంచభూతాలతో చికిత్స చేసే ఒక ప్రక్రియ. ఇందులో మందులు కానీ, పసర్లు కానీ, పూతలు"
-            }
-          />
+        <div className='flex flex-col justify-center items-center my-10 p-6'>
+          <p className='text-green-700 text-3xl mb-10 mt-5 font-semibold'>Know your Doctor</p>
+          <DoctorProfile image={docter} name={"Dr. Ramachandra"} text={"ఆయుర్వేద, అలోపతి, హోమియోపతి, యునాని, సిద్ధ వైద్య విధానం మొదలగు వైద్య విధానం. పంచభూతాలతో చికిత్స చేసే ఒక ప్రక్రియ. ఇందులో మందులు కానీ, పసర్లు కానీ, పూతలు"}/>
+          <DoctorProfile image={docter} name={"Dr. Ramachandra"} text={"ఆయుర్వేద, అలోపతి, హోమియోపతి, యునాని, సిద్ధ వైద్య విధానం మొదలగు వైద్య విధానం. పంచభూతాలతో చికిత్స చేసే ఒక ప్రక్రియ. ఇందులో మందులు కానీ, పసర్లు కానీ, పూతలు"}/>
+          <DoctorProfile image={docter} name={"Dr. Ramachandra"} text={"ఆయుర్వేద, అలోపతి, హోమియోపతి, యునాని, సిద్ధ వైద్య విధానం మొదలగు వైద్య విధానం. పంచభూతాలతో చికిత్స చేసే ఒక ప్రక్రియ. ఇందులో మందులు కానీ, పసర్లు కానీ, పూతలు"}/>
         </div>
 
         <div className="flex flex-col justify-center items-center my-10 p-6">

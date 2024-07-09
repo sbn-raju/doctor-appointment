@@ -12,9 +12,9 @@ const ServicesPage = () => {
       <div className="bg-white">
         <div className='p-4 md:p-20 w-full flex flex-col md:flex-row justify-around items-center'>
           <div className='w-full text-center md:w-1/2 md:text-start mb-10 md:my-0 pl-4'>
-            <h2 className="text-[64px] text-[#792F2F]">డా.రామచంద్ర’s</h2>
-            <h1 className="text-[100px] text-green-3">Service with a Smile</h1>
-            <p className="text-[24px] text-black">Discover how our natural approach to healing can bring a smile to your face and wellness to your life!</p>
+            <h2 className="text-[30px] md:text-[50px] font-medium text-[#792F2F]">డా.రామచంద్ర’s</h2>
+            <h1 className="text-[40px] md:text-[70px] text-green-3">Service with a Smile</h1>
+            <p className="text-[20px] md:text-[24px] text-black">Discover how our natural approach to healing can bring a smile to your face and wellness to your life!</p>
           </div>
           <div className='w-full md:w-1/2 flex justify-center'>
             <img src={posterImage} className='w-[200px] md:w-[500px]' />

@@ -21,7 +21,7 @@ const AboutPage = () => {
             </p>
           </div>
           <div className='w-full md:w-1/2 flex justify-center md:justify-end'>
-            <img src={AboutImage} className='w-full md:w-[500px]' alt="AboutUs"/>
+            <img src={AboutImage} className='w-full md:w-[650px]' alt="AboutUs"/>
           </div>
         </div>
         <div className='hidden md:block '>
