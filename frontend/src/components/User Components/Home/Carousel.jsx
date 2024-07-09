@@ -31,8 +31,8 @@ const slides = [
 
 const Carousal = () => {
   return (
-    <div className="w-full flex justify-center items-center h-[626px]">
-      <div className="hidden md:block w-full" style={{ fontFamily: 'Roboto, sans-serif' }}>
+    <div className="w-full flex justify-center items-center h-[626px] mt-6">
+      <div className="hidden md:block w-full rounded-md p-10" style={{ fontFamily: 'Roboto, sans-serif' }}>
         <Carousel autoPlay infiniteLoop showStatus={false} showThumbs={false}>
           {slides.map((slide, index) => (
             <div
@@ -60,31 +60,26 @@ const Carousal = () => {
       </div>
 
       {/* For Medium and Lower Width Devices */}
-      <div className="md:hidden w-screen my-4" style={{ fontFamily: 'Roboto, sans-serif' }}>
-        <Carousel autoPlay infiniteLoop showThumbs={false} showStatus={false}>
-          {slides.map((slide, index) => (
-            <div
-              key={index}
-              className="w-full h-[650px] rounded-xl shadow-md p-4"
-              style={{
-                backgroundImage: `url(${homebgMedium})`,
-                backgroundSize: 'cover',
-              }}
-            >
-              <div className="flex justify-center w-full h-full p-2">
-                <div className='flex flex-col justify-start text-center'>
-                  <p className='text-[#71FF77] text-[10px] md:text-lg my-2'>{slide.para}</p>
-                  <h1 className='text-white text-center text-4xl md:text-7xl font-bold my-4'>{slide.title}</h1>
-                  <div className='flex justify-center'>
-                    <button className="text-sm md:text-lg my-2 w-36 md:w-44 py-2 bg-[#497246] text-white rounded-md font-medium md:font-semibold transition transform ease-in-out hover:scale-110 duration-300 shadow-lg hover:bg-[#355a34] ">
-                      సంప్రదించండి
-                    </button>
-                  </div>
-                </div>
+      <div className="md:hidden w-full my-4" style={{ fontFamily: 'Roboto, sans-serif' }}>
+        <div
+          className="w-full h-[650px] shadow-md p-4"
+          style={{
+            backgroundImage: `url(${homebgMedium})`,
+            backgroundSize: 'cover',
+          }}
+        >
+          <div className="flex justify-center w-full h-full p-2">
+            <div className='flex flex-col justify-start text-center'>
+              <p className='text-[#71FF77] text-[10px] md:text-lg my-2'>3ఇల్లే వైద్యశాల - వంటగధే మందుల షాపు - అమ్మే డాక్టర్</p>
+              <h1 className='text-white text-center text-4xl md:text-7xl font-bold my-4'>డా.రామచంద్ర</h1>
+              <div className='flex justify-center'>
+                <button className="text-sm md:text-lg my-2 w-36 md:w-44 py-2 bg-[#497246] text-white rounded-md font-medium md:font-semibold transition transform ease-in-out hover:scale-110 duration-300 shadow-lg hover:bg-[#355a34] ">
+                  సంప్రదించండి
+                </button>
               </div>
             </div>
-          ))}
-        </Carousel>
+          </div>
+        </div>
       </div>
     </div>
   );

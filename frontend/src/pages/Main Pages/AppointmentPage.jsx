@@ -54,7 +54,7 @@ const AppointmentPage = () => {
         </div>
 
         <div 
-          className='rounded-2xl p-8 md:p-28 max-w-full'
+          className='rounded-2xl p-8 md:px-10 md:py-28 lg:p-28 max-w-full'
           style={{backgroundImage: `url(${AppointmentBg})`, backgroundSize: 'cover'}}>
           <h1 className='text-white text-2xl mb-10 mt-5 font-semibold text-center'>Book your Appointment</h1>
           <form onSubmit={handleSubmit(appointmentData)} className='w-full flex flex-col justify-center items-center'>
@@ -96,30 +96,35 @@ const AppointmentPage = () => {
                   style={{color:'white'}}
                 />
                 
-                <label htmlFor='purpose' className='text-white text-sm self-start'>Choose the Purpose *</label>
-                <select
-                  id="purpose"
-                  defaultValue="selectPurpose"
-                  className="border-[1px] border-green-800 w-full md:w-11/12 h-10 rounded-[5px] mb-[4px]"
-                  {...register("setPurpose", { required: true })}
-                >
-                    <option value="selectPurpose" disabled hidden>Select a purpose</option>
-                    {diseasePurpose.map((purpose, i) => (
-                      <option key={i} value={purpose.purposeOfVisit}>{purpose.purposeOfVisit}</option>
-                    ))}
-                </select>
-                <label htmlFor='doctor' className='text-white text-sm self-start mt-1'>Choose the Doctor *</label>
-                <select
-                  id="doctor"
-                  defaultValue="selectDoctor"
-                  className="border-[1px] border-green-800 w-full md:w-11/12 h-10 rounded-[5px] mb-[4px]"
-                  {...register("setDoctor", { required: true })}
-                >
-                    <option value="selectDoctor" disabled hidden>Select your doctor</option>
-                    {doctorNames.map((d, i) => (
-                      <option key={i} value={d.name}>{d.name}</option>
-                    ))}
-                </select>
+                <span>
+                  <label htmlFor='purpose' className='text-white text-sm self-start'>Choose the Purpose *</label>
+                  <select
+                    id="purpose"
+                    defaultValue="selectPurpose"
+                    className="border-[1px] border-green-800 w-full md:w-11/12 h-10 rounded-[5px] mb-[4px]"
+                    {...register("setPurpose", { required: true })}
+                  >
+                      <option value="selectPurpose" disabled hidden>Select a purpose</option>
+                      {diseasePurpose.map((purpose, i) => (
+                        <option key={i} value={purpose.purposeOfVisit}>{purpose.purposeOfVisit}</option>
+                      ))}
+                  </select>
+                </span>
+
+                <span>
+                  <label htmlFor='doctor' className='text-white text-sm self-start mt-1'>Choose the Doctor *</label>
+                  <select
+                    id="doctor"
+                    defaultValue="selectDoctor"
+                    className="border-[1px] border-green-800 w-full md:w-11/12 h-10 rounded-[5px] mb-[4px]"
+                    {...register("setDoctor", { required: true })}
+                  >
+                      <option value="selectDoctor" disabled hidden>Select your doctor</option>
+                      {doctorNames.map((d, i) => (
+                        <option key={i} value={d.name}>{d.name}</option>
+                      ))}
+                  </select>
+                </span>
 
                 <Input
                   label="Date *"
@@ -190,7 +195,7 @@ const AppointmentPage = () => {
           </form>
         </div>
 
-        <div className='flex flex-col justify-center items-center my-10 p-6'>
+        <div className='flex flex-col justify-center items-center my-10 p-6 w-full'>
           <p className='text-green-700 text-3xl mb-10 mt-5 font-semibold'>Know your Doctor</p>
           <DoctorProfile image={docter} name={"Dr. Ramachandra"} text={"ఆయుర్వేద, అలోపతి, హోమియోపతి, యునాని, సిద్ధ వైద్య విధానం మొదలగు వైద్య విధానం. పంచభూతాలతో చికిత్స చేసే ఒక ప్రక్రియ. ఇందులో మందులు కానీ, పసర్లు కానీ, పూతలు"}/>
           <DoctorProfile image={docter} name={"Dr. Ramachandra"} text={"ఆయుర్వేద, అలోపతి, హోమియోపతి, యునాని, సిద్ధ వైద్య విధానం మొదలగు వైద్య విధానం. పంచభూతాలతో చికిత్స చేసే ఒక ప్రక్రియ. ఇందులో మందులు కానీ, పసర్లు కానీ, పూతలు"}/>

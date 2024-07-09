@@ -34,7 +34,7 @@ function ItemsCard() {
 
   return (
     <div className="w-full mt-20 flex flex-col justify-center items-center">
-      <h2 className="font-gurajadaRegular text-[64px] lg:font-bold lg:text-3xl text-[#5A7F53] mt-4 mb-8">
+      <h2 className="font-gurajadaRegular text-[40px] lg:text-[50px] text-[#5A7F53] mt-4 mb-8">
         మా స్టోర్
       </h2>
       <div className="min-w-full h-auto flex flex-col justify-center items-center mt-6 gap-4 mb-20">

@@ -76,7 +76,7 @@ const ReschedulePage = () => {
         </form>
       </div>
 
-      <div className='bg-white shadow-md p-4 rounded-2xl'>
+      <div className='w-full bg-white shadow-md p-4 rounded-2xl'>
         <p className='my-2 font-medium text-lg'>Instructions:</p>
         <p className='my-2 text-sm'>Your privacy is important to us. We guarantee that your username and personal information will be kept confidential and will not be shared with any third parties. Feel safe knowing your data is secure.</p>
       </div>
