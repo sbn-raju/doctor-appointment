@@ -1,11 +1,59 @@
-import React, { useState } from "react";
-import classImg from '../../assets/Page Assets/Home/class-img.png';
+import React, { useState, useEffect } from "react";
+import classImg from "../../assets/Page Assets/Home/class-img.png";
 import Input from "../../components/Input Fields/Input";
-import axios from "axios";
 import FAQ from "../../components/Main Page Components/FAQ";
-import classBg from '../../assets/Page Assets/Home/class-bg.png';
+import classBg from "../../assets/Page Assets/Home/class-bg.png";
+import axios from "axios";
+import Loading from "../../components/Loading";
 
 const ClassPage = () => {
+  const [classDate, setClassDate] = useState();
+  const [loading, setloading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchDateOfClass = async () => {
+      try {
+        const classDatefetching = await axios.get(
+          "http://localhost:8080/api/v1/class/admin/upcoming-class/date"
+        );
+        console.log(classDatefetching.data.data);
+        if(classDatefetching.data.data.length!=0){
+        const inputDate = classDatefetching.data.data.class_date;
+        const date = new Date(inputDate);
+
+        // Extract day, month, and year from the date object
+        const day = date.getUTCDate().toString().padStart(2, "0"); 
+        // Get day and pad with leading zero if necessary
+        const month = (date.getUTCMonth() + 1).toString().padStart(2, "0");
+        // Get month (zero-indexed, hence +1) and pad with leading zero if necessary
+        const year = date.getUTCFullYear();
+
+        // Format the date as dd-mm-yyyy
+        const formattedDate = `${day}-${month}-${year}`;
+
+        console.log(formattedDate);
+        
+        setClassDate(formattedDate);
+        setloading(false);
+        }
+        else{
+          setClassDate("No Bookings");
+          setloading(false);
+        }
+
+
+      } catch (error) {
+
+        console.log(error);
+        setError(error);
+        setloading(false);
+      }
+    };
+
+    fetchDateOfClass();
+  }, []);
+
   //Initating the Form Data
   const [formData, setFormData] = useState({
     name: "",
@@ -13,7 +61,6 @@ const ClassPage = () => {
     whatsapp: "",
     city: "",
   });
-
 
   //Handle Change on the input changes
   const handleChange = (e) => {
@@ -26,7 +73,7 @@ const ClassPage = () => {
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-//Creating the order on the amount change
+    //Creating the order on the amount change
     const amount = 1000;
     const {
       data: { order },
@@ -35,8 +82,8 @@ const ClassPage = () => {
     });
 
     // console.log(formData)
-    
-// Creating Options of the RazorPay Instance
+
+    // Creating Options of the RazorPay Instance
     const options = {
       key: "rzp_test_mgIOiPxqkV", // Enter the Key ID generated from the Dashboard//Should BE in the Env File
       amount: order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
@@ -72,17 +119,22 @@ const ClassPage = () => {
     razor.open();
   };
 
+  if (loading) return <Loading />;
+  if (error) return <div>Error... Check Console</div>;
+
   return (
     <div className="w-full h-auto mb-10 bg-white">
       <div className="p-4 md:p-10 w-full flex flex-col md:flex-row justify-around items-center">
         <div className="w-full text-center md:w-1/2 md:text-start mb-10 md:my-0 pl-4">
-          <p className='text-amber-900 font-bold text-[25px] md:text-4xl'>డా.రామచంద్ర’s</p>
+          <p className="text-amber-900 font-bold text-[25px] md:text-4xl">
+            డా.రామచంద్ర’s
+          </p>
           <h1 className="text-green-4 font-bold text-[40px] md:text-[80px] mb-2 leading-tight">
             Naturopathy Workshop
           </h1>
           <p className="text-red-400 text-base md:text-lg w-full md:w-4/5">
-            Explore a variety of holistic classes, from yoga to herbal
-            remedies, and effortlessly reserve your spot.
+            Explore a variety of holistic classes, from yoga to herbal remedies,
+            and effortlessly reserve your spot.
           </p>
         </div>
         <div className="w-full md:w-1/2 flex justify-center md:justify-end">
@@ -92,18 +144,21 @@ const ClassPage = () => {
 
       <div className="my-8 text-center p-6">
         <p className="text-[48px] text-[#194D2E] font-semibold">
-          21 రోజుల ప్రకృతే వైద్యుడు వర్కషాప్ 22th May 2024 నుంచి ప్రారంభం
+          21 రోజుల ప్రకృతే వైద్యుడు వర్కషాప్ {classDate} నుంచి ప్రారంభం
         </p>
       </div>
 
-      <div 
+      <div
         className="flex flex-col justify-center items-center rounded-2xl p-4 pt-40 md:pt-40 md:p-10 text-white bg-center md:bg-top"
-        style={{backgroundImage: `url(${classBg})`, backgroundSize: 'cover'}}>
+        style={{ backgroundImage: `url(${classBg})`, backgroundSize: "cover" }}
+      >
         <div className="w-full md:flex md:flex-row md:p-0">
           <div className="w-full md:w-2/5 flex flex-col justify-center items-center mb-6 md:mb-0">
             <div className="w-full flex justify-center">
               <iframe
-                src={"https://www.youtube.com/embed/uJv63hoxgWc?si=tAcwZvpWmLowdvGr&amp;start=3"}
+                src={
+                  "https://www.youtube.com/embed/uJv63hoxgWc?si=tAcwZvpWmLowdvGr&amp;start=3"
+                }
                 title="YouTube video player"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -128,10 +183,11 @@ const ClassPage = () => {
             </p>
 
             <p className="text-center">
-              Online trainings on Naturopathic lifestyle that changes everything. An
-              ancient knowledge with modern scientific approach that healed lakhs of
-              people from uncurable ailments, by Dr. Padma & Dr. Ramachandra ("Dr. APJ
-              Abdul Kalam National" Awardee & "A Living Charaka" Awardee)
+              Online trainings on Naturopathic lifestyle that changes
+              everything. An ancient knowledge with modern scientific approach
+              that healed lakhs of people from uncurable ailments, by Dr. Padma
+              & Dr. Ramachandra ("Dr. APJ Abdul Kalam National" Awardee & "A
+              Living Charaka" Awardee)
             </p>
           </div>
         </div>
@@ -188,20 +244,20 @@ const ClassPage = () => {
 
           <div className="p-6 mt-6 pl-44 pr-44">
             <p className="font-medium mb-2 flex">
-              గమనిక: You will get updates on your WhatsApp number. పైన మీ వాట్సాప్
-              ఫోన్ నంబరు సరిగ్గా ఎంటర్ చేయకపోతే ట్రైనింగ్ లో పాల్గొనలేరు.
+              గమనిక: You will get updates on your WhatsApp number. పైన మీ
+              వాట్సాప్ ఫోన్ నంబరు సరిగ్గా ఎంటర్ చేయకపోతే ట్రైనింగ్ లో
+              పాల్గొనలేరు.
             </p>
 
             <div className="w-full flex flex-start mt-6">
-              <Input
-                type="checkbox"
-                id="checkbox"
-                className="mr-2"
-              />
-              <label htmlFor="checkbox" className="mt-6 text-white text-xs md:text-base">
-                I agree and accept the payment ‘terms and conditions’. & I understand
-                that this training is NOT a substitute for the consultation, diagnosis,
-                and/or medical treatment. *
+              <Input type="checkbox" id="checkbox" className="mr-2" />
+              <label
+                htmlFor="checkbox"
+                className="mt-6 text-white text-xs md:text-base"
+              >
+                I agree and accept the payment ‘terms and conditions’. & I
+                understand that this training is NOT a substitute for the
+                consultation, diagnosis, and/or medical treatment. *
               </label>
             </div>
 
@@ -210,9 +266,10 @@ const ClassPage = () => {
                 Important Note About Registrations:
               </span>
               <br />
-              When registering, please double-check that you have entered your phone
-              number correctly. In the event that you provide incorrect information,
-              we will be unable to contact you. Thank you for your cooperation.
+              When registering, please double-check that you have entered your
+              phone number correctly. In the event that you provide incorrect
+              information, we will be unable to contact you. Thank you for your
+              cooperation.
             </p>
           </div>
 
@@ -227,20 +284,39 @@ const ClassPage = () => {
         </form>
       </div>
 
-
-        <div className='flex flex-col justify-center items-center my-10 p-6'>
-          <div className='w-full md:w-5/6'>
-            <div className='my-4 text-center'>
-              <p className='font-semibold text-2xl'>FAQs</p>
-            </div>
-            <div className='w-full mt-4'>
-              <FAQ text={"1. What conditions can Naturopathy help with?"} answer={"Naturopathy can help with chronic conditions like arthritis and digestive disorders, as well as mental health issues such as stress and anxiety, using natural remedies and lifestyle changes. It also supports immune system health, helping with frequent colds and infections."}/>
-              <FAQ text={"2. What can I expect from a Naturopathic consultation?"} answer={"During a naturopathic consultation, you can expect a comprehensive assessment of your health, including a detailed discussion of your medical history, lifestyle, diet, and any symptoms you're experiencing. The naturopath will then develop a personalized treatment plan, which may include dietary recommendations, lifestyle changes, herbal remedies, and other natural therapies tailored to your specific needs."}/>
-              <FAQ text={"3. How long does it take to see results with Naturopathy?"} answer={"The time it takes to see results with naturopathy can vary widely depending on the individual and the condition being treated. Generally, some improvements may be noticed within a few weeks, but more significant or chronic conditions might take several months to show substantial results. Consistency with the recommended lifestyle changes and treatments is key to achieving the best outcomes."}/>
-              <FAQ text={"4. Are Naturopathic treatments evidence-based?"} answer={"Naturopathic treatments can be evidence-based, especially when they incorporate dietary changes, exercise, and certain herbal remedies that have been scientifically studied. However, the extent of evidence varies, and some treatments may rely more on traditional use and practitioner experience rather than rigorous scientific research. It’s important to discuss the evidence supporting specific treatments with your naturopath to make informed decisions."}/>
-            </div>
+      <div className="flex flex-col justify-center items-center my-10 p-6">
+        <div className="w-full md:w-5/6">
+          <div className="my-4 text-center">
+            <p className="font-semibold text-2xl">FAQs</p>
+          </div>
+          <div className="w-full mt-4">
+            <FAQ
+              text={"1. What conditions can Naturopathy help with?"}
+              answer={
+                "Naturopathy can help with chronic conditions like arthritis and digestive disorders, as well as mental health issues such as stress and anxiety, using natural remedies and lifestyle changes. It also supports immune system health, helping with frequent colds and infections."
+              }
+            />
+            <FAQ
+              text={"2. What can I expect from a Naturopathic consultation?"}
+              answer={
+                "During a naturopathic consultation, you can expect a comprehensive assessment of your health, including a detailed discussion of your medical history, lifestyle, diet, and any symptoms you're experiencing. The naturopath will then develop a personalized treatment plan, which may include dietary recommendations, lifestyle changes, herbal remedies, and other natural therapies tailored to your specific needs."
+              }
+            />
+            <FAQ
+              text={"3. How long does it take to see results with Naturopathy?"}
+              answer={
+                "The time it takes to see results with naturopathy can vary widely depending on the individual and the condition being treated. Generally, some improvements may be noticed within a few weeks, but more significant or chronic conditions might take several months to show substantial results. Consistency with the recommended lifestyle changes and treatments is key to achieving the best outcomes."
+              }
+            />
+            <FAQ
+              text={"4. Are Naturopathic treatments evidence-based?"}
+              answer={
+                "Naturopathic treatments can be evidence-based, especially when they incorporate dietary changes, exercise, and certain herbal remedies that have been scientifically studied. However, the extent of evidence varies, and some treatments may rely more on traditional use and practitioner experience rather than rigorous scientific research. It’s important to discuss the evidence supporting specific treatments with your naturopath to make informed decisions."
+              }
+            />
           </div>
         </div>
+      </div>
     </div>
   );
 };

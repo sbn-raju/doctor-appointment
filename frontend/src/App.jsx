@@ -10,6 +10,7 @@ import {
   PaymentPage,
 } from "./pages/Easy Imports/Admin Dashboard Imports/admin.js";
 import {
+  AdminLogin,
   UserLogin,
   UserRegister,
 } from "./pages/Easy Imports/Auth Imports/auth.js";
@@ -37,9 +38,26 @@ import WhatsappTemplatePage from "./pages/Admin Dashboard Pages/whatsappTemplate
 import DoctorLogin from "./pages/Auth Pages/Doctor Auth/DoctorLogin.jsx";
 import DoctorAppointments from "./pages/Doctor Dashboard Pages/DoctorAppointments.jsx";
 import ProtectedRoute from "./routes/Protected Route/ProtectedRoute.jsx";
+import PrivateRoute from "./routes/Private Route/PrivateRoute.jsx";
+import { useSelector } from "react-redux";
+
+
+
+
 
 //EVERY ONE USE APP FOR TESTING YOUR COMPONENT
 function App() {
+  const Admintoken = useSelector((state) => state.auth.token);
+  let isAuth 
+  if(!Admintoken){
+    isAuth = false
+  }
+  else{
+    isAuth = true
+  }
+
+
+
   return (
     <BrowserRouter>
       <Routes>
@@ -76,7 +94,15 @@ function App() {
 
 
         {/* This are the Private Routes only the admin can access this routes and the their can be the multiple admin */}
-        <Route path="/admin" element={<Admin_Layout />}>
+        <Route path="/admin/login" element={<AdminLogin/>} />
+        <Route
+          path="/admin"
+          element={
+            <PrivateRoute isAuthenticated={false} isAdmin={true}>
+              <Admin_Layout/>
+            </PrivateRoute>
+          }
+        >
           <Route path="addDoctor" element={<AddDoctorPage />} />
           <Route path="appointment" element={<AppointmentsPage />} />
           <Route path="appointment/reschedule" element={<ReschedulePage />} />
@@ -88,6 +114,7 @@ function App() {
           <Route path="youtube" element={<YoutubeVideosPage />} />
           <Route path="users" element={<UserDataPage />} />
         </Route>
+
 
         {/* This are the Private Routes only the admin can access this routes and the their can be the multiple admin */}
         <Route path="/doctor" element={<Doctor_Layout />}>

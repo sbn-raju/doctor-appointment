@@ -3,13 +3,13 @@ import { Navigate, Outlet } from "react-router-dom";
 
 const PrivateRoute = ({ isAuthenticated, isAdmin, children }) => {
   if (!isAuthenticated) {
-    <Navigate to={"/login"} />;
+    <Navigate to={"/admin/login"} />;
   }
 
-  if (isAuthenticated && !isAdmin) {
-    <Navigate to={"/login"} />;
+  if (!isAuthenticated && !isAdmin) {
+    <Navigate to={"/admin/login"} />;
   }
-  return children ? children : <Outlet />;
+  return children ?children: <Outlet />
 };
 
 export default PrivateRoute;

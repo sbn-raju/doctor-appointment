@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Carousal from "../../components/User Components/Home/Carousel";
 import RandomImage from "../../assets/Page Assets/Home/Rectangle 85.png";
@@ -16,27 +16,63 @@ import Services from "../../assets/Page Assets/Home/services.png";
 import ServicesMb from '../../assets/Page Assets/Home/services_mb.svg';
 import docImg from '../../assets/Page Assets/Home/docImg2.svg';
 import AboutUsCard from "../../components/User Components/Home/AboutUsCard";
+import axios from "axios"
+import {youtube} from "../../constants/index.js"
+import Loading from "../../components/Loading.jsx";
 
-const youtube = [
-  {
-    id: 1,
-    tag: "https://www.youtube.com/embed/uJv63hoxgWc?si=tAcwZvpWmLowdvGr&amp;start=3",
-  },
-  {
-    id: 2,
-    tag: "https://www.youtube.com/embed/D3oUsDkoWS4?si=tBWmqKkY9n45vClT&amp;start=1",
-  },
-  {
-    id: 3,
-    tag: "https://www.youtube.com/embed/D3oUsDkoWS4?si=tBWmqKkY9n45vClT&amp;start=1",
-  },
-  {
-    id: 4,
-    tag: "https://www.youtube.com/embed/INwoESOPi2o?si=r6PUQ66474cyJWoO&amp;start=3",
-  },
-];
+
 
 const HomePage = () => {
+ const [loading, setLoading] = useState(true);
+ const [error, setError] = useState(null);
+ const [youtubeVideos, setYoutubeVideos] = useState([]);
+ const [testimonials, setTestimonials] = useState([]);
+
+
+ useEffect(() => {
+  const fetchYoutubeVideos = async()=>{
+    try{
+        const [youtubeVideosResponse, testimonialsResponse] = await Promise.all([
+          await axios.get("http://localhost:8080/api/v1/youtube/video"),
+          await axios.get("http://localhost:8080/api/v1/youtube/testimonials")
+        ])
+        const youtubeVideosData = youtubeVideosResponse.data.data
+        const testimonialsData = testimonialsResponse.data.data
+        if(youtubeVideosData.length == 4 && testimonialsData.length == 3){
+          setYoutubeVideos(youtubeVideosData)
+          setTestimonials(testimonialsData)
+          setLoading(false);
+        }
+        else{
+          setYoutubeVideos(youtube)
+          setTestimonials(testimonialsResponse.data.data)
+          setLoading(false)
+        }
+    }catch(error){
+      console.log(error);
+      setError(error);
+      setLoading(false);
+    }
+  }
+
+
+  
+   fetchYoutubeVideos();
+ }, [])
+ 
+
+
+
+
+
+
+ if(loading) return <Loading/>
+
+ if(error) return <div>Error...Check Console</div>
+
+
+
+
   return (
     <>
       <div className="w-full px-8 py-2">
@@ -185,13 +221,13 @@ const HomePage = () => {
           </h2>
         </div>
         <div className="w-full sm:w-4/5 md:w-4/5 lg:w-4/5 h-auto grid grid-cols-1 lg:grid-cols-2 gap-8 mt-4">
-          {youtube.map((video) => (
+          {youtubeVideos?.map((video) => (
             <div
               key={video.id}
               className="h-60 w-full px-5 md:w-3/5 lg:w-4/5 lg:h-64 m-auto"
             >
               <iframe
-                src={video.tag}
+                src={video.link_iframe?video.link_iframe:video.tag}
                 title="YouTube video player"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -211,10 +247,10 @@ const HomePage = () => {
         <h2 className="text-black text-[64px] font-gurajadaRegular mt-52 flex justify-center">స్వస్థత గాధలు</h2>
         <div className="flex-grow flex flex-col justify-center items-center">
           <div className="w-full flex flex-col md:flex-row justify-evenly items-center">
-            {youtube.slice(0, 3).map((video, index) => (
+            {testimonials?.slice(0, 3).map((video, index) => (
               <div key={index} className="h-52 m-6">
                 <iframe
-                  src={video.tag}
+                  src={video.links_iframe_testimonials}
                   title={`YouTube video ${index + 1}`}
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

@@ -298,6 +298,30 @@ const getUpcomingClass = async(req,res,next)=>{
 } 
 
 
+const getUpcomingClassDate = async(req,res,next)=>{
+  const getUpcomingClassQuery = "SELECT class_date FROM class_master WHERE status = $1 AND isactive IS NULL"
+  try {
+    const getUpcomingClassResults = await pool.query(getUpcomingClassQuery, [0]);
+    if(getUpcomingClassResults.rowCount != 0){
+      return res.status(200).json({
+        success:true,
+        message:"Date of the Upcoming Class",
+        data:getUpcomingClassResults.rows[0]
+      })
+    }
+    else{
+      return res.status(200).json({
+        success:true,
+        message:"No Upcoming Classes Found",
+        data:getUpcomingClassResults.rows
+      })
+    }
+  } catch (error) {
+    return next(new ErrorHandler(false, `${error}` ,400));
+  }
+}
+
+
 
 
 
@@ -436,6 +460,7 @@ export {
   getClass,
   getOngoingClass,
   getUpcomingClass,
+  getUpcomingClassDate,
   getClassWithId,
   putClass,
   deleteClass,

@@ -71,7 +71,6 @@ function slotCalculatorInner(
 ) {
   const slots =
     ((hour_one - hour_two) * 60 + (mins_one - mins_two)) / time_duration
-  console.log(slots)
   if (typeof slots == "number") {
     return slots
   } else {

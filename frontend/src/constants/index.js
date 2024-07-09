@@ -8,6 +8,26 @@ export const navItems = [
     {label:"Book Workshop", href:"/class"},
 ]
 
+export const youtube = [
+    {
+      id: 1,
+      tag: "https://www.youtube.com/embed/uJv63hoxgWc?si=tAcwZvpWmLowdvGr&amp;start=3",
+    },
+    {
+      id: 2,
+      tag: "https://www.youtube.com/embed/D3oUsDkoWS4?si=tBWmqKkY9n45vClT&amp;start=1",
+    },
+    {
+      id: 3,
+      tag: "https://www.youtube.com/embed/D3oUsDkoWS4?si=tBWmqKkY9n45vClT&amp;start=1",
+    },
+    {
+      id: 4,
+      tag: "https://www.youtube.com/embed/INwoESOPi2o?si=r6PUQ66474cyJWoO&amp;start=3",
+    },
+  ];
+
+
 export const aboutLeftCardData = [
     {
         year:"1994",
@@ -1050,12 +1070,15 @@ export const testimonialVideos = [
 
 export const doctorNames = [
     {
+        id:1,
         name: "Dr. Ramachandra"
     },
     {
+        id:2,
         name: "Dr. Padma",
     },
     {
+        id:3,
         name: "Dr. Varun"
     }
 ]

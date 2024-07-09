@@ -154,7 +154,7 @@ const youtubeLinkTestimonialsCreate = async(req,res,next)=>{
 const youtubeLinkTestimonialsGet = async(req,res,next)=>{
    try {
     const limit = 3;
-    const youtubeLinkTestimonialsGetQuery = "SELECT * FROM youtube_links_testimonials ORDER BY created_at LIMIT $1"
+    const youtubeLinkTestimonialsGetQuery = "SELECT * FROM youtube_links_testimonials ORDER BY  created_at  DESC LIMIT $1"
     const youtubeLinkTestimonialsGetValue = [limit]
 
     try {

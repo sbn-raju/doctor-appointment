@@ -54,6 +54,7 @@ const appointmentSlotMasterGetSlots = async(req,res,next)=>{
     try {
         const { date, doctor_id } = req.body
         
+        
         const getQuerySlotMaster = "SELECT * FROM appointment_slot_master WHERE appointment_id = (SELECT id FROM appointment_master WHERE date = $1 AND doctor_id = $2)"
         const getValueSlotMaster = [date, doctor_id]
 
@@ -63,11 +64,14 @@ const appointmentSlotMasterGetSlots = async(req,res,next)=>{
                 return res.status(200).json({
                     success:true,
                     message:"This is the Fetched Results",
-                    date:getResults.rows
+                    data:getResults.rows
                 })
             }
             else{
-                return next(new ErrorHandler(false, "Id not found", 403))
+                return res.status(200).json({
+                    success:true,
+                    message:"Slots not avliabale"
+                })
             }
 
         }catch(error){

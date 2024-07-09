@@ -23,7 +23,7 @@ const setClassValidator = [
 
 
 const adminAuth = [
-    check("username","Username is Required").not().isEmpty().isAlphanumeric(),
+    check("username","Username is Required").not().isEmpty().isAlphanumeric().trim(),
     check("password","Password is Required").not().isEmpty().isString()
 ]
 

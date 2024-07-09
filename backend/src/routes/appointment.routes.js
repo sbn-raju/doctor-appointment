@@ -9,11 +9,11 @@ const appointmentRoute = Router()
 
 appointmentRoute.route("/create/slot").post(authentication, adminAutho, appointmentMasterCreate);
 
-appointmentRoute.route("/get/slots").get(authentication, adminAutho, appointmentSlotMasterGetSlots);
+appointmentRoute.route("/get/slots").post( appointmentSlotMasterGetSlots);
 
-appointmentRoute.route("/get/dateSlots").get(authentication, adminAutho,appointmentSlotPerDate)
+appointmentRoute.route("/get/dateSlots").get(authentication, adminAutho, appointmentSlotPerDate)
 
-appointmentRoute.route("/empty-slots").post(authentication, adminAutho,emptySlotsValidator, emptySlots)
+appointmentRoute.route("/empty-slots").post(authentication, adminAutho, emptySlotsValidator, emptySlots)
 
 
 

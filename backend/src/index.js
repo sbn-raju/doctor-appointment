@@ -10,6 +10,7 @@ import helmet from "helmet";
 import {rateLimit} from "express-rate-limit";
 import session from "express-session";
 import cookieParser from "cookie-parser"
+import cors from "cors"
 
 
 //Middlewares 
@@ -39,6 +40,7 @@ app.use(session({
 }));
 
 app.use(cookieParser());
+app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
 
 
 
@@ -50,6 +52,7 @@ import youtubeLinkRoute from "./routes/youtube.routes.js";
 import appointmentRoute from "./routes/appointment.routes.js";
 import userAppointmentRoute from "./routes/appointmnet.user.routes.js"
 import authAdminRoute from "./routes/adminAuth.routes.js";
+import doctorRoute from "./routes/doctorauth.routes.js";
 
 
 //Main routes
@@ -58,6 +61,7 @@ app.use("/api/v1/class", classRoute);
 app.use("/api/v1/class_booking",classUserRoute);
 app.use("/api/v1/youtube",youtubeLinkRoute);
 app.use("/api/v1/admin",authAdminRoute);
+app.use("/api/v1/doctor",doctorRoute)
 app.use("/api/v1/appointment",appointmentRoute);
 app.use("/api/v1/appointment/user",userAppointmentRoute);
 
