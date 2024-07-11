@@ -4,41 +4,32 @@ import {authClientWithNumber, verify_sid} from "../services/twilio.services.js";
 let currentTimeStamp = new Date();
 
 
-
+const generateOtp = async ()=>{
+    return Math.floor(100000 + Math.random() * 900000)
+}
 
 const sendOneTimePasswordRegisterController = async(req,res,next)=>{
-    const {phoneNumber} = req.body;
+    try {
+      const {phoneNumber} = req.body;
     if(!phoneNumber){
       return res.status(400).json({
         success: false,
         error: "Phone number is required"
       });
     }
-     
-     const sendOTPQuery = "INSERT INTO user_registration (mobile_no) VALUES ($1) RETURNING *"
-     const sendOTPValues = [phoneNumber];
-    try{
-      const verification = await authClientWithNumber.verify.v2.services(verify_sid)
-      .verifications
-      .create({
-        to: `${phoneNumber}`,
-        channel: 'sms'
-      });
-      const sendOTPResults = await pool.query(sendOTPQuery, sendOTPValues);
-      if(sendOTPResults.rowCount != 0 && verification.status == "pending"){
-        return res.status(200).json({
-          success: true, 
-          status: verification.status,
-          data:sendOTPResults.rows
-        })
-      }
-    }catch(error){
-      console.error('Error initializing verification: ',error);
-      res.status(500).json({
-        status: false,
-        error,
-      });
+    const generatedOtp = await generateOtp()
+    const sendOTPQuery = "INSERT INTO user_registration (mobile_no, generated_otp) VALUES ($1,$2) RETURNING *"
+    const sendOTPValues = [phoneNumber, generatedOtp];
+    try {
+      const sendOTPResults = await pool.query(sendOTPQuery,sendOTPValues);
+      const messageSender = senderOneTimePassword()
+    } catch (error) {
+      
     }
+    } catch (error) {
+      
+    }
+    
 }
 
 

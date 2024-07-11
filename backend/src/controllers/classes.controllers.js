@@ -322,7 +322,30 @@ const getUpcomingClassDate = async(req,res,next)=>{
 }
 
 
-
+const getBatchMembers = async(req,res,next)=>{
+  const{class_id} = req.body
+  const getBatchMembersQuery = "SELECT * FROM class_booking WHERE class_id = $1"
+  try {
+    const getBatchMembersResults = await pool.query(
+      getBatchMembersQuery,
+      [class_id]
+    )
+    if (getBatchMembersResults.rowCount != 0) {
+      return res.status(200).json({
+        success: true,
+        message: "All the Class Data",
+        data: getBatchMembersResults.rows,
+      })
+    } else {
+      return res.status(200).json({
+        success: true,
+        message: "Id Not Found",
+      })
+    }
+  } catch (error) {
+    return next(new ErrorHandler(false, `${error}`, 400))
+  }
+}
 
 
 //Getting all the Previous Classes
@@ -461,6 +484,7 @@ export {
   getOngoingClass,
   getUpcomingClass,
   getUpcomingClassDate,
+  getBatchMembers,
   getClassWithId,
   putClass,
   deleteClass,

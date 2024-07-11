@@ -5,11 +5,15 @@ import FAQ from "../../components/Main Page Components/FAQ";
 import classBg from "../../assets/Page Assets/Home/class-bg.png";
 import axios from "axios";
 import Loading from "../../components/Loading";
+import Toast, { toast, Toaster } from "react-hot-toast"
+import payImage from "../../assets/Logo/image 2.png"
 
 const ClassPage = () => {
   const [classDate, setClassDate] = useState();
+  const [isEnable, setIsEnable] = useState(true);
   const [loading, setloading] = useState(true);
   const [error, setError] = useState(null);
+  const [inputError, setInputError] = useState(null);
 
   useEffect(() => {
     const fetchDateOfClass = async () => {
@@ -39,6 +43,7 @@ const ClassPage = () => {
         }
         else{
           setClassDate("No Bookings");
+          setIsEnable(false);
           setloading(false);
         }
 
@@ -69,28 +74,41 @@ const ClassPage = () => {
       ...formData,
       [name]: value,
     });
+    setInputError();
   };
+
+  
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const {name, email, whatsapp} = formData
+    if(!(name && email && whatsapp)){
+      toast.error("Fill the Form Compeletly");
+      setInputError("Fill The Form Completely")
+      return
+    }
+
+
     //Creating the order on the amount change
     const amount = 1000;
-    const {
-      data: { order },
-    } = await axios.post("/api/v1/class_booking/user/payments", {
-      amount,
-    });
+    console.log(formData)
 
-    // console.log(formData)
+    try {
+      const {data: { order }} = await axios.post("api/v1/orders/payment", {amount});
+      if(!order){
+        toast.error("Order is not Created");
+        return
+      }
 
-    // Creating Options of the RazorPay Instance
-    const options = {
-      key: "rzp_test_mgIOiPxqkV", // Enter the Key ID generated from the Dashboard//Should BE in the Env File
+      // Creating Options of the RazorPay Instance
+      const options = {
+      key: import.meta.env.VITE_RAZORPAY_KEY_ID, // Enter the Key ID generated from the Dashboard//Should BE in the Env File
       amount: order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
       currency: "INR",
-      name: "Collasyn",
-      description: "Test Transaction",
-      image: "https://example.com/your_logo",
+      name: "Dr. Padma & Ramachandra",
+      description: "Class Booking",
+      image: payImage,
       order_id: order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
       handler: async function (response) {
         const paymentData = {
@@ -100,26 +118,38 @@ const ClassPage = () => {
           formData,
         };
         try {
-          const verifyUrl = "/api/v1/class_booking/user/setClass_booking";
+          const verifyUrl = "api/v1/class_booking/user/setClass_booking";
           const verifyResponse = await axios.post(verifyUrl, paymentData);
           if (verifyResponse.data.success) {
-            alert("Payment successful and data saved!");
+            console.log(verifyResponse)
+            toast.success("Payment successful and data saved!")
+            setFormData({
+              name: "",
+              email: "",
+              whatsapp: "",
+              city: "",
+            })
           } else {
-            alert("Payment verification failed!");
+            toast.error("Payment not Done")
           }
         } catch (error) {
+          toast.error(error);
           console.error("Verification error:", error);
         }
       },
       theme: {
-        color: "#33cc99",
+        color: "#006400",
       },
     };
     const razor = new Razorpay(options);
     razor.open();
+    } catch (error) {
+      
+    }
   };
 
   if (loading) return <Loading />;
+
   if (error) return <div>Error... Check Console</div>;
 
   return (
@@ -143,10 +173,8 @@ const ClassPage = () => {
       </div>
 
       <div className="my-8 text-center p-6">
-        <p className="text-[48px] text-[#194D2E] font-semibold">
-          21 రోజుల ప్రకృతే వైద్యుడు వర్కషాప్ {classDate} నుంచి ప్రారంభం
         <p className="text-[24px] md:text-[30px] text-[#194D2E] font-semibold">
-          21 రోజుల ప్రకృతే వైద్యుడు వర్కషాప్ 22th May 2024 నుంచి ప్రారంభం
+          21 రోజుల ప్రకృతే వైద్యుడు వర్కషాప్ {classDate} నుంచి ప్రారంభం
         </p>
       </div>
 
@@ -274,14 +302,16 @@ const ClassPage = () => {
               cooperation.
             </p>
           </div>
-
+          <p className="text-red-700">{inputError?inputError:null}</p>
           <div className="flex justify-center mt-6">
             <button
               type="submit"
+              disabled={!isEnable}
               className="bg-white text-green-4 p-2 px-4 w-44 rounded-lg font-medium"
             >
               Pay Now
             </button>
+            <Toaster/>
           </div>
         </form>
       </div>

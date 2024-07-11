@@ -17,8 +17,9 @@ import ServicesMb from '../../assets/Page Assets/Home/services_mb.svg';
 import docImg from '../../assets/Page Assets/Home/docImg2.svg';
 import AboutUsCard from "../../components/User Components/Home/AboutUsCard";
 import axios from "axios"
-import {youtube} from "../../constants/index.js"
+import {youtube, testimonials} from "../../constants/index.js"
 import Loading from "../../components/Loading.jsx";
+
 
 
 
@@ -45,7 +46,7 @@ const HomePage = () => {
         }
         else{
           setYoutubeVideos(youtube)
-          setTestimonials(testimonialsResponse.data.data)
+          setTestimonials(testimonials)
           setLoading(false)
         }
     }catch(error){
@@ -242,7 +243,7 @@ const HomePage = () => {
         <h2 className="text-green-4 text-[40px] md:text-[60px] font-gurajadaRegular mt-10 flex justify-center">స్వస్థత గాధలు</h2>
         <div className="flex-grow flex flex-col justify-center items-center">
           <div className="w-full flex flex-col md:flex-row justify-evenly items-center">
-            {testimonials?.slice(0, 3).map((video, index) => (
+            {testimonials?.map((video, index) => (
               <div key={index} className="h-52 m-6">
                 <iframe
                   src={video.links_iframe_testimonials}

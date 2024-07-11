@@ -10,6 +10,7 @@ import {
   classLink,
   getUpcomingClass,
   getUpcomingClassDate,
+  getBatchMembers,
   getOngoingClass
 } from "../controllers/classes.controllers.js"
 import { setClassValidator } from "../helpers/validator.js"
@@ -33,8 +34,9 @@ classRoute.route("/admin/getClass").get(getClass) //Correct calling Check
 // Read the class using the id
 classRoute.route("/admin/getClass/:id").get(getClassWithId) //Correct calling Check
 classRoute.route("/admin/upcoming-class").get(getUpcomingClass) //Correct calling Check
-classRoute.route("/admin/ongoing-class").get(getOngoingClass) //Correct calling Check4
-classRoute.route("/admin/upcoming-class/date").get(getUpcomingClassDate)
+classRoute.route("/admin/ongoing-class").get(getOngoingClass) //Correct calling Check
+classRoute.route("/admin/upcoming-class/date").get(getUpcomingClassDate)//Correct calling Check
+classRoute.route("/admin/class/batches").post(getBatchMembers)//Correct calling Check
 // Update the Classes using id
 classRoute.route("/admin/putClass/:id").put(putClass) //Correct calling Check
 // Delete the Classes using id

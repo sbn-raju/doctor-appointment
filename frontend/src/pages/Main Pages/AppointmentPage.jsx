@@ -9,6 +9,8 @@ import { slotDetails, doctorNames, diseasePurpose } from "../../constants";
 import DoctorProfile from "../../components/Main Page Components/AppointmentPage Components/doctorProfile";
 import FAQ from "../../components/Main Page Components/FAQ";
 import axios from "axios";
+import { toast, Toaster } from "react-hot-toast";
+import payImage from "../../assets/Logo/image 2.png";
 
 const AppointmentPage = () => {
   const [appointmentFormData, setAppointmentFromData] = useState({
@@ -17,16 +19,16 @@ const AppointmentPage = () => {
     choose_purpose: "",
     doctor_id: "",
     date: "",
-    slot_id:""
   });
 
   const [slots, setSlots] = useState([]);
   const [doctor, setDoctor] = useState([]);
   const [selectedDate, setSelectedDate] = useState();
+  const [timeSlot, setTimeSlot] = useState();
   const [error, setError] = useState("");
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  const handleChange = (event) => {
+    const { name, value } = event.target;
     setAppointmentFromData({
       ...appointmentFormData,
       [name]: value,
@@ -34,9 +36,74 @@ const AppointmentPage = () => {
     setSelectedDate(appointmentFormData.date);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(appointmentFormData);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const appointmentData = {
+      appointmentFormData,
+      timeSlot,
+    };
+    console.log(appointmentData);
+
+    try {
+      const amount = 500;
+      const {
+        data: { order },
+      } = await axios.post("/api/v1/orders/payment", { amount });
+      console.log(order);
+      if (!order) {
+        toast.error("Order is not Created");
+        return;
+      }
+
+      // Creating Options of the RazorPay Instance
+      const options = {
+        key: import.meta.env.VITE_RAZORPAY_KEY_ID, // Enter the Key ID generated from the Dashboard//Should BE in the Env File
+        amount: order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+        currency: "INR",
+        name: "Dr. Padma & Ramachandra",
+        description: "Appointment Booking",
+        image: payImage,
+        order_id: order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+        handler: async function (response) {
+          const paymentData = {
+            razorpay_order_id: response.razorpay_order_id,
+            razorpay_payment_id: response.razorpay_payment_id,
+            razorpay_signature: response.razorpay_signature,
+            appointmentData,
+          };
+          try {
+            const verifyUrl = "/api/v1/appointment/user/bookSlots";
+            const verifyResponse = await axios.post(verifyUrl, paymentData);
+            console.log(verifyResponse);
+            if (verifyResponse.data.success) {
+              console.log(verifyResponse);
+              toast.success("Payment successful and data saved!");
+              setAppointmentFromData({
+                name: "",
+                phone_no: "",
+                choose_purpose: "",
+                doctor_id: "",
+                date: "",
+              });
+              setSlots([]);
+            } else {
+              toast.error("Payment not Done");
+            }
+          } catch (error) {
+            toast.error(error);
+            console.error("Verification error:", error);
+          }
+        },
+        theme: {
+          color: "#006400",
+        },
+      };
+      const razor = new Razorpay(options);
+      razor.open();
+    } catch (error) {
+      console.log(error);
+    }
+    console.log(appointmentData);
   };
 
   useEffect(() => {
@@ -47,7 +114,7 @@ const AppointmentPage = () => {
       };
       const fetchTimeSlot = async () => {
         const fetchSlots = await axios.post(
-          "http://localhost:8080/api/v1/appointment/get/slots",
+          "/api/v1/appointment/get/slots",
           slotFetch
         );
         console.log(fetchSlots);
@@ -64,9 +131,7 @@ const AppointmentPage = () => {
 
   useEffect(() => {
     const fetchDoctor = async () => {
-      const fetchAllDoctor = await axios.get(
-        "http://localhost:8080/api/v1/doctor/get-doctors"
-      );
+      const fetchAllDoctor = await axios.get("/api/v1/doctor/get-doctors");
       console.log(fetchAllDoctor);
       setDoctor(fetchAllDoctor.data.data);
     };
@@ -95,17 +160,25 @@ const AppointmentPage = () => {
           </div>
         </div>
 
-        <div 
-          className='rounded-2xl p-8 md:p-28 max-w-full'
-          style={{backgroundImage: `url(${AppointmentBg})`, backgroundSize: 'cover'}}>
-          <h1 className='text-white text-2xl mb-10 mt-5 font-semibold text-center'>Book your Appointment</h1>
-          <form onSubmit={handleSubmit(appointmentData)} className='w-full flex flex-col justify-center items-center'>
-            <div className='w-full flex flex-col md:flex-row'>
-
-              <div className='w-full md:w-1/2 order-3 md:order-1'>
-                <div className='p-8 bg-white rounded-[40px] shadow-lg mt-4 md:mx-5 md:mr-10'>
-                  <div className='flex justify-center items-center'>
-                    <img className='w-1/2' src={Clock} alt='Clock'/>
+        <div
+          className="rounded-2xl p-8 md:p-28 max-w-full"
+          style={{
+            backgroundImage: `url(${AppointmentBg})`,
+            backgroundSize: "cover",
+          }}
+        >
+          <h1 className="text-white text-2xl mb-10 mt-5 font-semibold text-center">
+            Book your Appointment
+          </h1>
+          <form
+            onSubmit={handleSubmit}
+            className="w-full flex flex-col justify-center items-center"
+          >
+            <div className="w-full flex flex-col md:flex-row">
+              <div className="w-full md:w-1/2 order-3 md:order-1">
+                <div className="p-8 bg-white rounded-[40px] shadow-lg mt-4 md:mx-5 md:mr-10">
+                  <div className="flex justify-center items-center">
+                    <img className="w-1/2" src={Clock} alt="Clock" />
                   </div>
                   <div className="mt-4">
                     <p className="text-xs md:text-lg">
@@ -143,30 +216,49 @@ const AppointmentPage = () => {
                   className="border-[1px] border-green-800 w-full md:w-11/12 h-10 rounded-[5px] mb-[4px]"
                   style={{ color: "white" }}
                 />
-                
-                <label htmlFor='purpose' className='text-white text-sm self-start'>Choose the Purpose *</label>
+
+                <label
+                  htmlFor="purpose"
+                  className="text-white text-sm self-start"
+                >
+                  Choose the Purpose *
+                </label>
                 <select
                   id="purpose"
-                  defaultValue="selectPurpose"
+                  type="text"
+                  name="choose_purpose"
+                  value={appointmentFormData.choose_purpose}
+                  onChange={handleChange}
                   className="border-[1px] border-green-800 w-full md:w-11/12 h-10 rounded-[5px] mb-[4px]"
-                  {...register("setPurpose", { required: true })}
                 >
-                    <option value="selectPurpose" disabled hidden>Select a purpose</option>
-                    {diseasePurpose.map((purpose, i) => (
-                      <option key={i} value={purpose.purposeOfVisit}>{purpose.purposeOfVisit}</option>
-                    ))}
+                  <option value="selectPurpose" disabled>
+                    Select a purpose
+                  </option>
+                  {diseasePurpose.map((purpose, index) => (
+                    <option key={index} value={purpose.purposeOfVisit}>
+                      {purpose.purposeOfVisit}
+                    </option>
+                  ))}
                 </select>
-                <label htmlFor='doctor' className='text-white text-sm self-start mt-1'>Choose the Doctor *</label>
+                <label
+                  htmlFor="doctor"
+                  className="text-white text-sm self-start mt-1"
+                >
+                  Choose the Doctor *
+                </label>
                 <select
                   id="doctor"
-                  defaultValue="selectDoctor"
+                  name="doctor_id"
+                  value={appointmentFormData.doctor_id}
                   className="border-[1px] border-green-800 w-full md:w-11/12 h-10 rounded-[5px] mb-[4px]"
-                  {...register("setDoctor", { required: true })}
+                  onChange={handleChange}
                 >
-                    <option value="selectDoctor" disabled hidden>Select your doctor</option>
-                    {doctorNames.map((d, i) => (
-                      <option key={i} value={d.name}>{d.name}</option>
-                    ))}
+                  <option value="selectDoctor">Select your doctor</option>
+                  {doctor?.map((doctor, index) => (
+                    <option key={index} value={doctor.id}>
+                      {doctor.name}
+                    </option>
+                  ))}
                 </select>
 
                 <Input
@@ -188,12 +280,12 @@ const AppointmentPage = () => {
                     <>
                       <p className="text-white">Available Slots *</p>
                       <div className="-mx-2 flex flex-wrap h-[90px] overflow-y-scroll admin-scrollbar">
-                        {slots.map((slot, index) => (
+                        {slots?.map((slot, index) => (
                           <div
                             key={index}
                             name="slot_id"
-                            value={appointmentFormData.slot_id}
-                            onChange={handleChange}
+                            value={slot.id}
+                            onClick={(event) => setTimeSlot(slot.id)}
                             className="m-1 md:m-2 w-auto text-sm bg-white rounded-[5px] p-[1px] px-4 border-[1px] border-green-800"
                           >
                             {slot.slot_start_time}
@@ -202,7 +294,10 @@ const AppointmentPage = () => {
                       </div>
                     </>
                   ) : (
-                    <p>No slots available on selected date</p>
+                    <p>
+                      No slots available on selected date and for selected
+                      Doctor
+                    </p>
                   )}
                 </div>
               )}
@@ -214,10 +309,12 @@ const AppointmentPage = () => {
                   <>
                     <p className="text-white">Available Slots *</p>
                     <div className="-mx-2 flex flex-wrap h-[90px] overflow-y-scroll admin-scrollbar">
-                      {slots.map((slot, index) => (
+                      {slots?.map((slot, index) => (
                         <div
                           key={index}
-                          className="m-1 md:m-2 w-auto text-sm bg-white rounded-[5px] p-[1px] px-4 border-[1px] border-green-800"
+                          value={slot.id}
+                          onClick={(event) => setTimeSlot(slot.id)}
+                          className="m-1 md:m-2 w-auto text-sm rounded-[5px] p-[1px] px-4 border-[1px] border-green-800"
                         >
                           {slot.slot_start_time}
                         </div>
@@ -251,15 +348,36 @@ const AppointmentPage = () => {
               >
                 Pay Now
               </CommonButton>
+              <Toaster />
             </div>
           </form>
         </div>
 
-        <div className='flex flex-col justify-center items-center my-10 p-6'>
-          <p className='text-green-700 text-3xl mb-10 mt-5 font-semibold'>Know your Doctor</p>
-          <DoctorProfile image={docter} name={"Dr. Ramachandra"} text={"ఆయుర్వేద, అలోపతి, హోమియోపతి, యునాని, సిద్ధ వైద్య విధానం మొదలగు వైద్య విధానం. పంచభూతాలతో చికిత్స చేసే ఒక ప్రక్రియ. ఇందులో మందులు కానీ, పసర్లు కానీ, పూతలు"}/>
-          <DoctorProfile image={docter} name={"Dr. Ramachandra"} text={"ఆయుర్వేద, అలోపతి, హోమియోపతి, యునాని, సిద్ధ వైద్య విధానం మొదలగు వైద్య విధానం. పంచభూతాలతో చికిత్స చేసే ఒక ప్రక్రియ. ఇందులో మందులు కానీ, పసర్లు కానీ, పూతలు"}/>
-          <DoctorProfile image={docter} name={"Dr. Ramachandra"} text={"ఆయుర్వేద, అలోపతి, హోమియోపతి, యునాని, సిద్ధ వైద్య విధానం మొదలగు వైద్య విధానం. పంచభూతాలతో చికిత్స చేసే ఒక ప్రక్రియ. ఇందులో మందులు కానీ, పసర్లు కానీ, పూతలు"}/>
+        <div className="flex flex-col justify-center items-center my-10 p-6">
+          <p className="text-green-700 text-3xl mb-10 mt-5 font-semibold">
+            Know your Doctor
+          </p>
+          <DoctorProfile
+            image={docter}
+            name={"Dr. Ramachandra"}
+            text={
+              "ఆయుర్వేద, అలోపతి, హోమియోపతి, యునాని, సిద్ధ వైద్య విధానం మొదలగు వైద్య విధానం. పంచభూతాలతో చికిత్స చేసే ఒక ప్రక్రియ. ఇందులో మందులు కానీ, పసర్లు కానీ, పూతలు"
+            }
+          />
+          <DoctorProfile
+            image={docter}
+            name={"Dr. Ramachandra"}
+            text={
+              "ఆయుర్వేద, అలోపతి, హోమియోపతి, యునాని, సిద్ధ వైద్య విధానం మొదలగు వైద్య విధానం. పంచభూతాలతో చికిత్స చేసే ఒక ప్రక్రియ. ఇందులో మందులు కానీ, పసర్లు కానీ, పూతలు"
+            }
+          />
+          <DoctorProfile
+            image={docter}
+            name={"Dr. Ramachandra"}
+            text={
+              "ఆయుర్వేద, అలోపతి, హోమియోపతి, యునాని, సిద్ధ వైద్య విధానం మొదలగు వైద్య విధానం. పంచభూతాలతో చికిత్స చేసే ఒక ప్రక్రియ. ఇందులో మందులు కానీ, పసర్లు కానీ, పూతలు"
+            }
+          />
         </div>
 
         <div className="flex flex-col justify-center items-center my-10 p-6">

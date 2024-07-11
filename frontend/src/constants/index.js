@@ -26,6 +26,21 @@ export const youtube = [
     },
   ];
 
+export const testimonials = [
+    {
+      id: 1,
+      tag: "https://www.youtube.com/embed/uJv63hoxgWc?si=tAcwZvpWmLowdvGr&amp;start=3",
+    },
+    {
+      id: 2,
+      tag: "https://www.youtube.com/embed/D3oUsDkoWS4?si=tBWmqKkY9n45vClT&amp;start=1",
+    },
+    {
+      id: 3,
+      tag: "https://www.youtube.com/embed/D3oUsDkoWS4?si=tBWmqKkY9n45vClT&amp;start=1",
+    },
+]
+
 
 export const aboutLeftCardData = [
     {

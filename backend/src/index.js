@@ -47,18 +47,20 @@ app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
 
 import authRoute from "./routes/auth.routes.js";
 import classRoute from "./routes/classes.routes.js";
-import classUserRoute from "./routes/classes.routes.js";
+import classUserRoute from "./routes/classes.user.routes.js";
 import youtubeLinkRoute from "./routes/youtube.routes.js";
 import appointmentRoute from "./routes/appointment.routes.js";
 import userAppointmentRoute from "./routes/appointmnet.user.routes.js"
 import authAdminRoute from "./routes/adminAuth.routes.js";
 import doctorRoute from "./routes/doctorauth.routes.js";
+import paymentRoute from "./routes/payment.routes.js";
 
 
 //Main routes
 app.use("/api/v1/auth",authRoute);
 app.use("/api/v1/class", classRoute);
 app.use("/api/v1/class_booking",classUserRoute);
+app.use("/api/v1/orders",paymentRoute)
 app.use("/api/v1/youtube",youtubeLinkRoute);
 app.use("/api/v1/admin",authAdminRoute);
 app.use("/api/v1/doctor",doctorRoute)

@@ -1,65 +1,82 @@
 import { pool } from "../database/connect.db.js"
 import crypto from "crypto"
 import dotenv from "dotenv"
+import ErrorHandler from "../helpers/errorHelpers.js";
+
+
 dotenv.config()
 
+
+const currentDate = new Date(Date.now())
+const formattedDate = currentDate.toLocaleDateString('en-GB');
+
+
+const currentTime = new Date(Date.now())
+
+
+
 //USER ROUTES
-const setClassBooking = async (req, res) => {
+const setClassBooking = async (req, res, next) => {
     const {
       razorpay_order_id,
       razorpay_payment_id,
       razorpay_signature,
       formData,
     } = req.body
-    try {
-      const body = razorpay_order_id + "|" + razorpay_payment_id
-      const expectedSignature = crypto
-        .createHmac("sha256", process.env.RAZORPAY_KEY_SECRET)
-        .update(body.toString())
-        .digest("hex")
-  
-      if (expectedSignature === razorpay_signature) {
-        const class_idQuery =
-          "SELECT id FROM active_class_master ORDER BY createdAt DESC LIMIT 1"
-        const classID = await pool.query(class_idQuery)
-        const class_id = classID.rows[0].id
-        const { name, email, whatsapp, city } = { ...formData }
-        const payment_status = 1
-        const setClassBookingQuery =
-          "INSERT INTO user_class_bookings (class_id, name, email, whatsapp, payment_status, city) VALUES ($1,$2,$3,$4,$5,$6) RETURNING *"
-        const setClassBookingValues = [
-          class_id,
-          name,
-          email,
-          whatsapp,
-          payment_status,
-          city,
-        ]
+    const {name, email, whatsapp, city} = {...formData}
+    let paymentDetailsId 
+    let upcomingClassDetailsId
+    try { 
+        await pool.query('BEGIN');
+        const paymentDetailsQuery = "INSERT INTO user_payment_details (payment_amount, payment_date, payment_time, payment_status, razorpay_order_id, razorpay_payment_id, razorpay_signature) VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING *"
+        const paymentDetailsValues = [1000, formattedDate, currentTime, 1, razorpay_order_id, razorpay_payment_id, razorpay_signature]
         try {
-          const setClassBooking = await pool.query(
-            setClassBookingQuery,
-            setClassBookingValues
-          )
-          return res.status(200).json({
-            success: true,
-            data: setClassBooking.rows,
-            message: "This is the set Booking",
-          })
+          const paymentDetailsResults = await pool.query(paymentDetailsQuery, paymentDetailsValues);
+          paymentDetailsId = paymentDetailsResults.rows[0].id
+          const upcomingClassIdQuery = "SELECT id FROM class_master WHERE status = $1 and isactive IS NULL" 
+          try {
+            const upcomingClassIdResults = await pool.query(upcomingClassIdQuery,[0]);
+            upcomingClassDetailsId = upcomingClassIdResults.rows[0].id
+          } catch (error) {
+            await pool.query('ROLLBACK');
+            return next(new ErrorHandler(false, `${error}` ,400));
+          }
         } catch (error) {
-          console.log(error)
+          await pool.query('ROLLBACK');
+          return next(new ErrorHandler(false, `${error}` ,400));
         }
-      }
+        const classBookingQuery = "INSERT INTO class_booking (user_id, class_id, name, email, whatsapp_no, city, payment_details) VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING *"
+        const classBookingValues = [40, upcomingClassDetailsId, name, email, whatsapp,city,paymentDetailsId]
+        try {
+          const classBookingResults = await pool.query(classBookingQuery, classBookingValues)
+          if(classBookingResults.rowCount!=0){
+            await pool.query("COMMIT");
+            return res.status(200).json({
+              success:true,
+              message:"The Class is Booked",
+              data:classBookingResults.rows[0]
+            })
+          }
+        } catch (error) {
+          await pool.query('ROLLBACK');
+          return next(new ErrorHandler(false, `${error}` ,400));
+        }
     } catch (error) {
+      await pool.query('ROLLBACK');
       console.log(error)
+      return next(new ErrorHandler(false, `${error}` ,400));
     }
-  }
+}
   
+
+
+
   const getClassBooking = (req, res) => {
     return res.status(200).json({
       success: true,
       message: "This is the Get class Booking Routes",
     })
-  }
+}
   
   const getClassBookingById = (req, res) => {
     return res.status(200).json({
