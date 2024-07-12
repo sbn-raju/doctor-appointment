@@ -472,6 +472,28 @@ const deleteClass = async (req, res, next) => {
 }
 
 
+const getClassBookingData = async (req,res,next) => {
+   const getClassBookingQuery = "SELECT name, whatsapp_no, city, email, class_id FROM class_booking ORDER BY created_at DESC"
+   try {
+      const getclassBookingResults = await pool.query(getClassBookingQuery)
+      if(getclassBookingResults.rowCount!=0){
+        return res.status(200).json({
+          success:true,
+          message:"User booking Class",
+          data:getclassBookingResults.rows
+        })
+      }
+      else {
+        return res.status(302).json({
+          success: true,
+          message: "Id not found",
+        })
+      }
+   } catch (error) {
+    return next(new ErrorHandler(false, `${error}`, 400))
+   } 
+}
+
 
 
 
@@ -486,6 +508,7 @@ export {
   getUpcomingClassDate,
   getBatchMembers,
   getClassWithId,
+  getClassBookingData,
   putClass,
   deleteClass,
 }

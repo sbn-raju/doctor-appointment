@@ -157,9 +157,33 @@ const emptySlots = async(req,res,next)=>{
     }
 }
 
+
+
+const getUserAppointments = async(req,res,next)=>{
+    const getUserAppointmentsQuery = "SELECT user_appointment_details.purpose_of_visit, user_appointment_details.date, user_appointment_details.mobile_no, user_appointment_details.p_name,user_appointment_details.doctor_id, user_appointment_details.time_slot, doctor_master.name, appointment_slot_master.slot_start_time FROM user_appointment_details JOIN doctor_master ON user_appointment_details.doctor_id = doctor_master.id JOIN appointment_slot_master ON user_appointment_details.time_slot = appointment_slot_master.id ORDER BY user_appointment_details.created_at DESC"
+    try {
+        const getUserAppointmentsResults = await pool.query(getUserAppointmentsQuery);
+        if(getUserAppointmentsResults.rowCount!=0){
+            return res.status(200).json({
+                success:true,
+                message:"All the data",
+                data:getUserAppointmentsResults.rows
+            })
+        }
+        else{
+            return next(new ErrorHandler(false, "No Slots Found", 402))
+        }
+    } catch (error) {
+        return next(new ErrorHandler(false, `${error}`, 402))
+    }
+}
+
+
 export{
     appointmentMasterCreate,
     appointmentSlotMasterGetSlots,
     appointmentSlotPerDate,
-    emptySlots
+    emptySlots,
+    getUserAppointments,
+    
 }
