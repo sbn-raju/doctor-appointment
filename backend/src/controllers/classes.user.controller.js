@@ -67,6 +67,30 @@ const setClassBooking = async (req, res, next) => {
       return next(new ErrorHandler(false, `${error}` ,400));
     }
 }
+
+
+
+
+
+
+const getClassesBooked = async(req,res,next)=>{
+  const {user_id} = req.body
+  const getClassesBookedQuery = "SELECT DISTINCT class_booking.class_id, class_master.class_date, class_master.class_time, class_master.class_link FROM class_booking JOIN class_master ON class_booking.class_id = class_master.id WHERE class_booking.user_id = $1;"
+  try {
+    const getClassBookedResults = await pool.query(getClassesBookedQuery, [user_id]);
+    if(getClassBookedResults.rowCount!=0){
+      return res.status(200).json({
+        success:true,
+        message:"All Class Bookings",
+        data:getClassBookedResults.rows
+      })
+    }
+
+  } catch (error) {
+    console.log(error)
+    return next(new ErrorHandler(false, `${error}` ,400));
+  }
+}
   
 
 
@@ -102,6 +126,7 @@ const setClassBooking = async (req, res, next) => {
 export {
     setClassBooking,
     getClassBooking,
+    getClassesBooked,
     getClassBookingById,
     putClassBooking,
     deleteClassBooking,

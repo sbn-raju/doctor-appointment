@@ -97,6 +97,7 @@ const AccountBox = ({ closeAccount }) => {
 
   const handleSendOTP = () => {
     if (phoneNumber.length === 10) {
+      console.log(phoneNumber);
       setIsOTPCardOpen(true);
       setErrorMsg("");
     } else if (phoneNumber.length > 0 && phoneNumber.length !== 10){
@@ -124,18 +125,6 @@ const AccountBox = ({ closeAccount }) => {
             </CommonButton>
           </div>
           <PhoneInput id={"phoneInput"} setPhoneNumber={setPhoneNumber}/>
-          {/* <input
-            type="text"
-            id="phoneInput"
-            className="border-[1px] border-green-4 px-4 py-2 my-3 rounded-lg text-black"
-            onInput={(e) => setPhoneNumber(e.target.value)}
-            placeholder="Enter your phone number"
-            onKeyPress={(e) => {
-              if (e.charCode < 48 || e.charCode > 57) {
-                e.preventDefault();
-              }
-            }}
-          /> */}
           {errorMsg && <p className="text-red-500">{errorMsg}</p>}
           <CommonButton className="mt-4 bg-green-4 text-white px-4 py-2 rounded-xl" onClick={handleSendOTP}>
             Send OTP
@@ -146,6 +135,17 @@ const AccountBox = ({ closeAccount }) => {
     </>
   );
 };
+
+
+
+
+
+
+
+
+
+
+
 
 const HeaderHome = () => {
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);

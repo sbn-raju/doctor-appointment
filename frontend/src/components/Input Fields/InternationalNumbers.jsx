@@ -59,8 +59,7 @@ const PhoneInput = ({id, setPhoneNumber}) => {
         id={id}
         ref={inputRef}
         type="tel"
-        onInput={(e) => {setPhoneNumber(e.target.value) 
-        console.log(phoneNumber)}}
+        onChange={(e) => {setPhoneNumber(e.target.value)}}
         maxLength="10"
         placeholder="Enter your Phone Number"
         className="border-[1px] border-green-4 px-4 py-2 my-3 rounded-lg text-black w-full"

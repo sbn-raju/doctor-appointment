@@ -7,7 +7,6 @@ const currentDate = new Date(Date.now())
 const formattedDate = currentDate.toLocaleDateString("en-GB")
 const currentTime = new Date(Date.now())
 
-
 const bookSlots = async (req, res, next) => {
   const errors = validationResult(req)
   if (!errors.isEmpty()) {
@@ -61,7 +60,7 @@ const bookSlots = async (req, res, next) => {
           bookSlotsQuery,
           bookSlotsValues
         )
-         if (bookSlotsResulsts.rowCount != 0) {
+        if (bookSlotsResulsts.rowCount != 0) {
           const emptySlotsUpdate =
             "UPDATE appointment_slot_master SET booked_by_user_id = $1 WHERE id = $2"
           try {
@@ -70,19 +69,21 @@ const bookSlots = async (req, res, next) => {
               timeSlot,
             ])
             if (emptySlotsUpdateResults.rowCount != 0) {
-              // const messageVerify = sendAppointmentAlertMessage(phone_no, date, timeSlot)
-              // if(messageVerify.status == 'accepted'){
-              //   return res.status(200).json({
-              //     success: true,
-              //     messgae: "Appointment Booked Successfull",
-              //   })
-              // }
-              
+              const messageVerify = sendAppointmentAlertMessage(
+                phone_no,
+                date,
+                timeSlot
+              )
+              if (messageVerify.status == "accepted") {
                 return res.status(200).json({
                   success: true,
                   messgae: "Appointment Booked Successfull",
                 })
-              
+              }
+              return res.status(200).json({
+                success: true,
+                messgae: "Appointment Booked Successfull",
+              })
             }
           } catch (error) {
             await pool.query("ROLLBACK")
@@ -100,4 +101,34 @@ const bookSlots = async (req, res, next) => {
   }
 }
 
-export { bookSlots }
+const getAppointmentDetails = async (req, res, next) => {
+  const { user_id } = req.body
+  if (!user_id) {
+    return next(new ErrorHandler(false, "Please Login", 402))
+  }
+  const getAppointmentDetailsQuery =
+    "SELECT user_appointment_details.date,user_appointment_details.purpose_of_visit, doctor_master.name, appointment_slot_master.slot_start_time FROM user_appointment_details JOIN doctor_master ON user_appointment_details.doctor_id = doctor_master.id JOIN appointment_slot_master ON user_appointment_details.time_slot = appointment_slot_master.id WHERE user_id = $1;"
+  try {
+    const getAppointmentDetailsResults = await pool.query(
+      getAppointmentDetailsQuery,
+      [user_id]
+    )
+    if (getAppointmentDetailsResults.rowCount != 0) {
+      return res.status(200).json({
+        success: true,
+        message: "All Appointments",
+        data: getAppointmentDetailsResults.rows[0],
+      })
+    } else {
+      return res.status(200).json({
+        success: true,
+        message: "No Appointments",
+      })
+    }
+  } catch (error) {
+    console.log(error)
+    return next(new ErrorHandler(false, `${error}`, 402))
+  }
+}
+
+export { bookSlots, getAppointmentDetails }

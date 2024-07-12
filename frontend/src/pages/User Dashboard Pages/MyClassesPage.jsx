@@ -6,11 +6,6 @@ import { IoIosArrowDown } from "react-icons/io";
 import CommonButton from '../../components/Buttons/CommonButton';
 
 const MyClassesPage = () => {
-  // const [detailsVisible, setDetailsVisible] = useState(Array(classDetails.length).fill(false));
-
-  // const toggleDetailsVisibility = (index) => {
-  //   setDetailsVisible(visibility => visibility.map((item, i) => i === index ? !item : item));
-  // };
 
   return (
     <div className="h-screen w-full p-4 md:p-6 flex flex-col items-center bg-gray-1">
