@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { userProfile, appointmentDetails } from '../../constants';
 import { BsCalendar2Event } from "react-icons/bs";
 import { FaClock, FaPhone } from "react-icons/fa6";
@@ -24,6 +24,12 @@ import doctor from '../../assets/Page Assets/User Dashboard/svg/doctor.svg'
 //   );
 // };
 
+const formatDate = (isDateString) => {
+  const options = { year: 'numeric', month: 'short', day: '2-digit'};
+  const date = new Date(isDateString);
+  return date.toLocaleDateString('en-GB', options).toUpperCase().replace(/ /g, ' ');
+}
+
 const MyAppointmentsPage = () => {
   // const [isCautionBoxOpen, setIsCautionBoxOpen] = useState(false);
 
@@ -34,6 +40,36 @@ const MyAppointmentsPage = () => {
   // const handleOkay = () => {
   //   setIsCautionBoxOpen(false);
   // }
+
+  const [appointmentRecords, setAppointmentRecords] = useState([]);
+
+  useEffect(()=> {
+    const fetchData = async ()=> {
+      const userId = "123";
+      const requestOptions= {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({user_id: userId})
+      };
+
+      try{
+
+        const response = await fetch('/api/v1/appointment/user/get-appointment', requestOptions);
+
+        if(!response.ok){
+          throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json();
+        console.log(data.data);
+        setAppointmentRecords(data.data || []);
+      } catch(e){
+        console.log('Error occured', e);
+        throw e;
+      }
+    }
+    fetchData();
+  }, []);
 
   return (
     <div className="h-screen w-full p-4 md:p-10 flex flex-col items-center bg-gray-1">
@@ -48,10 +84,10 @@ const MyAppointmentsPage = () => {
         </div>
       </div>
 
-      { appointmentDetails.length !== 0 ? (
+      { appointmentRecords.length !== 0 ? (
         <>
           <div className="w-full h-full md:h-3/6 overflow-auto scrollbar">
-            {appointmentDetails.map((appointment, index) => (
+            {appointmentRecords.map((appointment, index) => (
               <div key={index} className='mb-5 p-6 px-5 rounded-2xl border-[1px] border-gray-2 bg-white shadow-md'>
                 <div className='w-full flex'>
                   <div className='w-11/12 md:w-9/12 grid grid-cols-2 gap-4'>
@@ -61,7 +97,7 @@ const MyAppointmentsPage = () => {
                           <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
                         </svg>
                       </span>
-                      {appointment.Date}
+                      {formatDate(appointment.date)}
                     </p>
                     <p className='text-xs md:text-base flex items-center md:font-medium'>
                       <span className='mr-2 text-xl'>
@@ -70,15 +106,15 @@ const MyAppointmentsPage = () => {
                           <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/>
                         </svg>
                       </span>
-                      {appointment.Time}
+                      {appointment.slot_start_time}
                     </p>
                     <p className='flex justify-start items-center'>
                       <img src={patient} className='w-5'/>
-                      <span className='text-xs md:text-base md:font-medium'>{appointment.Purpose}</span>
+                      <span className='text-xs md:text-base md:font-medium'>{appointment.purpose_of_visit}</span>
                     </p>
                     <p className='flex justify-start items-center'>
                     <img src={doctor} className='w-5'/>
-                      <span className='text-xs md:text-base md:font-medium'>{appointment.Doctor}</span>
+                      <span className='text-xs md:text-base md:font-medium'>{appointment.name}</span>
                     </p>
                   </div>
 
