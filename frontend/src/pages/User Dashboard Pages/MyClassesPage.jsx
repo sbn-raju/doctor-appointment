@@ -1,11 +1,57 @@
-import React, {useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { userProfile, classDetails } from '../../constants';
 import { BsCalendar2Event } from "react-icons/bs";
 import { FaClock, FaPhone } from "react-icons/fa6";
 import { IoIosArrowDown } from "react-icons/io";
 import CommonButton from '../../components/Buttons/CommonButton';
 
+const formatDate = (isDateString) => {
+  const options = { year: 'numeric', month: 'short', day: '2-digit'};
+  const date = new Date(isDateString);
+  return date.toLocaleDateString('en-GB', options).toUpperCase().replace(/ /g, ' ');
+}
+
+const formatTime = (timeString) => {
+  // Create a Date object from the time string
+  const timePart = timeString.split(":");
+
+  const hours = timePart[0];
+  const minutes = timePart[1];
+
+  return `${hours}:${minutes}`;
+};
+
 const MyClassesPage = () => {
+
+  const [classRecords, setClassRecords] = useState([]);
+
+  useEffect(()=> {
+    const fetchData = async ()=> {
+      const userId = "123";
+      const requestOptions= {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({user_id: userId})
+      };
+
+      try{
+
+        const response = await fetch('/api/v1/class_booking/user/classes/booked', requestOptions);
+
+        if(!response.ok){
+          throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json();
+        console.log(data.data);
+        setClassRecords(data.data || [])
+      } catch(e){
+        console.log('Error occured', e);
+        throw e;
+      }
+    }
+    fetchData();
+  }, []);
 
   return (
     <div className="h-screen w-full p-4 md:p-6 flex flex-col items-center bg-gray-1">
@@ -20,10 +66,10 @@ const MyClassesPage = () => {
         </div>
       </div>
 
-      { classDetails.length !== 0 ? (
+      { classRecords.length !== 0 ? (
         <>
           <div className="w-full h-3/6 overflow-auto scrollbar">
-            {classDetails.map((classItem, index) => (
+            {classRecords.map((classItem, index) => (
               <div key={index} className={`mb-5 p-4 px-10 rounded-2xl border-[1px] border-gray-2 bg-white shadow-md`}>
                 <div className='w-full flex flex-row'>
                   <div className='w-11/12 md:w-9/12 flex flex-col gap-4 md:gap-2'>
@@ -34,7 +80,7 @@ const MyClassesPage = () => {
                             <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
                           </svg>
                         </span>
-                        {classItem.Date}
+                        {formatDate(classItem.class_date)}
                       </p>
                       <p className='text-xs md:text-base flex items-center md:font-medium'>
                         <span className='mr-2 text-xl'>
@@ -43,7 +89,7 @@ const MyClassesPage = () => {
                             <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/>
                           </svg>
                         </span>
-                        {classItem.Time}
+                        {formatTime(classItem.class_time)}
                       </p>
                     </div>
                     <div className="grid grid-cols-2 mt-2">
@@ -64,9 +110,9 @@ const MyClassesPage = () => {
                   </div>
 
                   <div className='w-1/12 md:w-3/12 md:px-4 flex justify-center items-center'>
-                    <CommonButton className='bg-green-4 rounded-md px-2 py-1 md:px-8 text-white text-xs md:text-base'>
+                    <button className={`${!classItem.class_link? 'bg-gray-400' : 'bg-green-4'} rounded-md px-2 py-1 md:px-8 text-white text-xs md:text-base`} disabled={!classItem.class_link}>
                       Join
-                    </CommonButton>
+                    </button>
                   </div>
                 </div>
               </div>
