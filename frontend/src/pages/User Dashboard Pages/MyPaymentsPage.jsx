@@ -1,10 +1,34 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { userProfile, paymentDetails } from '../../constants';
+import { useQuery } from '@tanstack/react-query';
 import { MdPayment } from "react-icons/md";
 import '../../styles/scrollbar.styles.css';
 import appointment from '../../assets/Page Assets/User Dashboard/svg/appointment.svg';
 
+const fetchPaymentDetails = async () => {
+  const userId = "123"; // Assuming userId needs to be passed
+  const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ user_id: userId })
+  };
+
+  const response = await fetch('/api/v1/orders/user-payments', requestOptions);
+  console.log(response)
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+  return response.data.json();
+};
+
+const formatDate = (isDateString) => {
+  const options = { year: 'numeric', month: 'short', day: '2-digit'};
+  const date = new Date(isDateString);
+  return date.toLocaleDateString('en-GB', options).toUpperCase().replace(/ /g, ' ');
+}
+
 const PaymentItem = ({ payment }) => (
+
   <div className="py-2 pb-4 px-6 md:px-10 my-4 rounded-2xl border-[1px] border-gray-2 bg-white shadow-md">
     <div className="mt-2 gap-4 md:gap-2">
       <div className='w-full flex'>
@@ -14,13 +38,13 @@ const PaymentItem = ({ payment }) => (
               <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
             </svg>
           </span>
-          {payment.Date}
+          {formatDate(payment.payment_date)}
         </p>
         <p className="w-1/2 text-xs md:text-base flex items-center font-medium flex-shrink-0">
           <span className="mr-2 text-xl">
             <img src={appointment} className='w-8' />
           </span>
-          {payment.Purpose}
+          Appointment
         </p>
       </div>
       <p className="w-full font-thin md:font-normal text-sm flex items-center mt-2">
@@ -28,7 +52,7 @@ const PaymentItem = ({ payment }) => (
           <path d="M14 3a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zM2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/>
           <path d="M2 5.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5m3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5m3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5m3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5"/>
         </svg>
-        Transaction ID: <span className="ml-1 font-medium">{payment.TransactionId}</span>
+        Transaction ID: <span className="ml-1 font-medium">{payment.razorpay_payment_id}</span>
       </p>
     </div>
   </div>
@@ -45,6 +69,43 @@ const NoData = () => (
 );
 
 const MyPaymentsPage = () => {
+
+  const [paymentRecords, setPaymentRecords] = useState([]);
+
+  useEffect(()=> {
+    const fetchData = async ()=> {
+      const userId = "123";
+      const requestOptions= {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({user_id: userId})
+      };
+
+      try{
+
+        const response = await fetch('/api/v1/orders/user-payments', requestOptions);
+
+        if(!response.ok){
+          throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json();
+        console.log(data.data);
+        setPaymentRecords(data.data || [])
+      } catch(e){
+        console.log('Error occured', e);
+        throw e;
+      }
+    }
+    fetchData();
+  }, []);
+
+//   const { isPending, isError, data, error } = useQuery({
+//     queryKey: ['todos'],
+//     queryFn: fetchPaymentDetails,
+//   })
+//   console.log(data);
+
   return (
     <div className="h-screen w-full p-4 md:p-6 flex flex-col items-center bg-gray-100">
       <div className="w-full my-8 flex flex-col md:flex-row items-center bg-white border border-gray-200 rounded-2xl md:px-10 py-3">
@@ -58,10 +119,10 @@ const MyPaymentsPage = () => {
         </div>
       </div>
 
-      {paymentDetails.length !== 0 ? (
+      {paymentRecords.length !== 0 ? (
         <>
           <div className="w-full h-full md:h-3/6 overflow-auto scrollbar">
-            {paymentDetails.map((payment, index) => (
+            {paymentRecords.map((payment, index) => (
               <PaymentItem key={index} payment={payment} />
             ))}
           </div>

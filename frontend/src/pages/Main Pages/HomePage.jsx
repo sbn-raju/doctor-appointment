@@ -19,6 +19,7 @@ import AboutUsCard from "../../components/User Components/Home/AboutUsCard";
 import axios from "axios"
 import {youtube, testimonials} from "../../constants/index.js"
 import Loading from "../../components/Loading.jsx";
+import { useSelector } from "react-redux";
 
 
 
@@ -28,8 +29,9 @@ const HomePage = () => {
  const [error, setError] = useState(null);
  const [youtubeVideos, setYoutubeVideos] = useState([]);
  const [testimonials, setTestimonials] = useState([]);
+ const token = useSelector((state)=>state.token)
 
-
+console.log(token)
  useEffect(() => {
   const fetchYoutubeVideos = async()=>{
     try{
