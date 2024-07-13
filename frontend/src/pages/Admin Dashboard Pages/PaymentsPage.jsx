@@ -1,15 +1,32 @@
 import React, { useState } from 'react'
-import { adminPaymentDetails } from '../../constants'
+// import { payments } from '../../constants'
 import { BsCalendar2Event } from "react-icons/bs";
+import Loading from "../../components/Loading.jsx";
+import { useQuery } from '@tanstack/react-query';
+
+const fetchPayments = async () => {
+  const response = await fetch('/api/v1/orders/admin/payments');
+  const data = await response.json();
+  console.log(data.data)
+  return data.data;
+};
 
 const PaymentsPage = () => {
+  const {
+      isLoading,
+      error,
+      data: payments = [],
+  } = useQuery({
+      queryKey: ['payments'],
+      queryFn: fetchPayments,
+  });
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
-  const totalPages = Math.ceil(adminPaymentDetails.length / rowsPerPage);
+  const totalPages = Math.ceil(payments.length / rowsPerPage);
   const stIndex = (currentPage - 1) * rowsPerPage;
   const endIndex = stIndex + rowsPerPage;
-  const currPayments = adminPaymentDetails.slice(stIndex, endIndex);
+  const currPayments = payments.slice(stIndex, endIndex);
 
   const handleRowsPerPage = (e) => {
     setRowsPerPage(parseInt(e.target.value, 10)); // converting string num to decimal from dropdown menu
@@ -30,10 +47,14 @@ const PaymentsPage = () => {
 
   const renderRowsPerPage = () => {
     const opts = [10, 20, 50, 100, 200, 300];
-    return opts.filter((option) => option < adminPaymentDetails.length).map((opt) => (
+    return opts.filter((option) => option < payments.length).map((opt) => (
       <option key={opt} value={opt}>{opt}</option>
     ))
   }
+
+  if(isLoading) return <Loading/>
+
+  if(error) return <div>Error...Check Console</div>
 
   return (
     <div className='h-auto w-full bg-gray-1 flex flex-col justify-center items-center px-8'>
@@ -51,7 +72,7 @@ const PaymentsPage = () => {
         </div>
       </div>
 
-      {adminPaymentDetails.length !== 0 ? (
+      {payments.length !== 0 ? (
         <div className='bg-white shadow-md mt-6 w-full overflow-x-auto admin-scrollbar rounded-2xl'>
           <div className='min-w-[800px] bg-white p-4 px-6 md:px-10 border-b-[1px] border-gray-2 sticky top-0 z-10'>
             <ul className='grid grid-cols-6 text-black font-regular text-sm'>
@@ -91,7 +112,7 @@ const PaymentsPage = () => {
               <p className="text-sm">Row Per Page: </p>
               <select value={rowsPerPage} onChange={handleRowsPerPage} className='bg-gray-200 mx-2 rounded-md'>
                 {renderRowsPerPage()}
-                <option value={adminPaymentDetails.length}>{adminPaymentDetails.length}</option>
+                <option value={payments.length}>{payments.length}</option>
               </select>
             </div>
             <div className='flex justify-end items-center w-2/3'>
@@ -111,7 +132,7 @@ const PaymentsPage = () => {
                   ))}
                 </div>
               </div>
-              <button className='mx-2' onClick={handleNextPage} disabled={endIndex >= adminPaymentDetails.length}>
+              <button className='mx-2' onClick={handleNextPage} disabled={endIndex >= payments.length}>
                 Next
               </button>
             </div>
@@ -126,10 +147,10 @@ const PaymentsPage = () => {
 
             <select value={rowsPerPage} onChange={handleRowsPerPage} className='bg-gray-200 mx-2 rounded-md'>
               {renderRowsPerPage()}
-              <option value={adminPaymentDetails.length}>{adminPaymentDetails.length}</option>
+              <option value={payments.length}>{payments.length}</option>
             </select>
 
-            <button className='mx-2' onClick={handleNextPage} disabled={endIndex >= adminPaymentDetails.length}>
+            <button className='mx-2' onClick={handleNextPage} disabled={endIndex >= payments.length}>
               Next
             </button>
           </div>

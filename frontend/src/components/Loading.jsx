@@ -10,7 +10,7 @@ const Loading = () => {
         animation: 'spin 2s linear infinite',
       };
   return (
-    <div className="flex items-center justify-center min-h-screen">
+    <div className="w-full flex items-center justify-center min-h-screen">
       <div style={loaderStyle}></div>
       <style>
         {`

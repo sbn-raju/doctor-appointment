@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { BsCalendar2Event } from "react-icons/bs";
 import '../../styles/scrollbar.styles.css'
-import { appointments, doctorNames } from '../../constants/index'
+import { doctorNames } from '../../constants/index'
 import { Link, useNavigate } from "react-router-dom";
+import Loading from "../../components/Loading.jsx";
+import { useQuery } from '@tanstack/react-query';
 
 const CautionBox = ({handleCancel}) => {
   return (
@@ -23,7 +25,22 @@ const CautionBox = ({handleCancel}) => {
   )
 }
 
+const fetchAppointments = async () => {
+  const response = await fetch('/api/v1/appointment/get/appointments');
+  const data = await response.json();
+  console.log(data.data)
+  return data.data;
+};
+
 const AppointmentsPage = () => {
+  const {
+      isLoading,
+      error,
+      data: appointments = [],
+  } = useQuery({
+      queryKey: ['appointments'],
+      queryFn: fetchAppointments,
+  });
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [isCautionBoxOpen, setIsCautionBoxOpen] = useState(false);
@@ -177,7 +194,9 @@ const AppointmentsPage = () => {
     setIsCautionBoxOpen(false);
   }
 
+  if(isLoading) return <Loading/>
 
+  if(error) return <div>Error...Check Console</div>
 
   return (
     <div className='h-auto w-full bg-gray-1 flex flex-col justify-center items-center p-8'>
@@ -307,7 +326,7 @@ const AppointmentsPage = () => {
           </div>
         </div>
       ) : (
-        <div>
+        <div className='min-h-[400px] pt-10 flex justify-center items-center'>
           No Data Recorded Yet
         </div>
       )}
