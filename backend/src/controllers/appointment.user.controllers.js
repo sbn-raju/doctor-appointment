@@ -1,7 +1,7 @@
 import { pool } from "../database/connect.db.js"
 import ErrorHandler from "../helpers/errorHelpers.js"
 import { validationResult } from "express-validator"
-import sendAppointmentAlertMessage from "../services/messages.services.js"
+import {sendAppointmentAlertMessage} from "../services/messages.services.js"
 
 const currentDate = new Date(Date.now())
 const formattedDate = currentDate.toLocaleDateString("en-GB")

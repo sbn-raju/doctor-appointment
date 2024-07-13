@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import {useNavigate } from "react-router-dom";
 import { IoMenu } from "react-icons/io5";
 import { RxCross2 } from "react-icons/rx";
 import { navItems } from "../../constants";
@@ -8,19 +9,30 @@ import profileLogo from '../../assets/Page Assets/Home/profile.png';
 import Input from "../Input Fields/Input";
 import CommonButton from "../Buttons/CommonButton";
 import PhoneInput from "../Input Fields/InternationalNumbers";
+import axios from "axios";
+import {toast, Toaster} from "react-hot-toast";
+import { useDispatch, useSelector } from 'react-redux';
+import { loginUser } from "../../services/auth/authSlice.js";
+
+
 
 const OTPCard = ({ phoneNumber, closeOTPCard }) => {
-
   const length = 6;
   const [otp, setotp] = useState(new Array(length).fill(""))
   const [combinedOTP, setCombinedOTP] = useState("")
   const inputRef = useRef([]);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  
+
 
   useEffect(()=>{
     if(inputRef.current[0]){
       inputRef.current[0].focus()
     }
   }, [])
+
+
   const handleChange =(index, e)=>{
     const value = e.target.value
     if(isNaN(value)) return;
@@ -45,9 +57,21 @@ const OTPCard = ({ phoneNumber, closeOTPCard }) => {
     }
   }
 
-  const handleOTPSubmit =()=>{
-    console.log(combinedOTP)
+  const handleOTPSubmit = async()=>{
+    try {
+      const response = await dispatch(loginUser({phoneNumber:phoneNumber, code:combinedOTP})).unwrap();
+      if(response.success){
+        toast.success(response.message)
+        navigate("/user");
+      }
+      else{
+        toast.error(response.message)
+      }
+    } catch (error) {
+      toast.error("Error Connecting Server")
+    }
   }
+
 
   return (
     <div className="h-screen inset-0 fixed bg-opacity-75 w-full flex flex-col justify-center items-center">
@@ -63,13 +87,6 @@ const OTPCard = ({ phoneNumber, closeOTPCard }) => {
         <p>Enter 6-Digit OTP sent to your {phoneNumber}</p>
         <div className="flex justify-evenly space-x-2 mt-2">
           {otp.map((value, index) => (
-            // <Input
-            //   key={index}
-            //   type="text"
-            //   value
-            //   maxLength="1"
-            //   className="border-[1px] border-green-800 w-8 h-8 md:w-10 md:h-10 rounded-[5px] text-center"
-            // />
             <input 
               key={index}
               type="text"
@@ -90,16 +107,36 @@ const OTPCard = ({ phoneNumber, closeOTPCard }) => {
   );
 };
 
+
+
+//Sending The One Time Password to the user
 const AccountBox = ({ closeAccount }) => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [isOTPCardOpen, setIsOTPCardOpen] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
 
-  const handleSendOTP = () => {
+
+  const sendOneTimePass = async(phoneNumber) =>{
+    try {
+      const response = await axios.post("/api/v1/auth/register/verify-Details/otp", {phoneNumber:phoneNumber});
+      return response.data
+    } catch (error) {
+      return error.response.data
+    }
+  }
+
+  const handleSendOTP = async() => {
     if (phoneNumber.length === 10) {
-      console.log(phoneNumber);
-      setIsOTPCardOpen(true);
-      setErrorMsg("");
+      const msg = await sendOneTimePass(phoneNumber);
+      if(msg.success){
+        toast.success(msg.message)
+        setIsOTPCardOpen(true);
+      }
+      else{
+        toast.error("Error in Connecting Server");
+        setIsOTPCardOpen(false);
+      }
+      setErrorMsg();
     } else if (phoneNumber.length > 0 && phoneNumber.length !== 10){
       setErrorMsg("Please enter valid mobile number");
     } else{
@@ -124,12 +161,13 @@ const AccountBox = ({ closeAccount }) => {
               </svg>
             </CommonButton>
           </div>
-          <PhoneInput id={"phoneInput"} setPhoneNumber={setPhoneNumber}/>
+          <Input id={"phoneInput"} onChange={(e)=>setPhoneNumber(e.target.value)}/>
           {errorMsg && <p className="text-red-500">{errorMsg}</p>}
           <CommonButton className="mt-4 bg-green-4 text-white px-4 py-2 rounded-xl" onClick={handleSendOTP}>
             Send OTP
           </CommonButton>
         </div>
+          <Toaster/>
       </div>
       {isOTPCardOpen && <OTPCard phoneNumber={phoneNumber} closeOTPCard={closeOTPCard} />}
     </>

@@ -34,10 +34,15 @@ classRoute.route("/admin/class-link").post(classLink)//Correct Calling Check
 classRoute.route("/admin/getClass").get(getClass) //Correct calling Check
 // Read the class using the id
 classRoute.route("/admin/getClass/:id").get(getClassWithId) //Correct calling Check
+// Read the upcoming classes
 classRoute.route("/admin/upcoming-class").get(getUpcomingClass) //Correct calling Check
+// Read the oncoming classes
 classRoute.route("/admin/ongoing-class").get(getOngoingClass) //Correct calling Check
+// Read the upcoming classes date
 classRoute.route("/admin/upcoming-class/date").get(getUpcomingClassDate)//Correct calling Check
+// Read the members of the particular batch
 classRoute.route("/admin/class/batches").post(getBatchMembers)//Correct calling Check
+// Read the User class booking data
 classRoute.route("/admin/users/booked").get(getClassBookingData)//Correct calling Check
 // Update the Classes using id
 classRoute.route("/admin/putClass/:id").put(putClass) //Correct calling Check
