@@ -6,6 +6,8 @@ import { CardsHolder } from "../../components/User Components/Services/CardsHold
 
 
 const ServicesPage = () => {
+  document.title = "Dr.RamaChandra & Padma| Services"
+
   return (
     <>
       {/* Poster */}

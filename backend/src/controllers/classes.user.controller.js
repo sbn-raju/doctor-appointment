@@ -23,6 +23,7 @@ const setClassBooking = async (req, res, next) => {
       razorpay_signature,
       formData,
     } = req.body
+    const user = req.user
     const {name, email, whatsapp, city} = {...formData}
     let paymentDetailsId 
     let upcomingClassDetailsId
@@ -46,7 +47,7 @@ const setClassBooking = async (req, res, next) => {
           return next(new ErrorHandler(false, `${error}` ,400));
         }
         const classBookingQuery = "INSERT INTO class_booking (user_id, class_id, name, email, whatsapp_no, city, payment_details) VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING *"
-        const classBookingValues = [40, upcomingClassDetailsId, name, email, whatsapp,city,paymentDetailsId]
+        const classBookingValues = [user.user_id, upcomingClassDetailsId, name, email, whatsapp,city,paymentDetailsId]
         try {
           const classBookingResults = await pool.query(classBookingQuery, classBookingValues)
           if(classBookingResults.rowCount!=0){
@@ -74,14 +75,21 @@ const setClassBooking = async (req, res, next) => {
 
 
 const getClassesBooked = async(req,res,next)=>{
-  const {user_id} = req.body
+  const user = req.user
   const getClassesBookedQuery = "SELECT DISTINCT class_booking.class_id, class_master.class_date, class_master.class_time, class_master.class_link FROM class_booking JOIN class_master ON class_booking.class_id = class_master.id WHERE class_booking.user_id = $1;"
   try {
-    const getClassBookedResults = await pool.query(getClassesBookedQuery, [user_id]);
+    const getClassBookedResults = await pool.query(getClassesBookedQuery, [user.user_id]);
     if(getClassBookedResults.rowCount!=0){
       return res.status(200).json({
         success:true,
         message:"All Class Bookings",
+        data:getClassBookedResults.rows
+      })
+    }
+    else{
+      return res.status(200).json({
+        success:true,
+        message:"No Class Bookings",
         data:getClassBookedResults.rows
       })
     }
@@ -94,40 +102,8 @@ const getClassesBooked = async(req,res,next)=>{
   
 
 
-
-  const getClassBooking = (req, res) => {
-    return res.status(200).json({
-      success: true,
-      message: "This is the Get class Booking Routes",
-    })
-}
-  
-  const getClassBookingById = (req, res) => {
-    return res.status(200).json({
-      success: true,
-      message: "This is the get class booking route by id",
-    })
-  }
-  
-  const putClassBooking = (req, res) => {
-    return res.status(200).json({
-      success: true,
-      message: "This is the put class Booking route",
-    })
-  }
-  
-  const deleteClassBooking = (req, res) => {
-    return res.status(200).json({
-      success: true,
-      message: "This is the delete class Booking Route",
-    })
-  }
   
 export {
     setClassBooking,
-    getClassBooking,
     getClassesBooked,
-    getClassBookingById,
-    putClassBooking,
-    deleteClassBooking,
 }

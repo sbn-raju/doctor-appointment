@@ -14,7 +14,6 @@ const getAllDoctor = async(req,res,next)=>{
     } catch (error) {
         return next(new ErrorHandler(false, `${error}` ,400));
     }
-
 }
 
 export {

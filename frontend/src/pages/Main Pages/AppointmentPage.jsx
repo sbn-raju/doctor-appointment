@@ -5,7 +5,7 @@ import Clock from "../../assets/Page Assets/Home/clock.png";
 import docter from "../../assets/Page Assets/Home/docter image.png";
 import Input from "../../components/Input Fields/Input";
 import CommonButton from "../../components/Buttons/CommonButton";
-import { slotDetails, doctorNames, diseasePurpose } from "../../constants";
+import { diseasePurpose } from "../../constants";
 import DoctorProfile from "../../components/Main Page Components/AppointmentPage Components/doctorProfile";
 import FAQ from "../../components/Main Page Components/FAQ";
 import axios from "axios";
@@ -13,6 +13,8 @@ import { toast, Toaster } from "react-hot-toast";
 import payImage from "../../assets/Logo/image 2.png";
 
 const AppointmentPage = () => {
+  document.title = "Dr.RamaChandra & Padma | Appointment"
+
   const [appointmentFormData, setAppointmentFromData] = useState({
     name: "",
     phone_no: "",
@@ -138,6 +140,7 @@ const AppointmentPage = () => {
     fetchDoctor();
   }, []);
 
+  
   return (
     <>
       <div className="w-full h-auto mb-10 bg-white">

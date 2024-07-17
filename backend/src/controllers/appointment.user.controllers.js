@@ -21,6 +21,7 @@ const bookSlots = async (req, res, next) => {
     razorpay_signature,
     appointmentData,
   } = req.body
+  const user = req.user
   const paymentDetailsQuery =
     "INSERT INTO user_payment_details (payment_amount, payment_date, payment_time, payment_status, razorpay_order_id, razorpay_payment_id, razorpay_signature) VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING *"
   const paymentDetailsValues = [
@@ -46,7 +47,7 @@ const bookSlots = async (req, res, next) => {
       const bookSlotsQuery =
         "INSERT INTO user_appointment_details (user_id, purpose_of_visit, date, time_slot, doctor_id, payment_details, mobile_no, p_name) VALUES ($1,$2,$3,$4,$5,$6,$7,$8) RETURNING *"
       const bookSlotsValues = [
-        40,
+        user.user_id,
         choose_purpose,
         date,
         timeSlot,
@@ -61,18 +62,19 @@ const bookSlots = async (req, res, next) => {
           bookSlotsValues
         )
         if (bookSlotsResulsts.rowCount != 0) {
-          const emptySlotsUpdate =
-            "UPDATE appointment_slot_master SET booked_by_user_id = $1 WHERE id = $2"
+          const fillSlotsUpdate =
+            "UPDATE appointment_slot_master SET booked_by_user_id = $1 WHERE id = $2 RETURNING *"
           try {
-            const emptySlotsUpdateResults = await pool.query(emptySlotsUpdate, [
-              40,
+            const fillSlotsUpdateResults = await pool.query(fillSlotsUpdate, [
+              user.user_id,
               timeSlot,
             ])
-            if (emptySlotsUpdateResults.rowCount != 0) {
+            if (fillSlotsUpdateResults.rowCount != 0) {
+              const slot_start_time = fillSlotsUpdateResults.rows[0].slot_start_time
               const messageVerify = sendAppointmentAlertMessage(
                 phone_no,
                 date,
-                timeSlot
+                slot_start_time
               )
               if (messageVerify.status == "accepted") {
                 return res.status(200).json({
@@ -101,9 +103,12 @@ const bookSlots = async (req, res, next) => {
   }
 }
 
+
+
+
 const getAppointmentDetails = async (req, res, next) => {
-  const { user_id } = req.body
-  if (!user_id) {
+  const user = req.user
+  if (!user.user_id) {
     return next(new ErrorHandler(false, "Please Login", 402))
   }
   const getAppointmentDetailsQuery =
@@ -111,13 +116,13 @@ const getAppointmentDetails = async (req, res, next) => {
   try {
     const getAppointmentDetailsResults = await pool.query(
       getAppointmentDetailsQuery,
-      [user_id]
+      [user.user_id]
     )
     if (getAppointmentDetailsResults.rowCount != 0) {
       return res.status(200).json({
         success: true,
         message: "All Appointments",
-        data: getAppointmentDetailsResults.rows[0],
+        data: getAppointmentDetailsResults.rows,
       })
     } else {
       return res.status(200).json({

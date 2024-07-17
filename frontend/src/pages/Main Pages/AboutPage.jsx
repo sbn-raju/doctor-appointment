@@ -8,6 +8,8 @@ import RightCard from '../../components/Main Page Components/About Page Componen
 
 
 const AboutPage = () => {
+  document.title = "Dr.RamaChandra & Padma | AboutUs"
+
   return (
     <>
       <div className='w-full h-auto my-20 bg-white px-10'>

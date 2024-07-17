@@ -1,8 +1,32 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { userProfile } from "../../../constants";
+import { useDispatch } from "react-redux";
+import toast from 'react-hot-toast'
+import axios from "axios";
+import {logout} from "../../../services/logoutSlice.js"
 
 const Sidebar = () => {
+  //Integration Frontend And backend
+  const dispatch = useDispatch();
+  const handleSignOut = async() =>{
+      try {
+        const response = await axios.post("/api/v1/auth/logout")
+        console.log(response.data);
+        toast.success(response.data.message)
+        dispatch(logout())
+        window.location.href = '/'
+      } catch (error) {
+        console.log(error);
+        toast.error(error.response.data.message)
+      }
+  } 
+
+
+
+
+
+  //FrontEnd
   const [activeBtn, setActiveBtn] = useState("");
   const [isExpanded, setIsExpanded] = useState(false);
   const [isHovered, setIsHovered] = useState(null);
@@ -118,7 +142,7 @@ const Sidebar = () => {
             ))}
             <Link
               to={'/'}
-              onClick={() => handleBtn("signOut")}
+              onClick={() => handleSignOut()}
               className={`relative hover:bg-green-3 ${isActive("signOut") ? "bg-green-3" : ""} transition-all duration-300 rounded-2xl cursor-pointer flex ${isExpanded ? "p-4 m-1" : "-m-[8px] md:-m-[20px] h-10 w-10 flex justify-center my-2 md:my-4"}`}
               >
                 <span 
