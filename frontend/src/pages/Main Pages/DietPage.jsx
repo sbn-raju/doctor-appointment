@@ -16,6 +16,7 @@ import dietCard1 from '../../assets/Page Assets/Home/diet-day-1.png';
 import RecipeCard from '../../components/Main Page Components/Diet Page Components/RecipeCard';
 
 const DietPage = () => {
+  document.title = "Dr.RamaChandra & Padma| Diet"
   const [dietType, setDietType] = useState('liquid');
   const [isDietCardOpen, setIsDietCardOpen] = useState(false);
 

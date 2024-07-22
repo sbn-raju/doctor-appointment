@@ -4,6 +4,11 @@ import { BsCalendar2Event } from "react-icons/bs";
 import { FaClock, FaPhone } from "react-icons/fa6";
 import { IoIosArrowDown } from "react-icons/io";
 import CommonButton from '../../components/Buttons/CommonButton';
+import { useSelector, useDispatch } from 'react-redux';
+import axios from 'axios'
+import { Link } from 'react-router-dom';
+import { refreshUserToken } from '../../services/refreshSlice.js';
+
 
 const formatDate = (isDateString) => {
   const options = { year: 'numeric', month: 'short', day: '2-digit'};
@@ -22,32 +27,32 @@ const formatTime = (timeString) => {
 };
 
 const MyClassesPage = () => {
-
+  document.title = "Class Bookings"
+  const dispatch = useDispatch()
   const [classRecords, setClassRecords] = useState([]);
-
   useEffect(()=> {
     const fetchData = async ()=> {
       const userId = "123";
       const requestOptions= {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({user_id: userId})
       };
 
       try{
 
-        const response = await fetch('/api/v1/class_booking/user/classes/booked', requestOptions);
-
-        if(!response.ok){
-          throw new Error('Network response was not ok');
-        }
-
-        const data = await response.json();
+        const response = await axios.post('/api/v1/class_booking/user/classes/booked', requestOptions);
+        console.log(response)
+        const data = response.data
         console.log(data.data);
-        setClassRecords(data.data || [])
-      } catch(e){
-        console.log('Error occured', e);
-        throw e;
+        setClassRecords(data?.data)
+
+      } catch(error){
+        console.log(error.response.status)
+        if(error.response.status === 401){
+          dispatch(refreshUserToken())
+        }
+        console.log('Error occured', error);
+        throw error;
       }
     }
     fetchData();
@@ -69,7 +74,7 @@ const MyClassesPage = () => {
       { classRecords.length !== 0 ? (
         <>
           <div className="w-full h-3/6 overflow-auto scrollbar">
-            {classRecords.map((classItem, index) => (
+            {classRecords?.map((classItem, index) => (
               <div key={index} className={`mb-5 p-4 px-10 rounded-2xl border-[1px] border-gray-2 bg-white shadow-md`}>
                 <div className='w-full flex flex-row'>
                   <div className='w-11/12 md:w-9/12 flex flex-col gap-4 md:gap-2'>
@@ -89,7 +94,7 @@ const MyClassesPage = () => {
                             <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/>
                           </svg>
                         </span>
-                        {formatTime(classItem.class_time)}
+                        {classItem.class_time}
                       </p>
                     </div>
                     <div className="grid grid-cols-2 mt-2">
@@ -97,7 +102,7 @@ const MyClassesPage = () => {
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#507E4D" className="bi bi-graph-up" viewBox="0 0 16 16">
                           <path fill-rule="evenodd" d="M0 0h1v15h15v1H0zm14.817 3.113a.5.5 0 0 1 .07.704l-4.5 5.5a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61 4.15-5.073a.5.5 0 0 1 .704-.07"/>
                         </svg>
-                        <span className='font-medium ml-2'>: {classItem.Batch}</span>
+                        <span className='font-medium ml-2'>: {classItem.class_id}</span>
                       </p>
                       <p className='mr-3 text-xs md:text-sm flex justify-start items-center'>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#507E4D" class="bi bi-check-circle" viewBox="0 0 16 16">
@@ -111,7 +116,9 @@ const MyClassesPage = () => {
 
                   <div className='w-1/12 md:w-3/12 md:px-4 flex justify-center items-center'>
                     <button className={`${!classItem.class_link? 'bg-gray-400' : 'bg-green-4'} rounded-md px-2 py-1 md:px-8 text-white text-xs md:text-base`} disabled={!classItem.class_link}>
-                      Join
+                      <Link to={classItem.class_link}>
+                          Join
+                      </Link>
                     </button>
                   </div>
                 </div>

@@ -25,13 +25,13 @@ import { useSelector } from "react-redux";
 
 
 const HomePage = () => {
+  document.title = "Dr.RamaChandra & Padma"
  const [loading, setLoading] = useState(true);
  const [error, setError] = useState(null);
  const [youtubeVideos, setYoutubeVideos] = useState([]);
  const [testimonials, setTestimonials] = useState([]);
- const token = useSelector((state)=>state.token)
 
-console.log(token)
+
  useEffect(() => {
   const fetchYoutubeVideos = async()=>{
     try{
@@ -259,7 +259,7 @@ console.log(token)
             ))}
           </div>
         </div>
-      </div>
+      </div>  
     </>
   );
 }
