@@ -6,7 +6,7 @@ const authAdminRoute = Router();
 
 
 
-authAdminRoute.route("/login").post(adminAuth, adminAuthLoginController);
+authAdminRoute.route("/login").post(adminAuthLoginController);
 authAdminRoute.route("/register").post(adminAuthRegistetController);
 authAdminRoute.route("/logout").post(adminAuthLogoutController);
 

@@ -10,24 +10,24 @@ const appointmentMasterCreate = async(req,res,next)=>{
     try {
         let slots_no = 0
         const{doctor_id, date, start_time, end_time, time_duration} = req.body
-        const created_by = parseInt(req.user.admin_id)
-        const updated_by = parseInt(req.user.admin_id)
+        const created_by = 1
+        const updated_by = 1
         if(!(doctor_id || date || start_time || end_time || time_duration || created_by || updated_by)){
             return next (new ErrorHandler(false, "Please Provide all the Fields", 302));
         }
-
-        slots_no = await slotCalculator(start_time, end_time, time_duration)
+        const slot_duration = parseInt(time_duration);
+        slots_no = await slotCalculator(start_time, end_time, slot_duration)
 
         const appointmentMasterCreateQuery = "INSERT INTO appointment_master (doctor_id, date, start_time, end_time, time_duration, slots_no, created_by, updated_by) VALUES ($1,$2,$3,$4,$5,$6,$7,$8) RETURNING *"
-        const appointmentMasterCreateValue = [doctor_id, date, start_time, end_time, time_duration, slots_no, created_by, updated_by]
+        const appointmentMasterCreateValue = [doctor_id, date, start_time, end_time, slot_duration, slots_no, created_by, updated_by]
     
 
         try {
             const appointmentMasterCreateResults = await pool.query(appointmentMasterCreateQuery, appointmentMasterCreateValue);
             if(appointmentMasterCreateResults.rowCount != 0){
                 let id = appointmentMasterCreateResults.rows[0].id
-                if(await slotCreator(start_time, time_duration, slots_no,id, created_by, updated_by)){
-                    return res.status(302).json({
+                if(await slotCreator(start_time, slot_duration, slots_no,id, created_by, updated_by)){
+                    return res.status(200).json({
                         success:true,
                         message:"Appointment Master Create",
                         data:appointmentMasterCreateResults.rows
@@ -179,11 +179,46 @@ const getUserAppointments = async(req,res,next)=>{
 }
 
 
+
+const setCompleteAppointment = async(req,res,next)=>{
+    const {id} = req.query
+    if(!id){
+        return res.status(302).json({
+            success:false,
+            message:"Please select the user to mark completed"
+        })
+    }
+    const setCompleteAppointmentQuery = "UPDATE user_appointment_details SET iscompleted = $1 WHERE user_id = $2 RETURNING iscompleted";
+    const setCompleteAppointmentValue = [1, id];
+    try {
+        const setCompleteAppointmentresults = await pool.query(setCompleteAppointmentQuery,setCompleteAppointmentValue);
+        if(setCompleteAppointmentresults.rowCount!=0){
+          return res.status(200).json({
+             success:true,
+             message:"Successfully marked as completed"
+          })
+        }
+        else{
+            return res.status(302).json({
+                success:true,
+                message:"Id not found for the user"
+             })
+        }
+    } catch (error) {
+        return next(new ErrorHandler(false, `${error}`, 402))
+    }
+
+}
+
+
+
+
 export{
     appointmentMasterCreate,
     appointmentSlotMasterGetSlots,
     appointmentSlotPerDate,
     emptySlots,
     getUserAppointments,
+    setCompleteAppointment,
     
 }

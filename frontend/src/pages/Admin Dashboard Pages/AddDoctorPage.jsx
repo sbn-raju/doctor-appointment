@@ -3,10 +3,31 @@ import { GiCaduceus } from "react-icons/gi"
 import Input from "../../components/Input Fields/Input";
 import CommonButton from '../../components/Buttons/CommonButton';
 import { useForm } from 'react-hook-form';
+import axios from 'axios';
+import {useMutation} from '@tanstack/react-query'
+import toast from "react-hot-toast"
 
 const AddDoctorPage = () => {
-  const { register, handleSubmit } = useForm();
-  const docterData = (formData) => console.log(formData);
+  const { register, handleSubmit, reset } = useForm();
+
+
+  const addDoctor = async(doctorData)=>{
+    const response = await axios.post("/api/v1/doctor/set-doctors",doctorData)
+    return response
+  }
+  
+  const fromMutation = useMutation({
+    mutationFn:addDoctor, 
+    onSuccess:async(data)=>{
+      toast.success(data.data.message);
+      reset();
+    }
+  })
+
+  const handleFormSubmit = (doctorData) => {
+    fromMutation.mutate(doctorData)
+  }
+
 
   return (
     <div className='h-auto w-full bg-gray-1 flex flex-col justify-center items-center p-8'>
@@ -25,14 +46,14 @@ const AddDoctorPage = () => {
       </div>
 
       <div className='w-full shadow-md mt-6 bg-white px-4 py-6 rounded-2xl'>
-        <form onSubmit={handleSubmit(docterData)}>
+        <form onSubmit={handleSubmit(handleFormSubmit)}>
           <div className='grid grid-cols-1 px-10 items-center gap-4'>
             <Input
               label="Docter Name"
               type="text"
               placeholder="Enter Docter Name"
               className="border-[1px] border-green-800 w-full"
-              {...register("setName", { required: true })}
+              {...register("name", { required: true })}
             />
 
             <Input
@@ -40,7 +61,7 @@ const AddDoctorPage = () => {
               type="text"
               placeholder="Enter Username"
               className="border-[1px] border-green-800 w-full"
-              {...register("setUsername", { required: true })}
+              {...register("username", { required: true })}
             />
 
             <Input
@@ -48,7 +69,7 @@ const AddDoctorPage = () => {
               type="password"
               placeholder="Enter Password"
               className="border-[1px] border-green-800 w-full"
-              {...register("setPassword", { required: true })}
+              {...register("password", { required: true })}
             />
 
             <div className='w-full flex justify-end mt-2'>

@@ -25,7 +25,7 @@ const CautionBox = ({handleCancel}) => {
 
 const AppointmentsPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [rowsPerPage, setRowsPerPage] = useState(10);//
   const [isCautionBoxOpen, setIsCautionBoxOpen] = useState(false);
   const [selectedSort, setSelectedSort] = useState("All");
   const [selectedAppointmentType, setSelectedAppointmentType] = useState("Appointments");
@@ -34,6 +34,7 @@ const AppointmentsPage = () => {
   const navigate = useNavigate();
 
   const inCompleteAppointments = appointments.filter((doc) => !doc.isChecked);
+  //Array apppointments
   const completedAppointments = appointments.filter((doc) => doc.isChecked);
 
   const [inCompletedSort, setInCompletedSort] = useState(inCompleteAppointments);
@@ -117,7 +118,7 @@ const AppointmentsPage = () => {
   }
 
   const handleRowsPerPage = (e) => {
-    setRowsPerPage(parseInt(e.target.value, 10)); // converting string num to decimal from dropdown menu
+    setRowsPerPage(parseInt(e.target.value, 10)); 
     setCurrentPage(1); // reloading to 1st page after rows per page count is changed
   }
 
@@ -151,7 +152,6 @@ const AppointmentsPage = () => {
       navigate('/admin/whatsapp');
     } else{
       alert('Please select appointments to send whatsapp message');
-
     }
   }
 
@@ -169,7 +169,6 @@ const AppointmentsPage = () => {
       setIsCautionBoxOpen(true);
     } else{
       alert('Please select appointments to send whatsapp message');
-
     }
   }
 

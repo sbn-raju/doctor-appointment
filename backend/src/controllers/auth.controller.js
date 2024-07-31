@@ -76,7 +76,7 @@ const sendOneTimePasswordRegisterController = async(req,res,next)=>{
         const setOTPValues = [generatedOtp, otpNotVerified, phoneNumber];
         try {
           const setOTPResults = await pool.query(setOTPQuery,setOTPValues);
-          if(setOTPResults.rowCount!=0){
+          if(setOTPResults.rowCount!=0 && sendOTPMessage(phoneNumber, generatedOtp)){
             // && sendOTPMessage(phoneNumber, generatedOtp)
             return res.status(200).json({
                 success:true,
@@ -97,7 +97,7 @@ const sendOneTimePasswordRegisterController = async(req,res,next)=>{
     const sendOTPValues = [phoneNumber, generatedOtp];
     try {
       const sendOTPResults = await pool.query(sendOTPQuery,sendOTPValues);
-      if(sendOTPResults.rowCount!= 0){
+      if(sendOTPResults.rowCount!= 0 && sendOTPMessage(phoneNumber, generatedOtp) ){
         // && sendOTPMessage(phoneNumber, generatedOtp)
         return res.status(200).json({
             success:true,

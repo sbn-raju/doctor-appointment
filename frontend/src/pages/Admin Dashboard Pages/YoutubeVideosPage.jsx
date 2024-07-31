@@ -1,8 +1,168 @@
-import React, { useState } from 'react'
-import { testimonialVideos, youtubeVideos } from '../../constants';
+import React, { useState, useEffect } from 'react'
+// import { testimonialVideos, youtubeVideos } from '../../constants';
+import {useMutation, useQuery} from "@tanstack/react-query";
+import { useForm } from 'react-hook-form';
+import axios from "axios";
+import toast from 'react-hot-toast';
+import { queryClient } from '../../main';
 
 const YoutubeVideosPage = () => {
+  document.title = "Youtube Videos | Admin"
   const [videoType, setVideoType] = useState('youtube');
+  const { register, handleSubmit, reset } = useForm();
+
+  //Youtube videos
+  const fetchYouTubeVideos = async()=>{
+    const response = await axios.get("/api/v1/youtube/get/videos")
+    return response.data.data  
+  } 
+
+  const {data: fetchedYoutubeVideos} = useQuery({
+    queryKey:['fetchedYoutubeVideos'],
+    queryFn:fetchYouTubeVideos,
+  })
+
+  console.log(fetchedYoutubeVideos);
+
+
+  // Setting the Link of the Iframe for the Youtube Video 
+  const setYoutube = async(link)=>{
+    const response = await axios.post("/api/v1/youtube/video", link)
+    return response
+  }
+
+  const setYoutubeVideos = useMutation({
+    mutationFn:setYoutube,
+    onSuccess: async()=>{
+      return await queryClient.invalidateQueries({queryKey:['fetchedYoutubeVideos']})
+    }
+  })
+
+  const onSubmitForYoutube = (link) =>{
+    console.log(link);
+    setYoutubeVideos.mutate(link)
+  }
+
+  useEffect(() => {
+    if(setYoutubeVideos.isSuccess){
+     toast.success("Video SuccessFully created")
+     reset()
+    }
+    else if(setYoutubeVideos.isError) {
+     toast.error("Videos are not set")
+    }
+ }, [setYoutubeVideos.isSuccess, setYoutubeVideos.isError, reset])
+ 
+
+ const deletePrevYoutube = async(id)=>{
+  const response = await axios.delete(`/api/v1/youtube/video/?id=${id}`)
+  return response
+ }
+
+ const deleteYoutubeVideo = useMutation({
+  mutationFn:deletePrevYoutube,
+  onSuccess:async()=>{
+    return await queryClient.invalidateQueries({queryKey:['fetchedYoutubeVideos']}) 
+  }
+ })
+
+ console.log(deleteYoutubeVideo);
+
+ const handleDeleteYoutube = (id)=>{
+   deleteYoutubeVideo.mutate(id)
+ }
+
+ useEffect(() => {
+  if(deleteYoutubeVideo.isSuccess){
+   toast.success("Successfully deleted the Youtube Video")
+  }
+  else if(deleteYoutubeVideo.isError) {
+   toast.error("Youtube Video is not deleted")
+  }
+}, [deleteYoutubeVideo.isSuccess, deleteYoutubeVideo.isError])
+ 
+
+
+
+
+
+
+
+  //Testimonials 
+  const fetchTestimonialVideos = async()=>{
+    const response = await axios.get("/api/v1/youtube/get/testimonials")
+    return response.data.data  
+  }
+
+  const {data: fetchedTestimonialsVideos} = useQuery({
+    queryKey:['fetchedTestimonialsVideos'],
+    queryFn:fetchTestimonialVideos
+  })
+
+  console.log(fetchedTestimonialsVideos);
+
+
+  // Setting the Link of the Iframe for the testiomonials Video
+  const setTestimonials = async(link_test)=>{
+    const response = await axios.post("/api/v1/youtube/testimonials", link_test)
+    return response
+  }
+
+  const setTestimonialsVideos = useMutation({
+    mutationFn:setTestimonials,
+    onSuccess: async()=>{
+      return await queryClient.invalidateQueries({queryKey:['fetchedTestimonialsVideos']})
+    }
+  })
+
+  const onSubmitForTestimonials = (link_test) =>{
+    console.log(link_test);
+    setTestimonialsVideos.mutate(link_test)
+  }
+
+  useEffect(() => {
+    if(setTestimonialsVideos.isSuccess){
+     toast.success("Testimonials SuccessFully created")
+     reset()
+    }
+    else if(setTestimonialsVideos.isError) {
+     toast.error("Testimonials are not set")
+    }
+ }, [setTestimonialsVideos.isSuccess, setTestimonialsVideos.isError, reset])
+
+
+ const deletetestimonialsYoutube = async(id)=>{
+  const response = await axios.delete(`/api/v1/youtube/testimonials?id=${id}`)
+  return response
+ }
+
+ const deleteTestimonialsVideo = useMutation({
+  mutationFn:deletetestimonialsYoutube,
+  onSuccess:async()=>{
+    return await queryClient.invalidateQueries({queryKey:['fetchedTestimonialsVideos']}) 
+  }
+ })
+
+ console.log(deleteTestimonialsVideo);
+
+ const handleDeleteTestimonials = (id)=>{
+  deleteTestimonialsVideo.mutate(id)
+ }
+
+ useEffect(() => {
+  if(deleteTestimonialsVideo.isSuccess){
+   toast.success("Successfully deleted the Testimonials Video")
+   
+  }
+  else if(deleteTestimonialsVideo.isError) {
+   toast.error("Testimonials Video is not deleted")
+  }
+}, [deleteTestimonialsVideo.isSuccess, deleteTestimonialsVideo.isError])
+ 
+ 
+ 
+
+
 
   return (
     <div className='h-auto w-full bg-gray-1 flex flex-col justify-center items-center px-8'>
@@ -33,8 +193,12 @@ const YoutubeVideosPage = () => {
         <>
           <div className='w-full px-20 bg-white p-8 rounded-2xl shadow-md'>
             <p className='text-lg mb-2'>Youtube Videos*</p>
-            <form>
-              <textarea className='border-[1px] border-green-700 p-4 rounded-xl w-full h-24' placeholder='Copy Iframe from youtube and paste here' />
+            <form onSubmit={handleSubmit(onSubmitForYoutube)}>
+              <input 
+               id='link_iframe'
+               className='border-[1px] border-green-700 p-4 rounded-xl w-full h-24' placeholder='Copy Iframe from youtube and paste here' 
+               {...register("link_iframe",{required:true})}
+              />
               <div className='w-full flex justify-end mt-2'>
                 <button className='bg-green-3 text-white px-4 py-2 font-medium rounded-xl'>Submit</button>
               </div>
@@ -45,16 +209,15 @@ const YoutubeVideosPage = () => {
             <div className='pt-4 sticky top-0 z-10 bg-white border-b-[1px] border-b-gray-2'>
               <ul className='grid grid-cols-3 pb-2'>
                 <li className='mx-auto'>Video</li>
-                <li className=''>Title</li>
                 <li className='mx-auto'>Operation</li>
               </ul>
             </div>
             <div className='overflow-auto scrollbar h-52'>
-              { youtubeVideos.map((vid, index) => (
+              {fetchedYoutubeVideos?.map((vid, index) => (
                 <div key={index} className='grid grid-cols-3 p-4'>
-                  <img src={vid.img}  className='mx-auto w-24'/>
-                  <p className='text-sm mx-auto'>{vid.title}</p>
-                  <button className='mx-auto'>
+                  <iframe width="300" height="200" src={vid.link_iframe} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                  </iframe>
+                  <button className='mx-auto' key={vid.id} onClick={()=>handleDeleteYoutube(vid.id)}>
                     <svg width="28" height="30" viewBox="0 0 28 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <g clip-path="url(#clip0_1333_134)">
                       <path d="M7.00004 23.2877C7.00004 24.6168 8.05004 25.7043 9.33337 25.7043H18.6667C19.95 25.7043 21 24.6168 21 23.2877V8.78768H7.00004V23.2877ZM22.1667 5.16268H18.0834L16.9167 3.95435H11.0834L9.91671 5.16268H5.83337V7.57935H22.1667V5.16268Z" fill="#497246"/>
@@ -75,8 +238,10 @@ const YoutubeVideosPage = () => {
         <>
           <div className='w-full px-20 bg-white p-8 rounded-2xl shadow-md'>
             <p className='text-lg mb-2'>Testimonial Videos*</p>
-            <form>
-              <textarea className='border-[1px] border-green-700 p-4 rounded-xl w-full h-24' placeholder='Copy Iframe of the testimonial and paste here' />
+            <form onSubmit={handleSubmit(onSubmitForTestimonials)}>
+              <input className='border-[1px] border-green-700 p-4 rounded-xl w-full h-24' placeholder='Copy Iframe of the testimonial and paste here' 
+              {...register("links_iframe_testimonials",{required:true})}
+              />
               <div className='w-full flex justify-end mt-2'>
                 <button className='bg-green-3 text-white px-4 py-2 font-medium rounded-xl'>Submit</button>
               </div>
@@ -92,11 +257,11 @@ const YoutubeVideosPage = () => {
               </ul>
             </div>
             <div className='overflow-auto scrollbar h-52'>
-              { testimonialVideos.map((vid, index) => (
+              {fetchedTestimonialsVideos?.map((vid, index) => (
                 <div key={index} className='grid grid-cols-3 p-4'>
-                  <img src={vid.img}  className='mx-auto w-24'/>
-                  <p className='text-sm mx-auto'>{vid.title}</p>
-                  <button className='mx-auto'>
+                  <iframe width="300" height="200" src={vid.links_iframe_testimonials} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                  </iframe>
+                  <button className='mx-auto' key={vid.id} onClick={()=>handleDeleteTestimonials(vid.id)}>
                     <svg width="28" height="30" viewBox="0 0 28 30" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <g clip-path="url(#clip0_1333_134)">
                       <path d="M7.00004 23.2877C7.00004 24.6168 8.05004 25.7043 9.33337 25.7043H18.6667C19.95 25.7043 21 24.6168 21 23.2877V8.78768H7.00004V23.2877ZM22.1667 5.16268H18.0834L16.9167 3.95435H11.0834L9.91671 5.16268H5.83337V7.57935H22.1667V5.16268Z" fill="#497246"/>

@@ -1,17 +1,206 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Input from "../../components/Input Fields/Input";
 import CommonButton from '../../components/Buttons/CommonButton';
 import { useForm } from 'react-hook-form';
 import { MdOndemandVideo } from 'react-icons/md';
 import { upcomingClassDetails, ongoingClassDetails } from '../../constants';
+import {useQuery, useMutation} from '@tanstack/react-query';
+import axios from 'axios';
+import toast from 'react-hot-toast';
+import ClassToaster from '../../components/Toaster/ClassToaster';
+
+
+
+const formatDate = (dateString) => {
+  const date = new Date(dateString);
+
+  const options = { day: '2-digit', month: 'long', year: 'numeric' };
+  return date.toLocaleDateString('en-GB', options);
+};
 
 
 const ClassUpdatesPage = () => {
-  const { register, handleSubmit } = useForm();
-  const classData = (formData) => console.log(formData);
+  document.title="Class Updates | Admin Panel"
+  
+  const { register, handleSubmit, reset } = useForm();
   const [classTabType, setClassTabType] = useState('setClass');
-  const [ongoingClass, setOngoingClass] = useState([]);
-  const [upcomingClasses, setUpcomingClasses] = useState([]);
+  // const [ongoingClassData, setClas]
+
+
+
+  //Set new Class
+  const setNewClass = async(classDetails)=>{
+    const response = await axios.post("/api/v1/class/admin/setClass",classDetails);
+    return response
+  }
+
+
+  const classDetailsMutation = useMutation({
+    mutationFn:setNewClass
+  })
+
+  const handleClassDetails = async(classDetails)=>{
+    classDetailsMutation.mutate(classDetails)
+  }
+
+  console.log(classDetailsMutation)
+  useEffect(() => {
+    if(classDetailsMutation.isSuccess){
+     toast.success(classDetailsMutation.data.data.message)
+     reset()
+    }
+    else if(classDetailsMutation.isError) {
+     toast.error(classDetailsMutation.error?.response.data.message)
+     reset()
+    }
+ }, [classDetailsMutation.isSuccess, classDetailsMutation.isError, reset])
+
+
+
+
+  //Ongoing Class
+  //Fetching details of the ongoing class
+  const fetchOngoingClassDetails = async()=>{
+    const response = await axios.get("/api/v1/class/admin/ongoing-class")
+    return response.data.data 
+  }
+
+  const{data: ongoingClassDetails} = useQuery({
+    queryKey:['ongoingClassDetails'],
+    queryFn:fetchOngoingClassDetails,
+  })
+
+  console.log(ongoingClassDetails);
+
+  //Adding Class Link
+  const addClassLink = async(link)=>{
+    console.log(link)
+    const response = await axios.post("/api/v1/class/admin/class-link", link)
+    console.log(response);
+    return response
+  }
+
+  const addClassLinkMutation = useMutation({
+    mutationFn:addClassLink
+  })
+
+  console.log(addClassLinkMutation)
+
+  const handleAddClassLink = (link)=>{
+    addClassLinkMutation.mutate(link)
+  }
+
+  useEffect(() => {
+    if(addClassLinkMutation.isSuccess){
+     toast.success(addClassLinkMutation.data.data.message)
+     reset()
+    }
+    else if(addClassLinkMutation.isError) {
+     toast.error(addClassLinkMutation.error?.response.data.message)
+    }
+ }, [addClassLinkMutation.isSuccess, addClassLinkMutation.isError, reset])
+
+
+  //Terminating Class Functinality
+  const terminateClass = async()=>{
+    const response = await axios.post("/api/v1/class/admin/terminate-Bookings");
+    return response
+  }
+
+  const terminationMutation = useMutation({
+    mutationFn:terminateClass
+  })
+
+  const handleTerminateAgree = ()=>{
+    terminationMutation.mutate()
+    console.log(terminationMutation)
+  }
+
+  const handleTerminateDisagree = ()=>{
+    toast.error("Terminating of Class is Disagreed")
+  }
+  const handleTerminateClick = ()=>{
+    const result = toast.custom((t)=><ClassToaster t={t} message={"Class Terminating"} subMessage={"Are you sure! You want to terminate"} onAgree={handleTerminateAgree} onDisagree={handleTerminateDisagree}/>)
+    console.log(result)
+  }
+
+  useEffect(() => {
+    if(terminationMutation.isSuccess){
+     toast.success(terminationMutation.data.data.message)
+    }
+    else if(terminationMutation.isError) {
+     toast.error(terminationMutation.error?.response.data.message)
+    }
+ }, [terminationMutation.isSuccess, terminationMutation.isError, reset])
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  //Upcoming Class
+  //Fetching the upcoming class Details
+  const fetchUpcomingClassDetails = async()=>{
+    const response = await axios.get("/api/v1/class/admin/upcoming-class")
+    return response.data.data 
+  }
+
+  const{data: fetchUpClassDetails} = useQuery({
+    queryKey:['upcomingClassDetails'],
+    queryFn:fetchUpcomingClassDetails,
+  })
+
+  console.log(fetchUpClassDetails);
+
+
+  //Handling Stop Booking
+  const setStopBooking = async()=>{
+    const response = await axios.post("/api/v1/class/admin/close-Bookings")
+    console.log(response)
+    return response
+  }
+
+  const stopBooking = useMutation({
+    mutationFn:setStopBooking
+  })
+
+
+  const handleStopBookingAgree = ()=>{
+    stopBooking.mutate()
+    console.log(stopBooking);
+  }
+
+  const handleStopBookingDisAgree = ()=>{
+    toast.error("Class have  not stopped Booking")
+  }
+
+  const handleStopBookingClick = ()=>{
+    toast.custom((t)=><ClassToaster t={t} message={"Class Stop Booking"} subMessage={"Are you sure! You want to Stop Booking"} onAgree={handleStopBookingAgree} onDisagree={handleStopBookingDisAgree}/>)
+  }
+
+  // console.log(stopBooking.error?.response.data.message)
+  useEffect(() => {
+    if(stopBooking.isSuccess){
+     toast.success(stopBooking.data.data.message)
+    }
+    else if(stopBooking.isError) {
+     toast.error(stopBooking.error?.response.data.message)
+    }
+ }, [stopBooking.isSuccess, stopBooking.isError, reset])
+  
+
+
+
+
+
 
   return (
     <div className='min-h-screen w-full bg-gray-1 flex flex-col justify-center items-center px-8 py-4'>
@@ -35,22 +224,23 @@ const ClassUpdatesPage = () => {
       { classTabType === 'setClass' ? (
         <>
           <div className='shadow-md w-full mb-8 bg-white px-4 py-8 rounded-2xl'>
-            <form onSubmit={handleSubmit(classData)}>
+            <form onSubmit={handleSubmit(handleClassDetails)}>
               <div className='grid grid-cols-1 md:grid-cols-2 px-10 items-center gap-4'>
                 <Input
                   label="Start Date"
                   type="date"
                   placeholder="Select Start Date"
                   className="border-[1px] border-green-800 w-full"
-                  {...register("setStartData", { required: true })}
+                  {...register("class_date", { required: true })}
                 />
 
                 <Input
-                  label="End Date"
-                  type="time"
-                  placeholder="Select End Date"
+                  label="Fees"
+                  type="text"
+                  placeholder="Select Fees"
                   className="border-[1px] border-green-800 w-full"
-                  {...register("setEndDate", { required: true })}
+                  defaultValue = {1000}
+                  {...register("class_fees", { required: true, maxLength:4 })}
                 />
 
                 <Input
@@ -58,7 +248,7 @@ const ClassUpdatesPage = () => {
                   type="time"
                   placeholder="Select Time"
                   className="border-[1px] border-green-800 w-full"
-                  {...register("setSlotTime", { required: true })}
+                  {...register("class_time", { required: true })}
                 />
 
                 <div className='flex justify-center md:justify-end self-center'>
@@ -75,23 +265,24 @@ const ClassUpdatesPage = () => {
         </>
       ) : (
         <>
-          { ongoingClassDetails.length !== 0 ? (
+          { ongoingClassDetails?.length !== 0 ? (
             <div className='bg-white shadow-md rounded-2xl py-4 w-full h-[300px]'>
               <div className='border-b-[1px] border-gray-2'>
                 <h1 className='mx-8 pb-2'>Ongoing class details</h1>
               </div>
               <div className='p-8 py-4'>
                 <div className='flex justify-between'>
-                  <p className='font-thin'>Batch: <span className='font-medium'>1</span></p>
-                  <p className='font-thin'>Date: <span className='font-medium'>12 May 2024</span></p>
-                  <p className='font-thin'>Time: <span className='font-medium'>7:30-8:30PM</span></p>
+                  <p className='font-thin'>Batch: <span className='font-medium'>{ongoingClassDetails?.id ? ongoingClassDetails?.id : "Upcoming Class Booking needs to be stopped"}</span></p>
+                  <p className='font-thin'>Date: <span className='font-medium'>{formatDate(ongoingClassDetails?.class_date)}</span></p>
+                  <p className='font-thin'>Time: <span className='font-medium'>{ongoingClassDetails?.class_time? ongoingClassDetails.class_time:"Upcoming Class Booking needs to be stopped"}</span></p>
                 </div>
                 <div className='w-full'>
-                  <form>
-                    <textarea className='border-[1px] border-green-700 p-4 rounded-xl w-full h-24 mt-8' placeholder='Paste the joining link of the class prior the to the class start' />
+                  <form onSubmit={handleSubmit(handleAddClassLink)}>
+                    <input className='border-[1px] border-green-700 p-4 rounded-xl w-full h-24 mt-8' placeholder='Paste the joining link of the class prior the to the class start' 
+                    {...register("link",{required:true})}/>
                     <div className='w-full flex justify-between mt-2'>
-                      <button className='text-red-500 border-[1px] border-white hover:border-red-500 rounded-xl py-2 px-4'>Terminate Class</button>
-                      <button className='bg-green-3 text-white px-4 py-2 font-medium rounded-xl'>Submit</button>
+                      <button className='text-red-500 border-[1px] border-white hover:border-red-500 rounded-xl py-2 px-4' type='button' onClick={handleTerminateClick}>Terminate Class</button>
+                      <button className='bg-green-3 text-white px-4 py-2 font-medium rounded-xl' type='submit'>Submit</button>
                     </div>
                   </form>
                 </div>
@@ -108,21 +299,21 @@ const ClassUpdatesPage = () => {
             </div>
           )}
 
-          { upcomingClassDetails.length !== 0 ? (
+          { upcomingClassDetails?.length !== 0 ? (
             <div className='bg-white shadow-md rounded-2xl py-4 w-full mt-6 h-[200px]'>
               <div className='border-b-[1px] border-gray-2'>
                 <h1 className='mx-8 pb-2'>Upcoming class details</h1>
               </div>
               <div className='p-8 py-4'>
                 <div className='flex justify-between'>
-                  <p className='font-thin'>Batch: <span className='font-medium'>1</span></p>
-                  <p className='font-thin'>Date: <span className='font-medium'>12 May 2024</span></p>
-                  <p className='font-thin'>Time: <span className='font-medium'>7:30-8:30PM</span></p>
+                  <p className='font-thin'>Batch: <span className='font-medium'>{fetchUpClassDetails.id}</span></p>
+                  <p className='font-thin'>Date: <span className='font-medium'>{formatDate(fetchUpClassDetails.class_date)}</span></p>
+                  <p className='font-thin'>Time: <span className='font-medium'>{fetchUpClassDetails.class_time}</span></p>
                 </div>
                 <div className='w-full mt-8'>
                   <div className='w-full flex justify-between mt-2'>
                     <p>Kindly stop taking booking on the day of the class, make sure you are prior of atleast 5 hours before class timings</p>
-                    <button className='bg-green-3 text-white px-4 py-2 font-medium rounded-xl'>Stop Bookings</button>
+                    <button className='bg-green-3 text-white px-4 py-2 font-medium rounded-xl' onClick={handleStopBookingClick}>Stop Bookings</button>
                   </div>
                 </div>
               </div>
