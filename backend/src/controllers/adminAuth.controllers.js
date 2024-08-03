@@ -96,6 +96,7 @@ const adminAuthLoginController = async(req,res,next)=>{
 
         return res.status(200).json({
             message: "User Logged in successfully",
+            data:"admin",
             token: token
         })
 
@@ -129,8 +130,19 @@ const adminAuthLogoutController = async(req,res,next)=>{
     }
 }
 
+
+const verifyAdmin = async(req,res)=>{
+    const{role_id} = req.user;
+    if(role_id === 'Admin'){
+        console.log("Admin");
+        return res.status(200)
+    }
+}
+
+
 export {
     adminAuthLoginController,
     adminAuthRegistetController,
-    adminAuthLogoutController
+    adminAuthLogoutController,
+    verifyAdmin
 }

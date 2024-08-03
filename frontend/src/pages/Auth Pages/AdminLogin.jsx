@@ -10,6 +10,7 @@ import toast from "react-hot-toast";
 
 
 const AdminLogin = () => {
+  document.title = "Admin Login | Dr. Ramachandra & Padma"
   const [loginData, setLoginData] = useState({
     username:"",
     password:"",
@@ -40,12 +41,12 @@ const AdminLogin = () => {
   const adminAuthMutation = useMutation({
     mutationFn:fetchAdminAuth,
     onSuccess:async(data)=>{
-      loginAdmin(data.data);
-      navigate("/admin/addDoctor");
+      dispatch(loginAdmin(data.data));
+      navigate("/admin/appointment");
       toast.success(data.data.message)
     },
     onError:async(data)=>{
-      navigate("/admin/login")
+      navigate("/")
       toast.success(data.response?.data.message)
     }
   })
@@ -57,6 +58,7 @@ const AdminLogin = () => {
 
 
   console.log(adminAuthMutation);
+
 
 
 

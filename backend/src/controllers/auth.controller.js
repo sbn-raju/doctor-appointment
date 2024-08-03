@@ -175,7 +175,11 @@ const verifyOneTimePasswordRegisterController = async(req,res,next)=>{
         // console.log(accessToken)
         // console.log(refreshToken)
         //Change the expire in production
+<<<<<<< HEAD
         console.log(refreshToken);
+=======
+        // console.log(refreshToken);
+>>>>>>> 4e6339a53461ac393510e5ac4dfea0d45ef1e90f
 
         return res
         .status(200)

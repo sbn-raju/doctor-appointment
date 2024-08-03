@@ -208,6 +208,31 @@ const setCompleteAppointment = async(req,res,next)=>{
         return next(new ErrorHandler(false, `${error}`, 402))
     }
 
+
+}
+
+
+const getCompletedAppointments = async(req,res)=>{
+    const completeQuery = "SELECT user_appointment_details.purpose_of_visit, user_appointment_details.date, user_appointment_details.mobile_no ,user_appointment_details.iscompleted, user_appointment_details.p_name,user_appointment_details.doctor_id, user_appointment_details.time_slot, doctor_master.name, appointment_slot_master.slot_start_time FROM user_appointment_details JOIN doctor_master ON user_appointment_details.doctor_id = doctor_master.id JOIN appointment_slot_master ON user_appointment_details.time_slot = appointment_slot_master.id WHERE user_appointment_details.iscompleted = $1 ORDER BY user_appointment_details.created_at DESC"
+    const isCompleted = 1;
+    const completeValues = [isCompleted];
+    try {
+        const completedAppointmentRes = await pool.query(completeQuery, completeValues);
+       if(completedAppointmentRes.rowCount!=0){
+        return res.status(200).json({
+            success:true,
+            message:"Completed Appointments",
+            data:completedAppointmentRes.rows
+        })
+       }
+        
+    } catch (error) {
+        return res.status(500).json({
+            success:true,
+            message:`Error Occured : ${error}`,
+        })
+        console.log(error);
+    }
 }
 
 
@@ -220,5 +245,5 @@ export{
     emptySlots,
     getUserAppointments,
     setCompleteAppointment,
-    
+    getCompletedAppointments 
 }

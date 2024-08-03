@@ -1,5 +1,5 @@
 import {Router} from "express"
-import { appointmentMasterCreate,setCompleteAppointment, appointmentSlotMasterGetSlots, appointmentSlotPerDate, emptySlots, getUserAppointments } from "../controllers/appointment.controller.js"
+import { appointmentMasterCreate,setCompleteAppointment, getCompletedAppointments, appointmentSlotMasterGetSlots, appointmentSlotPerDate, emptySlots, getUserAppointments } from "../controllers/appointment.controller.js"
 import { emptySlotsValidator } from "../helpers/validator.js";
 import { authentication } from "../middlewares/authentication.js";
 import { adminAutho } from "../middlewares/authorzation.js";
@@ -15,10 +15,14 @@ appointmentRoute.route("/get/dateSlots").get(authentication, adminAutho, appoint
 
 appointmentRoute.route("/empty-slots").post(authentication, adminAutho, emptySlotsValidator, emptySlots)
 
-appointmentRoute.route("/get/appointments").get(getUserAppointments),
+appointmentRoute.route("/get/appointments").get(getUserAppointments)
+
+
 
 
 appointmentRoute.route("/set-complete").put(setCompleteAppointment);
+
+appointmentRoute.route("/get-completed").get(getCompletedAppointments);
 
 
 
