@@ -20,7 +20,7 @@ const ClassPage = () => {
     const fetchDateOfClass = async () => {
       try {
         const classDatefetching = await axios.get(
-          "http://localhost:8080/api/v1/class/admin/upcoming-class/date"
+          "/api/v1/class/admin/upcoming-class/date"
         );
         console.log(classDatefetching.data.data);
         if(classDatefetching.data.data.length!=0){
@@ -119,7 +119,7 @@ const ClassPage = () => {
           formData,
         };
         try {
-          const verifyUrl = "api/v1/class_booking/user/setClass_booking";
+          const verifyUrl = "/api/v1/class_booking/user/setClass_booking";
           const verifyResponse = await axios.post(verifyUrl, paymentData);
           if (verifyResponse.data.success) {
             console.log(verifyResponse)

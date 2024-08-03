@@ -120,6 +120,7 @@ const AccountBox = ({ closeAccount }) => {
   const sendOneTimePass = async(phoneNumber) =>{
     try {
       const response = await axios.post("/api/v1/auth/register/verify-Details/otp", {phoneNumber:phoneNumber});
+      console.log(phoneNumber);
       return response.data
     } catch (error) {
       return error.response.data

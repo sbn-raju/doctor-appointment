@@ -36,8 +36,8 @@ const HomePage = () => {
   const fetchYoutubeVideos = async()=>{
     try{
         const [youtubeVideosResponse, testimonialsResponse] = await Promise.all([
-          await axios.get("http://localhost:8080/api/v1/youtube/video"),
-          await axios.get("http://localhost:8080/api/v1/youtube/testimonials")
+          await axios.get("/api/v1/youtube/video"),
+          await axios.get("/api/v1/youtube/testimonials")
         ])
         const youtubeVideosData = youtubeVideosResponse.data.data
         const testimonialsData = testimonialsResponse.data.data
@@ -69,9 +69,9 @@ const HomePage = () => {
 
 
 
- if(loading) return <Loading/>
+//  if(loading) return <Loading/>
 
- if(error) return <div>Error...Check Console</div>
+//  if(error) return <div>Error...Check Console</div>
 
 
 
