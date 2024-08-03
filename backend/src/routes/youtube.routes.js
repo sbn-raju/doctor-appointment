@@ -9,7 +9,7 @@ const youtubeLinkRoute = Router();
 youtubeLinkRoute.route("/video").post(youtubeLinkCreate);
 youtubeLinkRoute.route("/video").get(youtubeLinkGet);
 youtubeLinkRoute.route("/get/videos").get(youtubeLinkGetAllVideos);
-youtubeLinkRoute.route("/video/:id").delete(youtubeLinkDeleteById);
+youtubeLinkRoute.route("/video").delete(youtubeLinkDeleteById);
 
 
 
@@ -17,7 +17,7 @@ youtubeLinkRoute.route("/video/:id").delete(youtubeLinkDeleteById);
 youtubeLinkRoute.route("/testimonials").post(youtubeLinkTestimonialsCreate);
 youtubeLinkRoute.route("/testimonials").get(youtubeLinkTestimonialsGet);
 youtubeLinkRoute.route("/get/testimonials").get(youtubeLinkTestimonialsGetAllVideos);
-youtubeLinkRoute.route("/testimonials/:id").delete(youtubeLinkTestimonialsDeleteById);
+youtubeLinkRoute.route("/testimonials").delete(youtubeLinkTestimonialsDeleteById);
 
 
 export  default youtubeLinkRoute

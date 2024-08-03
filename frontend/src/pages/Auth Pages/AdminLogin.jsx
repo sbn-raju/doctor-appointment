@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import Input from "../components/Input Fields/Input.jsx";
-import CommonButton from "../components/Buttons/CommonButton.jsx";
-import {adminLogin} from "../services/admin/adminThunks/adminLoginThunk.js"
+import Input from "../../components/Input Fields/Input.jsx";
+import CommonButton from "../../components/Buttons/CommonButton.jsx";
 import { Navigate, useNavigate } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
+import { loginAdmin } from "../../services/adminSlice.js";
+import toast from "react-hot-toast";
 
 
 const AdminLogin = () => {
@@ -27,19 +30,33 @@ const AdminLogin = () => {
     });
   };
 
+  const fetchAdminAuth = async(loginData)=>{
+    const response = await axios.post("/api/v1/admin/login",loginData,{
+      withCredentials:true,
+    })
+    return response
+  } 
+  
+  const adminAuthMutation = useMutation({
+    mutationFn:fetchAdminAuth,
+    onSuccess:async(data)=>{
+      loginAdmin(data.data);
+      navigate("/admin/addDoctor");
+      toast.success(data.data.message)
+    },
+    onError:async(data)=>{
+      navigate("/admin/login")
+      toast.success(data.response?.data.message)
+    }
+  })
+
   const handleSubmit = async(event) => {
     event.preventDefault();
-    try {
-      const result = await dispatch(adminLogin({...loginData}))
-      if(result.payload.token){
-        console.log(result.payload.token)
-        navigate("/admin/appointment");
-      }
-    } catch (error) {
-      navigate("/admin/login");
-    }
-    console.log('Form submitted:', loginData);
+    adminAuthMutation.mutate(loginData)
   };
+
+
+  console.log(adminAuthMutation);
 
 
 

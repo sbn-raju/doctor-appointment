@@ -32,7 +32,7 @@ const setClass = async (req, res, next) => {
     const fetchPreviousClassResults = await pool.query(fetchPreviousClass,[1]);
     if(fetchPreviousClassResults.rowCount != 0){
       if(fetchPreviousClassResults.rows[0].status != 1){
-        return res.status(201).json({
+        return res.status(400).json({
           success:true,
           message:"Please Close the Previous Class Bookings",
         })
@@ -224,6 +224,7 @@ try {
 
 const classLink = async(req,res,next)=>{
     const {link} = req.body
+    console.log(link);
     if(!link){
       return next(new ErrorHandler(false, "Link is not passed" ,400));
     }
@@ -323,12 +324,12 @@ const getUpcomingClassDate = async(req,res,next)=>{
 
 
 const getBatchMembers = async(req,res,next)=>{
-  const{class_id} = req.body
+  const {batch} = req.query
   const getBatchMembersQuery = "SELECT * FROM class_booking WHERE class_id = $1"
   try {
     const getBatchMembersResults = await pool.query(
       getBatchMembersQuery,
-      [class_id]
+      [batch]
     )
     if (getBatchMembersResults.rowCount != 0) {
       return res.status(200).json({
@@ -339,7 +340,7 @@ const getBatchMembers = async(req,res,next)=>{
     } else {
       return res.status(200).json({
         success: true,
-        message: "Id Not Found",
+        message: "Data is not Found",
       })
     }
   } catch (error) {
@@ -350,13 +351,13 @@ const getBatchMembers = async(req,res,next)=>{
 
 //Getting all the Previous Classes
 const getClass = async (req, res) => {
-  const getClassQuery = "SELECT * FROM class_master"
+  const getClassQuery = "SELECT id FROM class_master ORDER BY created_by DESC"
   try {
     const getAllClasses = await pool.query(getClassQuery)
     return res.status(200).json({
       success: true,
-      data: getAllClasses.rows,
       message: "All the Classes Data",
+      data: getAllClasses.rows,
     })
   } catch (error) {
     return next(new ErrorHandler(error, 400))
@@ -473,10 +474,13 @@ const deleteClass = async (req, res, next) => {
 
 
 const getClassBookingData = async (req,res,next) => {
-   const getClassBookingQuery = "SELECT name, whatsapp_no, city, email, class_id FROM class_booking ORDER BY created_at DESC"
+  const {limit, skip} = req.query
+  console.log(limit, skip)
+   const getClassBookingQuery = "SELECT name, whatsapp_no, city, email, class_id FROM class_booking ORDER BY created_at DESC LIMIT $1 OFFSET $2"
    try {
-      const getclassBookingResults = await pool.query(getClassBookingQuery)
+      const getclassBookingResults = await pool.query(getClassBookingQuery, [limit, skip]);
       if(getclassBookingResults.rowCount!=0){
+        console.log(getclassBookingResults.rows)
         return res.status(200).json({
           success:true,
           message:"User booking Class",

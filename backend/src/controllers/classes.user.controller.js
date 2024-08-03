@@ -2,6 +2,7 @@ import { pool } from "../database/connect.db.js"
 import crypto from "crypto"
 import dotenv from "dotenv"
 import ErrorHandler from "../helpers/errorHelpers.js";
+import { sendClassConfimMessage } from "../services/messages.services.js";
 
 
 dotenv.config()
@@ -27,6 +28,8 @@ const setClassBooking = async (req, res, next) => {
     const {name, email, whatsapp, city} = {...formData}
     let paymentDetailsId 
     let upcomingClassDetailsId
+    let classDate
+    let classTime
     try { 
         await pool.query('BEGIN');
         const paymentDetailsQuery = "INSERT INTO user_payment_details (payment_amount, payment_date, payment_time, payment_status, razorpay_order_id, razorpay_payment_id, razorpay_signature) VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING *"
@@ -34,10 +37,12 @@ const setClassBooking = async (req, res, next) => {
         try {
           const paymentDetailsResults = await pool.query(paymentDetailsQuery, paymentDetailsValues);
           paymentDetailsId = paymentDetailsResults.rows[0].id
-          const upcomingClassIdQuery = "SELECT id FROM class_master WHERE status = $1 and isactive IS NULL" 
+          const upcomingClassIdQuery = "SELECT id, class_date, class_time FROM class_master WHERE status = $1 and isactive IS NULL" 
           try {
             const upcomingClassIdResults = await pool.query(upcomingClassIdQuery,[0]);
             upcomingClassDetailsId = upcomingClassIdResults.rows[0].id
+            classDate = upcomingClassIdResults.rows[0].class_date
+            classTime = upcomingClassIdResults.rows[0].class_time
           } catch (error) {
             await pool.query('ROLLBACK');
             return next(new ErrorHandler(false, `${error}` ,400));
@@ -52,6 +57,13 @@ const setClassBooking = async (req, res, next) => {
           const classBookingResults = await pool.query(classBookingQuery, classBookingValues)
           if(classBookingResults.rowCount!=0){
             await pool.query("COMMIT");
+            sendClassConfimMessage(
+              whatsapp,
+              name,
+              classDate,
+              classTime,
+              upcomingClassDetailsId
+            )
             return res.status(200).json({
               success:true,
               message:"The Class is Booked",

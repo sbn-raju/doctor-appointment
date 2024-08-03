@@ -1,7 +1,7 @@
 import { pool } from "../database/connect.db.js"
 import ErrorHandler from "../helpers/errorHelpers.js"
 import { validationResult } from "express-validator"
-import {sendAppointmentAlertMessage} from "../services/messages.services.js"
+import {sendAppointmentConfirmMessage} from "../services/messages.services.js"
 
 const currentDate = new Date(Date.now())
 const formattedDate = currentDate.toLocaleDateString("en-GB")
@@ -71,7 +71,7 @@ const bookSlots = async (req, res, next) => {
             ])
             if (fillSlotsUpdateResults.rowCount != 0) {
               const slot_start_time = fillSlotsUpdateResults.rows[0].slot_start_time
-              const messageVerify = sendAppointmentAlertMessage(
+              const messageVerify = sendAppointmentConfirmMessage(
                 phone_no,
                 date,
                 slot_start_time

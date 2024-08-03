@@ -41,7 +41,7 @@ classRoute.route("/admin/ongoing-class").get(getOngoingClass) //Correct calling 
 // Read the upcoming classes date
 classRoute.route("/admin/upcoming-class/date").get(getUpcomingClassDate)//Correct calling Check
 // Read the members of the particular batch
-classRoute.route("/admin/class/batches").post(getBatchMembers)//Correct calling Check
+classRoute.route("/admin/class/batches").get(getBatchMembers)//Correct calling Check
 // Read the User class booking data
 classRoute.route("/admin/users/booked").get(getClassBookingData)//Correct calling Check
 // Update the Classes using id

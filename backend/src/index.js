@@ -54,9 +54,11 @@ import userAppointmentRoute from "./routes/appointmnet.user.routes.js"
 import authAdminRoute from "./routes/adminAuth.routes.js";
 import doctorRoute from "./routes/doctorauth.routes.js";
 import paymentRoute from "./routes/payment.routes.js";
+import authUserRoute from "./routes/profile.user.routes.js"
 
 
 //Main routes
+app.use("/api/v1/login",authUserRoute)
 app.use("/api/v1/auth",authRoute);
 app.use("/api/v1/class", classRoute);
 app.use("/api/v1/class_booking",classUserRoute);

@@ -64,15 +64,25 @@ const getPaymentsDetailsForUser = async(req,res,next)=>{
 
 
 const getPayments = async(req,res,next)=>{
-  const classPaymentQuery = "SELECT class_booking.name, class_booking.whatsapp_no, class_booking.payment_details, user_payment_details.payment_date,user_payment_details.payment_time,user_payment_details.payment_amount, user_payment_details.razorpay_order_id FROM class_booking JOIN user_payment_details ON class_booking.payment_details = user_payment_details.id  ORDER BY class_booking.created_at DESC"
+  const {limit, skip} = req.query
+  const classPaymentQuery = "SELECT class_booking.name, class_booking.whatsapp_no, class_booking.payment_details, user_payment_details.payment_date,user_payment_details.payment_time,user_payment_details.payment_amount, user_payment_details.razorpay_payment_id FROM class_booking JOIN user_payment_details ON class_booking.payment_details = user_payment_details.id  ORDER BY class_booking.created_at DESC LIMIT $1 OFFSET $2;"
 
-  const appointmentPaymentQuery = "SELECT user_appointment_details.p_name, user_appointment_details.mobile_no, user_appointment_details.payment_details,user_payment_details.payment_date,user_payment_details.payment_time,user_payment_details.payment_amount, user_payment_details.razorpay_order_id FROM user_appointment_details JOIN user_payment_details ON user_appointment_details.payment_details = user_payment_details.id ORDER BY user_appointment_details.created_at DESC" 
+  const appointmentPaymentQuery = "SELECT user_appointment_details.p_name, user_appointment_details.mobile_no, user_appointment_details.payment_details,user_payment_details.payment_date,user_payment_details.payment_time,user_payment_details.payment_amount, user_payment_details.razorpay_payment_id FROM user_appointment_details JOIN user_payment_details ON user_appointment_details.payment_details = user_payment_details.id ORDER BY user_appointment_details.created_at DESC LIMIT $1 OFFSET $2;" 
   try {
-    const appointmentPaymentResults = await pool.query(appointmentPaymentQuery);
-    const classPaymentResults = await pool.query(classPaymentQuery);
-    if(appointmentPaymentResults.rowCount!=0 && classPaymentResults.rowCount!=0 )
+    const appointmentPaymentResults = await pool.query(appointmentPaymentQuery,[limit, skip]);
+    const classPaymentResults = await pool.query(classPaymentQuery, [limit, skip]);
+    if(appointmentPaymentResults.rowCount!=0 || classPaymentResults.rowCount!=0 )
       {
-        const paymentDetails = classPaymentResults.rows.concat(appointmentPaymentResults.rows)
+        let paymentDetails
+        if(classPaymentResults.rowCount == 0){
+          paymentDetails = appointmentPaymentResults.rows;
+        }
+        else if(appointmentPaymentResults.rowCount == 0){
+          paymentDetails = classPaymentResults.rows;
+        }
+        else{
+          paymentDetails = classPaymentResults.rows.concat(appointmentPaymentResults.rows);
+        }
       return res.status(200).json({
         success: true,
         message: "All Payments",
@@ -90,7 +100,6 @@ const getPayments = async(req,res,next)=>{
     return next(new ErrorHandler(false, `${error}`, 402))
   } 
 }
-
 
 
 

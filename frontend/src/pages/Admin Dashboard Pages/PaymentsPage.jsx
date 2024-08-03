@@ -1,60 +1,94 @@
 import React, { useState } from 'react'
 // import { payments } from '../../constants'
 import { BsCalendar2Event } from "react-icons/bs";
-import Loading from "../../components/Loading.jsx";
-import { useQuery } from '@tanstack/react-query';
+import axios from "axios";
+import {useQuery, useMutation} from "@tanstack/react-query"
 
-const fetchPayments = async () => {
-  const response = await fetch('/api/v1/orders/admin/payments');
-  const data = await response.json();
-  console.log(data.data)
-  return data.data;
+
+const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  const options = { day: '2-digit', month: 'long', year: 'numeric' };
+  return date.toLocaleDateString('en-GB', options);
 };
 
+
+const formateTime = (timeString)=>{
+const date = new Date(timeString)
+const options = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+const formattedTime = date.toLocaleTimeString('en-IN', options);
+
+return formattedTime
+
+}
+
 const PaymentsPage = () => {
-  const {
-      isLoading,
-      error,
-      data: payments = [],
-  } = useQuery({
-      queryKey: ['payments'],
-      queryFn: fetchPayments,
-  });
-  const [currentPage, setCurrentPage] = useState(1);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  document.title = "Payment | Admin"
 
-  const totalPages = Math.ceil(payments.length / rowsPerPage);
-  const stIndex = (currentPage - 1) * rowsPerPage;
-  const endIndex = stIndex + rowsPerPage;
-  const currPayments = payments.slice(stIndex, endIndex);
+  const [limit] = useState(10)
+  const [skip, setSkip] = useState(0)
 
-  const handleRowsPerPage = (e) => {
-    setRowsPerPage(parseInt(e.target.value, 10)); // converting string num to decimal from dropdown menu
-    setCurrentPage(1); // reloading to 1st page after rows per page count is changed
+
+  const fetchPaymentDetails = async()=>{
+    const response = await axios.get(`/api/v1/orders/admin/payments?limit=${limit}&skip=${skip}`)
+    return response.data.data
   }
 
-  const handlePreviousPage = () => {
-    setCurrentPage(currentPage - 1);
+  const {data:fetchUserPaymentDetails} = useQuery({
+     queryKey:['fetchUserPayDetails', skip],
+     queryFn:fetchPaymentDetails
+  })
+
+  console.log(fetchUserPaymentDetails);
+
+
+  const handleMove = (moveCount)=>{
+    setSkip((prevSkip)=>{
+        return Math.max(prevSkip + moveCount, 0);
+    })
   }
 
-  const handleNextPage = () => {
-    setCurrentPage(currentPage + 1);
-  }
 
-  const handlePageClick = (pageNo) => {
-    setCurrentPage(pageNo)
-  }
 
-  const renderRowsPerPage = () => {
-    const opts = [10, 20, 50, 100, 200, 300];
-    return opts.filter((option) => option < payments.length).map((opt) => (
-      <option key={opt} value={opt}>{opt}</option>
-    ))
-  }
 
-  if(isLoading) return <Loading/>
 
-  if(error) return <div>Error...Check Console</div>
+
+
+
+
+
+  
+
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const [rowsPerPage, setRowsPerPage] = useState(10);
+
+  // const totalPages = Math.ceil(adminPaymentDetails.length / rowsPerPage);
+  // const stIndex = (currentPage - 1) * rowsPerPage;
+  // const endIndex = stIndex + rowsPerPage;
+  // const currPayments = adminPaymentDetails.slice(stIndex, endIndex);
+
+  // const handleRowsPerPage = (e) => {
+  //   setRowsPerPage(parseInt(e.target.value, 10)); // converting string num to decimal from dropdown menu
+  //   setCurrentPage(1); // reloading to 1st page after rows per page count is changed
+  // }
+
+  // const handlePreviousPage = () => {
+  //   setCurrentPage(currentPage - 1);
+  // }
+
+  // const handleNextPage = () => {
+  //   setCurrentPage(currentPage + 1);
+  // }
+
+  // const handlePageClick = (pageNo) => {
+  //   setCurrentPage(pageNo)
+  // }
+
+  // const renderRowsPerPage = () => {
+  //   const opts = [10, 20, 50, 100, 200, 300];
+  //   return opts.filter((option) => option < adminPaymentDetails.length).map((opt) => (
+  //     <option key={opt} value={opt}>{opt}</option>
+  //   ))
+  // }
 
   return (
     <div className='h-auto w-full bg-gray-1 flex flex-col justify-center items-center px-8'>
@@ -72,7 +106,7 @@ const PaymentsPage = () => {
         </div>
       </div>
 
-      {payments.length !== 0 ? (
+      {fetchUserPaymentDetails?.length !== 0 ? (
         <div className='bg-white shadow-md mt-6 w-full overflow-x-auto admin-scrollbar rounded-2xl'>
           <div className='min-w-[800px] bg-white p-4 px-6 md:px-10 border-b-[1px] border-gray-2 sticky top-0 z-10'>
             <ul className='grid grid-cols-6 text-black font-regular text-sm'>
@@ -85,15 +119,15 @@ const PaymentsPage = () => {
             </ul>
           </div>
           <div className='min-w-[800px] h-[520px] overflow-auto scrollbar'>
-            {currPayments.map((payment, index) => (
+            {fetchUserPaymentDetails?.map((payment, index) => (
               <div key={index} className='flex w-full bg-white p-4 px-6 md:px-8'>
                 <ul className='w-full grid grid-cols-6 text-sm'>
-                  <li>{payment.Name}</li>
-                  <li>{payment.PhoneNumber}</li>
-                  <li>{payment.DateOfPayment}</li>
-                  <li>{payment.TimeOfPayment}</li>
-                  <li>{payment.TransactionId}</li>
-                  <li>{payment.Purpose}</li>
+                  <li>{payment?.name?payment?.name:payment?.p_name}</li>
+                  <li>{payment?.whatsapp_no?payment?.whatsapp_no:payment?.mobile_no}</li>
+                  <li>{formatDate(payment?.payment_date)}</li>
+                  <li>{formateTime(payment?.payment_time)}</li>
+                  <li>{payment?.razorpay_payment_id}</li>
+                  <li>{payment?.payment_amount==1000?"Class Fees":"Appointment Fees"}</li>
                 </ul>
               </div>
             ))}
@@ -108,19 +142,19 @@ const PaymentsPage = () => {
       <>
         <div className="hidden md:block w-full">
           <div className='w-full my-6 shadow-md bg-white p-3 px-6 rounded-2xl flex justify-between'>
-            <div className="flex w-1/3">
+            {/* <div className="flex w-1/3">
               <p className="text-sm">Row Per Page: </p>
               <select value={rowsPerPage} onChange={handleRowsPerPage} className='bg-gray-200 mx-2 rounded-md'>
                 {renderRowsPerPage()}
                 <option value={payments.length}>{payments.length}</option>
               </select>
-            </div>
+            </div> */}
             <div className='flex justify-end items-center w-2/3'>
-              <button className='mx-2' onClick={handlePreviousPage} disabled={currentPage === 1}>
+              <button className='mx-2' onClick={()=>handleMove(-limit)}>
                 Previous
               </button>
               <div className="overflow-auto whitespace-nowrap admin-scrollbar">
-                <div className=''>
+                {/* <div className=''>
                   {Array.from({length: totalPages}, (_, index) => (
                     <button
                       key={index + 1}
@@ -130,31 +164,30 @@ const PaymentsPage = () => {
                     {index + 1}
                   </button>
                   ))}
-                </div>
+                </div> */}
               </div>
-              <button className='mx-2' onClick={handleNextPage} disabled={endIndex >= payments.length}>
+              <button className='mx-2' onClick={()=>handleMove(limit)} disabled={fetchUserPaymentDetails == undefined}>
                 Next
               </button>
             </div>
           </div>
         </div>
 
-        <div className="md:hidden w-full">
+        {/* <div className="md:hidden w-full">
           <div className='my-6 shadow-md bg-white p-3 px-6 rounded-2xl flex justify-between'>
             <button className='mx-2' onClick={handlePreviousPage} disabled={currentPage === 1}>
               Previous
-            </button>
+            </button> */}
 
-            <select value={rowsPerPage} onChange={handleRowsPerPage} className='bg-gray-200 mx-2 rounded-md'>
+            {/* <select value={rowsPerPage} onChange={handleRowsPerPage} className='bg-gray-200 mx-2 rounded-md'>
               {renderRowsPerPage()}
-              <option value={payments.length}>{payments.length}</option>
-            </select>
-
-            <button className='mx-2' onClick={handleNextPage} disabled={endIndex >= payments.length}>
+              <option value={adminPaymentDetails.length}>{adminPaymentDetails.length}</option>
+            </select> */}
+            {/* <button className='mx-2' onClick={handleNextPage} disabled={endIndex >= adminPaymentDetails.length}>
               Next
             </button>
           </div>
-        </div>
+        </div> */}
       </>
     </div>
   )

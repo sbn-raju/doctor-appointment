@@ -1,3 +1,24 @@
+
+// export const subDomain = [
+//     {
+//         subDomain:"www",
+//         subapp:App,
+//         main:true
+//     },
+//     {
+//         subDomain:"doctor",
+//         subapp:DoctorApp,
+//         main:false
+//     },
+//     {
+//         subDomain:"admin",
+//         subapp:AdminApp,
+//         main:false
+//     }
+
+// ]
+
+
 export const navItems = [
     {label:"Home", href:"/"},
     {label:"Service",href:"/services"},

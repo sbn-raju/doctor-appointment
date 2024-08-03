@@ -1,5 +1,5 @@
 import { Router } from "express"
-import {getAllDoctor} from "../controllers/doctorAuth.controllers.js"
+import {getAllDoctor, setDoctor, loginDoctor} from "../controllers/doctorAuth.controllers.js"
 
 
 const doctorRoute = Router()
@@ -8,7 +8,8 @@ const doctorRoute = Router()
 
 // User Routes
 doctorRoute.route("/get-doctors").get(getAllDoctor) //Correct calling Check
-
+doctorRoute.route("/set-doctors").post(setDoctor)
+doctorRoute.route("/set-doctors/auth").post(loginDoctor)
 
 
 

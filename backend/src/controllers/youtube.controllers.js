@@ -3,7 +3,8 @@ import ErrorHandler from "../helpers/errorHelpers.js"
 
 const youtubeLinkCreate = async(req,res,next)=>{
     try {
-        const{link_iframe, created_by} = req.body
+        const{link_iframe} = req.body
+        const created_by = 1;
         if(!(link_iframe || created_by)){
             return res.status(302).json({
                 success:false,
@@ -61,7 +62,7 @@ const youtubeLinkGet = async(req,res,next)=>{
 
 const youtubeLinkGetAllVideos = async(req,res,next)=>{
     try {
-        const youtubeLinkGetAllVideosQuery = "SELECT * FROM youtube_links"
+        const youtubeLinkGetAllVideosQuery = "SELECT * FROM youtube_links ORDER BY  created_at  DESC"
         try {
             const youtubeLinkGetAllVideosResults = await pool.query(youtubeLinkGetAllVideosQuery)
             if(youtubeLinkGetAllVideosResults.rowCount != 0){
@@ -82,7 +83,7 @@ const youtubeLinkGetAllVideos = async(req,res,next)=>{
 
 const youtubeLinkDeleteById = async(req,res,next)=>{
     try {
-        const {id} = req.params
+        const {id} = req.query
         if(!id){
             return res.status(302).json({
                 success:false,
@@ -121,7 +122,8 @@ const youtubeLinkDeleteById = async(req,res,next)=>{
 
 const youtubeLinkTestimonialsCreate = async(req,res,next)=>{
     try {
-        const {links_iframe_testimonials, created_by} = req.body
+        const {links_iframe_testimonials} = req.body
+        const created_by = 1
         if(!(links_iframe_testimonials || created_by)){
             return res.status(302).json({
                 success:true,
@@ -177,7 +179,7 @@ const youtubeLinkTestimonialsGet = async(req,res,next)=>{
 
 const youtubeLinkTestimonialsGetAllVideos = async(req,res,next)=>{
     try {
-        const youtubeLinkTestimonialsGetAllVideosQuery = "SELECT * FROM youtube_links_testimonials"
+        const youtubeLinkTestimonialsGetAllVideosQuery = "SELECT * FROM youtube_links_testimonials ORDER BY created_at  DESC"
         try {
             const youtubeLinkGetAllVideosResults = await pool.query(youtubeLinkTestimonialsGetAllVideosQuery)
             if(youtubeLinkGetAllVideosResults.rowCount != 0){
@@ -200,7 +202,7 @@ const youtubeLinkTestimonialsGetAllVideos = async(req,res,next)=>{
 
 const youtubeLinkTestimonialsDeleteById = async(req,res,next)=>{
     try {
-        const {id} = req.params
+        const {id} = req.query
         if(!id){
             return res.status(200).json({
                 success:false,

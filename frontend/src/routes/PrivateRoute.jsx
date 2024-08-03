@@ -9,6 +9,7 @@ const PrivateRoute = ({ isAuthenticated, isAdmin, children }) => {
   if (!isAuthenticated && !isAdmin) {
     <Navigate to={"/admin/login"} />;
   }
+  
   return children ?children: <Outlet />
 };
 

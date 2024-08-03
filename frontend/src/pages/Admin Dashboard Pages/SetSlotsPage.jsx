@@ -1,14 +1,60 @@
-import React from 'react';
+import React, {useEffect } from 'react';
 import { BsCalendar2Event } from "react-icons/bs";
 import Input from "../../components/Input Fields/Input";
 import CommonButton from '../../components/Buttons/CommonButton';
 import { useForm } from 'react-hook-form';
-import { doctorNames } from '../../constants';
+import {toast} from "react-hot-toast";
+import {useMutation, useQuery} from "@tanstack/react-query";
+import axios from "axios"
+
 
 const SetSlotsPage = () => {
-  const { register, handleSubmit } = useForm();
-  const slotData = (formData) => console.log(formData);
+  document.title = 'Set Slots | Admin'
+  const { register, handleSubmit, reset } = useForm();
 
+  
+  
+  const setSlotData = async(formData)=>{
+    const response = await axios.post("/api/v1/appointment/create/slot",formData)
+    return response
+  }
+
+  const createSlot = useMutation({
+    mutationFn:setSlotData,
+  })
+  
+  const onSubmit = (data) => {
+    createSlot.mutate(data);
+  };
+
+  useEffect(() => {
+     if(createSlot.isSuccess){
+      toast.success("Slots SuccessFully created")
+      reset()
+     }
+     else if(createSlot.isError) {
+      toast.error("Sloats are not set")
+     }
+  }, [createSlot.isSuccess, createSlot.isError, reset])
+  
+
+  
+
+
+
+ const fetchDoctor = async()=>{
+   const response = await axios.get("/api/v1/doctor/get-doctors")
+   return response.data.data
+ }
+
+ const {data: doctorData} = useQuery({
+  queryKey:['doctorData'],
+  queryFn:fetchDoctor
+ })
+ 
+ console.log(doctorData);
+ 
+ 
   return (
     <div className='h-auto w-full bg-gray-1 flex flex-col justify-center items-center p-8'>
       <div className='w-full'>
@@ -26,22 +72,22 @@ const SetSlotsPage = () => {
       </div>
 
       <div className='w-full mb-8 shadow-md bg-white px-4 py-6 rounded-2xl'>
-        <form onSubmit={handleSubmit(slotData)}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <div className='grid grid-cols-1 md:grid-cols-2 px-5 items-center gap-4'>
             <Input
               label="Set Date"
               type="date"
               placeholder="Select Date"
               className="border-[1px] border-gray-2 w-full"
-              {...register("setDate", { required: true })}
+              {...register("date", { required: true, valueAsDate:true })}
             />
 
             <Input
-              label="Set Slot Time"
-              type="time"
+              label="Slot Duration"
+              type="text"
               placeholder="Select Time"
               className="border-[1px] border-gray-2 w-full"
-              {...register("setSlotTime", { required: true })}
+              {...register("time_duration", { required: true, maxLength:2, setValueAs: v => parseInt(v) })}
             />
 
             <Input
@@ -49,7 +95,7 @@ const SetSlotsPage = () => {
               type="time"
               placeholder="Set Start Date"
               className="border-[1px] border-gray-2 w-full"
-              {...register("setStartTime", { required: true })}
+              {...register("start_time", { required: true})}
             />
 
             <Input
@@ -57,7 +103,7 @@ const SetSlotsPage = () => {
               type="time"
               placeholder="Set End Time"
               className="border-[1px] border-gray-2 w-full"
-              {...register("setEndTime", { required: true })}
+              {...register("end_time", { required: true })}
             />
 
             <span>
@@ -66,11 +112,11 @@ const SetSlotsPage = () => {
                 id="doctor"
                 defaultValue="selectDoctor"
                 className="border-[1px] border-green-800 w-full md:w-11/12 h-10 rounded-[5px] mb-[4px]"
-                {...register("setDoctor", { required: true })}
+                {...register("doctor_id", { required: true })}
               >
                   <option value="selectDoctor" disabled hidden>Select your doctor</option>
-                  {doctorNames.map((d, i) => (
-                    <option key={i} value={d.name}>{d.name}</option>
+                  {doctorData?.map((doctor, i) => (
+                    <option key={i} value={doctor.id}>{doctor.name}</option>
                   ))}
               </select>
             </span>
@@ -80,6 +126,7 @@ const SetSlotsPage = () => {
             </div>
           </div>
         </form>
+       
       </div>
 
       <div className='bg-white shadow-md p-4 rounded-2xl w-full'>

@@ -116,7 +116,7 @@ const AppointmentPage = () => {
       };
       const fetchTimeSlot = async () => {
         const fetchSlots = await axios.post(
-          "/api/v1/appointment/get/slots",
+          "/api/v1/appointment/empty-slots",
           slotFetch
         );
         console.log(fetchSlots);
@@ -206,7 +206,7 @@ const AppointmentPage = () => {
                   onChange={handleChange}
                   required
                   className="border-[1px] border-green-800 w-full md:w-11/12 h-10 rounded-[5px] mb-[4px]"
-                  style={{ color: "white" }}
+                  // style={{ color: "white" }}
                 />
 
                 <Input
@@ -217,7 +217,7 @@ const AppointmentPage = () => {
                   onChange={handleChange}
                   required
                   className="border-[1px] border-green-800 w-full md:w-11/12 h-10 rounded-[5px] mb-[4px]"
-                  style={{ color: "white" }}
+                  // style={{ color: "" }}
                 />
 
                 <label
@@ -272,7 +272,7 @@ const AppointmentPage = () => {
                   onChange={handleChange}
                   required
                   className="border-[1px] border-green-800 w-full md:w-11/12 h-10 rounded-[5px] mb-[2px]"
-                  style={{ color: "white" }}
+                  // style={{ color: "white" }}
                 />
                 {error ? <p className="text-red-500">{error}</p> : null}
               </div>

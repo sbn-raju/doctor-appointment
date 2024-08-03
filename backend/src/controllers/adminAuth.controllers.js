@@ -61,6 +61,7 @@ const adminAuthLoginController = async(req,res,next)=>{
         })
     }
     const {username, password} = req.body
+    console.log(username, password)
     if(!(username || password)){
         return next(new ErrorHandler(false, "Username and Password required" , 401))
     }
@@ -88,7 +89,7 @@ const adminAuthLoginController = async(req,res,next)=>{
         //Creating Session 
         req.session.admin = adminData.user
         //Creating Cookie
-        res.cookie("a_Id",token,{
+        res.cookie("admin_auth_token",token,{
             httpOnly:true,
             maxAge: Date.now() + 60 * 1000
         })

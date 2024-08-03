@@ -40,6 +40,46 @@ async function sendOTPMessage(to, otp){
     }
 }
 
+async function sendAppointmentConfirmMessage(to, date, time){
+    try {
+        const message = await authClientWithNumber.messages.create({
+            from:process.env.TWILIO_WHATSAPP_MESSAGE_SERVICE_SID,
+            to: `whatsapp:+91${to}`,
+            contentSid: process.env.TWILIO_APPOINTMENT_CONFIRMATION_MESSAGE_TEMPLATE,
+            contentVariables: JSON.stringify({
+                1:`${date}`,
+                2:`${time}`
+            })
+        })
+        console.log(message)
+        return true
+    } catch (error) {
+        console.error(error)
+        return false
+    }
+}
+
+async function sendClassConfimMessage(to,name,date,time,batchNumber){
+    try {
+        const message = await authClientWithNumber.messages.create({
+            from:process.env.TWILIO_WHATSAPP_MESSAGE_SERVICE_SID,
+            to: `whatsapp:+91${to}`,
+            contentSid: process.env.TWILIO_WORKSHOP_CONFIRMATION_MESSAGE_TEMPLATE,
+            contentVariables: JSON.stringify({
+                1:`${name}`,
+                2:`${date}`,
+                3:`${time}`,
+                4:`${batchNumber}`,
+            })
+        })
+        console.log(message)
+        return true
+    } catch (error) {
+        console.error(error)
+        return false
+    }
+}
+
 
 
 
@@ -48,5 +88,7 @@ async function sendOTPMessage(to, otp){
 
 export {
     sendAppointmentAlertMessage,
-    sendOTPMessage
+    sendAppointmentConfirmMessage,
+    sendClassConfimMessage,
+    sendOTPMessage,
 }

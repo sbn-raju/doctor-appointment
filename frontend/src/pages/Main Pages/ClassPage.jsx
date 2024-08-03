@@ -233,7 +233,7 @@ const ClassPage = () => {
                 label="Name *"
                 type="text"
                 placeholder="Enter your name here"
-                className="border-[1px] border-green-700 w-[300px] md:w-[400px] my-2 md:my-0"
+                className="border-[1px] border-green-700 w-[300px] md:w-[400px] my-2 md:my-0 text-black"
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
@@ -243,19 +243,19 @@ const ClassPage = () => {
                 label="Email *"
                 type="email"
                 placeholder="Enter your email here"
-                className="border-[1px] border-green-700 w-[300px] md:w-[400px] my-2 md:my-0"
+                className="border-[1px] border-green-700 w-[300px] md:w-[400px] my-2 md:my-0 text-black"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
               />
             </div>
 
-            <div className="flex flex-col md:flex-row justify-around my-2">
+            <div className="flex flex-col md:flex-row justify-around my-2 ">
               <Input
                 label="Whatsapp number *"
                 type="text"
                 placeholder="Whatsapp Number only"
-                className="border-[1px] border-green-700 w-[300px] md:w-[400px] my-2 md:my-0"
+                className="border-[1px] border-green-700 w-[300px] md:w-[400px] my-2 md:my-0 text-black"
                 name="whatsapp"
                 value={formData.whatsapp}
                 onChange={handleChange}
@@ -265,7 +265,7 @@ const ClassPage = () => {
                 label="City (Optional)"
                 type="text"
                 placeholder="Enter your city here"
-                className="border-[1px] border-green-700 w-[300px] md:w-[400px] my-2 md:my-0"
+                className="border-[1px] border-green-700 w-[300px] md:w-[400px] my-2 md:my-0 text-black"
                 name="city"
                 value={formData.city}
                 onChange={handleChange}

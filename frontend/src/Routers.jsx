@@ -41,7 +41,7 @@ import Missing from "./components/Missing.jsx";
 import { useSelector } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
 import { useAuth } from "./hooks/useAuth.js";
-import axios from "axios"
+import axios from "axios";
 
 
 
@@ -76,13 +76,7 @@ function App() {
     }
   }
 
-  // useEffect(async()=>{
-  //   const response = await axios.post("/api/v1/login/autoLogin")
-  //   if(response.statusText === "Unauthorized" && response.status === 401 && response.data.success){
-  //     authLocalToken = true
-  //     toast.success("Verify Login");
-  //   }
-  // })
+  
 
   return (
     <BrowserRouter>
@@ -127,14 +121,58 @@ function App() {
           <Route path="/user/class" element={<MyClassesPage />} />
         </Route>
 
+        <Route path="*" 
+        element={<Missing/>}>
+        </Route>
+
+      </Routes>
+      <Toaster position={"top-right"}/>
+      </Suspense>
+    </BrowserRouter>
+  );
+}
+
+function DoctorApp () {
+ <BrowserRouter>
+ <Routes>
+          {/* This are the Private Routes only the admin can access this routes and the their can be the multiple admin */}
+
+      <Route path="/doctor/login" element={<DoctorLogin />} />
+        <Route 
+        element={
+        <PrivateRoute isAuthenticated={true} isAdmin={true}>
+          <Doctor_Layout />
+        </PrivateRoute>
+        }
+        >
+          <Route path="/doctor/dashboard" element={<DoctorAppointments />} />
+          <Route path="/doctor/whatsapp" element={<WhatsappTemplatePage />} />
+        </Route>
 
 
+        <Route path="*" 
+        element={<Missing/>}>
+        </Route>
+  </Routes>
+ </BrowserRouter>
+}
 
-        {/* This are the Private Routes only the admin can access this routes and the their can be the multiple admin */}
-        <Route path="/admin/login" element={<AdminLogin/>} />
+
+function AdminApp(){
+  // useEffect(()=>{
+  //   ;(async()=>{
+  //      const response = await axios.post()
+  //   })()
+  // })
+
+  <BrowserRouter>
+  <Routes>
+  {/* This are the Private Routes only the admin can access this routes and the their can be the multiple admin */}
+
+  <Route path="/admin/login" element={<AdminLogin/>} />
         <Route
           element={
-            <PrivateRoute isAuthenticated={false} isAdmin={false}>
+            <PrivateRoute isAuthenticated={true}>
               <Admin_Layout/>
             </PrivateRoute>
           }
@@ -151,88 +189,17 @@ function App() {
           <Route path="/admin/users" element={<UserDataPage />} />
         </Route>
 
-
-        {/* This are the Private Routes only the admin can access this routes and the their can be the multiple admin */}
-        <Route path="/doctor/login" element={<DoctorLogin />} />
-        <Route 
-        element={
-        <PrivateRoute isAuthenticated={true} isAdmin={true}>
-          <Doctor_Layout />
-        </PrivateRoute>
-        }
-        >
-          <Route path="/doctor/dashboard" element={<DoctorAppointments />} />
-          <Route path="/doctor/whatsapp" element={<WhatsappTemplatePage />} />
-        </Route>
-
-
         <Route path="*" 
         element={<Missing/>}>
         </Route>
-
-      </Routes>
-      <Toaster position={"top-right"}/>
-      </Suspense>
-    </BrowserRouter>
-  );
+  </Routes>
+  </BrowserRouter>
 }
 
-export default App
 
-// function DoctorApp () {
-//  <BrowserRouter>
-//  <Routes>
-//       <Route path="/doctor/login" element={<DoctorLogin />} />
-//         <Route 
-//         element={
-//         <PrivateRoute isAuthenticated={true} isAdmin={true}>
-//           <Doctor_Layout />
-//         </PrivateRoute>
-//         }
-//         >
-//           <Route path="/doctor/dashboard" element={<DoctorAppointments />} />
-//           <Route path="/doctor/whatsapp" element={<WhatsappTemplatePage />} />
-//         </Route>
-
-
-//         <Route path="*" 
-//         element={<Missing/>}>
-//         </Route>
-//   </Routes>
-//  </BrowserRouter>
-// }
-
-
-// function AdminApp(){
-//   <BrowserRouter>
-//   <Routes>
-//   <Route path="/admin/login" element={<AdminLogin/>} />
-//         <Route
-//           element={
-//             <ProtectedRoute isAuthenticated={true}>
-//               <Admin_Layout/>
-//             </ProtectedRoute>
-//           }
-//         >
-//           <Route path="/admin/addDoctor" element={<AddDoctorPage />} />
-//           <Route path="/admin/appointment" element={<AppointmentsPage />} />
-//           <Route path="/admin/appointment/reschedule" element={<ReschedulePage />} />
-//           <Route path="/admin/whatsapp" element={<WhatsappTemplatePage />} />
-//           <Route path="/admin/payment" element={<PaymentPage />} />
-//           <Route path="/admin/classbooked" element={<ClassBookingPage />} />
-//           <Route path="/admin/slots" element={<SetSlotsPage />} />
-//           <Route path="/admin/class" element={<ClassUpdatesPage />} />
-//           <Route path="/admin/youtube" element={<YoutubeVideosPage />} />
-//           <Route path="/admin/users" element={<UserDataPage />} />
-//         </Route>
-
-//         <Route path="*" 
-//         element={<Missing/>}>
-//         </Route>
-//   </Routes>
-//   </BrowserRouter>
-// }
-
-
-
+export{
+  App,
+  DoctorApp,
+  AdminApp
+}
 
