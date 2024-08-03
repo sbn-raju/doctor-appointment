@@ -11,11 +11,11 @@ const adminAuth = createSlice({
     reducers:{
         loginAdmin:(state, action)=>{
           state.token = action.payload.token;
-          state.admin = action.payload.admin;
+          state.admin = action.payload.data;
         },
         logoutAdmin:(state, action)=>{
-            state.token = action.payload.token;
-            state.admin = action.payload.admin;
+            state.token = null;
+            state.admin = null;
         }
     }
 })

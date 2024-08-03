@@ -20,7 +20,7 @@ const ClassPage = () => {
     const fetchDateOfClass = async () => {
       try {
         const classDatefetching = await axios.get(
-          "http://localhost:8080/api/v1/class/admin/upcoming-class/date"
+          "/api/v1/class/admin/upcoming-class/date"
         );
         console.log(classDatefetching.data.data);
         if(classDatefetching.data.data.length!=0){
