@@ -4,14 +4,15 @@ import {DoctorLogin} from "../pages/Easy Imports/admin.js";
 import Doctor_Layout from "../layouts/Doctor_Layout.jsx";
 import WhatsappTemplatePage from "../pages/Admin Dashboard Pages/whatsappTemplatePage.jsx";
 import DoctorAppointments from "../pages/Doctor Dashboard Pages/DoctorAppointments.jsx";
-import PrivateRoute from "../routes/PrivateRoute.jsx";
 import Missing from "../components/Missing.jsx";
 import Loading from "../components/Loading.jsx";
 import { Toaster } from "react-hot-toast";
 import { useSelector } from "react-redux";
+import DoctorPrivateRoute from "../routes/DoctorPrivateRoute.jsx";
 
 const DoctorApp = () => {
-  const isAuth = useSelector((state)=>state.doctorAuth.token)
+  const isAuth = useSelector((state)=>state.doctorAuth.token);
+  const isAdmin = useSelector((state)=>state.doctorAuth.admin);
       return (
         <BrowserRouter>
           <Suspense fallback={<Loading />}>
@@ -22,9 +23,9 @@ const DoctorApp = () => {
               {/* Protected Routes */}
               <Route
                 element={
-                  <PrivateRoute isAuthenticated={isAuth?true:false} isAdmin={true}>
+                  <DoctorPrivateRoute token={isAuth != null ? isAuth : null} admin={isAdmin === "DoctorAdmin" ? isAdmin : null}>
                     <Doctor_Layout />
-                  </PrivateRoute>
+                  </DoctorPrivateRoute>
                 }
               >
                 <Route path="/doctor/dashboard" element={<DoctorAppointments />} />

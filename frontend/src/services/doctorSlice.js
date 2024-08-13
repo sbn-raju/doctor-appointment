@@ -1,9 +1,43 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { decryptData } from "../utils/encryptData";
+
+const encryptAndVerifyToken = async(token)=>{
+    if(token == null){
+        return null;
+    }
+    const decryptedToken = await decryptData(token);
+    const response = await axios.post("/api/v1/doctor/verify");
+    if(response.status == 200 && response.statusText === "OK" && response.data.success){
+        return decryptedToken
+    }
+    else if(response.status == 403 || response.statusText === "Forbidden" || response.data.success){
+         return null;
+    }
+    else{
+        return null;
+    }
+}
+
+
+
+const decryptedAndVerifyUser = async(userRole)=>{
+    if(userRole == null){
+        return null
+    }
+    const decryptedUser = await decryptData(userRole);
+    return decryptedUser;
+}
+
+
 
 const initialState = {
-    token:null,
+    token: await encryptAndVerifyToken(sessionStorage.getItem("doctor_info")),
+    admin: await decryptedAndVerifyUser(sessionStorage.getItem("user_Role")),
 }
+
+
+
 
 const doctorAuth = createSlice({
     name:"DoctorAuth",
@@ -11,9 +45,11 @@ const doctorAuth = createSlice({
     reducers:{
         loginDoctor:(state, action)=>{
           state.token = action.payload.token;
+          state.admin = action.payload.data[0].userRole;
         },
         logoutDoctor:(state, action)=>{
             state.token = null;
+            state.admin = null;
         }
     }
 })
@@ -22,31 +58,3 @@ const doctorAuth = createSlice({
 export const {loginDoctor, logoutDoctor} = doctorAuth.actions
 
 export default doctorAuth.reducer
-
-// {username: 'Raju', password: 'raju@123'}
-
-
-// export const authProvider = {
-//     adminAuthLogin :async({username,password})=>{
-//         const request = new Request(
-//             "/api/v1/admin/login",
-//             {
-//                 method:"POST",
-//                 body: JSON.stringify({username, password}),
-//                 headers: new Headers({ "Content-Type": "application/json" })
-//             }
-//         )
-
-//         const response = await axios.post(request);
-
-//         const data = await response.json();
-//         console.log(data);
-
-//         if(data.success){
-//             localStorage.setItem("admin_auth_token", data.token);
-//         }
-
-//         Promise.resolve();
-//         return data;
-//     }
-// }

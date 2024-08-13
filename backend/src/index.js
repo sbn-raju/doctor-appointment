@@ -52,7 +52,7 @@ import youtubeLinkRoute from "./routes/youtube.routes.js";
 import appointmentRoute from "./routes/appointment.routes.js";
 import userAppointmentRoute from "./routes/appointmnet.user.routes.js"
 import authAdminRoute from "./routes/adminAuth.routes.js";
-import doctorRoute from "./routes/doctorauth.routes.js";
+import doctorRoute from "./routes/doctorAuth.routes.js";
 import paymentRoute from "./routes/payment.routes.js";
 import authUserRoute from "./routes/profile.user.routes.js"
 

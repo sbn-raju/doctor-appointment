@@ -9,7 +9,7 @@ import Toast, { toast, Toaster } from "react-hot-toast"
 import payImage from "../../assets/Logo/image 2.png"
 
 const ClassPage = () => {
-  document.title = "Dr.RamaChandra & Padma | Class"
+  document.title = "Dr.RamaChandra & Padma | Workshop"
   const [classDate, setClassDate] = useState();
   const [isEnable, setIsEnable] = useState(true);
   const [loading, setloading] = useState(true);

@@ -24,15 +24,8 @@ const setDoctor = async(req,res)=>{
         const newUser=await pool.query(
             "INSERT INTO doctor_master (name, username, password, created_at, updated_at, created_by, updated_by) VALUES ($1,$2,$3,NOW(),NOW(),$4, $5) RETURNING *",[name,username,passwordHash,created_by, updated_by]
         );
-        const userData = {
-            user:{
-               id:newUser.rows[0].id,
-               username:newUser.rows[0].username
-            }
-        };
-        const authToken = jwt.sign(userData, "DUMMYKEY");
-        
-        res.status(201).cookie("doctorToken",authToken).json({message:"Doctor succesfully registered",user:newUser.rows[0],token:authToken});
+    
+        return res.status(201).json({message:"Doctor succesfully registered"});
     } catch (err) {
         console.error(err.message);
         res.status(500).json({error: err.message});
@@ -49,32 +42,36 @@ const loginDoctor = async(req,res)=>{
         if(result.rows.length==0) {
             return res.status(400).json({message:"User doesnt exist"});
         }
-        const user = result.rows[0];
-        console.log(user);
-        const isMatch = await bcrypt.compare(password,user.password);
+        const doctor = result.rows[0];
+        console.log(doctor);
+        const isMatch = await bcrypt.compare(password,doctor.password);
         if(!isMatch) {
             return res.status(400).json({message:"Invalid credentials"});
         }
         const userData = {
             user:{
-               id:user.id,
-               username:user.username
+                admin_id:doctor.id,
+                username,
+                role_id:"DoctorAdmin"
             }
         };
         //asigning a token which expires in 1 hour
-        const token = jwt.sign(userData,"DUMMYKEY");  
+        const token = jwt.sign(userData,process.env.JWT_SECERT_KEY,{
+            expiresIn:"1h"
+        });  
         //deleting the user password so that it doesnt gets corrputed
-        delete user.password;
+        delete doctor.password;
         
-        res.status(200)
-        .cookie("doctorToken_l", token)
+        return res.status(200)
+        .cookie("doctor_auth_token", token)
         .json({
-            message:"Login succesfull",
-            token
+            message:"Login succesfully",
+            token: token,
+            data:[{userRole:"DoctorAdmin"}]
         })
         } catch (err) {
             console.error(err.message);
-            res.status(500).json({error:err.message});
+            return res.status(500).json({error:err.message});
         }
 }
 
@@ -93,8 +90,20 @@ const getAllDoctor = async(req,res,next)=>{
     }
 }
 
+
+const verifyDoctor = async(req,res)=>{
+    const{role_id} = req.user;
+    if(role_id === 'DoctorAdmin'){
+        console.log("Admin");
+        return res.status(200).json({
+            success:true
+        })
+    }
+}
+
 export {
     getAllDoctor,
     setDoctor,
-    loginDoctor
+    loginDoctor,
+    verifyDoctor
 }

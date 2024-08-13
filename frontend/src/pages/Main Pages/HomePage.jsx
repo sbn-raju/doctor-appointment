@@ -25,7 +25,7 @@ import { useSelector } from "react-redux";
 
 
 const HomePage = () => {
-  document.title = "Dr.RamaChandra & Padma"
+ document.title = "Dr.RamaChandra & Padma"
  const [loading, setLoading] = useState(true);
  const [error, setError] = useState(null);
  const [youtubeVideos, setYoutubeVideos] = useState([]);
@@ -36,24 +36,26 @@ const HomePage = () => {
   const fetchYoutubeVideos = async()=>{
     try{
         const [youtubeVideosResponse, testimonialsResponse] = await Promise.all([
-          await axios.get("http://localhost:8080/api/v1/youtube/video"),
-          await axios.get("http://localhost:8080/api/v1/youtube/testimonials")
-        ])
-        const youtubeVideosData = youtubeVideosResponse.data.data
-        const testimonialsData = testimonialsResponse.data.data
-        if(youtubeVideosData.length == 4 && testimonialsData.length == 3){
-          setYoutubeVideos(youtubeVideosData)
-          setTestimonials(testimonialsData)
+         axios.get("/api/v1/youtube/video"),
+         axios.get("/api/v1/youtube/testimonials")
+        ]);
+        if(youtubeVideosResponse.data && testimonialsResponse.data){
+          const youtubeVideosData = youtubeVideosResponse.data.data;
+          const testimonialsData = testimonialsResponse.data.data;
+          setYoutubeVideos(youtubeVideosData);
+          setTestimonials(testimonialsData);
           setLoading(false);
         }
         else{
-          setYoutubeVideos(youtube)
-          setTestimonials(testimonials)
-          setLoading(false)
+          setYoutubeVideos(youtube);
+          setTestimonials(testimonials);
+          setLoading(true);
         }
+        
     }catch(error){
-      console.log(error);
-      setError(error);
+      setYoutubeVideos(youtube);
+      setTestimonials(testimonials)
+      setError(null);
       setLoading(false);
     }
   }
@@ -225,7 +227,7 @@ const HomePage = () => {
               className="h-60 w-full px-5 md:w-3/5 lg:w-4/5 lg:h-64 m-auto"
             >
               <iframe
-                src={video.link_iframe?video.link_iframe:video.tag}
+                src={video.link_iframe}
                 title="YouTube video player"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

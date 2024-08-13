@@ -19,7 +19,7 @@ const DoctorLogin = () => {
   
   const loginDataSubmit = async(userData)=>{
     console.log(userData);
-    const response = await axios.post("/api/v1/doctor/set-doctors/auth",userData)
+    const response = await axios.post("/api/v1/doctor/auth/login",userData)
     console.log(response)
     return response.data;
   }
@@ -30,10 +30,15 @@ const DoctorLogin = () => {
      onSuccess:async(data)=>{
       console.log(data);
       const docToken = data.token;
-      const encryptToken = await encryptData(
+      const userRole = data.data[0].userRole;
+      const encryptedToken = await encryptData(
         docToken.toString()
       );
-      localStorage.setItem("doctor_info", encryptToken); 
+      const encryptedUserRole = await encryptData(
+        userRole.toString()
+      )
+      sessionStorage.setItem("doctor_info", encryptedToken);
+      sessionStorage.setItem("user_Role",encryptedUserRole); 
       dispatch(loginDoctor(data));
       toast.success("Doctor is Successfully logged in");
       navigate("/doctor/dashboard");
