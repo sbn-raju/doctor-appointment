@@ -6,6 +6,7 @@ import jwt from "jsonwebtoken";
 
 const setDoctor = async(req,res)=>{
     const {name, username, password} = req.body
+    const {admin_id} = req.user
     try {
 
         //checking if any user with same username exists
@@ -13,11 +14,15 @@ const setDoctor = async(req,res)=>{
         if(existUser.rows.length > 0) {
             return res.status(400).json({message: "Doctor already in existance"});
         }
+
+
+        const created_by = admin_id;
+        const updated_by = admin_id;
         //encrypting the password using bcrypt
         const passwordHash=await bcrypt.hash(password, 10);
         //creating the user
         const newUser=await pool.query(
-            "INSERT INTO doctor_master (name, username, password, created_at, updated_at, created_by, updated_by) VALUES ($1,$2,$3,NOW(),NOW(),1, 1) RETURNING *",[name,username,passwordHash]
+            "INSERT INTO doctor_master (name, username, password, created_at, updated_at, created_by, updated_by) VALUES ($1,$2,$3,NOW(),NOW(),$4, $5) RETURNING *",[name,username,passwordHash,created_by, updated_by]
         );
         const userData = {
             user:{

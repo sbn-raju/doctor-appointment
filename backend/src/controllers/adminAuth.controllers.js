@@ -5,6 +5,9 @@ import jwt from "jsonwebtoken"
 import ErrorHandler from "../helpers/errorHelpers.js";
 import { configDotenv } from "dotenv";
 
+
+
+//This is only the collasyn can access and could add the admin authority
 const adminAuthRegistetController = async(req,res,next)=>{
     const { username, password, email, mobile_no} = req.body
     try {
@@ -91,13 +94,14 @@ const adminAuthLoginController = async(req,res,next)=>{
         //Creating Cookie
         res.cookie("admin_auth_token",token,{
             httpOnly:true,
-            maxAge: Date.now() + 60 * 1000
+            expire:'1m',
+            // maxAge: Date.now() + 60 * 1000
         })
 
         return res.status(200).json({
             message: "User Logged in successfully",
-            data:"admin",
-            token: token
+            token: token,
+            data:[{userRole:"Admin"}]
         })
 
     } catch (error) {
@@ -135,7 +139,9 @@ const verifyAdmin = async(req,res)=>{
     const{role_id} = req.user;
     if(role_id === 'Admin'){
         console.log("Admin");
-        return res.status(200)
+        return res.status(200).json({
+            success:true
+        })
     }
 }
 

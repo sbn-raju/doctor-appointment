@@ -25,15 +25,6 @@ import toast, { Toaster } from "react-hot-toast";
 
 const UserApp = () => {
   const { token } = useSelector((state) => state.auth);
-//   let authLocalToken;
-//   if (!token) {
-//     authLocalToken = localStorage.getItem("a_tk");
-//     // console.log(authLocalToken);
-//     if (!authLocalToken) {
-//       toast.success("Please verify yourself :)");
-//     }
-//   }
-
 
   return (
     <BrowserRouter>

@@ -5,6 +5,7 @@ import CommonButton from '../../components/Buttons/CommonButton';
 import { useNavigate } from 'react-router-dom';
 import membershipBg from '../../assets/Page Assets/Home/memebership-bg.png';
 import logo from '../../assets/Page Assets/Home/New Logo.png';
+import {toast} from "react-hot-toast"
 
 const MembershipCard = ({handleCloseCard}) => {
   return (
@@ -47,7 +48,7 @@ const MyProfilePage = () => {
     if (formData.name !== "" && formData.age !== "" && formData.email !== "" && formData.gender !== "" && formData.gender !== "selectGender") {
       setIsMemebershipCardOpen(true);
     } else {
-      alert("Please fill all the details to generate membership card");
+      toast.error("Please fill all the details to generate membership card");
     }
   }
 

@@ -7,6 +7,7 @@ import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { loginAdmin } from "../../services/adminSlice.js";
 import toast from "react-hot-toast";
+import { encryptData } from "../../utils/encryptData.js";
 
 
 const AdminLogin = () => {
@@ -41,13 +42,23 @@ const AdminLogin = () => {
   const adminAuthMutation = useMutation({
     mutationFn:fetchAdminAuth,
     onSuccess:async(data)=>{
-      dispatch(loginAdmin(data.data));
+      const token = data.data.token;
+      const userRole = data.data.data[0].userRole;
+      const encryptToken = await encryptData(
+        token.toString()
+      );
+      const encryptUserRole = await encryptData(
+        userRole.toString()
+      )
+      sessionStorage.setItem("admin_info", encryptToken); 
+      sessionStorage.setItem("user_Role", encryptUserRole);
+      dispatch(loginAdmin(data.data))
       navigate("/admin/appointment");
       toast.success(data.data.message)
     },
-    onError:async(data)=>{
+    onError:async(data)=>{  
       navigate("/")
-      toast.success(data.response?.data.message)
+      toast.error(data.response?.data?.message)
     }
   })
 
@@ -57,7 +68,7 @@ const AdminLogin = () => {
   };
 
 
-  console.log(adminAuthMutation);
+  
 
 
 

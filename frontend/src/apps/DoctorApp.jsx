@@ -8,8 +8,10 @@ import PrivateRoute from "../routes/PrivateRoute.jsx";
 import Missing from "../components/Missing.jsx";
 import Loading from "../components/Loading.jsx";
 import { Toaster } from "react-hot-toast";
+import { useSelector } from "react-redux";
 
 const DoctorApp = () => {
+  const isAuth = useSelector((state)=>state.doctorAuth.token)
       return (
         <BrowserRouter>
           <Suspense fallback={<Loading />}>
@@ -20,7 +22,7 @@ const DoctorApp = () => {
               {/* Protected Routes */}
               <Route
                 element={
-                  <PrivateRoute isAuthenticated={true} isAdmin={true}>
+                  <PrivateRoute isAuthenticated={isAuth?true:false} isAdmin={true}>
                     <Doctor_Layout />
                   </PrivateRoute>
                 }

@@ -42,7 +42,10 @@ const setClass = async (req, res, next) => {
     return next(new ErrorHandler(false, `Could not fetch the previous Class due to ${error}` ,400))
   }
 
-  const {class_date,class_time, class_fees, created_at, created_by, updated_at,updated_by} = req.body;
+  const {class_date,class_time, class_fees, created_at, updated_at} = req.body;
+  const{admin_id} = req.user;
+  const created_by = admin_id;
+  const updated_by = admin_id;
 
   if(!(class_date || class_time || class_fees || created_at || created_by || updated_at || updated_by)){
     return next(new ErrorHandler(false, "Provide all the Input Fields" ,400));
@@ -500,6 +503,24 @@ const getClassBookingData = async (req,res,next) => {
 
 
 
+const getCountClassBooking = async (req,res)=>{
+   const getCountClassQuery = "SELECT COUNT(*) FROM class_booking"
+  try{
+    const getCountClass = await pool.query(getCountClassQuery);
+    return res.status(200).json({
+      success:true,
+      data:getCountClass.rows
+    })
+  }
+  catch(error){
+    return res.status(500).json({
+      success:false,
+      message:`Error Occured : ${error}`,
+  })
+  }
+}
+
+
 
 export {
   setClass,
@@ -515,4 +536,5 @@ export {
   getClassBookingData,
   putClass,
   deleteClass,
+  getCountClassBooking,
 }

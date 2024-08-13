@@ -1,46 +1,44 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Suspense, useState, useEffect} from "react";
-import {
-  AddDoctorPage,
-  AppointmentsPage,
-  ClassUpdatesPage,
-  ClassBookingPage,
-  SetSlotsPage,
-  YoutubeVideosPage,
-  UserDataPage,
-  PaymentPage,
-  AdminLogin,
-} from "../pages/Easy Imports/admin.js";
-import Admin_Layout from "../layouts/Admin_Layout.jsx";
-import ReschedulePage from "../pages/Admin Dashboard Pages/ReschedulePage.jsx";
-import WhatsappTemplatePage from "../pages/Admin Dashboard Pages/whatsappTemplatePage.jsx";
-import PrivateRoute from "../routes/PrivateRoute.jsx";
-import Loading from "../components/Loading.jsx";
-import Missing from "../components/Missing.jsx";
-import { Toaster } from "react-hot-toast";
-import UnauthorizedPage from "../pages/Admin Dashboard Pages/UnauthorizedPage.jsx";
-import { useSelector } from "react-redux";
+  import { BrowserRouter, Routes, Route, useNavigate } from "react-router-dom";
+  import { Suspense, useState, useEffect } from "react";
+  import {
+    AddDoctorPage,
+    AppointmentsPage,
+    ClassUpdatesPage,
+    ClassBookingPage,
+    SetSlotsPage,
+    YoutubeVideosPage,
+    UserDataPage,
+    PaymentPage,
+    AdminLogin,
+  } from "../pages/Easy Imports/admin.js";
+  import Admin_Layout from "../layouts/Admin_Layout.jsx";
+  import ReschedulePage from "../pages/Admin Dashboard Pages/ReschedulePage.jsx";
+  import WhatsappTemplatePage from "../pages/Admin Dashboard Pages/whatsappTemplatePage.jsx";
+  import PrivateRoute from "../routes/PrivateRoute.jsx";
+  import Loading from "../components/Loading.jsx";
+  import Missing from "../components/Missing.jsx";
+  import { Toaster } from "react-hot-toast";
+  import UnauthorizedPage from "../pages/Admin Dashboard Pages/UnauthorizedPage.jsx";
+  import { useSelector } from "react-redux";
 
 
 
-const AdminApp = () => {
-  const isAuth = useSelector((state)=>state.adminAuth.token);
-  const isAdmin = useSelector((state)=>state.adminAuth.data);
-  
+  const AdminApp = () => {
+    const isAuth = useSelector((state)=>state.adminAuth.token);
+    const isAdmin = useSelector((state)=>state.adminAuth.admin);
 
-  
     return (
       <BrowserRouter>
         <Suspense fallback={<Loading />}>
           <Routes>
-            {/* This are the Private Routes only the admin can access this routes and the their can be the multiple admin */}
             <Route path="/" element={<AdminLogin />} />
-            
             <Route
               element={
-                <PrivateRoute isAuthenticated={isAuth?true:false}>
-                  <Admin_Layout /> 
-                </PrivateRoute>}>
+                <PrivateRoute token={isAuth != null ? isAuth : null} admin={isAdmin === "Admin" ? isAdmin : null}>
+                  <Admin_Layout />
+                </PrivateRoute>
+              }
+            >
               <Route path="/admin/addDoctor" element={<AddDoctorPage />} />
               <Route path="/admin/appointment" element={<AppointmentsPage />} />
               <Route
@@ -56,13 +54,13 @@ const AdminApp = () => {
               <Route path="/admin/users" element={<UserDataPage />} />
             </Route>
             <Route path="*" element={<Missing />} />
-            <Route path="/unauthorized" element={<UnauthorizedPage/>}/>
+            <Route path="/unauthorized" element={<UnauthorizedPage />} />
           </Routes>
+          
           <Toaster position={"top-right"} />
-        </Suspense>
-      </BrowserRouter>
+      </Suspense>
+    </BrowserRouter>
     );
   };
-  
 
-export default AdminApp;
+  export default AdminApp;

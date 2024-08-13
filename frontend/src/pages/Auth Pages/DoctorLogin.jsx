@@ -6,11 +6,16 @@ import {useMutation} from "@tanstack/react-query";
 import axios from "axios"
 import toast from "react-hot-toast";
 import {useNavigate} from "react-router-dom"
+import { loginDoctor } from "../../services/doctorSlice";
+import { useDispatch, useSelector } from 'react-redux';
+import { encryptData } from "../../utils/encryptData";
+
 
 const DoctorLogin = () => {
+  document.title = "Doctor Login"
   const navigate = useNavigate()
   const { register, handleSubmit } = useForm();
-  // const loginData = (formData) => console.log(formData); 
+  const dispatch = useDispatch();
   
   const loginDataSubmit = async(userData)=>{
     console.log(userData);
@@ -22,13 +27,21 @@ const DoctorLogin = () => {
 
   const loginMutation = useMutation({
      mutationFn:loginDataSubmit,
-     onSuccess:async()=>{
-      toast.success("Doctor is Successfully logged in")
-      navigate("/doctor/dashboard")
+     onSuccess:async(data)=>{
+      console.log(data);
+      const docToken = data.token;
+      const encryptToken = await encryptData(
+        docToken.toString()
+      );
+      localStorage.setItem("doctor_info", encryptToken); 
+      dispatch(loginDoctor(data));
+      toast.success("Doctor is Successfully logged in");
+      navigate("/doctor/dashboard");
      },
-     onError:async()=>{
+     onError:async(data)=>{
+      console.log(data);
       toast.error("Check With Password or username")
-      navigate("/doctor/login")
+      navigate("/")
      }
   })
 

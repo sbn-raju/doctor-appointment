@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { BsCalendar2Event } from "react-icons/bs";
 
 const DoctorAppointments = () => {
+  document.title = "Doctor DashBoard | Admin Panel"
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const navigate = useNavigate();

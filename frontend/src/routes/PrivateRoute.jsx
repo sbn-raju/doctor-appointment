@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 
-const PrivateRoute = ({ isAuthenticated, children }) => {
-  if (!isAuthenticated) {
+const PrivateRoute = ({token, admin, children}) => {
+
+  if (token == null || admin !== "Admin") {
     return <Navigate to={"/"} />;
   }
 
-  // if (isAuthenticated && !isAdmin) {
-  //  return <Navigate to={"/"} />;
-  // }
+  if (token && admin !== "Admin") {
+   return <Navigate to={"/unauthorized"} />;
+  }
   
   return children ? children: <Outlet />
 };
