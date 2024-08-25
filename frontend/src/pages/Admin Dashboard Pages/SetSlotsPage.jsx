@@ -1,11 +1,12 @@
 import React, {useEffect } from 'react';
-import { BsCalendar2Event } from "react-icons/bs";
 import Input from "../../components/Input Fields/Input";
 import CommonButton from '../../components/Buttons/CommonButton';
 import { useForm } from 'react-hook-form';
 import {toast} from "react-hot-toast";
 import {useMutation, useQuery} from "@tanstack/react-query";
-import axios from "axios"
+import axios from "axios";
+import ScheduleSendIcon from '@mui/icons-material/ScheduleSend';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 
 
 const SetSlotsPage = () => {
@@ -65,7 +66,7 @@ const SetSlotsPage = () => {
           <span className="ml-4 border-[1px] border-l-gray-500 h-12"></span>
           
           <div className="flex justify-center items-center ml-3">
-            <span className="text-sm ml-0 md:ml-4"><BsCalendar2Event /></span>
+            <span className="text-sm ml-0 md:ml-4"><CalendarMonthIcon /></span>
             <p className="text-sm ml-1">Set Slots</p>
           </div>
         </div>        
@@ -122,7 +123,8 @@ const SetSlotsPage = () => {
             </span>
 
             <div className='flex items-center justify-center md:justify-end self-center'>
-              <CommonButton type='submit' className='bg-green-4 text-white rounded-xl p-2 w-24'>Submit</CommonButton>
+
+              <CommonButton type='submit' className='bg-green-600 text-white rounded-xl p-2 w-32 hover:bg-green-800'><ScheduleSendIcon/>&nbsp;Set Slot</CommonButton>
             </div>
           </div>
         </form>

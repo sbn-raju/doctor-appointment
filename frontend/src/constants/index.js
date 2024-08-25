@@ -1,31 +1,18 @@
-
-// export const subDomain = [
-//     {
-//         subDomain:"www",
-//         subapp:App,
-//         main:true
-//     },
-//     {
-//         subDomain:"doctor",
-//         subapp:DoctorApp,
-//         main:false
-//     },
-//     {
-//         subDomain:"admin",
-//         subapp:AdminApp,
-//         main:false
-//     }
-
-// ]
+import HomeIcon from '@mui/icons-material/Home';
+import MedicalServicesIcon from '@mui/icons-material/MedicalServices';
+import SchoolIcon from '@mui/icons-material/School';
+import Diversity2Icon from '@mui/icons-material/Diversity2';
+import LocalPharmacyIcon from '@mui/icons-material/LocalPharmacy';
+import BookIcon from '@mui/icons-material/Book';
 
 
 export const navItems = [
-    {label:"Home", href:"/"},
-    {label:"Service",href:"/services"},
-    {label:"Diet", href:"/diet"},
-    {label:"Appointment",href:"/appointment"},
-    {label:"Workshop", href:"/class"},
-    {label:"About\u00A0Us",href:"/about"},
+    {icon: HomeIcon, label:"Home", href:"/"},
+    {icon: MedicalServicesIcon, label:"Service",href:"/services"},
+    {icon: LocalPharmacyIcon, label:"Diet", href:"/diet"},
+    {icon: BookIcon, label:"Appointment",href:"/appointment"},
+    {icon: SchoolIcon, label:"Workshop", href:"/class"},
+    {icon: Diversity2Icon, label:"About\u00A0Us",href:"/about"},
 ]
 
 export const youtube = [
@@ -1622,50 +1609,32 @@ export const appointments = [
 ]
 
 export const whatsappTemplates = [
-    // {
-    //     Title: "Template title",
-    //     Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
-    // },
     {
+        id:1001,
+        Title: "Appointment Alert Message",
+        subTitle: "🔔 Reminder: Upcoming Appointment 🔔",
+        Des: "Just a friendly reminder that your appointment is coming up soon!",
+        Date: "📅 Date:2024-09-02",
+        Time: "🕒 Time: 932 ",
+        Instructions: "For detailed instructions on how to join the appointment, please check out our tutorial: https://youtu.be/b_vVeDxrbDo?feature=shared We'll send you a joining link before your appointment time arrives. If you have any questions, please contact us.Best regards,Dr Padma Ramchandra Naturopathy"
+        
+    },
+    {
+        id:1002,
         Title: "Template title",
         Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
     },
     {
+        id:3,
         Title: "Template title",
         Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
     },
     {
+        id:4,
         Title: "Template title",
         Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
     },
-    {
-        Title: "Template title",
-        Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
-    },
-    {
-        Title: "Template title",
-        Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
-    },
-    {
-        Title: "Template title",
-        Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
-    },
-    {
-        Title: "Template title",
-        Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
-    },
-    {
-        Title: "Template title",
-        Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
-    },
-    {
-        Title: "Template title",
-        Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
-    },
-    {
-        Title: "Template title",
-        Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim ",
-    },
+    
 ]
 
 export const eveningJuice = [

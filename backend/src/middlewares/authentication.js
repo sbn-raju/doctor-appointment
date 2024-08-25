@@ -33,7 +33,7 @@ const authentication = (req,res,next)=>{
 
 const adminAuthentication = async(req,res,next)=>{
     const admin_auth_token = req.cookies.admin_auth_token
-    console.log(admin_auth_token);
+    // console.log(admin_auth_token);
     if(!admin_auth_token){
         return next(new ErrorHandler(false, "Auth Token is not present" , 403)) 
     }
@@ -51,7 +51,7 @@ const adminAuthentication = async(req,res,next)=>{
                 return res.status(401).json({ success: false, message: 'Invalid token: No user data' });
             }
             req.user = decoded.user
-            console.log(req.user);  
+            // console.log(req.user);  
             next();
         })
     }catch(error){
@@ -63,7 +63,7 @@ const adminAuthentication = async(req,res,next)=>{
 
 const doctorAuthentication = (req,res,next)=>{
     const authToken = req.cookies.doctor_auth_token;
-    console.log(authToken);
+    // console.log(authToken);
     if(!authToken){
         return next(new ErrorHandler(false, "Auth Token is not present" , 403)) 
     }

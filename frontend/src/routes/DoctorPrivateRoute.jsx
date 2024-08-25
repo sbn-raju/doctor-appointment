@@ -6,7 +6,7 @@ const DoctorPrivateRoute = ({token, admin, children}) => {
       }
     
       if (token && admin !== "DoctorAdmin") {
-       return <Navigate to={"/unauthorized"} />;
+       return <Navigate to={"/"} />;
       }
       
       return children ? children: <Outlet />

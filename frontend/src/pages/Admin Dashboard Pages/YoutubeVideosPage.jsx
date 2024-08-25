@@ -4,12 +4,19 @@ import {useMutation, useQuery} from "@tanstack/react-query";
 import { useForm } from 'react-hook-form';
 import axios from "axios";
 import toast from 'react-hot-toast';
-import { queryClient } from '../../main';
+import {useQueryClient} from '@tanstack/react-query'
+import DeleteIcon from '@mui/icons-material/Delete';
+import ContactMailIcon from '@mui/icons-material/ContactMail';
+import LibraryAddIcon from '@mui/icons-material/LibraryAdd';
+import YouTubeIcon from '@mui/icons-material/YouTube';
+
 
 const YoutubeVideosPage = () => {
   document.title = "Youtube Videos | Admin"
   const [videoType, setVideoType] = useState('youtube');
   const { register, handleSubmit, reset } = useForm();
+
+  const queryClient = useQueryClient()
 
   //Youtube videos
   const fetchYouTubeVideos = async()=>{
@@ -175,9 +182,7 @@ const YoutubeVideosPage = () => {
           
           <div className="flex justify-center items-center ml-3">
             <span className="text-sm ml-0 md:ml-4">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" className="bi bi-youtube" viewBox="0 0 16 16">
-                <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.01 2.01 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.01 2.01 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31 31 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.01 2.01 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A100 100 0 0 1 7.858 2zM6.4 5.209v4.818l4.157-2.408z"/>
-              </svg>
+              <YouTubeIcon/>
             </span>
             <p className="text-sm ml-1">Youtube Videos & Testimonials</p>
           </div>
@@ -192,7 +197,7 @@ const YoutubeVideosPage = () => {
       { videoType === 'youtube' ? (
         <>
           <div className='w-full px-20 bg-white p-8 rounded-2xl shadow-md'>
-            <p className='text-lg mb-2'>Youtube Videos*</p>
+            <p className='text-lg mb-2'>Youtube Videos&nbsp;<span className='text-red-700'>*</span></p>
             <form onSubmit={handleSubmit(onSubmitForYoutube)}>
               <input 
                id='link_iframe'
@@ -200,34 +205,26 @@ const YoutubeVideosPage = () => {
                {...register("link_iframe",{required:true})}
               />
               <div className='w-full flex justify-end mt-2'>
-                <button className='bg-green-3 text-white px-4 py-2 font-medium rounded-xl'>Submit</button>
+                <button className='bg-green-3 text-white px-4 py-2 font-medium rounded-xl'><LibraryAddIcon/>&nbsp;Add YT Video</button>
               </div>
             </form>
           </div>
 
           <div className='w-full rounded-2xl shadow-md bg-white my-6 pb-4 overflow-x-auto admin-scrollbar'>
             <div className='pt-4 sticky top-0 z-10 bg-white border-b-[1px] border-b-gray-2'>
-              <ul className='grid grid-cols-3 pb-2'>
+              <ul className='grid grid-cols-2 p-4'>
                 <li className='mx-auto'>Video</li>
                 <li className='mx-auto'>Operation</li>
               </ul>
             </div>
             <div className='overflow-auto scrollbar h-52'>
               {fetchedYoutubeVideos?.map((vid, index) => (
-                <div key={index} className='grid grid-cols-3 p-4'>
-                  <iframe width="300" height="200" src={vid.link_iframe} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                <div key={index} className='grid grid-cols-2 p-4'>
+                  <iframe width="300" height="200" src={vid.link_iframe} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen
+                  className='mx-auto'>
                   </iframe>
-                  <button className='mx-auto' key={vid.id} onClick={()=>handleDeleteYoutube(vid.id)}>
-                    <svg width="28" height="30" viewBox="0 0 28 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <g clip-path="url(#clip0_1333_134)">
-                      <path d="M7.00004 23.2877C7.00004 24.6168 8.05004 25.7043 9.33337 25.7043H18.6667C19.95 25.7043 21 24.6168 21 23.2877V8.78768H7.00004V23.2877ZM22.1667 5.16268H18.0834L16.9167 3.95435H11.0834L9.91671 5.16268H5.83337V7.57935H22.1667V5.16268Z" fill="#497246"/>
-                      </g>
-                      <defs>
-                      <clipPath id="clip0_1333_134">
-                      <rect width="28" height="29" fill="white" transform="translate(0 0.329346)"/>
-                      </clipPath>
-                      </defs>
-                    </svg>
+                  <button className='m-auto bg-red-500 text-white px-4 py-2 font-medium rounded-xl hover:bg-red-700' key={vid.id} onClick={()=>handleDeleteYoutube(vid.id)}>
+                  <DeleteIcon/>&nbsp;Delete YT Video
                   </button>
                 </div>
               ))}
@@ -237,41 +234,32 @@ const YoutubeVideosPage = () => {
       ) : (
         <>
           <div className='w-full px-20 bg-white p-8 rounded-2xl shadow-md'>
-            <p className='text-lg mb-2'>Testimonial Videos*</p>
+            <p className='text-lg mb-2'>Testimonial Videos&nbsp;<span className='text-red-700'>*</span></p>
             <form onSubmit={handleSubmit(onSubmitForTestimonials)}>
               <input className='border-[1px] border-green-700 p-4 rounded-xl w-full h-24' placeholder='Copy Iframe of the testimonial and paste here' 
               {...register("links_iframe_testimonials",{required:true})}
               />
               <div className='w-full flex justify-end mt-2'>
-                <button className='bg-green-3 text-white px-4 py-2 font-medium rounded-xl'>Submit</button>
+                <button className='bg-green-3 text-white px-4 py-2 font-medium rounded-xl'><ContactMailIcon/>&nbsp;Add Testimonial</button>
               </div>
             </form>
           </div>
 
           <div className='w-full rounded-2xl shadow-md bg-white my-6 pb-4 overflow-x-auto admin-scrollbar'>
             <div className='pt-4 sticky top-0 z-10 bg-white border-b-[1px] border-b-gray-2'>
-              <ul className='grid grid-cols-3 pb-2'>
+              <ul className='grid grid-cols-2 pb-2'>
                 <li className='mx-auto'>Video</li>
-                <li className=''>Title</li>
                 <li className='mx-auto'>Operation</li>
               </ul>
             </div>
             <div className='overflow-auto scrollbar h-52'>
               {fetchedTestimonialsVideos?.map((vid, index) => (
-                <div key={index} className='grid grid-cols-3 p-4'>
-                  <iframe width="300" height="200" src={vid.links_iframe_testimonials} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                <div key={index} className='grid grid-cols-2 p-4'>
+                  <iframe width="300" height="200" src={vid.links_iframe_testimonials} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen
+                  className='mx-auto'>
                   </iframe>
-                  <button className='mx-auto' key={vid.id} onClick={()=>handleDeleteTestimonials(vid.id)}>
-                    <svg width="28" height="30" viewBox="0 0 28 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <g clip-path="url(#clip0_1333_134)">
-                      <path d="M7.00004 23.2877C7.00004 24.6168 8.05004 25.7043 9.33337 25.7043H18.6667C19.95 25.7043 21 24.6168 21 23.2877V8.78768H7.00004V23.2877ZM22.1667 5.16268H18.0834L16.9167 3.95435H11.0834L9.91671 5.16268H5.83337V7.57935H22.1667V5.16268Z" fill="#497246"/>
-                      </g>
-                      <defs>
-                      <clipPath id="clip0_1333_134">
-                      <rect width="28" height="29" fill="white" transform="translate(0 0.329346)"/>
-                      </clipPath>
-                      </defs>
-                    </svg>
+                  <button className='m-auto bg-red-500 text-white px-4 py-2 font-medium rounded-xl hover:bg-red-700' key={vid.id} onClick={()=>handleDeleteTestimonials(vid.id)}>
+                  <DeleteIcon/>&nbsp;Delete Testimonial
                   </button>
                 </div>
               ))}

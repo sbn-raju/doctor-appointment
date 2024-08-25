@@ -16,15 +16,61 @@ const loginUser = createAsyncThunk("auth/loginUser", async ({ phoneNumber, code 
     console.log(response.data)
     return response.data;
   } catch (error) {
+    console.log(error);
     // Use rejectWithValue instead of isRejectedWithValue
     return rejectWithValue(error.response.data);
   }
 });
 
+
+const encryptAndVerifyToken = async(token)=>{
+  if(token == null){
+      return null;
+  }
+
+  const expiryTime = sessionStorage.getItem("admin_token_expiry");
+
+  if(isTokenExpired(expiryTime)){
+      sessionStorage.removeItem("admin_info");
+      sessionStorage.removeItem("admin_token_expiry");
+      return null;
+  }
+   
+
+
+  const decryptedToken = await decryptData(token);
+  const response = await axios.post("/api/v1/admin/verify");
+  if(response.status == 200 && response.statusText === "OK" && response.data.success){
+      return decryptedToken
+  }
+  else if(response.status == 403 || response.statusText === "Forbidden" || response.data.success || response.status == 500 || response.status == 404){
+       return null;
+  }
+  else{
+      return null;
+  }
+}
+
+
+
+const decryptedAndVerifyUser = async(userRole)=>{
+  if(userRole == null){
+      return null
+  }
+  const decryptedUser = await decryptData(userRole);
+  return decryptedUser;
+}
+
+
+
 const initialState = {
-  token: null,
-  message: ""
-};
+  token: await encryptAndVerifyToken(localStorage.getItem("a_tk")),
+  user_role: await decryptedAndVerifyUser(localStorage.getItem("user_Role")),
+}
+
+
+
+
 
 
 
@@ -32,7 +78,12 @@ const authSlice = createSlice({
   name: "authUser",
   initialState,
   reducers: {
-    logout:(state)=>{
+    loginUser:(state, action)=>{
+      state.token = action.payload.tokens.accessToken.encryptedData;
+      state.user_role = action.payload.admin;
+
+    },
+    logoutUser:(state)=>{
       state.token = null;
       state.message = "";
       localStorage.removeItem("a_tk");
@@ -41,6 +92,7 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(loginUser.pending, (state) => {
+        console.log("HI");
         state.token = null;
         state.message = "";
       })
@@ -51,6 +103,7 @@ const authSlice = createSlice({
         localStorage.setItem("a_tk", action.payload.tokens.accessToken.encryptedData);
       })
       .addCase(loginUser.rejected, (state, action) => {
+        console.log("BYEE");
         state.token = null;
         state.message = action.payload || action.error.message;
         localStorage.removeItem("a_tk") // Use action.payload for error message

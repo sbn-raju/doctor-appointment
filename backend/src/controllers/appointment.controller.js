@@ -54,9 +54,8 @@
     const appointmentSlotMasterGetSlots = async(req,res,next)=>{
         try {
             const { date, doctor_id } = req.body
-            
-            
-            const getQuerySlotMaster = "SELECT * FROM appointment_slot_master WHERE appointment_id = (SELECT id FROM appointment_master WHERE date = $1 AND doctor_id = $2)"
+
+            const getQuerySlotMaster = "SELECT * FROM appointment_slot_master WHERE appointment_id = (SELECT id FROM appointment_master WHERE date = $1 AND doctor_id = $2 ) AND booked_by_user_id IS NOT NULL"
             const getValueSlotMaster = [date, doctor_id]
 
             try{
@@ -161,7 +160,7 @@
 
 
     const getUserAppointments = async(req,res,next)=>{
-        const getUserAppointmentsQuery = "SELECT user_appointment_details.purpose_of_visit, user_appointment_details.date, user_appointment_details.mobile_no, user_appointment_details.p_name,user_appointment_details.doctor_id, user_appointment_details.time_slot, doctor_master.name, appointment_slot_master.slot_start_time FROM user_appointment_details JOIN doctor_master ON user_appointment_details.doctor_id = doctor_master.id JOIN appointment_slot_master ON user_appointment_details.time_slot = appointment_slot_master.id ORDER BY user_appointment_details.created_at DESC"
+        const getUserAppointmentsQuery = "SELECT user_appointment_details.id, user_appointment_details.purpose_of_visit, user_appointment_details.date, user_appointment_details.mobile_no, user_appointment_details.p_name,user_appointment_details.doctor_id, user_appointment_details.time_slot, doctor_master.name, appointment_slot_master.slot_start_time FROM user_appointment_details JOIN doctor_master ON user_appointment_details.doctor_id = doctor_master.id JOIN appointment_slot_master ON user_appointment_details.time_slot = appointment_slot_master.id ORDER BY user_appointment_details.created_at DESC"
         try {
             const getUserAppointmentsResults = await pool.query(getUserAppointmentsQuery);
             if(getUserAppointmentsResults.rowCount!=0){
@@ -189,7 +188,7 @@
                 message:"Please select the user to mark completed"
             })
         }
-        const setCompleteAppointmentQuery = "UPDATE user_appointment_details SET iscompleted = $1 WHERE user_id = $2 RETURNING iscompleted";
+        const setCompleteAppointmentQuery = "UPDATE user_appointment_details SET iscompleted = $1 WHERE id = $2 RETURNING iscompleted";
         const setCompleteAppointmentValue = [1, id];
         try {
             const setCompleteAppointmentresults = await pool.query(setCompleteAppointmentQuery,setCompleteAppointmentValue);
@@ -279,7 +278,89 @@
     }
 
 
+    const getCountOfAppointmentCompletedByDoctor = async(req,res)=>{
+        const {id} = req.user;
+        const queryCountOfAppointments = "SELECT COUNT(*) FROM user_appointment_details WHERE iscompleted IS NUll AND doctor_id = $1 "
+        const valueCountOfAppointments = [id];
 
+        try {
+            const results = await pool.query(queryCountOfAppointments, valueCountOfAppointments);
+            if(results.rowCount !=0){
+                return res.status(200).json({
+                    success:true,
+                    message:"The Count of the Completed Appoinments",
+                    data:results.rows[0].count
+                })
+            }
+            else{
+                return res.status(200).json({
+                    success:true,
+                    message:"No Completed Appointments",
+                }) 
+            }
+        } catch (error) {
+            console.log(error);
+            return res.status(400).json({
+                success:false,
+                message:`${error}`
+            })
+        }
+    }
+
+    const getAppoinmentOfDoctor = async(req,res)=>{
+        const doctor_id = 2;
+        const getAppoinmentOfDoctorQuery = "SELECT user_appointment_details.id, user_appointment_details.purpose_of_visit, user_appointment_details.date, user_appointment_details.mobile_no, user_appointment_details.p_name,user_appointment_details.doctor_id, user_appointment_details.time_slot, doctor_master.name, appointment_slot_master.slot_start_time FROM user_appointment_details JOIN doctor_master ON user_appointment_details.doctor_id = doctor_master.id JOIN appointment_slot_master ON user_appointment_details.time_slot = appointment_slot_master.id   WHERE user_appointment_details.doctor_id = $1 AND user_appointment_details.iscompleted IS NULL ORDER BY user_appointment_details.created_at DESC"
+        
+        const getAppoinmentOfDoctorValue = [doctor_id]
+        try {
+            const getAppoinmentOfDoctorResult = await pool.query(getAppoinmentOfDoctorQuery, getAppoinmentOfDoctorValue);
+            if(getAppoinmentOfDoctorResult.rowCount!=0){
+                return res.status(200).json({
+                    success:true,
+                    message:"All Appointments",
+                    data:getAppoinmentOfDoctorResult.rows
+                })
+            }
+            else{
+                return res.status(404).json({
+                    success:false,
+                    message:"No Appointments",
+                })
+            }
+        } catch (error) {
+            console.log(error);
+            return res.status(500).json({
+                succes:false,
+                message:`Error ${error}`
+            })
+        }
+    }
+
+
+
+    const getCompletedAppointmentsOfDoctor = async(req,res)=>{
+        const doctor_id = 2;
+        const getAppoinmentOfDoctorQuery = "SELECT user_appointment_details.purpose_of_visit, user_appointment_details.date, user_appointment_details.mobile_no, user_appointment_details.p_name,user_appointment_details.doctor_id, user_appointment_details.time_slot, doctor_master.name, appointment_slot_master.slot_start_time FROM user_appointment_details JOIN doctor_master ON user_appointment_details.doctor_id = doctor_master.id JOIN appointment_slot_master ON user_appointment_details.time_slot = appointment_slot_master.id WHERE user_appointment_details.doctor_id = $1 AND iscompleted = $2 ORDER BY user_appointment_details.created_at DESC"
+        const getAppoinmentOfDoctorValue = [doctor_id, 1]
+        try {
+            const getAppoinmentOfDoctorResult = await pool.query(getAppoinmentOfDoctorQuery, getAppoinmentOfDoctorValue);
+
+            const doctorName = getAppoinmentOfDoctorResult.rows[0].name
+            if(getAppoinmentOfDoctorResult.rowCount!=0){
+                return res.status(200).json({
+                    success:true,
+                    message:`All the Appointments of Dr.${doctorName}`,
+                    data:getAppoinmentOfDoctorResult.rows
+                })
+            }
+        } catch (error) {
+            console.log(error);
+            return res.status(500).json({
+                succes:false,
+                message:`Error ${error}`
+            })
+        }
+    }
 
     export{
         appointmentMasterCreate,
@@ -290,5 +371,8 @@
         setCompleteAppointment,
         getCompletedAppointments,
         getCountOfCompletedAppointments,
-        getCountOfAppointment
+        getCountOfAppointment,
+        getCountOfAppointmentCompletedByDoctor,
+        getAppoinmentOfDoctor,
+        getCompletedAppointmentsOfDoctor
     }

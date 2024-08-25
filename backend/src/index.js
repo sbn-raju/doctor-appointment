@@ -55,6 +55,7 @@ import authAdminRoute from "./routes/adminAuth.routes.js";
 import doctorRoute from "./routes/doctorAuth.routes.js";
 import paymentRoute from "./routes/payment.routes.js";
 import authUserRoute from "./routes/profile.user.routes.js"
+import messageRoute from "./routes/messages.routes.js";
 
 
 //Main routes
@@ -67,6 +68,7 @@ app.use("/api/v1/youtube",youtubeLinkRoute);
 app.use("/api/v1/admin",authAdminRoute);
 app.use("/api/v1/doctor",doctorRoute)
 app.use("/api/v1/appointment",appointmentRoute);
+app.use("/api/v1/admin/message",messageRoute);
 app.use("/api/v1/appointment/user",userAppointmentRoute);
 
 

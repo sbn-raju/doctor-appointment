@@ -137,7 +137,7 @@ try {
       try {
         const terminateClassResults = await pool.query(terminateClassQuery, terminateClassValues);
         if (terminateClassResults.rowCount != 0) {
-          return res.status(201).json({
+          return res.status(200).json({
             success: true,
             message: "The Class is terminated Successfully",
           });
@@ -146,9 +146,9 @@ try {
         return next(new ErrorHandler(false, `Error in Terminating: ${error}`, 400));
       }
     } else {
-      return res.status(200).json({
-        success: true,
-        message: "The Class Booking is not closed",
+      return res.status(422).json({
+        success: false,
+        message: "The class has not been created, or the booking process is still open and not yet closed.",
       });
     }
   };
@@ -161,65 +161,6 @@ try {
 } catch (error) {
   return next(new ErrorHandler(false, `Error in Fetching Latest Class: ${error}`, 400));
 }
-
-  // const checkingClassStatusQuery = "SELECT id, status, isactive FROM class_master ORDER BY created_at DESC LIMIT $1"
-  
-  // try {
-    
-  //   const checkingClassStatusResults = await pool.query(checkingClassStatusQuery, [2]);
-  //   if(checkingClassStatusResults.rowCount == 2){
-  //     if(checkingClassStatusResults.rows[1].isactive != 1){
-  //       const idOfTerminatingClass = checkingClassStatusResults.rows[1].id
-  //       const isActiveTerminating = 1
-  //       const terminateClassQuery = "UPDATE class_master SET isactive = $1 WHERE id = $2"
-  //       const terminateClassValues = [isActiveTerminating, idOfTerminatingClass];
-  //       try {
-  //         const terminateClassResults = await pool.query(terminateClassQuery, terminateClassValues);
-  //         if(terminateClassResults.rowCount!=0){
-  //           return res.status(201).json({
-  //           success:true,
-  //           message:"The Class is terminated Successfully",
-  //           })
-  //         }
-  //       } catch (error) {
-  //         return next(new ErrorHandler(false, `Error in Terminating ${error}` ,400));
-  //       }
-  //     }
-  //     else{
-  //       return res.status(200).json({
-  //         success:true,
-  //         message:"The Class Booking is not closed",
-  //       })
-  //     }
-  //   }
-  //   else{
-  //     if(checkingClassStatusResults.rows[0].isactive != 1){
-  //       const idOfTerminatingClass = checkingClassStatusResults.rows[0].id
-  //       const isActiveTerminating = 1
-  //       const terminateClassQuery = "UPDATE class_master SET isactive = $1 WHERE id = $2"
-  //       const terminateClassValues = [isActiveTerminating, idOfTerminatingClass];
-  //       try {
-  //         const terminateClassResults = await pool.query(terminateClassQuery, terminateClassValues);
-  //         if(terminateClassResults.rowCount!=0){
-  //           return res.status(201).json({
-  //           success:true,
-  //           message:"The Class is terminated Successfully",
-  //           })
-  //         }
-  //       } catch (error) {
-  //         return next(new ErrorHandler(false, `Error in Terminating ${error}` ,400));
-  //       }
-  //     }
-  //     else{
-  //       return res.status(200).json({
-  //         success:true,
-  //         message:"The Class Booking is not closed",
-  //       })
-  //     }
-  //   }
-  // } catch (error) {
-  //   return next(new ErrorHandler(false, `Error in Fetching Latest Class due to${error}` ,400));
-  // }
 }
 
 
@@ -227,7 +168,6 @@ try {
 
 const classLink = async(req,res,next)=>{
     const {link} = req.body
-    console.log(link);
     if(!link){
       return next(new ErrorHandler(false, "Link is not passed" ,400));
     }
@@ -245,7 +185,6 @@ const classLink = async(req,res,next)=>{
       }
     } catch (error) {
       return next(new ErrorHandler(false, `${error}` ,400));
-
     }
 }
 

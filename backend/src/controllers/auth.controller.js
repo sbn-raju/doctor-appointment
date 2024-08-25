@@ -36,16 +36,17 @@ const generateAccessAndRefreshTokens = async(userData) =>{
       const updateRefreshToken = "UPDATE user_registration SET refresh_token = $1 WHERE id = $2";
       try {
         const updateRefreshTokenResult = await pool.query(updateRefreshToken, [refreshToken, user.id]);
-        // console.log(updateRefreshTokenResult.rows)
         if(updateRefreshTokenResult.rowCount!=0){
-          // console.log(accessToken)
+          console.log(accessToken)
           return {accessToken, refreshToken}
         }
       } catch (error) {
         console.log(error)
+        return error;
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
+      return error;
 
     }
 }
@@ -58,13 +59,14 @@ const generateOtp = async ()=>{
 const sendOneTimePasswordRegisterController = async(req,res,next)=>{
     try {
       const {phoneNumber} = req.body;
-      // console.log(phoneNumber);
+      console.log(phoneNumber);
     if(!phoneNumber){
       return res.status(400).json({
         success: false,
         error: "Phone number is required"
       });
     }
+    const lastDigits = phoneNumber.slice(6,10);
     const generatedOtp = await generateOtp()
     const otpNotVerified = 0
     const verifyUserQuery = "SELECT * FROM user_registration WHERE mobile_no = $1"
@@ -76,40 +78,45 @@ const sendOneTimePasswordRegisterController = async(req,res,next)=>{
         const setOTPValues = [generatedOtp, otpNotVerified, phoneNumber];
         try {
           const setOTPResults = await pool.query(setOTPQuery,setOTPValues);
-          if(setOTPResults.rowCount!=0 && sendOTPMessage(phoneNumber, generatedOtp)){
+          
+          if(setOTPResults.rowCount!=0){
             // && sendOTPMessage(phoneNumber, generatedOtp)
             return res.status(200).json({
                 success:true,
-                message:"OTP sent to the Number you have entered",
+                message:`OTP sent to the number ending with ...${lastDigits}`,
                 data:setOTPResults.rows
             })
           }
-        } catch (error) {
-          return next(new ErrorHandler(false, `${error}`, 402))
+        } catch(error) {
+          console.log(error);
+          return next(new ErrorHandler(false, `${error}`, 400))
         }
       }
       
-    } catch (error) {
-      return next(new ErrorHandler(false, `${error}`, 402))
+    } catch(error) {
+      console.log(error);
+      return next(new ErrorHandler(false, `${error}`, 400))
     }
     
     const sendOTPQuery = "INSERT INTO user_registration (mobile_no, generated_otp) VALUES ($1,$2) RETURNING *"
     const sendOTPValues = [phoneNumber, generatedOtp];
     try {
       const sendOTPResults = await pool.query(sendOTPQuery,sendOTPValues);
-      if(sendOTPResults.rowCount!= 0 && sendOTPMessage(phoneNumber, generatedOtp) ){
+      if(sendOTPResults.rowCount!= 0 ){
         // && sendOTPMessage(phoneNumber, generatedOtp)
         return res.status(200).json({
             success:true,
-            message:"OTP sent to the Number you have entered",
+            message:`OTP sent to the number ending with ...${lastDigits}`,
             data:sendOTPResults.rows
         })
       }
-    } catch (error) {
-      return next(new ErrorHandler(false, `${error}`, 402))
+    } catch(error) {
+      console.log(error);
+      return next(new ErrorHandler(false, `${error}`, 400))
     }
-    } catch (error) {
-      return next(new ErrorHandler(false, `${error}`, 402))
+    } catch(error) {
+      console.log(error);
+      return next(new ErrorHandler(false, `${error}`, 400))
     }
     
 }

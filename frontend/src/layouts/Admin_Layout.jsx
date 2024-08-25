@@ -1,12 +1,12 @@
 import React from 'react'
-import HeaderHome from '../components/Header/HeaderHome'
+import HeaderAdmin from '../components/Header/HeaderAdmin.jsx'
 import { Outlet } from 'react-router-dom'
 import Sidebar from "../components/Admin Components/Admin Sidebar/Sidebar";
 
 const Admin_Layout = () => {
   return (
    <>
-   <HeaderHome/>
+   <HeaderAdmin/>
    <div className='flex flex-row'>
    <Sidebar/>
    <Outlet/>

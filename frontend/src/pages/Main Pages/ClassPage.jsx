@@ -7,6 +7,7 @@ import axios from "axios";
 import Loading from "../../components/Loading";
 import Toast, { toast, Toaster } from "react-hot-toast"
 import payImage from "../../assets/Logo/image 2.png"
+import { formatDate } from "../../utils/formateDate";
 
 const ClassPage = () => {
   document.title = "Dr.RamaChandra & Padma | Workshop"
@@ -25,20 +26,7 @@ const ClassPage = () => {
         console.log(classDatefetching.data.data);
         if(classDatefetching.data.data.length!=0){
         const inputDate = classDatefetching.data.data.class_date;
-        const date = new Date(inputDate);
-
-        // Extract day, month, and year from the date object
-        const day = date.getUTCDate().toString().padStart(2, "0"); 
-        // Get day and pad with leading zero if necessary
-        const month = (date.getUTCMonth() + 1).toString().padStart(2, "0");
-        // Get month (zero-indexed, hence +1) and pad with leading zero if necessary
-        const year = date.getUTCFullYear();
-
-        // Format the date as dd-mm-yyyy
-        const formattedDate = `${day}-${month}-${year}`;
-
-        console.log(formattedDate);
-        
+        const formattedDate = formatDate(inputDate);  
         setClassDate(formattedDate);
         setloading(false);
         }

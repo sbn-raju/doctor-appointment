@@ -81,6 +81,27 @@ async function sendClassConfimMessage(to,name,date,time,batchNumber){
 }
 
 
+async function sendAppointmentLinkMessage(to,link){ 
+    try {
+        const message = await authClientWithNumber.messages.create({
+            from:process.env.TWILIO_WHATSAPP_MESSAGE_SERVICE_SID,
+            to: `whatsapp:+91${to}`,
+            contentSid: process.env.TWILIO_APPOINTMENT_LINK_MESSAGE_TEMPLATE,
+            contentVariables: JSON.stringify({
+                1:`${link}`,
+                2:"https://youtu.be/b_vVeDxrbDo?feature=shared"
+            })
+        })
+        console.log(message)
+        return true
+    } catch (error) {
+        console.error(error)
+        return false
+    }
+
+} 
+
+
 
 
 
@@ -89,6 +110,7 @@ async function sendClassConfimMessage(to,name,date,time,batchNumber){
 export {
     sendAppointmentAlertMessage,
     sendAppointmentConfirmMessage,
+    sendAppointmentLinkMessage,
     sendClassConfimMessage,
     sendOTPMessage,
 }

@@ -10,6 +10,7 @@ const PaymentPage = React.lazy(() => import("../Admin Dashboard Pages/PaymentsPa
 const SetSlotsPage = React.lazy(() => import("../Admin Dashboard Pages/SetSlotsPage.jsx"));
 const UserDataPage = React.lazy(() => import("../Admin Dashboard Pages/UserDataPage.jsx"));
 const YoutubeVideosPage = React.lazy(() => import("../Admin Dashboard Pages/YoutubeVideosPage.jsx"));
+const Notifications = React.lazy(()=>import("../Admin Dashboard Pages/Notifications.jsx"));
 
 export {
     AdminLogin,
@@ -21,5 +22,6 @@ export {
     PaymentPage,
     SetSlotsPage,
     UserDataPage,
-    YoutubeVideosPage
+    YoutubeVideosPage,
+    Notifications
 };

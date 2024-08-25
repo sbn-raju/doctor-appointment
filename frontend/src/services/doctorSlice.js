@@ -8,11 +8,15 @@ const encryptAndVerifyToken = async(token)=>{
     }
     const decryptedToken = await decryptData(token);
     const response = await axios.post("/api/v1/doctor/verify");
+    console.log(response);
     if(response.status == 200 && response.statusText === "OK" && response.data.success){
         return decryptedToken
     }
-    else if(response.status == 403 || response.statusText === "Forbidden" || response.data.success){
+    else if(response.status == 403 || response.statusText === "Forbidden" || response.data.success || response.status == 500 || response.status == 404 || response.status == 401){
          return null;
+    }
+    else if(response.status === 429 || response.statusText === "Too Many Requests"){
+        return null;
     }
     else{
         return null;
@@ -48,6 +52,7 @@ const doctorAuth = createSlice({
           state.admin = action.payload.data[0].userRole;
         },
         logoutDoctor:(state, action)=>{
+            console.log("Hello");
             state.token = null;
             state.admin = null;
         }

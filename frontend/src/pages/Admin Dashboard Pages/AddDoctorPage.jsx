@@ -1,13 +1,16 @@
 import React from 'react'
-import { GiCaduceus } from "react-icons/gi"
 import Input from "../../components/Input Fields/Input";
-import CommonButton from '../../components/Buttons/CommonButton';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import {useMutation} from '@tanstack/react-query'
 import toast from "react-hot-toast"
+import LocalPharmacyRoundedIcon from '@mui/icons-material/LocalPharmacyRounded';
+import PersonAddAlt1RoundedIcon from '@mui/icons-material/PersonAddAlt1Rounded';
+
+
 
 const AddDoctorPage = () => {
+  document.title = "Add Doctor | Admin Portal"
   const { register, handleSubmit, reset } = useForm();
 
 
@@ -39,7 +42,7 @@ const AddDoctorPage = () => {
           <span className="ml-4 border-[1px] border-l-gray-500 h-12"></span>
           
           <div className="flex justify-center items-center">
-            <span className="text-2xl text-red-400 ml-4"><GiCaduceus /></span>
+            <span className="text-1xl text-red-400 ml-2"><LocalPharmacyRoundedIcon/></span>
             <p className="text-sm ml-1">Add Docter</p>
           </div>
         </div>        
@@ -72,9 +75,9 @@ const AddDoctorPage = () => {
               {...register("password", { required: true })}
             />
 
-            <div className='w-full flex justify-end mt-2'>
-              <button className='bg-green-3 text-white px-4 py-2 font-medium rounded-xl'>Submit</button>
-            </div>
+              <div className='w-full flex justify-end mt-2'>
+                <button type='submit' className='bg-green-600 text-white px-4 py-2 font-medium rounded-xl flex flex-row justify-between hover:bg-green-800'><PersonAddAlt1RoundedIcon/>&nbsp;Add Doctor</button>
+              </div>
           </div>
         </form>
       </div>

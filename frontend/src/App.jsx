@@ -11,28 +11,27 @@ import DoctorApp from "./apps/DoctorApp.jsx";
 
 //EVERY ONE USE APP FOR TESTING YOUR COMPONENT
 function App() {
-  const [componentToLoad, setComponentToLoad] = useState(null);
+  const [getport, setPort] = useState();
 
   useEffect(() => {
-    const getSubDomain = () => {
-      const link = window.location.hostname;
-      const location = link.split('.');
-      return location[0];
-    };
-
-    const subdomain = getSubDomain();
-    setComponentToLoad(subdomain);
+    const getPort = () =>{
+      const port = window.location.port;
+      return port
+    }
+    const subPort = getPort();
+    setPort(subPort);
+    
   }, []);
 
 
 
-  if (componentToLoad === 'admin') {
+  if (getport == import.meta.env.VITE_ADMIN_APP_PORT) {
     return <AdminApp />;
   }
-  else if (componentToLoad === 'doctor') {
+  else if (getport == import.meta.env.VITE_DOCTOR_APP_PORT) {
     return <DoctorApp />;
   }
-  else if(componentToLoad === 'localhost'){
+  else if(getport == import.meta.env.VITE_USERS_APP_PORT){
     return <UserApp />;
   }
   else {

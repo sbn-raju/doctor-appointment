@@ -88,14 +88,12 @@ const adminAuthLoginController = async(req,res,next)=>{
                 role_id:"Admin"
             }
         }
-        const token = jwt.sign(adminData, process.env.JWT_SECERT_KEY)
+        const token = jwt.sign(adminData, process.env.JWT_SECERT_KEY, {expiresIn: '15m'})
         //Creating Session 
-        req.session.admin = adminData.user
+        // req.session.admin = adminData.user
         //Creating Cookie
         res.cookie("admin_auth_token",token,{
             httpOnly:true,
-            expire:'1m',
-            // maxAge: Date.now() + 60 * 1000
         })
 
         return res.status(200).json({
@@ -105,6 +103,7 @@ const adminAuthLoginController = async(req,res,next)=>{
         })
 
     } catch (error) {
+        console.log(error);
         return next(new ErrorHandler(false, "Incorrect Password" , 401))
     }
 }
@@ -141,6 +140,12 @@ const verifyAdmin = async(req,res)=>{
         console.log("Admin");
         return res.status(200).json({
             success:true
+        })
+    }
+    else{
+        return res.status(404).json({
+            success:false,
+            message:"Your Not Authorize!"
         })
     }
 }
