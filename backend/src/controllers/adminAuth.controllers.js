@@ -54,7 +54,7 @@ const adminAuthRegistetController = async(req,res,next)=>{
 }
 
 
-
+//This is the login controller of the admin
 const adminAuthLoginController = async(req,res,next)=>{
     const errors = validationResult(req);
     if(!errors.isEmpty()){
@@ -88,7 +88,7 @@ const adminAuthLoginController = async(req,res,next)=>{
                 role_id:"Admin"
             }
         }
-        const token = jwt.sign(adminData, process.env.JWT_SECERT_KEY, {expiresIn: '15m'})
+        const token = jwt.sign(adminData, process.env.JWT_SECERT_KEY, {expiresIn: '5m'})
         //Creating Session 
         // req.session.admin = adminData.user
         //Creating Cookie
@@ -108,6 +108,8 @@ const adminAuthLoginController = async(req,res,next)=>{
     }
 }
 
+
+//This controller will clean all the cookies
 const adminAuthLogoutController = async(req,res,next)=>{
     try {
         if(req.session){
@@ -116,8 +118,7 @@ const adminAuthLogoutController = async(req,res,next)=>{
                     return next(new ErrorHandler(false, "Failed to logout" , 401))
                 }
                 else{
-                    res.clearCookie("session_Id")
-                    res.clearCookie("a_Id")
+                    res.clearCookie("admin_auth_token")
                     return res.status(200).json({
                         success:true,
                         message:"Logged Out Successfully"
@@ -126,14 +127,15 @@ const adminAuthLogoutController = async(req,res,next)=>{
             })
         }
         else{
-            return next(new ErrorHandler(false, "Session Not Found" , 401))
+            return next(new ErrorHandler(false, "Session Not Found" , 409))
         }
     } catch (error) {
-        return next(new ErrorHandler(false, `${error}` , 401))
+        return next(new ErrorHandler(false, `${error}` , 500))
     }
 }
 
 
+//This controller Verify the logged in user is the admin or not on every reload
 const verifyAdmin = async(req,res)=>{
     const{role_id} = req.user;
     if(role_id === 'Admin'){
@@ -143,9 +145,38 @@ const verifyAdmin = async(req,res)=>{
         })
     }
     else{
-        return res.status(404).json({
+        return res.status(401).json({
             success:false,
             message:"Your Not Authorize!"
+        })
+    }
+}
+
+
+
+//This controller returns all the user registered on the platform 
+const fetchUserDetailsController = async(req,res)=>{
+    const userDetailQuery = "SELECT * FROM user_details"
+    try {
+        const userDetails = await pool.query(userDetailQuery);
+        console.log(userDetails);
+        if(userDetails.rowCount != 0){
+            return res.status(200).json({
+                success:true,
+                message:"All Users On the Platform",
+                data:userDetails.rows
+            })
+        }else{
+            return res.status(200).json({
+                success:true,
+                message:"No User Found",
+            })
+        }
+    } catch (error) {
+        console.log(error)
+        return res.status(500).json({
+            success:false,
+            message:"Internal Server Error"
         })
     }
 }
@@ -155,5 +186,6 @@ export {
     adminAuthLoginController,
     adminAuthRegistetController,
     adminAuthLogoutController,
-    verifyAdmin
+    verifyAdmin,
+    fetchUserDetailsController
 }

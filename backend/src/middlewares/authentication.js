@@ -4,7 +4,7 @@ import { configDotenv } from "dotenv";
 import { decryptToken } from "../helpers/encryptToken.js";
 
 const authentication = (req,res,next)=>{
-    const authToken = req.cookies.a_Id ? req.cookies.a_Id : req.cookies.d_Id
+    const authToken = req.cookies.accessToken
     if(!authToken){
         return next(new ErrorHandler(false, "Auth Token is not present" , 403)) 
     }
@@ -22,6 +22,7 @@ const authentication = (req,res,next)=>{
                 return res.status(401).json({ success: false, message: 'Invalid token: No user data' });
             }
             req.user = decoded.user
+            console.log(req.user);
             next();
         })
     } catch (error) {

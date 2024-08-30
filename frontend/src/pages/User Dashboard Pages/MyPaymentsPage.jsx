@@ -7,6 +7,10 @@ import '../../styles/scrollbar.styles.css';
 import appointment from '../../assets/Page Assets/User Dashboard/svg/appointment.svg';
 import { useDispatch } from 'react-redux';
 import { refreshUserToken } from '../../services/refreshSlice';
+import SellOutlinedIcon from '@mui/icons-material/SellOutlined';
+import CreditScoreOutlinedIcon from '@mui/icons-material/CreditScoreOutlined';
+import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined';
+
 
 // const fetchPaymentDetails = async () => {
    
@@ -36,25 +40,18 @@ const PaymentItem = ({ payment }) => (
     <div className="mt-2 gap-4 md:gap-2">
       <div className='w-full flex'>
         <p className="w-1/2 text-xs md:text-base flex items-center font-medium flex-shrink-0">
-          <span className="mr-2 text-xl">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#507E4D" className="bi bi-calendar" viewBox="0 0 16 16">
-              <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
-            </svg>
-          </span>
+          <CalendarTodayOutlinedIcon sx={{color: "green"}}/>&nbsp;
           {formatDate(payment.payment_date)}
         </p>
         <p className="w-1/2 text-xs md:text-base flex items-center font-medium flex-shrink-0">
           <span className="mr-2 text-xl">
-            <img src={appointment} className='w-8' />
+            <SellOutlinedIcon sx={{color: "green"}}/>
           </span>
           {payment.payment_amount == 1000?"Class Fees":"Appointment Fees"}
         </p>
       </div>
       <p className="w-full font-thin md:font-normal text-sm flex items-center mt-2">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#507E4D" class="bi bi-credit-card-2-front mr-1" viewBox="0 0 16 16">
-          <path d="M14 3a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1zM2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/>
-          <path d="M2 5.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5zm0 3a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5m0 2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5m3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5m3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5m3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 0 1h-1a.5.5 0 0 1-.5-.5"/>
-        </svg>
+        <CreditScoreOutlinedIcon sx={{color: "green"}}/>&nbsp;
         Transaction ID: <span className="ml-1 font-medium">{payment.razorpay_payment_id}</span>
       </p>
     </div>
@@ -113,9 +110,7 @@ document.title = "User Payments"
     <div className="h-screen w-full p-4 md:p-6 flex flex-col items-center bg-gray-100">
       <div className="w-full my-8 flex flex-col md:flex-row items-center bg-white border border-gray-200 rounded-2xl md:px-10 py-3">
         <div className="flex items-center">
-          <h1 className="text-sm md:text-xl">Hello <span className="font-medium">{userProfile.Name}!!</span></h1>
-          <span className="ml-4 border-l border-gray-500 h-6"></span> {/* Vertical Line */}
-          <div className="flex justify-center items-center ml-3">
+             <div className="flex justify-center items-center ml-3">
             <span className="text-md ml-4"><MdPayment /></span>
             <p className="text-[10px] md:text-sm ml-1">My Payments</p>
           </div>

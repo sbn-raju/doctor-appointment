@@ -13,6 +13,7 @@ import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArro
 import KeyboardDoubleArrowLeftIcon from '@mui/icons-material/KeyboardDoubleArrowLeft';
 
 const Table = ({ data, columns }) => {
+  console.log(data);
   const table = useReactTable({
     data,
     columns,
@@ -21,7 +22,7 @@ const Table = ({ data, columns }) => {
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(), 
   });
-
+  
   const pageCount = table.getPageCount();
   const onPage = table.getState().pagination.pageIndex;
 

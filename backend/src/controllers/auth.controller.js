@@ -13,7 +13,7 @@ const options = {
 
 
 const generateAccessToken = (user)=>{
-    const accessToken = jwt.sign(user, process.env.JWT_SECERT_KEY, {expiresIn:'30m'},options)
+    const accessToken = jwt.sign(user, process.env.JWT_SECERT_KEY, {expiresIn:'5m'},options)
     return accessToken
 }
 
@@ -130,9 +130,10 @@ const sendOneTimePasswordRegisterController = async(req,res,next)=>{
 
 
 const verifyOneTimePasswordRegisterController = async(req,res,next)=>{
-  const {phoneNumber, code} = req.body;
+  const {phoneNumber, combinedOTP} = req.body;
+  console.log(phoneNumber, combinedOTP);
 
-  if(!phoneNumber || !code){
+  if(!phoneNumber || !combinedOTP){
     return res.status(400).json({
       success: false,
       error: 'Phone number and verification code are required'
@@ -146,11 +147,15 @@ const verifyOneTimePasswordRegisterController = async(req,res,next)=>{
 
 
   const verifyUserResults = await pool.query(verifyUserQuery, verifyUserValue)
+  console.log('verifyUserResults:', verifyUserResults.rows[0].generated_otp);
 
   if(verifyUserResults.rowCount != 0 && (verifyUserResults.rows[0].otp_verification != otpVerified || verifyUserResults.rows[0].otp_verification == null) ){
 
+    console.log(verifyUserResults.rows[0].generated_otp === parseInt(combinedOTP));
+    console.log(typeof(combinedOTP));
 
-    if(verifyUserResults.rows[0].generated_otp == code){
+    if(verifyUserResults.rows[0].generated_otp === parseInt(combinedOTP)){
+      
       const setOTPQuery = "UPDATE user_registration SET otp_verification = $1 WHERE mobile_no = $2"
       const setOTPValues = [otpVerified, phoneNumber]
 
@@ -161,7 +166,8 @@ const verifyOneTimePasswordRegisterController = async(req,res,next)=>{
         const userData = {
           user:{
             user_id : verifyUserResults.rows[0].id,
-            mobile_no :verifyUserResults.rows[0].mobile_no
+            mobile_no :verifyUserResults.rows[0].mobile_no,
+            user_Role: "userRoleAsTheCustomer"
           }
         }
 
@@ -172,17 +178,8 @@ const verifyOneTimePasswordRegisterController = async(req,res,next)=>{
           sameSite:"strict"
         }
 
-
-        // const accessToken = jwt.sign(userData.user.user_id, process.env.JWT_SECERT_KEY, {expiresIn: '5m'})
-        // const refreshToken = jwt.sign(userData,process.env.JWT_SECERT_KEY, {expiresIn:'1d'})
         const{accessToken, refreshToken} = await generateAccessAndRefreshTokens(userData)
-
-        const encryptAccessToken = await encryptToken(accessToken)   
-        // console.log(encryptAccessToken)
-        // console.log(accessToken)
-        // console.log(refreshToken)
-        //Change the expire in production
-        // console.log(refreshToken);
+ 
 
         return res
         .status(200)
@@ -190,26 +187,30 @@ const verifyOneTimePasswordRegisterController = async(req,res,next)=>{
         .cookie("refreshToken", refreshToken, options)
         .json({
           success:true,
-          message:"OTP Verified",
+          message:"Phone Number Verified successfully :)",
           tokens:{
-            accessToken:encryptAccessToken,
+            accessToken,
             refreshToken
+          },
+          roles:{
+            role:"userRoleAsTheCustomer"
           }
         })
       }
     }
     else{
-      return res.status(302).json({
+      console.log("true");
+      return res.status(400).json({
         success:false,
-        message:"OTP is invallid",
+        message:"Oops! The OTP you entered is incorrect. Please try again.",
       })
     }
   }
 
   else{
-    return res.status(302).json({
+    return res.status(400).json({
       success:false,
-      message:"OTP is invalid",
+      message:"Oops! The OTP you entered is incorrect. Please try again.",
     })
   }
 
@@ -325,7 +326,22 @@ const userLogoutController = async(req,res,next)=>{
 }
 
 
+const verifyUser = async(req,res)=>{
+    const{user_Role} = req.user;
+    if(user_Role === 'userRoleAsTheCustomer'){
+        console.log("userRoleAsTheCustomer");
+        return res.status(200).json({
+            success:true
+        })
+    }
+    else{
+        return res.status(404).json({
+            success:false,
+            message:"Your Not Authorize!"
+        })
+    }
 
+}
 
 
 
@@ -336,5 +352,6 @@ export {
     verifyOneTimePasswordRegisterController,
     sendOneTimePasswordRegisterController,
     userLogoutController,
-    refreshAccessToken
+    refreshAccessToken,
+    verifyUser
 }

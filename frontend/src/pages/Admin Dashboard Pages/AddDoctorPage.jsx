@@ -4,19 +4,34 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import {useMutation} from '@tanstack/react-query'
 import toast from "react-hot-toast"
+import isValidToken from '../../apis/isValidToken';
 import LocalPharmacyRoundedIcon from '@mui/icons-material/LocalPharmacyRounded';
 import PersonAddAlt1RoundedIcon from '@mui/icons-material/PersonAddAlt1Rounded';
+import { logoutAdmin } from '../../services/adminSlice';
+import {useDispatch}from "react-redux" 
 
 
 
 const AddDoctorPage = () => {
   document.title = "Add Doctor | Admin Portal"
   const { register, handleSubmit, reset } = useForm();
+  const dispatch = useDispatch();
 
 
   const addDoctor = async(doctorData)=>{
-    const response = await axios.post("/api/v1/doctor/set-doctors",doctorData)
-    return response
+
+    try {
+      const response = await axios.post("/api/v1/doctor/set-doctors",doctorData)
+      return response
+    } catch (error) {
+      console.log(error);
+      if(isValidToken(error)){
+       dispatch(logoutAdmin())
+      }else{
+        console.log(error)
+        return Promise.reject(error);
+      }
+    }
   }
   
   const fromMutation = useMutation({

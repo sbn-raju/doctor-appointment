@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { verifyOneTimePasswordRegisterController, sendOneTimePasswordRegisterController, userLogoutController, refreshAccessToken } from "../controllers/auth.controller.js"; 
+import { verifyOneTimePasswordRegisterController, sendOneTimePasswordRegisterController, userLogoutController, refreshAccessToken, verifyUser } from "../controllers/auth.controller.js"; 
 import { userAuthentication } from "../middlewares/authentication.js";
 
 
@@ -14,6 +14,8 @@ authRoute.route("/register/verify-Details/verify").post(verifyOneTimePasswordReg
 authRoute.route("/logout").post(userAuthentication, userLogoutController);
 
 authRoute.route("/refresh-token").post(refreshAccessToken);
+
+authRoute.route("/verify/user").post(userAuthentication, verifyUser);
 
 
 export default authRoute

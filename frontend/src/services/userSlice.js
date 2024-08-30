@@ -1,119 +1,55 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
+import { decryptData } from "../utils/encryptData";
 import axios from "axios";
 
-// Correct the function parameters for createAsyncThunk
-const loginUser = createAsyncThunk("auth/loginUser", async ({ phoneNumber, code }, { rejectWithValue }) => {
+// decrypting the information
+const decryptTokenAndVerifyToken = async (token) => {
+  const decryptedToken = await decryptData(token);
   try {
-    const response = await axios.post(
-      "/api/v1/auth/register/verify-Details/verify",
-      { phoneNumber, code },
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
-    console.log(response.data)
-    return response.data;
+    const response = await axios.post("/api/v1/auth/verify/user");
+    console.log(response.data);
+    if (response.status == 200) {
+      return decryptedToken;
+    }
+    console.log(decryptedToken);
   } catch (error) {
     console.log(error);
-    // Use rejectWithValue instead of isRejectedWithValue
-    return rejectWithValue(error.response.data);
+    return null;
   }
-});
+};
 
-
-const encryptAndVerifyToken = async(token)=>{
-  if(token == null){
-      return null;
+const decryptRoleAndVerifyRole = async (role) => {
+  if (!role) {
+    return null;
   }
+  const decryptedRole = await decryptData(role);
+  console.log(decryptedRole);
 
-  const expiryTime = sessionStorage.getItem("admin_token_expiry");
-
-  if(isTokenExpired(expiryTime)){
-      sessionStorage.removeItem("admin_info");
-      sessionStorage.removeItem("admin_token_expiry");
-      return null;
-  }
-   
-
-
-  const decryptedToken = await decryptData(token);
-  const response = await axios.post("/api/v1/admin/verify");
-  if(response.status == 200 && response.statusText === "OK" && response.data.success){
-      return decryptedToken
-  }
-  else if(response.status == 403 || response.statusText === "Forbidden" || response.data.success || response.status == 500 || response.status == 404){
-       return null;
-  }
-  else{
-      return null;
-  }
-}
-
-
-
-const decryptedAndVerifyUser = async(userRole)=>{
-  if(userRole == null){
-      return null
-  }
-  const decryptedUser = await decryptData(userRole);
-  return decryptedUser;
-}
-
-
+  return decryptedRole;
+};
 
 const initialState = {
-  token: await encryptAndVerifyToken(localStorage.getItem("a_tk")),
-  user_role: await decryptedAndVerifyUser(localStorage.getItem("user_Role")),
-}
-
-
-
-
-
-
+  token: await decryptTokenAndVerifyToken(localStorage.getItem("user_Info")),
+  user_Role: await decryptRoleAndVerifyRole(localStorage.getItem("user_Role")),
+};
 
 const authSlice = createSlice({
   name: "authUser",
   initialState,
   reducers: {
-    loginUser:(state, action)=>{
-      state.token = action.payload.tokens.accessToken.encryptedData;
-      state.user_role = action.payload.admin;
-
+    loginUser: (state, action) => {
+      state.token = action.payload.token;
+      state.user_Role = action.payload.user_role;
     },
-    logoutUser:(state)=>{
+    logoutUser: (state) => {
       state.token = null;
-      state.message = "";
-      localStorage.removeItem("a_tk");
-    }
+      state.user_Role = null;
+      localStorage.removeItem("user_Info");
+      localStorage.removeItem("user_Role");
+    },
   },
-  extraReducers: (builder) => {
-    builder
-      .addCase(loginUser.pending, (state) => {
-        console.log("HI");
-        state.token = null;
-        state.message = "";
-      })
-      .addCase(loginUser.fulfilled, (state, action) => {
-        state.token = action.payload.tokens.accessToken.encryptedData;
-        console.log(action.payload.tokens);
-        state.message = action.payload.message;
-        localStorage.setItem("a_tk", action.payload.tokens.accessToken.encryptedData);
-      })
-      .addCase(loginUser.rejected, (state, action) => {
-        console.log("BYEE");
-        state.token = null;
-        state.message = action.payload || action.error.message;
-        localStorage.removeItem("a_tk") // Use action.payload for error message
-      });
-  }
 });
 
-
-export {loginUser}
-
-export const {logout} = authSlice.actions
+export const { logoutUser, loginUser } = authSlice.actions;
 
 export default authSlice.reducer;

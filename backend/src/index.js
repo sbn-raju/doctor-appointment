@@ -27,17 +27,17 @@ app.use(rateLimit({
     message:"There are too many requests from the IP"
 }))
 
-app.use(session({
-    name:"session_Id",
-    resave:false,
-    saveUninitialized:false,
-    secret:process.env.SESSION_SECERET_KEY,
-    cookie:{
-        httpOnly:true,
-        sameSite:'strict',
-        maxAge:60*60*1000,
-    }
-}));
+// app.use(session({
+//     name:"session_Id",
+//     resave:false,
+//     saveUninitialized:false,
+//     secret:process.env.SESSION_SECERET_KEY,
+//     cookie:{
+//         httpOnly:true,
+//         sameSite:'strict',
+//         maxAge:60*60*1000,
+//     }
+// }));
 
 app.use(cookieParser());
 app.use(cors({ origin: 'http://localhost:5173', credentials: true }));

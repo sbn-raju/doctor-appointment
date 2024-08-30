@@ -1,16 +1,22 @@
 import React, { useEffect, useRef, useState } from "react";
 import { IoMenu } from "react-icons/io5";
 import { navItems } from "../../constants";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/Page Assets/Home/New Logo.png";
 import ClearIcon from "@mui/icons-material/Clear";
 import MobileInput from "../MobileInput.jsx";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import LoginRoundedIcon from '@mui/icons-material/LoginRounded';
+import { useSelector } from "react-redux";
 
 const HeaderHome = () => {
+
+  const { token } = useSelector((state) => state.auth);
+
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isAccountBoxOpen, setIsAccountBoxOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleDrawer = () => {
     setDrawerIsOpen(!drawerIsOpen);
@@ -34,6 +40,10 @@ const HeaderHome = () => {
   const closeAccount = () => {
     setIsAccountBoxOpen(false);
   };
+
+  const handleUserDashboard = ()=>{
+    navigate("/user/profile");
+  }
 
   return (
     <>
@@ -69,9 +79,11 @@ const HeaderHome = () => {
           </ul>
         </div>
         <div className="hidden md:flex items-center ml-2 md:ml-4 lg:ml-6">
-          <button onClick={handleAccountBox}>
-            <AccountCircleIcon sx={{ fontSize: 40, color: "green" }} />
-          </button>
+        {token != null ? <button onClick={handleUserDashboard}>
+                   <AccountCircleIcon sx={{ fontSize: 40, color: "green" }}/>
+              </button> : <button onClick={handleAccountBox}>
+                <div className="flex flex-row justify-center items-center"><p className="text-xl mb-1">Login</p>&nbsp;<LoginRoundedIcon sx={{ fontSize: 30, color: "green" }}/></div>
+              </button> }
         </div>
         <div className="md:hidden">
           <button onClick={handleDrawer} className="text-3xl md:text-4xl">
@@ -106,9 +118,13 @@ const HeaderHome = () => {
               </li>
             ))}
             <li className="ml-4">
-              <button onClick={handleAccountBox}>
-                <AccountCircleIcon sx={{ fontSize: 40, color: "green" }} />
-              </button>
+              {token != null ? <button onClick={handleUserDashboard}>
+                   <AccountCircleIcon sx={{ fontSize: 40, color: "green" }}/>
+              </button> : <button onClick={handleAccountBox}>
+              <div className="flex flex-row justify-center items-center"><p className="text-xl mb-1">Login</p>&nbsp;<LoginRoundedIcon sx={{ fontSize: 30, color: "green" }}/></div>      
+              </button> }
+              
+              
             </li>
           </ul>
           {isAccountBoxOpen && <MobileInput closeAccount={closeAccount} />}

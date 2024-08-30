@@ -8,6 +8,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios'
 import { Link } from 'react-router-dom';
 import { refreshUserToken } from '../../services/refreshSlice.js';
+import NoteBar from '../../components/NoteBar.jsx';
+import CoPresentOutlinedIcon from '@mui/icons-material/CoPresentOutlined';
+import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined';
+import AddLinkOutlinedIcon from '@mui/icons-material/AddLinkOutlined';
+import GroupsOutlinedIcon from '@mui/icons-material/GroupsOutlined';
+import TimerOutlinedIcon from '@mui/icons-material/TimerOutlined';
 
 
 const formatDate = (isDateString) => {
@@ -60,17 +66,19 @@ const MyClassesPage = () => {
 
   return (
     <div className="h-screen w-full p-4 md:p-6 flex flex-col items-center bg-gray-1">
+     
       <div className="w-full my-8 flex flex-col md:flex-row items-center bg-white border-[1px] border-gray-2 rounded-2xl md:px-10 py-3">
         <div className="flex flex-row items-center">
-          <h1 className='text-sm md:text-xl'>Hello <span className="font-semibold">{userProfile.Name}!!</span></h1>
-          <span className="ml-4 border-[1px] border-l-gray-500 h-6"></span> {/* Vertical Line */}
+          {/* <h1 className='text-sm md:text-xl'>Hello <span className="font-semibold">{userProfile.Name}!!</span></h1>
+          <span className="ml-4 border-[1px] border-l-gray-500 h-6"></span> Vertical Line */}
           <div className="flex justify-center items-center ml-4">
             <span className="text-md ml-4"><BsCalendar2Event /></span>
             <p className="text-[10px] md:text-sm ml-1">My Classes</p>
           </div>
         </div>
+        
       </div>
-
+      <NoteBar/>
       { classRecords.length !== 0 ? (
         <>
           <div className="w-full h-3/6 overflow-auto scrollbar">
@@ -79,37 +87,25 @@ const MyClassesPage = () => {
                 <div className='w-full flex flex-row'>
                   <div className='w-11/12 md:w-9/12 flex flex-col gap-4 md:gap-2'>
                     <div className='grid grid-cols-2'>
-                      <p className='text-xs md:text-base flex items-center md:font-medium'>
-                        <span className='mr-2 text-xl'>
-                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#507E4D" className=" bi bi-calendar" viewBox="0 0 16 16">
-                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
-                          </svg>
-                        </span>
+                      <p className='text-lg md:text-base flex items-center md:font-medium'>
+                       <CalendarTodayOutlinedIcon sx={{color: "green"}}/>&nbsp;
                         {formatDate(classItem.class_date)}
                       </p>
                       <p className='text-xs md:text-base flex items-center md:font-medium'>
                         <span className='mr-2 text-xl'>
-                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#507E4D" class="bi bi-clock" viewBox="0 0 16 16">
-                            <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
-                            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/>
-                          </svg>
+                        <TimerOutlinedIcon sx={{color: "green"}}/>&nbsp;
                         </span>
                         {classItem.class_time}
                       </p>
                     </div>
                     <div className="grid grid-cols-2 mt-2">
                       <p className='mr-3 text-xs md:text-sm flex justify-start items-center'>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#507E4D" className="bi bi-graph-up" viewBox="0 0 16 16">
-                          <path fill-rule="evenodd" d="M0 0h1v15h15v1H0zm14.817 3.113a.5.5 0 0 1 .07.704l-4.5 5.5a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61 4.15-5.073a.5.5 0 0 1 .704-.07"/>
-                        </svg>
-                        <span className='font-medium ml-2'>: {classItem.class_id}</span>
+                        <GroupsOutlinedIcon sx={{color: "green"}}/>&nbsp;
+                        <span className='font-medium ml-2'>Batch No.:&nbsp;{classItem.class_id}</span>
                       </p>
                       <p className='mr-3 text-xs md:text-sm flex justify-start items-center'>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#507E4D" class="bi bi-check-circle" viewBox="0 0 16 16">
-                          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
-                          <path d="m10.97 4.97-.02.022-3.473 4.425-2.093-2.094a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-1.071-1.05"/>
-                        </svg>
-                        <span className='text-xs md:text-base md:font-medium ml-2'>{classItem.Status}</span>
+                        <CoPresentOutlinedIcon sx={{color: "green"}}/>&nbsp;
+                        <span className='text-xs md:text-base md:font-medium ml-2'>{classItem.status == 1 && classItem.isactive == 1 ?"Completed" : classItem.status == 1 && classItem.isactive == null ? "Ongoing" : "Upcoming"}</span>
                       </p>
                     </div>
                   </div>
@@ -117,7 +113,7 @@ const MyClassesPage = () => {
                   <div className='w-1/12 md:w-3/12 md:px-4 flex justify-center items-center'>
                     <button className={`${!classItem.class_link? 'bg-gray-400' : 'bg-green-4'} rounded-md px-2 py-1 md:px-8 text-white text-xs md:text-base`} disabled={!classItem.class_link}>
                       <Link to={classItem.class_link}>
-                          Join
+                      <AddLinkOutlinedIcon/>&nbsp;Join
                       </Link>
                     </button>
                   </div>

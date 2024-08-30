@@ -8,6 +8,9 @@ import AppointmentsTable from "../../components/AppointmentsTable";
 import Loading from "../../components/Loading.jsx"
 import { formatDate } from "../../utils/formateDate.js";
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import isValidToken from "../../apis/isValidToken.js";
+import { useDispatch } from "react-redux";
+import { logoutAdmin } from "../../services/adminSlice.js";
 
 
 
@@ -36,11 +39,24 @@ const CautionBox = ({handleCancel}) => {
 
 
 const AppointmentsPage = () => {
+  const dispatch = useDispatch();
     //Fetching All Appointments
     const fetchAllAppointments = async()=>{
-      const response = await axios.get("/api/v1/appointment/get/appointments");
-      console.log(response)
-      return response?.data.data
+      try {
+        const response = await axios.get("/api/v1/appointment/get/appointments");
+        console.log(response)
+        return response?.data.data
+      } catch (error) {
+        console.log(error);
+        if(isValidToken(error)){
+          dispatch(logoutAdmin())
+        }
+        else{
+          console.log(error)
+          // return Promise.reject(error);
+        }
+        return null
+      }
     }
 
 
@@ -77,8 +93,6 @@ const AppointmentsPage = () => {
         cell:({getValue})=> formatDate(getValue()),
         enableColumnFilter:false,
         enableSorting: true,
-       
-        
       },
       {
         header: 'Time',
@@ -101,27 +115,6 @@ const AppointmentsPage = () => {
       
     ],[]);
   
-
-  
-
-
-
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
   // const [currentPage, setCurrentPage] = useState(1);
   // const [rowsPerPage, setRowsPerPage] = useState(10);//
   // const [isCautionBoxOpen, setIsCautionBoxOpen] = useState(false);
@@ -273,8 +266,6 @@ const AppointmentsPage = () => {
   // const handleCancel = () => {
   //   setIsCautionBoxOpen(false);
   // }
-
-
 
   return (
     <div className='h-auto w-full bg-gray-1 flex flex-col justify-center items-center p-8'>

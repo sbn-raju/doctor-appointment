@@ -88,7 +88,7 @@ const setClassBooking = async (req, res, next) => {
 
 const getClassesBooked = async(req,res,next)=>{
   const user = req.user
-  const getClassesBookedQuery = "SELECT DISTINCT class_booking.class_id, class_master.class_date, class_master.class_time, class_master.class_link FROM class_booking JOIN class_master ON class_booking.class_id = class_master.id WHERE class_booking.user_id = $1;"
+  const getClassesBookedQuery = "SELECT DISTINCT class_booking.class_id, class_master.class_date, class_master.class_time, class_master.class_link, class_master.status, class_master.isactive FROM class_booking JOIN class_master ON class_booking.class_id = class_master.id WHERE class_booking.user_id = $1;"
   try {
     const getClassBookedResults = await pool.query(getClassesBookedQuery, [user.user_id]);
     if(getClassBookedResults.rowCount!=0){

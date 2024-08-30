@@ -1,13 +1,17 @@
   import React, { useState, useEffect } from 'react';
   import { userProfile, appointmentDetails } from '../../constants';
   import { BsCalendar2Event } from "react-icons/bs";
-  import { FaClock, FaPhone } from "react-icons/fa6";
-  import CommonButton from '../../components/Buttons/CommonButton';
   import patient from '../../assets/Page Assets/User Dashboard/svg/patient.svg'
   import doctor from '../../assets/Page Assets/User Dashboard/svg/doctor.svg'
   import {useDispatch, useSelector} from 'react-redux'
   import axios from 'axios'
   import {refreshUserToken} from '../../services/refreshSlice.js';
+  import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined';
+  import AccessTimeOutlinedIcon from '@mui/icons-material/AccessTimeOutlined';
+  import VaccinesOutlinedIcon from '@mui/icons-material/VaccinesOutlined';
+  import CallOutlinedIcon from '@mui/icons-material/CallOutlined';
+  import MasksIcon from '@mui/icons-material/Masks';
+  import CalendarMonthOutlinedIcon from '@mui/icons-material/CalendarMonthOutlined';
 
 
 
@@ -36,7 +40,7 @@
           setAppointmentRecords(data?.data?data.data:[]);
         } catch(error){
           console.log(error.response.status)
-          if(error.response.status === 401){
+          if(error.response.status === 401 || error.response.status === 403 ){
             dispatch(refreshUserToken())
           }
           console.log('Error occured', error);
@@ -50,10 +54,8 @@
       <div className="h-screen w-full p-4 md:p-10 flex flex-col items-center bg-gray-1">
         <div className="w-full my-8 flex flex-col md:flex-row items-center bg-white border-[1px] border-gray-2 rounded-2xl md:px-10 py-3">
           <div className="flex flex-row items-center">
-            <h1 className="text-sm md:text-xl">Hello <span className="font-medium">{userProfile.Name}!!</span></h1>
-            <span className="ml-4 border-[1px] border-l-gray-500 h-6"></span> {/* Vertical Line */}
             <div className="flex justify-center items-center">
-              <span className="text-md ml-4"><BsCalendar2Event /></span>
+              <span className="text-md ml-4"><CalendarMonthOutlinedIcon /></span>
               <p className="text-[10px] md:text-sm ml-1">My Appointments</p>
             </div>
           </div>
@@ -66,38 +68,27 @@
                   <div className='w-full flex'>
                     <div className='w-11/12 md:w-9/12 grid grid-cols-2 gap-4'>
                       <p className='text-xs md:text-base flex items-center md:font-medium'>
-                        <span className='mr-2 text-xl'>
-                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#507E4D" className=" bi bi-calendar" viewBox="0 0 16 16">
-                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
-                          </svg>
-                        </span>
+                        <CalendarTodayOutlinedIcon sx={{color: "green"}}/>&nbsp;
                         {formatDate(appointment?.date)}
                       </p>
                       <p className='text-xs md:text-base flex items-center md:font-medium'>
-                        <span className='mr-2 text-xl'>
-                          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#507E4D" class="bi bi-clock" viewBox="0 0 16 16">
-                            <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
-                            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/>
-                          </svg>
-                        </span>
+                       <AccessTimeOutlinedIcon sx={{color: "green"}}/>&nbsp;
                         {appointment?.slot_start_time}
                       </p>
                       <p className='flex justify-start items-center'>
-                        <img src={patient} className='w-5'/>
+                        <VaccinesOutlinedIcon sx={{color: "green"}}/>&nbsp;
                         <span className='text-xs md:text-base md:font-medium'>{appointment?.purpose_of_visit}</span>
                       </p>
                       <p className='flex justify-start items-center'>
-                      <img src={doctor} className='w-5'/>
+                      <MasksIcon sx={{color: "green"}}/>&nbsp;
                         <span className='text-xs md:text-base md:font-medium'>{appointment?.name}</span>
                       </p>
                     </div>
 
                     <div className='w-1/12 md:w-3/12 md:px-4 flex justify-center items-center'>
                       <button className='hover:border-[1px] hover:border-green-4 p-2 rounded-lg flex justify-center items-center'>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#507E4D" className="bi bi-telephone-fill" viewBox="0 0 16 16">
-                          <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
-                        </svg>
-                        <p className='hidden md:block text-green-4 text-sm ml-2'>Contact for any queries</p>
+                      <CallOutlinedIcon sx={{color:"#1b5e20",}}/>
+                        <p  style={{color:"#1b5e20"}} className='hidden md:block text-sm ml-2'>Contact for any queries</p>
                       </button>
                     </div>
                     {/* <div className='w-1/4 px-6'>

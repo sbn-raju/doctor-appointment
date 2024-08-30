@@ -11,7 +11,6 @@ const adminAutho = (req,res,next)=>{
     }
 }
 
-
 export {
     adminAutho
 }

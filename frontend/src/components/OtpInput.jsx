@@ -8,6 +8,8 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import toast from "react-hot-toast";
 import {useMutation} from "@tanstack/react-query"
+import { encryptData } from "../utils/encryptData";
+import { loginUser } from "../services/userSlice";
 
 
 
@@ -53,43 +55,44 @@ const OtpInput = ({ phoneNumber, closeOTPCard }) => {
     }
   };
 
-  const sendotp = async(phoneNumber, code)=>{
-    console.log(phoneNumber, code);
-    const response = await axios.post("/api/v1/auth/register/verify-Details/verify",{
+  const sendotp = async({phoneNumber, combinedOTP})=>{
+    console.log(phoneNumber, combinedOTP);
+    return await axios.post("/api/v1/auth/register/verify-Details/verify",{
       phoneNumber,
-      code
+      combinedOTP
     });
-    console.log(response);
-    return response;
   }
 
   const oneTimePassResponse = useMutation({
     mutationFn:sendotp,
-    onSuccess:()=>{
-      toast.success("User Successfull Verified");
+    onSuccess:async(data)=>{
+      console.log(data);
+      toast.success(data?.data.message);
+      const tokens = data?.data.tokens.accessToken;
+      const userRoles = data?.data.roles.role
+
+      const encryptedToken = await encryptData(tokens.toString());
+      const encryptUserRole = await encryptData(userRoles.toString());
+
+
+      dispatch(loginUser({token: encryptedToken, user_role: encryptUserRole}));
+
+      localStorage.setItem("user_Info", encryptedToken);
+      localStorage.setItem("user_Role", encryptUserRole);
+
+      
       closeOTPCard(true);
       navigate("/");
+    },
+    onError:(data)=>{
+      console.log(data)
+      toast.error(data?.response.data.message);
     }
   })
 
   const handleOTPSubmit = async () => {
-    console.log("HELLO");
-    oneTimePassResponse.mutate(phoneNumber, combinedOTP)
-    // try {
-    //   const response = await dispatch(
-    //     loginUser({ phoneNumber: phoneNumber, code: combinedOTP })
-    //   ).unwrap();
-    //   console.log(response);
-    //   if (response.success) {
-    //     toast.success(response.message);
-    //     navigate("/user/profile");
-    //     closeOTPCard(true);
-    //   } else {
-    //     toast.error(response.message);
-    //   }
-    // } catch (error) {
-    //   toast.error("Error Connecting Server");
-    // }
+    const otpData = { phoneNumber, combinedOTP };
+    oneTimePassResponse.mutate(otpData)
   };
   const lastDigits = phoneNumber.slice(6, 10);
 

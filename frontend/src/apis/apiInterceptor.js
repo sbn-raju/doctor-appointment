@@ -9,16 +9,12 @@ const expiryTime = sessionStorage.getItem("admin_token_expiry");
 
 
 axios.interceptors.request.use(
-    (config)=>{
-        if(isTokenExpired(expiryTime)){
-            store.dispatch(logoutAdmin());
-            return Promise.reject(new Error("Session expired. Please log in again."));
-        }
-        console.log(config);
-        return config;
-    },
-    (error)=>{
-        return Promise.reject(error)
+    response => response,
+  error => {
+    if (error.response && error.response.status === 401) {
+      store.dispatch(logoutAdmin());
     }
+    return Promise.reject(error);
+  }
 )
 

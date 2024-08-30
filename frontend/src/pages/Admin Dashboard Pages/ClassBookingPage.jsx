@@ -5,12 +5,15 @@ import '../../styles/scrollbar.styles.css'
 import { useNavigate } from 'react-router-dom';
 import {useQuery} from '@tanstack/react-query'
 import axios from "axios"
+import { useDispatch } from 'react-redux';
 import Table from '../../components/Table';
+import isValidToken from '../../apis/isValidToken';
+import { logoutAdmin } from '../../services/adminSlice';
 
 
 const ClassBookingPage = () => {
 
-
+  const dispatch = useDispatch();
   const columns = [
     {
       header: 'Name',
@@ -45,18 +48,48 @@ const ClassBookingPage = () => {
 
 
   const fetchBatchNumber = async () => {
-    const response = await axios.get("/api/v1/class/admin/getClass");
-    return response.data.data;
+    try {
+      const response = await axios.get("/api/v1/class/admin/getClass");
+      return response.data.data;
+    } catch (error) {
+      if(isValidToken(error)){
+        dispatch(logoutAdmin());
+      }else{
+        console.log(error);
+        return error
+      }
+      return null 
+    }
   };
 
   const fetchBatchWiseMembers = async (batch) => {
-    const response = await axios.get(`/api/v1/class/admin/class/batches?batch=${batch}`);
-    return response.data.data;
+   try {
+     const response = await axios.get(`/api/v1/class/admin/class/batches?batch=${batch}`);
+     return response.data.data;
+   } catch (error) {
+    if(isValidToken(error)){
+      dispatch(logoutAdmin());
+    }else{
+      console.log(error);
+      return error
+    }
+    return null 
+   }
   };
 
   const fetchClassDetails = async () => {
-    const response = await axios.get("/api/v1/class/admin/users/booked");
-    return response.data.data;
+   try {
+     const response = await axios.get("/api/v1/class/admin/users/booked");
+     return response.data.data;
+   } catch (error) {
+    if(isValidToken(error)){
+      dispatch(logoutAdmin());
+    }else{
+      console.log(error);
+      return error
+    }
+    return null 
+   }
   };
 
   const { data: batchDetails } = useQuery({
